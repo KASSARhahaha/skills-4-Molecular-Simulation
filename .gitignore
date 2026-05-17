@@ -1,0 +1,6 @@
+.venv/
+site/
+resources/mineru/
+__pycache__/
+*.pyc
+.env

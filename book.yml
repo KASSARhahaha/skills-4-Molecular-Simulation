@@ -1,0 +1,190 @@
+# book.yml — 理解分子模拟（中文版）在线站点配置
+# 运行: minerupress-fetch book.yml    （上传 PDF 到 MinerU 云端 API，再导出）
+# 运行: minerupress-export book.yml   （使用本地 MinerU 输出）
+
+mineru_root: resources/mineru
+docs_out: docs
+volume_uid: molsim-cn
+
+# 目录页过滤阈值
+toc_max_page: 10
+
+# 严格模式：先允许缺失，后续再收紧
+allow_missing_boundaries: true
+
+# MinerU 云端 API
+api:
+  token: ""                        # 从 .env 读取 MINERU_API_TOKEN
+  enable_formula: true
+  enable_table: true
+  model_version: vlm
+  sources:
+    molsim-cn: "/home/yangkai/1-AI-CCUS/8-AI-CCUS/molsim2026/Chinese-Understanding Molecular Simulation/main_cn.pdf"
+
+# 启用的插件
+plugins:
+  - qr_filter
+  - cjk_spacing
+
+# 章节列表
+chapters:
+  # 前言
+  - slug: preface-berend
+    title: 译者序
+
+  - slug: preface1
+    title: 第一版前言
+
+  - slug: preface2
+    title: 第二版前言
+
+  - slug: preface3
+    title: 第三版前言
+
+  # 正文 16 章
+  - slug: ch01-introduction
+    title: 第1章 绪论
+    aliases:
+      - "1 Introduction"
+      - "Chapter 1"
+
+  - slug: ch02-thermo-statmech
+    title: 第2章 统计力学基础
+    aliases:
+      - "2 Statistical mechanics"
+      - "Chapter 2"
+
+  - slug: ch03-monte-carlo
+    title: 第3章 蒙特卡洛模拟
+    aliases:
+      - "3 Monte Carlo simulations"
+      - "Chapter 3"
+
+  - slug: ch04-md
+    title: 第4章 分子动力学模拟
+    aliases:
+      - "4 Molecular dynamics simulations"
+      - "Chapter 4"
+
+  - slug: ch05-computer-exp
+    title: 第5章 计算机实验
+    aliases:
+      - "5 Computer experiments"
+      - "Chapter 5"
+
+  - slug: ch06-mc-ensembles
+    title: 第6章 蒙特卡洛系综
+    aliases:
+      - "6 Monte Carlo in different ensembles"
+      - "Chapter 6"
+
+  - slug: ch07-md-ensembles
+    title: 第7章 分子动力学系综
+    aliases:
+      - "7 Molecular dynamics in different ensembles"
+      - "Chapter 7"
+
+  - slug: ch08-free-energy
+    title: 第8章 自由能计算
+    aliases:
+      - "8 Free energy calculations"
+      - "Chapter 8"
+
+  - slug: ch09-free-energy-solids
+    title: 第9章 固体自由能
+    aliases:
+      - "9 Free energy of solids"
+      - "Chapter 9"
+
+  - slug: ch10-free-energy-chains
+    title: 第10章 链状分子自由能
+    aliases:
+      - "10 Free energy of chain molecules"
+      - "Chapter 10"
+
+  - slug: ch11-long-ranged
+    title: 第11章 长程相互作用
+    aliases:
+      - "11 Long-range interactions"
+      - "Chapter 11"
+
+  - slug: ch12-cbmc
+    title: 第12章 构型偏倚蒙特卡洛
+    aliases:
+      - "12 Configurational-bias Monte Carlo"
+      - "Chapter 12"
+
+  - slug: ch13-accel-mc
+    title: 第13章 加速蒙特卡洛方法
+    aliases:
+      - "13 Accelerated Monte Carlo methods"
+      - "Chapter 13"
+
+  - slug: ch14-timescale
+    title: 第14章 时间尺度加速方法
+    aliases:
+      - "14 Rare events and time-scale acceleration"
+      - "Chapter 14"
+
+  - slug: ch15-rare-events
+    title: 第15章 稀有事件
+    aliases:
+      - "15 Rare events"
+      - "Chapter 15"
+
+  - slug: ch16-mesoscopic
+    title: 第16章 介观模拟方法
+    aliases:
+      - "16 Mesoscopic methods"
+      - "Chapter 16"
+
+  # 附录 A-J
+  - slug: appA-lagrangian
+    title: 附录A 拉格朗日力学
+    aliases:
+      - "Appendix A"
+
+  - slug: appB-non-hamiltonian
+    title: 附录B 非哈密顿动力学
+    aliases:
+      - "Appendix B"
+
+  - slug: appC-kirkwood-buff
+    title: 附录C Kirkwood-Buff理论
+    aliases:
+      - "Appendix C"
+
+  - slug: appD-non-eq-thermo
+    title: 附录D 非平衡热力学
+    aliases:
+      - "Appendix D"
+
+  - slug: appE-non-eq-work
+    title: 附录E 非平衡功
+    aliases:
+      - "Appendix E"
+
+  - slug: appF-linear-response
+    title: 附录F 线性响应理论
+    aliases:
+      - "Appendix F"
+
+  - slug: appG-committor
+    title: 附录G Committor分析
+    aliases:
+      - "Appendix G"
+
+  - slug: appH-sdpd
+    title: 附录H 确定性颗粒动力学
+    aliases:
+      - "Appendix H"
+
+  - slug: appI-saving-cpu
+    title: 附录I 节省CPU时间
+    aliases:
+      - "Appendix I"
+
+  - slug: appJ-algorithms
+    title: 附录J 算法汇总
+    aliases:
+      - "Appendix J"
