@@ -78,6 +78,8 @@ def process_refs(text):
     text = re.sub(r"\\ref\{sec:([^}]*)\}", "", text)
     # 式~(\ref{eq:...})
     text = re.sub(r"[~ ]*\(?~?\\ref\{eq:([^}]*)\}~?\)?", "", text)
+    # \eqref{eq:...}
+    text = re.sub(r"\\eqref\{[^}]*\}", "", text)
     # 算法~\ref{alg:...}
     text = re.sub(r"[~ ]*\\ref\{alg:([^}]*)\}", "", text)
     # chapter ref
@@ -91,10 +93,10 @@ def process_refs(text):
 
 def process_citations(text):
     """Convert [N] style citations to superscript."""
-    # [1], [2,3], [3--5], [21--24,26,105]
-    text = re.sub(r"\[(\d+(?:[,\-\d]*\d)*)\]", r"^[\\ref{\1}]", text)
-    # \cite{...}
-    text = re.sub(r"\\cite\{([^}]*)\}", "", text)
+    # [1], [2,3], [3--5], [21--24,26,105] -> ^[N]
+    text = re.sub(r"\[(\d+(?:[,\-\d]*\d)*)\]", r"^[\1]", text)
+    # \cite{...} -> superscript number
+    text = re.sub(r"\\cite\{(\d+(?:[,\-\d]*\d)*)\}", r"^[\1]", text)
     return text
 
 
@@ -505,15 +507,46 @@ def process_inline(text):
     text = text.replace("~", " ")
     # \url{...} -> link
     text = re.sub(r"\\url\{([^}]*)\}", r"[\1](\1)", text)
-    # \footnote{...} -> [^N] (collect footnotes)
+    # \footnote{...} -> [^N] (collect footnotes, support nested braces)
     footnotes = []
 
-    def footnote_replace(m):
-        idx = len(footnotes) + 1
-        footnotes.append(m.group(1))
-        return f"[^{idx}]"
+    def extract_brace_content(text, start):
+        """Extract content inside matching braces starting at position start.
+        start should point to the opening { after \footnote.
+        Returns (content, end_position) or (None, original_pos)."""
+        depth = 0
+        i = start
+        while i < len(text):
+            if text[i] == '{':
+                depth += 1
+            elif text[i] == '}':
+                depth -= 1
+                if depth == 0:
+                    return text[start+1:i], i
+            i += 1
+        return None, start
 
-    text = re.sub(r"\\footnote\{([^}]*)\}", footnote_replace, text)
+    footnote_positions = []
+    pos = 0
+    while True:
+        idx = text.find("\\footnote{", pos)
+        if idx == -1:
+            break
+        content, end = extract_brace_content(text, idx + len("\\footnote"))
+        if content is not None:
+            footnote_positions.append((idx, end + 1, content))
+            pos = end + 1
+        else:
+            pos = idx + 1
+
+    # Replace from end to start to preserve positions
+    fn_idx = len(footnote_positions)
+    for start, end, content in reversed(footnote_positions):
+        fn_idx_current = fn_idx
+        fn_idx -= 1
+        footnotes.insert(0, content)
+        text = text[:start] + f"[^{fn_idx_current}]" + text[end:]
+
     # Append footnotes at end
     if footnotes:
         text += "\n\n---\n\n"
@@ -536,16 +569,16 @@ def process_math_commands(text):
     text = re.sub(r"\\expect\{([^}]*)\}", r"\\langle \1\\rangle", text)
     # \muVT -> \mu VT
     text = text.replace("\\muVT", "\\mu VT")
-    # \dd -> \mathrm{d}
-    text = text.replace("\\dd", "\\mathrm{d}")
-    # \vv -> \mathbf{v}
-    text = text.replace("\\vv", "\\mathbf{v}")
+    # \dd -> \mathrm{d} (only standalone \dd, not \ddot)
+    text = re.sub(r"\\dd(?![a-zA-Z])", r"\\mathrm{d}", text)
+    # \vv -> \mathbf{v} (only standalone)
+    text = re.sub(r"\\vv(?![a-zA-Z])", r"\\mathbf{v}", text)
     # \rr -> \mathbf{r}
-    text = text.replace("\\rr", "\\mathbf{r}")
+    text = re.sub(r"\\rr(?![a-zA-Z])", r"\\mathbf{r}", text)
     # \ff -> \mathbf{f}
-    text = text.replace("\\ff", "\\mathbf{f}")
+    text = re.sub(r"\\ff(?![a-zA-Z])", r"\\mathbf{f}", text)
     # \OO -> \mathcal{O}
-    text = text.replace("\\OO", "\\mathcal{O}")
+    text = re.sub(r"\\OO(?![a-zA-Z])", r"\\mathcal{O}", text)
     # \fitdisplay{...} -> just the math
     text = re.sub(r"\\fitdisplay\{([^}]*)\}", r"\1", text)
     # \bm{...} -> \boldsymbol{...}

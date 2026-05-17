@@ -2,9 +2,9 @@
 
 ## 熵产生
 
-当一个系统从非平衡态弛豫时，会产生熵。由Onsager建立的非平衡热力学（不可逆热力学）确定了熵产生的不同贡献之间的关系。因此，我们需要一个熵产生的表达式作为出发点。熵产生的"经典"推导可以在De Groot和Mazur所著的《Non-equilibrium Thermodynamics》一书中找到。然而，文献中熵产生表达式的推导虽然完整，但有些令人生畏。在这里，我们选择了一条不同的路线：它不够完整，但更加简洁，也更容易理解其中的物理本质。
+当一个系统从非平衡态弛豫时，会产生熵。由Onsager^[55,56]建立的非平衡热力学（不可逆热力学）确定了熵产生的不同贡献之间的关系。因此，我们需要一个熵产生的表达式作为出发点。熵产生的"经典"推导可以在De Groot和Mazur所著的《Non-equilibrium Thermodynamics》^[57]一书中找到。然而，文献^[57]中熵产生表达式的推导虽然完整，但有些令人生畏。在这里，我们选择了一条不同的路线：它不够完整，但更加简洁，也更容易理解其中的物理本质。
 
-让我们首先简要考察将一个封闭系统的两个子系统（I和II）接触时所产生的熵产生。这两个子系统可以交换能量和粒子。我们忽略介质可能发生流动这一事实——这是为保持问题简洁所付出的代价。实际上，粘性流是一个重要的非平衡现象，将其纳入熵产生表达式的方法在文献中有详细描述。
+让我们首先简要考察将一个封闭系统的两个子系统（I和II）接触时所产生的熵产生。这两个子系统可以交换能量和粒子。我们忽略介质可能发生流动这一事实——这是为保持问题简洁所付出的代价。实际上，粘性流是一个重要的非平衡现象，将其纳入熵产生表达式的方法在文献^[57]中有详细描述。
 
 子系统I的熵$S$由于一个无穷小量交换而发生的变化为：
 
@@ -100,13 +100,13 @@ $$
 \left.\frac{\partial S_t}{\partial A_i^{(2)}}\right|_{\mathrm{eq}} = \left.\frac{\partial S^{(2)}}{\partial A_i^{(2)}}\right|_{\mathrm{eq}} - \left.\frac{\partial S^{(1)}}{\partial A_i^{(1)}}\right|_{\mathrm{eq}} = 0 ,
 $$
 
-因为$\mathrm{d}A_i^{(1)} = -\mathrm{d}A_i^{(2)}$。更一般地，如果我们考虑$m$个子系统，若$A_i$是守恒量，则有$m-1$个独立变量$A_i^{(n)}$；若$A_i$不是守恒量，则有$m$个独立变量。对于守恒量，式 \eqref{eq:D.2.3}简单地表达了两个子系统中$T$、$P/T$或$\mu_i/T$相等的条件。因此，$S$在$A_i$的线性阶不发生变化。然而，在$A_i$的二次阶，$S$确实会变化[^2]。因此，到二次阶，我们可以写出
+因为$\mathrm{d}A_i^{(1)} = -\mathrm{d}A_i^{(2)}$。更一般地，如果我们考虑$m$个子系统，若$A_i$是守恒量，则有$m-1$个独立变量$A_i^{(n)}$；若$A_i$不是守恒量，则有$m$个独立变量。对于守恒量，式 简单地表达了两个子系统中$T$、$P/T$或$\mu_i/T$相等的条件。因此，$S$在$A_i$的线性阶不发生变化。然而，在$A_i$的二次阶，$S$确实会变化[^2]。因此，到二次阶，我们可以写出
 
 $$
 S = S_0 + \frac{1}{2}\sum_{i,j} \left.\frac{\partial^2 S_t}{\partial A_i \partial A_j}\right|_{\mathrm{eq}} \alpha_i \alpha_j ,
 $$
 
-其中$\alpha_i \equiv A_i - A_i^0$。为了与De Groot和Mazur的记号保持一致，我们写
+其中$\alpha_i \equiv A_i - A_i^0$。为了与De Groot和Mazur^[57]的记号保持一致，我们写
 
 $$
 g_{ij} \equiv -\left.\frac{\partial^2 S_t}{\partial A_i \partial A_j}\right|_{\mathrm{eq}} .
@@ -130,9 +130,9 @@ $$
 J_i = \sum_j L_{ij} X_j .
 $$
 
-在这一阶段，我们对输运系数（transport coefficients）$L_{ij}$一无所知。Onsager假设，描述变量$\alpha_i$向其平衡值（零）衰减速度的定律对于任意小的$\alpha_i$都成立，因此也描述了平衡附近自发涨落向其平均值衰减的速度。这一"Onsager回归假设"（Onsager Regression Hypothesis）提供了宏观输运系数与平衡态系统微观动力学之间的联系。回归假设可以被视为Einstein关于扩散输运可以处理为布朗运动的宏观表现这一假设的推广。
+在这一阶段，我们对输运系数（transport coefficients）$L_{ij}$一无所知。Onsager^[55]假设，描述变量$\alpha_i$向其平衡值（零）衰减速度的定律对于任意小的$\alpha_i$都成立，因此也描述了平衡附近自发涨落向其平均值衰减的速度。这一"Onsager回归假设"（Onsager Regression Hypothesis）提供了宏观输运系数与平衡态系统微观动力学之间的联系。回归假设可以被视为Einstein关于扩散输运可以处理为布朗运动的宏观表现这一假设的推广。
 
-由式 \eqref{eq:D.2.4}可以容易地导出熵产生$\dot{S}$的表达式：
+由式 可以容易地导出熵产生$\dot{S}$的表达式：
 
 $$
 \dot{S} = -\sum_{i,j} g_{ij}\dot{\alpha}_i \alpha_j = \sum_i X_i \cdot \dot{\alpha}_i = \sum_{i,j} L_{ij} X_i X_j .
@@ -146,7 +146,7 @@ $$
 \langle \alpha_i X_j \rangle = -k_B \delta_{ij} ,
 $$
 
-其中$k_B$是Boltzmann常数，$\delta_{ij}$是Kronecker delta。式 \eqref{eq:D.3.1}可由以下事实推导：
+其中$k_B$是Boltzmann常数，$\delta_{ij}$是Kronecker delta。式 可由以下事实推导：
 
 $$
 \langle \alpha_i X_j \rangle = k_B \int \mathrm{d}\{\alpha\}\, \alpha_i \frac{\partial P(\{\alpha\})}{\partial \alpha_j} = -k_B \int \mathrm{d}\{\alpha\}\, \frac{\partial \alpha_i}{\partial \alpha_j} P(\{\alpha\}) = -k_B \delta_{ij} ,
@@ -158,7 +158,7 @@ $$
 \langle \alpha_j(t) J_i(t) \rangle = -k_B L_{ij} .
 $$
 
-式 \eqref{eq:D.3.3}使我们能够推导Onsager倒易关系（Onsager reciprocal relations）。但在推导之前，请注意，从微观上看，式 \eqref{eq:D.3.3}有些奇怪，因为时刻$t$的涨落只会导致$t > 0$时的流。事实上，由于$\alpha_j$和$J_j$具有不同的时间反演对称性，等时积$\langle \alpha_j(t) J_i(t) \rangle$实际上为零。非零的量是$\langle \alpha_j(t) J_i(t+\epsilon) \rangle$。我们稍后将回到这一点。目前，我们继续使用式 \eqref{eq:D.3.3}并将其重写为：
+式 使我们能够推导Onsager倒易关系（Onsager reciprocal relations）。但在推导之前，请注意，从微观上看，式 有些奇怪，因为时刻$t$的涨落只会导致$t > 0$时的流。事实上，由于$\alpha_j$和$J_j$具有不同的时间反演对称性，等时积$\langle \alpha_j(t) J_i(t) \rangle$实际上为零。非零的量是$\langle \alpha_j(t) J_i(t+\epsilon) \rangle$。我们稍后将回到这一点。目前，我们继续使用式 并将其重写为：
 
 $$
 \int_0^\infty \mathrm{d}t\, \langle \alpha_j(0) \dot{J}_i(t) \rangle = -k_B L_{ij} ,
