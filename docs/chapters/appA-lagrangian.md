@@ -167,7 +167,7 @@ $$
 \ddot{\theta} = -\frac{1}{ml^2}\frac{\partial U(\theta)}{\partial \theta}.
 $$
 
-![长度为$l$、质量为$m$的简单摆。](../../images/fig_A1_pendulum.png "长度为$l$、质量为$m$的简单摆。")
+![长度为$l$、质量为$m$的简单摆。](../images/fig_A1_pendulum.png "长度为$l$、质量为$m$的简单摆。")
 
 ## 哈密顿量
 

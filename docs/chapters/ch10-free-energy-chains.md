@@ -76,7 +76,7 @@ Widom 方法处理式 (10.2.2) 的问题在于，几乎所有随机插入的理�
    \mathcal{W}(n) = \prod_{i=1}^{\ell} \frac{w_i}{k} .
    $$
 
-![Rosenbluth 方案逐段插入聚合物。箭头表示下一个片段的试探位置。](../../images/fig_p361_0.jpeg "Rosenbluth 方案逐段插入聚合物。箭头表示下一个片段的试探位置。")
+![Rosenbluth 方案逐段插入聚合物。箭头表示下一个片段的试探位置。](../images/fig_p361_0.jpeg "Rosenbluth 方案逐段插入聚合物。箭头表示下一个片段的试探位置。")
 
 我们使用这种方案生成大量构象，这些链的系综平均性质如下计算：
 
@@ -307,7 +307,7 @@ $$
 
 其中 $\mathcal{W}^{\mathrm{ext}}_{\mathrm{IG}}$ 是理想气相中分子（不与沸石相互作用）的 Rosenbluth 因子 ^[454]。对于任意烷烃，亨利系数的计算需要两次模拟：一次在沸石中，一次在理想气相中。然而，对于丁烷和较短的烷烃，所有孤立的（理想气体）分子都是理想链，因为不存在非键合相互作用。对于这样的链，理想气相中的 Rosenbluth 因子定义为等于 1。
 
-![Smit 和 Siepmann ^[453] 以及 Maginn 等人 ^[451] 计算的沸石 silicalite 中 $n$-烷烃的亨利系数 $K_H$ 随碳原子数 $N_c$ 的变化关系。](../../images/fig_p400_0.jpeg "Smit 和 Siepmann ^[453] 以及 Maginn 等人 ^[451] 计算的沸石 silicalite 中 $n$-烷烃的亨利系数 $K_H$ 随碳原子数 $N_c$ 的变化关系。")
+![Smit 和 Siepmann ^[453] 以及 Maginn 等人 ^[451] 计算的沸石 silicalite 中 $n$-烷烃的亨利系数 $K_H$ 随碳原子数 $N_c$ 的变化关系。](../images/fig_p400_0.jpeg "Smit 和 Siepmann ^[453] 以及 Maginn 等人 ^[451] 计算的沸石 silicalite 中 $n$-烷烃的亨利系数 $K_H$ 随碳原子数 $N_c$ 的变化关系。")
 
 图 10.2 比较了 Smit 和 Siepmann 计算的 silicalite 中 $n$-烷烃的亨利系数与 Maginn 等人的结果。如果考虑到 Maginn 等人和 Smit 及 Siepmann 考虑的模型略有不同，这两项独立研究的结果吻合得很好。
 
@@ -318,7 +318,7 @@ $$
 > **示例 14：聚合物的 Rosenbluth 采样**
 > Batoulis 和 Kremer ^[450] 对晶格上的自回避行走的 Rosenbluth 算法进行了详细分析。Rosenbluth 方案被用于在晶格上生成行走。Batoulis 和 Kremer 发现，使用随机插入方案，生成100步无重叠行走的概率约为 0.022\%（FCC 晶格）。另一方面，如果我们使用 Rosenbluth 方案，这个概率变得接近 100\%。在图 10.3 中，使用校正后的系综平均 (10.2.6) 计算的聚合物回转半径分布与未校正的平均（即使用 Rosenbluth 方案生成构象并使用 $\langle A \rangle = (1/M) \sum_{n=1}^{M} A(n)$ 而非式 (10.2.6) 来计算系综平均）进行了比较。该图显示 Rosenbluth 方案生成的链更加紧凑。Batoulis 和 Kremer 表明，对于更长的链长，这种差异呈指数增长。因此，在使用这种非玻尔兹曼采样方案时应该小心。
 
-![回转半径 $R_G$ 的概率分布。圆圈表示玻尔兹曼分布，方块表示 Rosenbluth 分布。结果为 FCC 晶格上120步行走（数据取自文献 ^[450]）。](../../images/fig_p420_0.jpeg "回转半径 $R_G$ 的概率分布。圆圈表示玻尔兹曼分布，方块表示 Rosenbluth 分布。结果为 FCC 晶格上120步行走（数据取自文献 ^[450]）。")
+![回转半径 $R_G$ 的概率分布。圆圈表示玻尔兹曼分布，方块表示 Rosenbluth 分布。结果为 FCC 晶格上120步行走（数据取自文献 ^[450]）。](../images/fig_p420_0.jpeg "回转半径 $R_G$ 的概率分布。圆圈表示玻尔兹曼分布，方块表示 Rosenbluth 分布。结果为 FCC 晶格上120步行走（数据取自文献 ^[450]）。")
 
 ### 递归采样
 

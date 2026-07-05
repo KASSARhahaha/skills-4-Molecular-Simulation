@@ -1,6 +1,9 @@
 site_name: 理解分子模拟：从算法到应用（第三版）
 site_description: Frenkel & Smit《Understanding Molecular Simulation》中文翻译在线版
 site_author: Berend Smit, Daan Frenkel（译者：杨凯）
+site_url: https://kassarhahaha.github.io/skills-4-Molecular-Simulation/
+repo_url: https://github.com/KASSARhahaha/skills-4-Molecular-Simulation
+repo_name: skills-4-Molecular-Simulation
 docs_dir: docs
 site_dir: site
 
@@ -94,3 +97,4 @@ nav:
     - 附录H 确定性颗粒动力学: chapters/appH-sdpd.md
     - 附录I 节省CPU时间: chapters/appI-saving-cpu.md
     - 附录J 算法汇总: chapters/appJ-algorithms.md
+  - Skills 速查: skills/index.md
