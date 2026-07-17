@@ -1,0 +1,71 @@
+name: 🐛 Bug report
+description: Site build broken, broken link, math rendering issue, or other technical defect
+title: "[BUG] "
+labels: [bug, triage]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to file a bug report. Before submitting,
+        please search existing issues to avoid duplicates.
+
+  - type: input
+    id: url
+    attributes:
+      label: Affected URL
+      description: Full URL of the affected page (or "whole site")
+      placeholder: https://kassarhahaha.github.io/skills-4-Molecular-Simulation/...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      options:
+        - Blocker (site down / CI red)
+        - Major (broken rendering, wrong formula)
+        - Minor (typo, cosmetic)
+        - Cosmetic
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: A clear description of the defect. Include screenshots if possible.
+      placeholder: |
+        Steps to reproduce:
+        1. Go to '...'
+        2. Click on '...'
+        3. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What you expected to see.
+    validations:
+      required: true
+
+  - type: textarea
+    id: env
+    attributes:
+      label: Environment
+      description: Browser / OS if rendering issue. "N/A" if CI/build.
+      placeholder: |
+        Browser: Chrome 120 / Safari 17 / Firefox 121
+        OS: macOS 14 / Windows 11 / Ubuntu 22.04
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of conduct
+      options:
+        - label: I have searched existing issues for duplicates
+          required: true

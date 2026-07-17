@@ -1,0 +1,109 @@
+name: 📚 New book request
+description: Propose adding a new source book to the skill collection
+title: "[NEW BOOK] "
+labels: [new-content, triage]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before requesting, please skim [README.md](../blob/main/README.md)
+        to see the current 6-book scope. We're open to expanding if the
+        book adds genuine value to molecular simulation / CCUS / adsorption.
+
+  - type: input
+    id: title
+    attributes:
+      label: Book title
+      placeholder: Design, Simulation, and Optimization of Adsorptive Processes
+    validations:
+      required: true
+
+  - type: input
+    id: authors
+    attributes:
+      label: Author(s)
+    validations:
+      required: true
+
+  - type: input
+    id: year
+    attributes:
+      label: Publication year
+    validations:
+      required: true
+
+  - type: dropdown
+    id: language
+    attributes:
+      label: Source language
+      options:
+        - English
+        - Chinese (中文)
+        - Other (specify in additional notes)
+    validations:
+      required: true
+
+  - type: input
+    id: pages
+    attributes:
+      label: Approximate page count
+    validations:
+      required: false
+
+  - type: textarea
+    id: relevance
+    attributes:
+      label: Why this book?
+      description: |
+        Explain how this book complements existing coverage. Which chapters
+        would be most valuable? Are there gaps it fills?
+      placeholder: |
+        - Covers reactive MD for CO2 capture (not in current 6 books)
+        - Provides worked examples for PSA/TSA (relevant to adsorption-sim)
+        - Standard textbook used by 5 major universities
+    validations:
+      required: true
+
+  - type: dropdown
+    id: license
+    attributes:
+      label: Distribution rights
+      description: How can we legally distribute derivatives?
+      options:
+        - Public domain / CC0
+        - CC-BY / CC-BY-SA (open license)
+        - Own work (I am the author/translator)
+        - Closed (need permission first)
+        - Unsure / need to investigate
+    validations:
+      required: true
+
+  - type: input
+    id: source_url
+    attributes:
+      label: Source URL (if publicly available)
+      placeholder: https://arxiv.org/abs/... | https://doi.org/... | file path
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: commitment
+    attributes:
+      label: Commitment
+      description: What you're offering to contribute
+      options:
+        - label: I can provide the source files (PDF / LaTeX / DOCX)
+          required: false
+        - label: I can help generate the initial skill scaffold (book-to-skill)
+          required: false
+        - label: I can review the generated content for accuracy
+          required: false
+        - label: I can fund/credit the work if applicable
+          required: false
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Additional notes
+    validations:
+      required: false

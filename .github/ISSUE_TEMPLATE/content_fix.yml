@@ -1,0 +1,85 @@
+name: 📝 Content fix
+description: Translation error, wrong formula, missing boundary condition, terminology drift
+title: "[CONTENT] "
+labels: [content, triage]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this for errors in translation, formulas, or derived content.
+        For new books, use the **New book request** template instead.
+
+  - type: dropdown
+    id: book
+    attributes:
+      label: Book / skill
+      options:
+        - molsim-cn (Frenkel & Smit 中译本)
+        - molsim-tutorial-exercises
+        - ccs-intro
+        - adsorption-sim
+        - adsorption-sim-notes
+        - aspen-adsorption
+        - Multiple books (cross-cutting)
+    validations:
+      required: true
+
+  - type: input
+    id: location
+    attributes:
+      label: Location
+      description: Chapter / file / line number or URL anchor
+      placeholder: ch03 §3.2 | docs/skills/molsim-cn/formulas.md §2.1 | derivations.md §5
+    validations:
+      required: true
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Issue type
+      options:
+        - Translation error (semantic)
+        - Terminology inconsistency
+        - Wrong formula (math error)
+        - Missing boundary condition / units
+        - Broken cross-reference (\ref unresolved)
+        - Typo / cosmetic
+    validations:
+      required: true
+
+  - type: textarea
+    id: current
+    attributes:
+      label: Current (incorrect) content
+      description: Paste the offending text/formula verbatim. Use ``` for code blocks.
+      render: markdown
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed
+    attributes:
+      label: Proposed fix
+      description: The corrected content. Cite the source passage if possible.
+      render: markdown
+    validations:
+      required: true
+
+  - type: input
+    id: source
+    attributes:
+      label: Source / reference
+      description: Where the correct content comes from (book page, equation number, external reference)
+      placeholder: "Frenkel & Smit 3rd ed. p. 54, Eq. 3.2.1 | IUPAC Gold Book | citation"
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Verification
+      options:
+        - label: I have checked the glossary to confirm this is not already addressed
+          required: true
+        - label: I have searched existing issues for duplicates
+          required: true

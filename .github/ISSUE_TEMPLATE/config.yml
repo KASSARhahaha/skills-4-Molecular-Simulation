@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 General discussion
+    url: https://github.com/KASSARhahaha/skills-4-Molecular-Simulation/discussions
+    about: For open-ended questions, teaching use cases, and collaboration ideas that aren't issues.
+  - name: 🌐 Public site
+    url: https://kassarhahaha.github.io/skills-4-Molecular-Simulation/
+    about: Browse the live site before reporting issues.
