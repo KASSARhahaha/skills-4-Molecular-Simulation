@@ -10,21 +10,25 @@ $$
 
 其中下标$0$表示$t = t_0$时的相空间体积，$J$是变换的Jacobian矩阵$\mathbf{M}$的行列式。为方便起见，我们选择$t_0 = 0$。
 
-哈密顿系统在相空间中的运动类似于不可压缩液体的运动：这种"液体"的体积随时间不发生变化。相比之下，非哈密顿系统是可压缩的。在考虑将刘维尔定理推广到非哈密顿系统时，必须考虑这种可压缩性。
+哈密顿系统在相空间中的运动类似于不可压缩液体的运动：这种“液体”的体积随时间不发生变化。相比之下，非哈密顿系统是可压缩的。在考虑将刘维尔定理推广到非哈密顿系统时，必须考虑这种可压缩性。
 
 可压缩性可以从Jacobian的时间依赖性推导出来：
 
 $$
 \frac{\mathrm{d}J(\boldsymbol{\Gamma}_t ; \boldsymbol{\Gamma}_0)}{\mathrm{d}t} = \kappa(\boldsymbol{\Gamma}_t, t)\,J(\boldsymbol{\Gamma}_t ; \boldsymbol{\Gamma}_0),
+
+\tag{B.0.1}
 $$
 
 其中$\kappa(\boldsymbol{\Gamma}_t, t)$，即动力学系统的相空间压缩因子，定义为：
 
 $$
 \kappa(\boldsymbol{\Gamma}_t, t) \equiv \nabla_{\boldsymbol{\Gamma}} \cdot \dot{\boldsymbol{\Gamma}}.
+
+\tag{B.0.2}
 $$
 
-方程的解为
+方程(B.0.1)的解为
 
 $$
 J(\boldsymbol{\Gamma}_t ; \boldsymbol{\Gamma}_0) = \exp\!\left[\int_0^t \kappa(\boldsymbol{\Gamma}_s, s)\,\mathrm{d}s\right].
@@ -52,18 +56,24 @@ $$
 
 $$
 \frac{\partial \left(f\sqrt{g}\right)}{\partial t} + \nabla \cdot \left(f\sqrt{g}\,\dot{\boldsymbol{\Gamma}}\right) = 0.
+
+\tag{B.0.3}
 $$
 
 与系综平均对应的表达式为
 
 $$
 \langle A \rangle = \frac{\int \mathrm{d}\boldsymbol{\Gamma}\,\sqrt{g(\boldsymbol{\Gamma})}\,A(\boldsymbol{\Gamma})\,f(\boldsymbol{\Gamma})}{\int \mathrm{d}\boldsymbol{\Gamma}\,\sqrt{g(\boldsymbol{\Gamma})}\,f(\boldsymbol{\Gamma})}.
+
+\tag{B.0.4}
 $$
 
 假设存在$n_c$个守恒定律$\Phi_k(\boldsymbol{\Gamma}') = C_k$（$k = 1, ..., n_c$），则非哈密顿系统的配分函数为
 
 $$
 \Xi(C_1, ..., C_{n_c}) = \int \mathrm{d}\boldsymbol{\Gamma}'\,\sqrt{g(\boldsymbol{\Gamma}')}\;\prod_{k=1}^{n_c}\delta\!\left[\Phi_k(\boldsymbol{\Gamma}') - C_k\right].
+
+\tag{B.0.5}
 $$
 
-在许多应用中，可以通过对引入的、用于表示恒温器或恒压器效应的非物理变量进行积分，从上述"微正则"配分函数获得正确的（$NVT$或$NPT$）配分函数。为了正确地进行这一步，必须识别所有的守恒定律。此外，从分析中消除所有线性依赖于其他变量的坐标和"被驱动"的变量是有用的。当一个变量不影响（且不通过守恒定律耦合）系统中感兴趣的物理变量的时间演化时，即使其自身的时间演化可能依赖于这些物理变量，该变量就被称为"被驱动"的。
+在许多应用中，可以通过对引入的、用于表示恒温器或恒压器效应的非物理变量进行积分，从上述“微正则”配分函数获得正确的（$NVT$或$NPT$）配分函数。为了正确地进行这一步，必须识别所有的守恒定律。此外，从分析中消除所有线性依赖于其他变量的坐标和“被驱动”的变量是有用的。当一个变量不影响（且不通过守恒定律耦合）系统中感兴趣的物理变量的时间演化时，即使其自身的时间演化可能依赖于这些物理变量，该变量就被称为“被驱动”的。

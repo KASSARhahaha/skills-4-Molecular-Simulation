@@ -36,6 +36,7 @@ $$
 
 $$
 S = \int_{t_b}^{t_e} \mathrm{d}t \left[ \frac{1}{2}m \left(\frac{dx(t)}{\mathrm{d}t}\right)^2 - U(x) \right].
+\tag{A.1.1}
 $$
 
 任意路径$x(t)$可以写成经典粒子将遵循的实际路径$\bar{x}(t)$加上偏离该路径的$\eta(t)$之和：
@@ -59,6 +60,7 @@ $$
 
 $$
 m\frac{d^2\bar{x}(t)}{dt^2} = -\frac{\partial U(\bar{x})}{\partial x},
+\tag{A.1.2}
 $$
 
 这正是Newton第二定律。换言之，Newton运动方程可以从粒子遵循使作用量取极值的路径这一陈述中推导出来。
@@ -69,12 +71,14 @@ $$
 
 $$
 S = \int \mathrm{d}t\,L(\mathbf{x},\dot{\mathbf{x}}) = \int \mathrm{d}t\,L(q,\dot{q}),
+\tag{A.2.1}
 $$
 
 其中量$L$称为拉格朗日量。拉格朗日量定义为动能减去势能[^1]：
 
 $$
 L \equiv K(\dot{q}) - U(q).
+\tag{A.2.2}
 $$
 
 我们再次引入实际路径$\bar{q}(t)$和偏离它的$\eta(t)$：
@@ -96,24 +100,28 @@ $$
 
 $$
 \int \mathrm{d}t \left[-\frac{d}{\mathrm{d}t}\left(\frac{\partial L(\bar{q},\dot{\bar{q}})}{\partial \dot{q}}\right) + \frac{\partial L(\bar{q},\dot{\bar{q}})}{\partial q}\right]\eta(t) = 0,
+\tag{A.2.3}
 $$
 
 该式对任意$\eta(t)$成立当且仅当：
 
 $$
 -\frac{d}{dt}\left(\frac{\partial L(\bar{q},\dot{\bar{q}})}{\partial \dot{q}}\right) + \frac{\partial L(\bar{q},\dot{\bar{q}})}{\partial q} = 0.
+\tag{A.2.4}
 $$
 
 这就是Lagrange运动方程。为了将此运动方程写成更熟悉的形式，我们引入与广义坐标$q$关联的广义动量$p$：
 
 $$
 p \equiv \frac{\partial L(q,\dot{q})}{\partial \dot{q}}.
+\tag{A.2.5}
 $$
 
 将此表达式代入式(A.2.4)得到：
 
 $$
 \dot{p} = \frac{\partial L(q,\dot{q})}{\partial q}.
+\tag{A.2.6}
 $$
 
 由于上述表述对任何坐标系都成立，它当然对笛卡尔坐标也成立。在这些坐标中，拉格朗日量为：
@@ -136,38 +144,41 @@ $$
 
 这确实是我们从Newton运动方程得到的结果。
 
-???+ example "例"
-    **例24（重力场中的摆）。**考虑长度为$l$、质量为$m$的简单摆（见图A.1）。均匀重力场作用在摆上，势能是摆与竖直方向所成角度$\theta$的简单函数：
+???+ example "例证 24（重力场中的摆）"
 
-$$
-U(\theta) = mgl[1 - \cos(\theta)].
-$$
+    考虑长度为$l$、质量为$m$的简单摆（见图A.1）。均匀重力场作用在摆上，势能是摆与竖直方向所成角度$\theta$的简单函数：
 
-我们希望用广义坐标$\theta$表达运动方程。拉格朗日量$L$为：
+    $$
+    U(\theta) = mgl[1 - \cos(\theta)].
+    $$
 
-$$
-L = K - U = \frac{1}{2}m\left[\dot{x}^2(t) + \dot{y}^2(t)\right] - U(\theta) = \frac{ml^2}{2}\dot{\theta}^2 - U(\theta).
-$$
+    我们希望用广义坐标$\theta$表达运动方程。拉格朗日量$L$为：
 
-广义动量定义为：
+    $$
+    L = K - U = \frac{1}{2}m\left[\dot{x}^2(t) + \dot{y}^2(t)\right] - U(\theta) = \frac{ml^2}{2}\dot{\theta}^2 - U(\theta).
+    $$
 
-$$
-p_\theta = \frac{\partial L}{\partial \dot{q}} = ml^2\dot{\theta}
-$$
+    广义动量定义为：
 
-运动方程由式(A.2.6)得到：
+    $$
+    p_\theta = \frac{\partial L}{\partial \dot{q}} = ml^2\dot{\theta}
+    $$
 
-$$
-\dot{p}_\theta = -\frac{\partial U(\theta)}{\partial \theta}
-$$
+    运动方程由式(A.2.6)得到：
 
-或
+    $$
+    \dot{p}_\theta = -\frac{\partial U(\theta)}{\partial \theta}
+    $$
 
-$$
-\ddot{\theta} = -\frac{1}{ml^2}\frac{\partial U(\theta)}{\partial \theta}.
-$$
+    或
 
-![长度为$l$、质量为$m$的简单摆。](../images/fig_A1_pendulum.png "长度为$l$、质量为$m$的简单摆。")
+    $$
+    \ddot{\theta} = -\frac{1}{ml^2}\frac{\partial U(\theta)}{\partial \theta}.
+    $$
+
+![图 A.1](../images/fig_A_1.png)
+
+*图 A.1　长度为$l$、质量为$m$的简单摆。*
 
 ## 哈密顿量
 
@@ -175,12 +186,14 @@ $$
 
 $$
 H(q,p) \equiv p\dot{q} - L(q,\dot{q},t).
+\tag{A.3.1}
 $$
 
 该方程定义了系统的哈密顿量$H$。由于$H$是$q$、$p$的函数，通常也是$t$的函数，显然我们可以将$H$的微小变化写为：
 
 $$
 dH(q,p) = \frac{\partial H}{\partial p}dp + \frac{\partial H}{\partial q}dq + \frac{\partial H}{\partial t}dt.
+\tag{A.3.2}
 $$
 
 但是，利用$H$的定义，我们也可以写：
@@ -197,10 +210,11 @@ $$
 其中我们分别使用了$p$和$\dot{p}$的定义，即式(A.2.5)和(A.2.6)。由此直接得到：
 
 $$
-\begin{aligned}
-\frac{\partial H}{\partial p} &= \dot{q} \\
+\begin{align}
+\frac{\partial H}{\partial p} &= \dot{q} \tag{A.3.3}\\
 \frac{\partial H}{\partial q} &= -\dot{p}.
-\end{aligned}
+\tag{A.3.4}
+\end{align}
 $$
 
 这就是以$q$、$p$表示的所期望的运动方程。对于我们本书中考虑的大多数系统，拉格朗日量不显含时间。在这些情况下，哈密顿量是守恒的。这可以从运动方程直接得出：
@@ -226,47 +240,48 @@ $$
 
 Hamilton运动方程是两个一阶微分方程——一个是关于$p$的，另一个是关于$q$的。相比之下，Lagrange形式产生一个二阶微分方程。然而，两种形式产生相同的结果。两者之间的选择取决于数学便利性的考虑。
 
-???+ example "例"
-    **例28（重力场中的摆：第二部分）。**我们再次考虑均匀重力场中的简单摆，如例24中所引入的：
+???+ example "例 28（重力场中的摆：第二部分）"
 
-$$
-U(\theta) = mgl[1 - \cos(\theta)],
-$$
+    我们再次考虑均匀重力场中的简单摆，如例24中所引入的：
 
-其中$\theta$是摆与竖直方向的夹角，$g$是重力加速度。
+    $$
+    U(\theta) = mgl[1 - \cos(\theta)],
+    $$
 
-在例24中，我们从拉格朗日量导出了关于$\theta$的二阶微分方程形式的运动方程。现在我们将使用Hamilton表述。
+    其中$\theta$是摆与竖直方向的夹角，$g$是重力加速度。
 
-拉格朗日量为：
+    在例24中，我们从拉格朗日量导出了关于$\theta$的二阶微分方程形式的运动方程。现在我们将使用Hamilton表述。
 
-$$
-L(\theta,\dot{\theta}) = U_K - U_P = \frac{ml^2}{2}\dot{\theta}^2 - U(\theta).
-$$
+    拉格朗日量为：
 
-拉格朗日量依赖于变量$\theta$和$\dot{\theta}$，而在Hamilton语言中我们希望以$\theta$及其共轭动量$p_\theta$表达运动方程。该共轭动量由式(A.2.5)定义：
+    $$
+    L(\theta,\dot{\theta}) = U_K - U_P = \frac{ml^2}{2}\dot{\theta}^2 - U(\theta).
+    $$
 
-$$
-p_\theta \equiv \frac{\partial L(\theta,\dot{\theta})}{\partial \dot{\theta}} = ml^2\dot{\theta}.
-$$
+    拉格朗日量依赖于变量$\theta$和$\dot{\theta}$，而在Hamilton语言中我们希望以$\theta$及其共轭动量$p_\theta$表达运动方程。该共轭动量由式(A.2.5)定义：
 
-哈密顿量由勒让德变换(A.3.1)得到：
+    $$
+    p_\theta \equiv \frac{\partial L(\theta,\dot{\theta})}{\partial \dot{\theta}} = ml^2\dot{\theta}.
+    $$
 
-$$
-H = p_\theta\dot{\theta} - L(\theta,\dot{\theta}) = \frac{p_\theta^2}{2ml^2} + U(\theta) = \frac{1}{2}ml^2\dot{\theta}^2 + U(\theta),
-$$
+    哈密顿量由勒让德变换(A.3.1)得到：
 
-当然，这等于摆的总能量。
+    $$
+    H = p_\theta\dot{\theta} - L(\theta,\dot{\theta}) = \frac{p_\theta^2}{2ml^2} + U(\theta) = \frac{1}{2}ml^2\dot{\theta}^2 + U(\theta),
+    $$
 
-运动方程由式(A.3.3)和(A.3.4)得到：
+    当然，这等于摆的总能量。
 
-$$
-\begin{aligned}
-\dot{\theta} &= \frac{\partial H}{\partial p_\theta} = \frac{P_\theta}{ml^2} \\
-\dot{p}_\theta &= -\frac{\partial H}{\partial \theta} = -\frac{dU(\theta)}{d\theta},
-\end{aligned}
-$$
+    运动方程由式(A.3.3)和(A.3.4)得到：
 
-这就是以两个一阶微分方程表示的所期望的运动方程。
+    $$
+    \begin{aligned}
+    \dot{\theta} &= \frac{\partial H}{\partial p_\theta} = \frac{P_\theta}{ml^2} \\
+    \dot{p}_\theta &= -\frac{\partial H}{\partial \theta} = -\frac{dU(\theta)}{d\theta},
+    \end{aligned}
+    $$
+
+    这就是以两个一阶微分方程表示的所期望的运动方程。
 
 ## 哈密顿动力学与统计力学
 
@@ -277,34 +292,38 @@ $$
 在Hamilton表述中，广义坐标和动量是独立变量。因此可以同时引入两个变量的变换。例如，坐标$q$、$p$到$Q$、$P$的变换记为：
 
 $$
-\begin{aligned}
+\begin{align}
 Q &= Q(q,p) \\
 P &= P(q,p)
-\end{aligned}
+\tag{A.4.1}
+\end{align}
 $$
 
 逆变换，$Q$、$P$到$q$、$p$，记为：
 
 $$
-\begin{aligned}
+\begin{align}
 q &= q(Q,P) \\
 p &= p(Q,P).
-\end{aligned}
+\tag{A.4.2}
+\end{align}
 $$
 
 显然，相空间坐标的任何函数的值不受坐标变换的影响。对于哈密顿量，这意味着：
 
 $$
 H(q,p) \equiv H[Q(p,q),P(q,p)] \equiv H'(Q,P).
+\tag{A.4.3}
 $$
 
 通常，新坐标中的运动方程不具有正则形式，除非坐标变换是正则的[^3]。如果坐标变换是正则的，新相空间坐标$Q$、$P$的运动方程为：
 
 $$
-\begin{aligned}
-\dot{Q} &= \left(\frac{\partial H'(Q,P)}{\partial P}\right) \\
+\begin{align}
+\dot{Q} &= \left(\frac{\partial H'(Q,P)}{\partial P}\right) \tag{A.4.4}\\
 \dot{P} &= -\left(\frac{\partial H'(Q,P)}{\partial Q}\right).
-\end{aligned}
+\tag{A.4.5}
+\end{align}
 $$
 
 从式(A.4.1)和坐标$q$、$p$的Hamilton运动方程可得：
@@ -322,19 +341,21 @@ $$
 该方程只有在以下条件满足时才能与$\dot{Q}$的表达式(A.4.4)相等：
 
 $$
-\begin{aligned}
+\begin{align}
 \left(\frac{\partial Q(q,p)}{\partial q}\right) &= \left(\frac{\partial p(Q,P)}{\partial P}\right) \\
 \left(\frac{\partial Q(q,p)}{\partial p}\right) &= -\left(\frac{\partial q(Q,P)}{\partial P}\right).
-\end{aligned}
+\tag{A.4.6}
+\end{align}
 $$
 
 类似地，我们可以从$\dot{P}$出发，推导出另外两个条件：
 
 $$
-\begin{aligned}
+\begin{align}
 \left(\frac{\partial P(q,p)}{\partial q}\right) &= -\left(\frac{\partial p(Q,P)}{\partial Q}\right) \\
 \left(\frac{\partial P(q,p)}{\partial p}\right) &= \left(\frac{\partial q(Q,P)}{\partial Q}\right).
-\end{aligned}
+\tag{A.4.7}
+\end{align}
 $$
 
 这两个方程定义了正则变换的条件。
@@ -345,6 +366,7 @@ $$
 
 $$
 \dot{\boldsymbol{\xi}} = \boldsymbol{\omega}\frac{\partial H}{\partial \boldsymbol{\xi}},
+\tag{A.4.8}
 $$
 
 其中$\boldsymbol{\omega}$是反对称矩阵，定义为：
@@ -369,12 +391,14 @@ $$
 
 $$
 M_{ij} = \frac{\partial \xi_i}{\partial \zeta_j}.
+\tag{A.4.9}
 $$
 
 利用式(A.4.8)，我们可以写$\boldsymbol{\xi}$的时间导数为：
 
 $$
 \dot{\boldsymbol{\xi}} = \mathbf{M}\boldsymbol{\omega}\frac{\partial H}{\partial \boldsymbol{\zeta}}.
+\tag{A.4.10}
 $$
 
 类似地，我们可以定义逆变换(A.4.2)：
@@ -387,6 +411,7 @@ $$
 
 $$
 \frac{\partial H(\boldsymbol{\zeta})}{\partial \zeta_i} = \sum_j \frac{\partial H(\boldsymbol{\xi})}{\partial \xi_j}\frac{\partial \xi_j}{\partial \zeta_i}.
+\tag{A.4.11}
 $$
 
 如果我们定义式(A.4.9)中定义的$\mathbf{M}$的转置矩阵[^4]：
@@ -399,6 +424,7 @@ $$
 
 $$
 \frac{\partial H(\boldsymbol{\zeta})}{\partial \boldsymbol{\zeta}} = \tilde{\mathbf{M}}\frac{\partial H(\boldsymbol{\xi})}{\partial \boldsymbol{\xi}}.
+\tag{A.4.12}
 $$
 
 结合式(A.4.10)和(A.4.12)，我们有：
@@ -417,6 +443,7 @@ $$
 
 $$
 \mathbf{M}\boldsymbol{\omega}\tilde{\mathbf{M}} = \boldsymbol{\omega}.
+\tag{A.4.13}
 $$
 
 这个条件通常被称为辛条件。满足此条件的矩阵$\mathbf{M}$称为辛矩阵[^5]。
@@ -427,6 +454,7 @@ $$
 
 $$
 \Omega_{N,V,E} = \frac{1}{h^{3N}N!}\int \mathrm{d}p^N \mathrm{d}q^N\,\delta(H(\mathbf{p},\mathbf{q}) - E),
+\tag{A.4.14}
 $$
 
 其中$h$是Planck常数，$\delta$函数将积分限制在由$H(\mathbf{p},\mathbf{q}) = E$定义的相空间超曲面上。我们可以用其他相空间坐标重新表达这个积分，但此时必须考虑两种坐标集中的体积元不一定相同。与$\boldsymbol{\zeta}$关联的体积元为：
@@ -445,12 +473,14 @@ $$
 
 $$
 d\boldsymbol{\zeta} = |\mathrm{Det}(\mathbf{M})|\,d\boldsymbol{\xi}.
+\tag{A.4.15}
 $$
 
 该方程表明，通常坐标变换将导致配分函数中出现Jacobian：
 
 $$
 \Omega_{N,V,E} = \frac{1}{h^{3N}N!}\int \mathrm{d}P^N \mathrm{d}Q^N\,|\mathrm{Det}(\mathbf{M})|\,\delta\left[H'(\mathbf{P},\mathbf{Q}) - E\right].
+\tag{A.4.16}
 $$
 
 在计算非原始笛卡尔坐标系中的系综平均时，变换的Jacobian $\mathbf{M}$可能不等于1，应当加以考虑。在下文中，我们用符号$\omega$表示Jacobian $|\mathrm{Det}(\mathbf{M})|$。
@@ -512,9 +542,10 @@ $$
 
 $$
 \frac{df}{dt} = 0.
+\tag{A.4.17}
 $$
 
-虽然Hamilton运动方程的精确解将满足不可压缩性条件，但离散的数值格式——通常——会违反它。如前所述，我们可以将任何数值MD算法（例如Verlet、速度Verlet等）视为从$(\mathbf{q}(t),\mathbf{p}(t))$到$(\mathbf{q}(t + \Delta t),\mathbf{q}(t + \Delta t))$的变换。然后我们可以计算此变换的Jacobian，并检查它是否等于1（见第4.3节和第4.3.4节）。对于所有求解Newton运动方程的"好的"算法，从$(\mathbf{q}(t),\mathbf{p}(t))$到$(\mathbf{q}(t + \Delta t),\mathbf{q}(t + \Delta t))$的变换的Jacobian等于1——这种算法被称为"保面积"的。应当注意，辛条件所蕴含的不仅仅是保面积性质。不幸的是，这些其他后果没有如此简单的直观解释。当我们说一个算法应该是辛的时候，我们的意思不仅仅是它应该是保面积的——它应该真正满足辛条件。幸运的是，在许多情况下，利用任何一组经典Hamilton运动方程都满足辛条件这一事实，算法的辛性质很容易证明。可以写成由简单哈密顿量生成的精确时间演化序列的算法，因此必然是辛的。一个例子是Verlet算法。正如第4.3.4节中所讨论的，该算法可以被视为使用哈密顿量的动能部分或势能部分的一系列精确传播。两种传播都满足辛条件。因此，Verlet算法整体上是辛的。关于辛动力学的通俗讨论，参见文献^[803]。关于分子动力学模拟中辛积分器的讨论可在文献^[804]中找到。
+虽然Hamilton运动方程的精确解将满足不可压缩性条件，但离散的数值格式——通常——会违反它。如前所述，我们可以将任何数值MD算法（例如Verlet、速度Verlet等）视为从$(\mathbf{q}(t),\mathbf{p}(t))$到$(\mathbf{q}(t + \Delta t),\mathbf{q}(t + \Delta t))$的变换。然后我们可以计算此变换的Jacobian，并检查它是否等于1（见第4.3节和第4.3.4节）。对于所有求解Newton运动方程的“好的”算法，从$(\mathbf{q}(t),\mathbf{p}(t))$到$(\mathbf{q}(t + \Delta t),\mathbf{q}(t + \Delta t))$的变换的Jacobian等于1——这种算法被称为“保面积”的。应当注意，辛条件所蕴含的不仅仅是保面积性质。不幸的是，这些其他后果没有如此简单的直观解释。当我们说一个算法应该是辛的时候，我们的意思不仅仅是它应该是保面积的——它应该真正满足辛条件。幸运的是，在许多情况下，利用任何一组经典Hamilton运动方程都满足辛条件这一事实，算法的辛性质很容易证明。可以写成由简单哈密顿量生成的精确时间演化序列的算法，因此必然是辛的。一个例子是Verlet算法。正如第4.3.4节中所讨论的，该算法可以被视为使用哈密顿量的动能部分或势能部分的一系列精确传播。两种传播都满足辛条件。因此，Verlet算法整体上是辛的。关于辛动力学的通俗讨论，参见文献^[803]。关于分子动力学模拟中辛积分器的讨论可在文献^[804]中找到。
 
 ---
 

@@ -12,6 +12,31 @@ import sys
 TEX_DIR = "/home/yangkai/1-AI-CCUS/8-AI-CCUS/molsim2026/Chinese-Understanding Molecular Simulation"
 DOCS_DIR = "/home/yangkai/1-AI-CCUS/8-AI-CCUS/molsim2026/molsim-online/docs"
 FIGURES_DIR = os.path.join(TEX_DIR, "figures")
+AUX_FILE = os.path.join(TEX_DIR, "main_cn.aux")
+
+# label -> 编号，由 main_cn.aux 的 \newlabel 填充（见 load_labels）
+LABELS = {}
+
+
+def load_labels():
+    """从 main_cn.aux 读取 \\newlabel，建立 label -> 编号 的权威映射。
+
+    式号例外：正文用 \\tag{} 手工钉死三级号，aux 里记录的是 LaTeX 自动计数器
+    （不可用），而 eq 标签名本身就是式号（如 eq:11.2.15），故直接取标签名。
+    """
+    if not os.path.exists(AUX_FILE):
+        print(f"警告：找不到 {AUX_FILE}，交叉引用将退化为无编号文本")
+        return
+    with open(AUX_FILE, encoding="utf-8", errors="replace") as f:
+        aux = f.read()
+    for m in re.finditer(r"\\newlabel\{([^}]+)\}\{\{([^}]*)\}\{", aux):
+        name, num = m.group(1), m.group(2).strip()
+        if name.startswith("eq:") or not num:
+            continue
+        LABELS[name] = num
+    for m in re.finditer(r"\\newlabel\{(eq:[^}]+)\}", aux):
+        LABELS[m.group(1)] = m.group(1)[3:]
+    print(f"载入 {len(LABELS)} 条标签映射（来自 main_cn.aux）")
 
 # Mapping from tex slug -> (input_file, title)
 CHAPTERS = [
@@ -67,27 +92,98 @@ def process_labels(text):
     return re.sub(r"\\label\{[^}]*\}", "", text)
 
 
+# 当前章的图号前缀（"3"、"A" …），由 main() 每章设置，供 \captionof{figure} 用
+CURRENT_CHAP = ""
+
+
+def brace_arg(text, start):
+    """从 text[start] 处的 '{' 取出配对花括号内的内容，返回 (内容, 右括号后位置)。"""
+    if start >= len(text) or text[start] != "{":
+        return None, start
+    depth, i = 0, start
+    while i < len(text):
+        if text[i] == "{":
+            depth += 1
+        elif text[i] == "}":
+            depth -= 1
+            if depth == 0:
+                return text[start + 1:i], i + 1
+        i += 1
+    return None, start
+
+
+def process_boxed_figures(text):
+    """转换 \\begin{center} 里的插图。
+
+    例/例证框是 shaded 环境，浮动体不能嵌套其中，故书中框内插图写作
+    center + \\includegraphics + \\setcounter{figure} + \\captionof{figure}{...}。
+    """
+    def center_replace(m):
+        inner = m.group(1)
+        img = re.search(r"\\includegraphics(?:\[[^\]]*\])?\{([^}]+)\}", inner)
+        if not img:
+            # 框内表格：center + \captionof{table}{...} + tabular
+            if "\\begin{tabular}" in inner:
+                cap = ""
+                cm = re.search(r"\\captionof\{table\}", inner)
+                if cm:
+                    cap, _ = brace_arg(inner, cm.end())
+                    cap = (cap or "").strip()
+                body = process_tables(
+                    "\\begin{table}" + re.sub(r"\\captionof\{table\}", "", inner)
+                    + "\\end{table}"
+                )
+                return (f"\n*{cap}*\n{body}\n" if cap else f"\n{body}\n")
+            return m.group(0)
+        img_path = img.group(1).replace("figures/", "")
+
+        caption = ""
+        cm = re.search(r"\\captionof\{figure\}", inner)
+        if cm:
+            caption, _ = brace_arg(inner, cm.end())
+            caption = (caption or "").strip()
+        num = re.search(r"\\setcounter\{figure\}\{(\d+)\}", inner)
+        if num and CURRENT_CHAP:
+            caption = f"图 {CURRENT_CHAP}.{int(num.group(1)) + 1}　{caption}".rstrip("　")
+
+        # alt 只放短图号：题注含括号/引号/数学，塞进 alt 会破坏 Markdown 链接
+        alt = f"图 {CURRENT_CHAP}.{int(num.group(1)) + 1}" if (num and CURRENT_CHAP) else ""
+        out = f"\n![{alt}](../images/{img_path})\n"
+        if caption:
+            out += f"\n*{caption}*\n"
+        return out
+
+    return re.sub(
+        r"\\begin\{center\}(.*?)\\end\{center\}",
+        center_replace,
+        text,
+        flags=re.DOTALL,
+    )
+
+
+def resolve_label(name):
+    """label -> 编号字符串；查不到时退回标签名里的数字部分。"""
+    if name in LABELS:
+        return LABELS[name]
+    tail = name.split(":", 1)[-1]
+    # alg:mc_verlet 这类别名查不到就返回 None，由调用方决定如何降级
+    return tail.replace("_", ".") if re.fullmatch(r"[0-9A-Za-z._]+", tail) else None
+
+
 def process_refs(text):
-    """Convert \ref{...} to a placeholder readable form."""
-    # 图~\ref{fig:...} -> 图 X
-    text = re.sub(r"[~ ]*\\ref\{fig:([^}]*)\}", "", text)
-    # 表~\ref{tab:...}
-    text = re.sub(r"[~ ]*\\ref\{tab:([^}]*)\}", "", text)
-    # 第~X~节 -> section ref
-    text = re.sub(r"第~?\\ref\{sec:([^}]*)\}~?节", "", text)
-    text = re.sub(r"\\ref\{sec:([^}]*)\}", "", text)
-    # 式~(\ref{eq:...})
-    text = re.sub(r"[~ ]*\(?~?\\ref\{eq:([^}]*)\}~?\)?", "", text)
-    # \eqref{eq:...}
-    text = re.sub(r"\\eqref\{[^}]*\}", "", text)
-    # 算法~\ref{alg:...}
-    text = re.sub(r"[~ ]*\\ref\{alg:([^}]*)\}", "", text)
-    # chapter ref
-    text = re.sub(r"\\ref\{ch:([^}]*)\}", "", text)
-    # app ref
-    text = re.sub(r"\\ref\{app:([^}]*)\}", "", text)
-    # generic \ref
-    text = re.sub(r"\\ref\{([^}]*)\}", "", text)
+    """把 \\ref{...} 解析为原书编号（而非丢弃）。"""
+    def sub_ref(m):
+        num = resolve_label(m.group(1))
+        return num if num else ""
+
+    # \eqref{eq:...} -> (式号)
+    text = re.sub(
+        r"\\eqref\{(eq:[^}]*)\}",
+        lambda m: f"({resolve_label(m.group(1)) or ''})",
+        text,
+    )
+    # 其余一律按标签解析为编号，保留正文里原有的「图/表/式/算法/第…节」字样
+    text = re.sub(r"\\ref\{([^}]*)\}", sub_ref, text)
     return text
 
 
@@ -102,6 +198,20 @@ def process_citations(text):
 
 def process_sections(text):
     """Convert LaTeX section commands to Markdown headers."""
+    # \texorpdfstring{显示形式}{书签形式} -> 显示形式（须先于标题正则展开，
+    # 否则标题里的嵌套花括号会把 [^}]* 截断）
+    out, i = [], 0
+    while True:
+        j = text.find("\\texorpdfstring{", i)
+        if j == -1:
+            out.append(text[i:])
+            break
+        out.append(text[i:j])
+        shown, k = brace_arg(text, j + len("\\texorpdfstring"))
+        _, k = brace_arg(text, k)
+        out.append(shown or "")
+        i = k
+    text = "".join(out)
     # \chapter*{...} and \chapter{...}
     text = re.sub(r"\\chapter\*\{([^}]*)\}", r"# \1", text)
     text = re.sub(r"\\chapter\{([^}]*)\}", r"# \1", text)
@@ -111,10 +221,11 @@ def process_sections(text):
     # \subsection*{...} and \subsection{...}
     text = re.sub(r"\\subsection\*\{([^}]*)\}", r"### \1", text)
     text = re.sub(r"\\subsection\{([^}]*)\}", r"### \1", text)
-    # \subsubsection{...}
+    # \subsubsection*{...} and \subsubsection{...}
+    text = re.sub(r"\\subsubsection\*\{([^}]*)\}", r"#### \1", text)
     text = re.sub(r"\\subsubsection\{([^}]*)\}", r"#### \1", text)
-    # \paragraph{...}
-    text = re.sub(r"\\paragraph\{([^}]*)\}", r"**\1**", text)
+    # \paragraph*{...} and \paragraph{...}
+    text = re.sub(r"\\paragraph\*?\{([^}]*)\}", r"**\1**", text)
     # \addcontentsline
     text = re.sub(r"\\addcontentsline\{[^}]*\}\{[^}]*\}\{[^}]*\}", "", text)
     return text
@@ -140,13 +251,24 @@ def process_display_equations(text):
     def align_replace(m):
         inner = m.group(1)
         inner = process_labels(inner)
-        inner = re.sub(r"\\nonumber", "", inner)
-        inner = re.sub(r"\\notag", "", inner)
-        return f"\n$$\n\\begin{{aligned}}\n{inner.strip()}\n\\end{{aligned}}\n$$\n"
+        # 保留 align（不降级为 aligned）：全书 87 个 align 中 71 个带 \tag{}，
+        # aligned 里 MathJax 不产生行内编号，会丢掉原书式号
+        env = "align" if "\\tag{" in inner else "aligned"
+        if env == "aligned":
+            inner = re.sub(r"\\nonumber|\\notag", "", inner)
+        return f"\n$$\n\\begin{{{env}}}\n{inner.strip()}\n\\end{{{env}}}\n$$\n"
 
     text = re.sub(
         r"\\begin\{align\*?\}(.*?)\\end\{align\*?\}",
         align_replace,
+        text,
+        flags=re.DOTALL,
+    )
+
+    # \begin{multline}...\end{multline} -> $$...$$（\tag 原样保留）
+    text = re.sub(
+        r"\\begin\{multline\*?\}(.*?)\\end\{multline\*?\}",
+        lambda m: "\n$$\n" + process_labels(m.group(1)).strip() + "\n$$\n",
         text,
         flags=re.DOTALL,
     )
@@ -199,15 +321,30 @@ def process_figures(text):
             r"\\includegraphics(?:\[[^\]]*\])?\{([^}]+)\}", inner
         )
         if not img_match:
-            return ""
+            # 无图的 figure 浮动体是算法续排框（如算法 10 的下半部分），
+            # 保留正文，交给后续 process_code_blocks 转成代码块，切勿丢弃
+            return "\n" + re.sub(r"\\(?:centering|label\{[^}]*\})", "", inner) + "\n"
         img_path = img_match.group(1)
         # Normalize path: strip figures/ prefix, make relative
         img_path = img_path.replace("figures/", "")
-        # Extract caption
-        caption_match = re.search(r"\\caption\{([^}]*)\}", inner)
-        caption = caption_match.group(1) if caption_match else ""
-        # Use relative path from docs/chapters/ to ../../images/
-        return f'\n![{caption}](../../images/{img_path} "{caption}")\n'
+        # 题注常含 $...$ 与嵌套花括号，必须配对提取，不能用 [^}]*
+        caption = ""
+        cm = re.search(r"\\caption\{", inner)
+        if cm:
+            caption, _ = brace_arg(inner, cm.end() - 1)
+            caption = (caption or "").strip()
+        # 图号取自 main_cn.aux（与原书一致）
+        lm = re.search(r"\\label\{(fig:[^}]*)\}", inner)
+        num = LABELS.get(lm.group(1)) if lm else None
+        if num:
+            caption = f"图 {num}　{caption}".rstrip("　")
+        # 题注里有括号/引号/数学，放进 alt 或 title 都会破坏 Markdown 链接，
+        # 故图下另起一行作斜体题注
+        alt = f"图 {num}" if num else ""
+        out = f"\n![{alt}](../images/{img_path})\n"
+        if caption:
+            out += f"\n*{caption}*\n"
+        return out
 
     text = re.sub(
         r"\\begin\{figure\}(.*?)\\end\{figure\}",
@@ -275,13 +412,20 @@ def process_algorithms(text):
         # Extract caption
         caption_match = re.search(r"\\caption\{([^}]*)\}", inner)
         caption = caption_match.group(1) if caption_match else ""
+        # 算法号由 \setcounter{algorithm}{N-1} 钉死（全书连续编号 1--41）
+        num_match = re.search(r"\\setcounter\{algorithm\}\{(\d+)\}", inner)
+        if num_match:
+            caption = f"算法 {int(num_match.group(1)) + 1}　{caption}".rstrip("　")
 
-        # Check for verbatim content
-        verbatim_match = re.search(
-            r"\\begin\{verbatim\}(.*?)\\end\{verbatim\}", inner, re.DOTALL
+        # lstlisting / verbatim 两种代码体
+        code_match = re.search(
+            r"\\begin\{(?:lstlisting|verbatim)\}(?:\[[^\]]*\])?(.*?)"
+            r"\\end\{(?:lstlisting|verbatim)\}",
+            inner,
+            re.DOTALL,
         )
-        if verbatim_match:
-            code = verbatim_match.group(1).strip()
+        if code_match:
+            code = code_match.group(1).strip()
         else:
             # Extract algorithmic content
             algo_match = re.search(
@@ -293,6 +437,13 @@ def process_algorithms(text):
                 code = algo_match.group(1).strip()
             else:
                 code = inner.strip()
+
+            # 去掉浮动体样板（位置参数、计数器、题注、标签、居中）
+            code = re.sub(r"^\s*\[[a-zA-Z!]+\]", "", code)
+            code = re.sub(r"\\setcounter\{[^}]*\}\{[^}]*\}", "", code)
+            code = re.sub(r"\\caption\{[^}]*\}", "", code)
+            code = re.sub(r"\\label\{[^}]*\}", "", code)
+            code = re.sub(r"\\centering", "", code)
 
             # Convert algorithm commands to pseudocode
             code = re.sub(r"\\program\{([^}]*)\}", r"program \1", code)
@@ -360,12 +511,19 @@ def process_lists(text):
                 md_lines.append(f"   {line}")
         return "\n" + "\n".join(md_lines) + "\n"
 
-    text = re.sub(
-        r"\\begin\{enumerate\}(.*?)\\end\{enumerate\}",
-        enum_replace,
-        text,
-        flags=re.DOTALL,
+    # 由内向外逐层替换：非贪婪匹配会把嵌套 enumerate 的内层 \begin 吞掉，
+    # 留下孤立的外层 \end。这里先匹配不含嵌套的最内层，循环到不再变化。
+    innermost_enum = re.compile(
+        r"\\begin\{enumerate\}"
+        r"((?:(?!\\begin\{enumerate\}|\\end\{enumerate\}).)*?)"
+        r"\\end\{enumerate\}",
+        re.DOTALL,
     )
+    while True:
+        new = innermost_enum.sub(enum_replace, text)
+        if new == text:
+            break
+        text = new
 
     # \begin{itemize}...\end{itemize}
     def itemize_replace(m):
@@ -384,12 +542,17 @@ def process_lists(text):
                 md_lines.append(f"  {line}")
         return "\n" + "\n".join(md_lines) + "\n"
 
-    text = re.sub(
-        r"\\begin\{itemize\}(.*?)\\end\{itemize\}",
-        itemize_replace,
-        text,
-        flags=re.DOTALL,
+    innermost_item = re.compile(
+        r"\\begin\{itemize\}"
+        r"((?:(?!\\begin\{itemize\}|\\end\{itemize\}).)*?)"
+        r"\\end\{itemize\}",
+        re.DOTALL,
     )
+    while True:
+        new = innermost_item.sub(itemize_replace, text)
+        if new == text:
+            break
+        text = new
 
     return text
 
@@ -410,8 +573,35 @@ def process_quotes(text):
     return text
 
 
+def _indent_block(body):
+    """把整块内容缩进 4 空格，供 Material admonition 使用（空行不加尾随空格）。"""
+    return "\n".join("    " + l if l.strip() else "" for l in body.split("\n"))
+
+
 def process_custom_envs(text):
     """Convert custom environments (example, boxtext, etc.)."""
+    # \begin{exbox}{N}{标题} ... \end{exbox}  -> 例 N（标题）
+    # \begin{illbox}{N}{标题} ... \end{illbox} -> 例证 N（标题）
+    def box_replace(kind):
+        def _sub(m):
+            num, title, inner = m.group(1), m.group(2), m.group(3).strip()
+            head = f"{kind} {num}（{title}）" if title else f"{kind} {num}"
+            return f'\n\n???+ example "{head}"\n\n{_indent_block(inner)}\n\n'
+        return _sub
+
+    text = re.sub(
+        r"\\begin\{exbox\}\{([^}]*)\}\{([^}]*)\}(.*?)\\end\{exbox\}",
+        box_replace("例"),
+        text,
+        flags=re.DOTALL,
+    )
+    text = re.sub(
+        r"\\begin\{illbox\}\{([^}]*)\}\{([^}]*)\}(.*?)\\end\{illbox\}",
+        box_replace("例证"),
+        text,
+        flags=re.DOTALL,
+    )
+
     # \begin{example}[title]...\end{example}
     def example_replace(m):
         title = m.group(1) or ""
@@ -585,8 +775,7 @@ def process_math_commands(text):
     text = re.sub(r"\\bm\{([^}]*)\}", r"\\boldsymbol{\1}", text)
     # \sideset{}{'}\sum -> \sum'
     text = text.replace("\\sideset{}{'}\\sum", "\\sum'")
-    # \tag{...} - remove tags
-    text = re.sub(r"\\tag\{[^}]*\}", "", text)
+    # \tag{...} 保留：全书 1076 个式号靠它钉死三级号，MathJax 原生支持
     return text
 
 
@@ -603,6 +792,11 @@ def cleanup(text):
     text = re.sub(r"\\cjkfont\{[^}]*\}", "", text)
     # Remove \newpage, \clearpage, \pagebreak
     text = re.sub(r"\\(?:newpage|clearpage|pagebreak)", "", text)
+    # \footnotemark 的脚注号已由 \footnote 处理流程给出，这里去掉命令残留
+    text = re.sub(r"\\footnotemark\b", "", text)
+    # 重音/特殊字母
+    text = re.sub(r"\\AA\{\}|\\AA\b", "Å", text)
+    text = re.sub(r"\\o\{\}|\\o(?![a-zA-Z])", "ø", text)
     # Remove remaining braces from simple commands
     # Clean multiple blank lines
     text = re.sub(r"\n{3,}", "\n\n", text)
@@ -621,6 +815,7 @@ def convert_tex_to_md(tex_content):
     # Process in order: blocks first, then inline
     text = process_display_equations(text)
     text = process_figures(text)
+    text = process_boxed_figures(text)
     text = process_tables(text)
     text = process_algorithms(text)
     text = process_lists(text)
@@ -638,18 +833,35 @@ def convert_tex_to_md(tex_content):
     return text
 
 
+def sync_images():
+    """把各章实际引用到的图拷进 docs/images/（CI 上没有源目录，必须入库）。"""
+    import shutil
+    images_dir = os.path.join(DOCS_DIR, "images")
+    os.makedirs(images_dir, exist_ok=True)
+    used, copied, missing = set(), 0, []
+    for md in sorted(os.listdir(os.path.join(DOCS_DIR, "chapters"))):
+        if not md.endswith(".md"):
+            continue
+        with open(os.path.join(DOCS_DIR, "chapters", md), encoding="utf-8") as f:
+            used |= set(re.findall(r"\]\(\.\./images/([^\s)]+)", f.read()))
+    for name in sorted(used):
+        src = os.path.join(FIGURES_DIR, name)
+        dst = os.path.join(images_dir, name)
+        if not os.path.exists(src):
+            missing.append(name)
+            continue
+        if not os.path.exists(dst) or os.path.getsize(src) != os.path.getsize(dst):
+            shutil.copy2(src, dst)
+            copied += 1
+    print(f"图片：正文引用 {len(used)} 张，新增/更新 {copied} 张，缺失 {len(missing)} 张")
+    for name in missing:
+        print(f"  缺失: {name}")
+    return missing
+
+
 def main():
     os.makedirs(os.path.join(DOCS_DIR, "chapters"), exist_ok=True)
-
-    # Copy figures to docs/images/
-    images_dir = os.path.join(DOCS_DIR, "images")
-    if os.path.exists(FIGURES_DIR):
-        os.makedirs(images_dir, exist_ok=True)
-        # Create symlink instead of copying
-        link_path = images_dir
-        if not os.path.exists(link_path):
-            os.symlink(FIGURES_DIR, link_path)
-            print(f"Linked figures: {FIGURES_DIR} -> {link_path}")
+    load_labels()
 
     # Write index page
     index_content = """# 理解分子模拟：从算法到应用（第三版）
@@ -714,8 +926,11 @@ def main():
     print(f"Wrote index.md")
 
     # Convert each chapter
+    global CURRENT_CHAP
     for slug, tex_file, title in CHAPTERS:
         print(f"Converting {tex_file} -> {slug}.md ...")
+        m = re.match(r"ch0?(\d+)-", slug) or re.match(r"app([A-J])-", slug)
+        CURRENT_CHAP = m.group(1) if m else ""
         tex = read_tex(tex_file)
         md = convert_tex_to_md(tex)
         path = write_md(slug, md)
@@ -723,6 +938,7 @@ def main():
         print(f"  -> {path} ({lines} lines)")
 
     print(f"\nDone! {len(CHAPTERS)} chapters converted.")
+    sync_images()
 
 
 if __name__ == "__main__":

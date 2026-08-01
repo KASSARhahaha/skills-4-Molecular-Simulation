@@ -4,3 +4,6 @@ resources/mineru/
 __pycache__/
 *.pyc
 .env
+
+# 本地工作笔记
+notes.md

@@ -14,14 +14,14 @@
 
 $$
 \frac{F(\rho)}{Nk_BT} = \frac{F^{\mathrm{id}}(\rho)}{Nk_BT} + \frac{1}{k_BT}\int_0^{\rho} \mathrm{d}\rho'\, \frac{P(\rho') - \rho' k_BT}{\rho'^2} ,
-
+\tag{9.1.1}
 $$
 
 其中状态方程表示为密度 $(\rho)$ 的函数 $P(\rho)$，$F^{\mathrm{id}}(\rho)$ 是密度为 $\rho$ 的理想气体的自由能。一个重要条件是式 (9.1.1) 中的积分路径必须是可逆的。如果积分路径穿越强一级相变，则可能出现滞后现象，式 (9.1.1) 便不再适用。对于液相，可以通过分两步进行积分来避免此问题。首先在远高于临界温度的温度下开始模拟，沿等温线压缩至所需密度，确定状态方程。第二步，在恒定密度下将系统冷却至目标温度。此步骤中的自由能变化由下式给出：
 
 $$
 \frac{F(T = T_{II})}{k_BT_{II}} - \frac{F(T = T_I)}{k_BT_I} = \int_{T_I}^{T_{II}} d(1/T)\, U(T, N, V) .
-
+\tag{9.1.2}
 $$
 
 固-液共存曲线本身不在临界点终止，因此不存在不穿越一级相变的从固体到理想气体的``天然''可逆路径。然而，通常可以构造通往其他已知自由能状态的可逆路径。构造此类路径是本章的主要主题。
@@ -46,21 +46,22 @@ Hoover 及其合作者还开发了单占胞方法的替代方案 ^[309,311]。�
 
 $$
 U(\mathbf{r}^N; \lambda) = U(\mathbf{r}_0^N) + (1 - \lambda)\left[U(\mathbf{r}^N) - U(\mathbf{r}_0^N)\right] + \lambda \sum_{i=1}^{N} \alpha_i (\mathbf{r}_i - \mathbf{r}_{0,i})^2 ,
-
+\tag{9.2.1}
 $$
 
 其中 $\mathbf{r}_{0,i}$ 是原子 $i$ 的格点位置，$U(\mathbf{r}_0^N)$ 是势能的静态贡献（即所有原子处于格点位置时晶体的势能），$\lambda$ 是切换参数，$\alpha_i$ 是将原子 $i$ 耦合到其格点的 Einstein 晶体弹簧常数。注意，当 $\lambda = 0$ 时，我们恢复原始相互作用；当 $\lambda = 1$ 时，我们完全关闭了分子内相互作用（除常数静态项外），体系表现为理想（非相互作用）Einstein 晶体。自由能差利用式 (8.4.8) 计算：
-\begin{multline}
+
+$$
 F = F_{\mathrm{Ein}} + \int_{\lambda=0}^{\lambda=1} \mathrm{d}\lambda \left\langle \frac{\partial U(\lambda)}{\partial \lambda} \right\rangle_{\lambda} \\
 = F_{\mathrm{Ein}} + \int_{\lambda=0}^{\lambda=1} \mathrm{d}\lambda \left\langle \sum_{i=1}^{N} \alpha_i (\mathbf{r}_i - \mathbf{r}_{0,i})^2 - \left[U(\mathbf{r}^N) - U(\mathbf{r}_0^N)\right] \right\rangle_{\lambda} .
-
-\end{multline}
+\tag{9.2.2}
+$$
 
 非相互作用 Einstein 晶体的构型自由能为：
 
 $$
 F_{\mathrm{Ein}} = U(\mathbf{r}_0^N) - \frac{d}{2\beta} \sum_{i=1}^{N} \ln(\pi / \alpha_i \beta) .
-
+\tag{9.2.3}
 $$
 
 正如我们稍后将看到的，考虑质心固定的晶体在计算上更为方便。这将对式 (9.2.3) 稍作修改（见第 9.2.5 节）。``弹簧常数'' $\alpha_i$ 可以进行调整以优化式 (9.2.2) 数值积分的精度。合理的假设是，如果量 $\sum_{i=1}^{N} \alpha_i (\mathbf{r}_i - \mathbf{r}_{0,i})^2 - U(\mathbf{r}^N)$ 的涨落最小，则积分是最优的，这意味着纯 Einstein 晶体中的相互作用应与原始体系中的相互作用尽可能接近。这表明 $\alpha_i$ 应选择使得 $\lambda = 1$ 和 $\lambda = 0$ 时的均方位移相等：
@@ -73,20 +74,20 @@ $$
 
 $$
 \frac{3}{2\beta\alpha_i} = \left\langle (\mathbf{r}_i - \mathbf{r}_{0,i})^2 \right\rangle_{\lambda=0} .
-
+\tag{9.2.4}
 $$
 
 对于具有发散短程排斥相互作用的体系，例如 Lennard-Jones 势，式 (9.2.2) 中的被积函数将表现出弱的、可积的发散。这种发散是由于 Einstein 晶体的势能函数并不完全排除两个粒子具有相同质心坐标的构型。
 
 发散贡献的幅度可以通过增大 $\alpha$ 的值来强烈抑制。然而，为了提高计算精度，更好的做法是将热力学积分从 $\lambda = 0$ 进行到 $\lambda = 1 - \delta\lambda$，然后利用微扰表达式 $\Delta F = -k_BT \ln\langle \exp(-\beta \Delta U) \rangle$ 计算 $\lambda = 1$ 与 $\lambda = 1 - \delta\lambda$ 之间的自由能差，其中 $\Delta U \equiv U(\mathbf{r}^N; \lambda=1) - U(\mathbf{r}^N; \lambda - \delta\lambda)$。$\delta\lambda$ 的精确值并不重要，但如果取得太大，微扰表达式会变得不精确；如果取得太小，哈密顿积分中使用的数值求积会变得不够精确。我们将在第 9.2.2 节中回到这个问题。
 
-\subsubsection*{其他方法}
+#### 其他方法
 
 当然，选择 Einstein 晶体作为参考态是一种人为的选择。我们也可以使用其他自由能已解析已知的参考态。最自然的选择是（经典）谐振晶体，即势能仅展开到粒子相对于其格点位移的二次项的模型晶体 ^[335,409]。根据我们对晶体势能极小值处 Hessian 矩阵的了解，可以获得谐振声子模式的所有非零本征频率 $\omega_i$（$i = 1, \cdots, d(N-1)$）。（固定质心的）谐振晶体的自由能 $F_h(N, V, T)$ 由下式给出：
 
 $$
 \beta F_h(N, V, T) = \beta U_0 + \sum_{i=1}^{d(N-1)} \ln(\beta\hbar\omega_i) ,
-
+\tag{9.2.5}
 $$
 
 其中 $U_0$ 是势能极小值。[^5]
@@ -105,15 +106,15 @@ $$
 
 并非所有固体结构在极低温度下都是力学稳定的，这意味着与高温晶格结构对应的 Hessian 矩阵不一定是正定的。在这种情况下，Einstein 晶体方法更为稳健。
 
-\paragraph*{绕过临界点的积分}
+**绕过临界点的积分**
 
 虽然从固体到液体的转变总是涉及相变，且在三维情况下总是一级相变，但可以通过施加一个人工场来稳定晶体结构从而完全避免此相变。当该场施加于液相时，它会破坏各向同性对称性。因此，在该场存在的情况下，液体与晶体之间没有对称性差异。对于弱场，类固相与类液相之间仍然存在一级相变，但对于足够强的场，相变终止于临界点，我们可以从液体连续地过渡到晶体，就像我们可以通过连续路径绕过临界点连接液体和蒸气一样 ^[399]。同样的方法也可用于构造绕过涉及液晶相的一级相变的可逆路径，例如各向同性-向列相转变和向列相-近晶相转变 ^[303]。
 
-\paragraph*{替代参考态}
+**替代参考态**
 
 有多种方法可以制备已知自由能的参考固体。Einstein 晶体和谐振固体只是两个例子。有时使用允许多个粒子共享同一格点的参考固体较为方便：这种行为在团簇固体的研究中是相关的 ^[410]。类 Einstein 晶体的方法甚至已被用于计算无序相的自由能 ^[411]。
 
-\paragraph*{不同固相之间的自由能差}
+**不同固相之间的自由能差**
 
 通常我们关心的是两个晶相的相对稳定性。在这种情况下，只需计算这两个相之间的自由能差即可。此时并不总是需要计算各个相的自由能：如果可以将一个固体可逆地转变为另一个固体，则可以沿该路径进行热力学积分。
 
@@ -131,21 +132,21 @@ $$
 
 $$
 U(\lambda) = U_0 + \lambda U = U_0 + \lambda \sum_{i=1}^{N} (\mathbf{r}_i - \mathbf{r}_{0,i})^2 ,
-
+\tag{9.2.6}
 $$
 
 其中 $N$ 表示粒子总数，$\mathbf{r}_{0,i}$ 是粒子 $i$ 被分配到的格点位置。耦合常数为 $\lambda$ 的体系与硬球流体之间的自由能差为
 
 $$
 F_{\mathrm{HS}} = F(\lambda_{\max}) - \int_{0}^{\lambda_{\max}} \mathrm{d}\lambda \left\langle U(\mathbf{r}^N,\lambda) \right\rangle_{\lambda} .
-
+\tag{9.2.7}
 $$
 
 在 $\lambda_{\max}$ 足够大的值下，硬粒子彼此之间不再``感知''对方，自由能便简化为非相互作用 Einstein 晶体的自由能。显然，弹簧常数 $\lambda$ 的值应当足够大，以确保谐束缚晶体确实表现为 Einstein 晶体。同时，$\lambda$ 不应太大，否则式 (9.2.7) 的数值积分会变得不够精确。一般而言，$\lambda$ 的最优选择取决于模型的具体细节。在案例研究 17 中，我们展示了如何为特定模型体系选择 $\lambda$，并讨论了硬核相互作用特有的其他实际问题。
 
 ### 分子晶体与多组分晶体
 
-\subsubsection*{分子晶体}
+#### 分子晶体
 
 与原子不同，分子之间的相互作用取决于它们的相对取向。分子的形状多种多样，通常这些形状可以以许多不同方式堆积成周期性结构。但不仅仅是堆积问题：分子的能量相互作用还取决于它们的局部电荷分布，有时还取决于它们形成氢键的能力。因此，哪些分子晶体多晶型在凝固过程中形成是许多不同因素之间相互作用的结果。即使是氮这样的简单分子也至少有七种不同的固相 ^[413,414]。正是在这种背景下，分子固体的自由能计算变得重要：显然，了解在给定温度和压力下哪种多晶型具有最低的 Gibbs 自由能是有意义的。在本节中，我们讨论分子晶体自由能计算与原子晶体自由能计算之间的差异。
 
@@ -155,9 +156,11 @@ $$
 
 创建取向有序参考态的一种方法是将分子取向耦合到外部取向场 ^[416]。然而，也可以将分子中的多个原子通过谐弹簧耦合到其平均晶格位置 ^[405]（见图 9.1）。例 33 给出了一种计算氮晶体自由能的替代方法的示例。
 
-![Einstein 晶体方法用于分子晶体的示意图。模拟使用一系列哈密顿热力学积分来计算分子晶体（面板 A）与``Einstein''晶体（面板 C）之间的自由能差，在后者中分子的取向和质心位置都受谐弹簧约束。面板 A 显示原始晶体；一些分子间相互作用以双箭头表示。在从面板 A 到面板 B 的变换中，Einstein 谐力被开启，而分子间力仍然存在。最后，在从 B 到 C 的变换中，分子间力（但不是分子内力）被关闭。计算分子 Einstein 晶体的自由能比原子 Einstein 晶体稍复杂，因为需要确定谐束缚晶体的简正模式频率。](../images/ch09_fig9_1.jpeg "Einstein 晶体方法用于分子晶体的示意图。模拟使用一系列哈密顿热力学积分来计算分子晶体（面板 A）与``Einstein''晶体（面板 C）之间的自由能差，在后者中分子的取向和质心位置都受谐弹簧约束。面板 A 显示原始晶体；一些分子间相互作用以双箭头表示。在从面板 A 到面板 B 的变换中，Einstein 谐力被开启，而分子间力仍然存在。最后，在从 B 到 C 的变换中，分子间力（但不是分子内力）被关闭。计算分子 Einstein 晶体的自由能比原子 Einstein 晶体稍复杂，因为需要确定谐束缚晶体的简正模式频率。")
+![图 9.1](../images/fig_9_1.png)
 
-\subsubsection*{多组分晶体}
+*图 9.1　Einstein 晶体方法用于分子晶体的示意图。模拟使用一系列哈密顿热力学积分来计算分子晶体（面板 A）与``Einstein''晶体（面板 C）之间的自由能差，在后者中分子的取向和质心位置都受谐弹簧约束。面板 A 显示原始晶体；一些分子间相互作用以双箭头表示。在从面板 A 到面板 B 的变换中，Einstein 谐力被开启，而分子间力仍然存在。最后，在从 B 到 C 的变换中，分子间力（但不是分子内力）被关闭。计算分子 Einstein 晶体的自由能比原子 Einstein 晶体稍复杂，因为需要确定谐束缚晶体的简正模式频率。*
+
+#### 多组分晶体
 
 包含一个以上物种的有序晶体的自由能计算与单组分晶体的自由能计算在根本上是相同的 ^[417,418,419]。
 
@@ -186,14 +189,14 @@ $$
 $$
 \delta U_{\mathrm{Harm}}(\lambda) = \lambda \sum_{j \neq i} \left[ \left(\boldsymbol{\delta}\mathbf{r}_j - \frac{\boldsymbol{\epsilon}_i}{N}\right)^2 - \boldsymbol{\delta}\mathbf{r}_j^2 \right] + \lambda \left[ \left(\boldsymbol{\delta}\mathbf{r}_i + \left(1-\frac{1}{N}\right)\boldsymbol{\epsilon}_i\right)^2 - \boldsymbol{\delta}\mathbf{r}_i^2 \right]
 = \lambda \left( 2\boldsymbol{\delta}\mathbf{r}_i \cdot \boldsymbol{\epsilon}_i + \frac{N-1}{N}\boldsymbol{\epsilon}_i^2 \right) ,
-
+\tag{9.2.8}
 $$
 
 其中，在最后一行中我们使用了 $\sum_{i=1}^{N} \boldsymbol{\delta}\mathbf{r}_i = 0$ 这一事实。
 
 还有一个注意事项需要考虑：将移出原始模拟盒的粒子放回到另一侧是一种常见（尽管不建议）的做法。然而，在模拟具有固定质心的系统时，将粒子移回原始模拟盒会造成质心位置的不连续变化，从而导致 Einstein 晶格能量的突然变化。因此，在固定质心的模拟中，移出原始模拟盒的粒子绝对不应被放回。算法 19 和 20 概述了如何在 Monte Carlo 模拟中实现 Einstein 晶体方法。
 
-**固定质心 MC：晶格束缚晶体的粒子移动**
+**算法 19　固定质心 MC：晶格束缚晶体的粒子移动**
 
 ```
 ^[1]
@@ -227,7 +230,7 @@ skip
 1. 项 $\lambda$ 是式 (9.2.6) 中定义的耦合常数，$\mathrm{d}x_{\mathrm{cm}} = \boldsymbol{\delta}\mathbf{R}_{\mathrm{CM}}$ 是质心的累积位移。
 1. 对于硬核系统，首先计算与谐弹簧势能变化相关的 Boltzmann 因子并应用 Metropolis 规则来判断是否应拒绝移动，这一点很重要。只有通过此测试后，才应尝试执行更昂贵的重叠检测。
 
-**生成 fcc 晶体**
+**算法 20　生成 fcc 晶体**
 
 ```
 ^[1]
@@ -260,87 +263,93 @@ skip
 1. 注意，在周期性系统中，质心的定义是不明确的：此处我们取原始模拟盒中粒子的质心。
 1. 在跟踪质心位移时（见算法 19），我们计算所有粒子的平均（可能按质量加权）位移：在这种情况下，应注意不要将粒子强制放入原始模拟盒内。
 
-\paragraph*{例 19（硬球的固-液平衡）} 在本例中，我们定位硬球模型的固-液共存密度。我们通过令两相的化学势和压力相等来确定这些密度。
+???+ example "例 19（硬球的固-液平衡）"
 
-对于液相，我们使用 Speedy ^[421] 的状态方程，该方程基于对硬球的计算机模拟数据和维里系数的 Pad\'{e} 近似：
+    在本例中，我们定位硬球模型的固-液共存密度。我们通过令两相的化学势和压力相等来确定这些密度。
 
-$$
-z_{\mathrm{liquid}} = \frac{P\beta}{\rho} = \frac{1 + x + 0.076014 x^2 + 0.019480 x^3}{1 - 0.548986x + 0.075647x^2} .
-$$
+    对于液相，我们使用 Speedy ^[421] 的状态方程，该方程基于对硬球的计算机模拟数据和维里系数的 Pad\'{e} 近似：
 
-对于硬球模型的固相，Speedy 提出了以下状态方程 ^[320]：
+    $$
+    z_{\mathrm{liquid}} = \frac{P\beta}{\rho} = \frac{1 + x + 0.076014 x^2 + 0.019480 x^3}{1 - 0.548986x + 0.075647x^2} .
+    $$
 
-$$
-z_{\mathrm{solid}} = \frac{3}{1 - \zeta^* - 0.5921\zeta^{*2} - 0.7072\zeta^{*3}} - \frac{0.601\zeta^*}{1 - \zeta^* - 0.5921\zeta^{*2} - 0.7072\zeta^{*3}} ,
+    对于硬球模型的固相，Speedy 提出了以下状态方程 ^[320]：
 
-$$
+    $$
+    z_{\mathrm{solid}} = \frac{3}{1 - \zeta^* - 0.5921\zeta^{*2} - 0.7072\zeta^{*3}} - \frac{0.601\zeta^*}{1 - \zeta^* - 0.5921\zeta^{*2} - 0.7072\zeta^{*3}} ,
+    \tag{9.2.9}
+    $$
 
-其中 $\zeta^* = \sigma^3 \rho / \sqrt{2}$（译注：原书此处 $\zeta^*$ 的定义与公式中使用的符号形式不同，此处按原始公式结构翻译）。在图 9.2 中，我们将该液相和固相状态方程的预测与 Alder 和 Wainwright ^[422] 以及 Adams ^[171] 的计算机模拟结果进行了比较。可以看出，经验状态方程很好地再现了模拟数据。为了计算液相的化学势，我们从稀薄气体极限开始积分状态方程（参见式 (9.1.1)）。这给出了 Helmholtz 自由能作为密度的函数。化学势则由下式得出：
+    其中 $\zeta^* = \sigma^3 \rho / \sqrt{2}$（译注：原书此处 $\zeta^*$ 的定义与公式中使用的符号形式不同，此处按原始公式结构翻译）。在图 9.2 中，我们将该液相和固相状态方程的预测与 Alder 和 Wainwright ^[422] 以及 Adams ^[171] 的计算机模拟结果进行了比较。可以看出，经验状态方程很好地再现了模拟数据。为了计算液相的化学势，我们从稀薄气体极限开始积分状态方程（参见式 (9.1.1)）。这给出了 Helmholtz 自由能作为密度的函数。化学势则由下式得出：
 
-$$
-\beta\mu(\rho) = \frac{\beta G}{N} = \frac{\beta F}{N} + \frac{P}{\rho k_BT} .
-$$
+    $$
+    \beta\mu(\rho) = \frac{\beta G}{N} = \frac{\beta F}{N} + \frac{P}{\rho k_BT} .
+    $$
 
-![压力 $P$（左）和化学势 $\mu$（右）作为密度 $\rho$ 的函数。实线曲线表示从 Speedy 状态方程 \cite{421](../images/fig_p360_0.png "压力 $P$（左）和化学势 $\mu$（右）作为密度 $\rho$ 的函数。实线曲线表示从 Speedy 状态方程 \cite{421")
+    ![图 9.2](../images/fig_9_2.png)
 
-理想气体每粒子自由能由下式给出：
+    *图 9.2　压力 $P$（左）和化学势 $\mu$（右）作为密度 $\rho$ 的函数。实线曲线表示从 Speedy 状态方程 ^[421] 获得的液相压力和化学势。虚线给出了由文献 ^[320] 的状态方程计算的固相压力。空心和实心符号分别是液相 ^[171,422,423] 和固相 ^[422] 的计算机模拟结果。共存密度以水平线标示。*
 
-$$
-\beta f^{\mathrm{id}}(\rho) = \frac{F^{\mathrm{id}}(\rho)}{Nk_BT} = \ln\rho\Lambda^3 - 1 ,
-$$
+    理想气体每粒子自由能由下式给出：
 
-其中 $\Lambda$ 为 de Broglie 热波长。在下文中，我们将写 $\beta f^{\mathrm{id}}(\rho) = \ln\rho - 1$。
+    $$
+    \beta f^{\mathrm{id}}(\rho) = \frac{F^{\mathrm{id}}(\rho)}{Nk_BT} = \ln\rho\Lambda^3 - 1 ,
+    $$
 
-也就是说，我们将使用通常的约化密度，并忽略加性常数 $3\ln(\Lambda/\sigma)$，因为它在经典系统的相平衡定位中不起作用。
+    其中 $\Lambda$ 为 de Broglie 热波长。在下文中，我们将写 $\beta f^{\mathrm{id}}(\rho) = \ln\rho - 1$。
 
-图 9.2 比较了从 Hall 状态方程得出的化学势与部分可用的模拟数据（即文献 ^[171] 的巨正则系综模拟和使用 Widom 试验粒子方法直接计算化学势的结果 ^[423]（见第八章））。这些结果表明我们有液相和固相的精确状态方程。由于我们知道理想气体相的绝对自由能，我们可以计算液相的自由能，进而计算液相的化学势。对于固相，我们可以使用状态方程来计算自由能差；要计算绝对自由能，我们必须确定特定密度下的自由能。为了执行此计算，我们使用晶格耦合方法。
+    也就是说，我们将使用通常的约化密度，并忽略加性常数 $3\ln(\Lambda/\sigma)$，因为它在经典系统的相平衡定位中不起作用。
 
-我们现在必须选择耦合参数 $\lambda$ 的上限（$\lambda_{\max}$）以及进行模拟的 $\lambda$ 值。对于足够大的 $\lambda$ 值，我们可以使用下式解析计算 $\sum_{i=1}^{N}(\mathbf{r}_i - \mathbf{r}_{0,i})^2$：
+    图 9.2 比较了从 Hall 状态方程得出的化学势与部分可用的模拟数据（即文献 ^[171] 的巨正则系综模拟和使用 Widom 试验粒子方法直接计算化学势的结果 ^[423]（见第八章））。这些结果表明我们有液相和固相的精确状态方程。由于我们知道理想气体相的绝对自由能，我们可以计算液相的自由能，进而计算液相的化学势。对于固相，我们可以使用状态方程来计算自由能差；要计算绝对自由能，我们必须确定特定密度下的自由能。为了执行此计算，我们使用晶格耦合方法。
 
-$$
-\langle \mathbf{r}^2 \rangle_{\lambda} = \frac{1}{N}\frac{\partial F(\lambda)}{\partial \lambda} .
-$$
+    我们现在必须选择耦合参数 $\lambda$ 的上限（$\lambda_{\max}$）以及进行模拟的 $\lambda$ 值。对于足够大的 $\lambda$ 值，我们可以使用下式解析计算 $\sum_{i=1}^{N}(\mathbf{r}_i - \mathbf{r}_{0,i})^2$：
 
-对于非相互作用 Einstein 晶体，均方位移由下式给出：
+    $$
+    \langle \mathbf{r}^2 \rangle_{\lambda} = \frac{1}{N}\frac{\partial F(\lambda)}{\partial \lambda} .
+    $$
 
-$$
-\langle \mathbf{r}^2 \rangle_{\lambda} = \frac{3}{2\beta\lambda} .
+    对于非相互作用 Einstein 晶体，均方位移由下式给出：
 
-$$
+    $$
+    \langle \mathbf{r}^2 \rangle_{\lambda} = \frac{3}{2\beta\lambda} .
+    \tag{9.2.10}
+    $$
 
-对于具有固定质心的非相互作用 Einstein 晶体，自由能由式 (9.2.23) 给出，由此可得：
+    对于具有固定质心的非相互作用 Einstein 晶体，自由能由式 (9.2.23) 给出，由此可得：
 
-$$
-\langle \mathbf{r}^2 \rangle_{\mathrm{Ein},\lambda} = \frac{1}{\beta}\frac{3}{2}\frac{N-1}{N}\frac{1}{\lambda} .
+    $$
+    \langle \mathbf{r}^2 \rangle_{\mathrm{Ein},\lambda} = \frac{1}{\beta}\frac{3}{2}\frac{N-1}{N}\frac{1}{\lambda} .
+    \tag{9.2.11}
+    $$
 
-$$
+    在文献 ^[314] 中，推导了相互作用 Einstein 晶体情形的解析表达式，该式为：
 
-在文献 ^[314] 中，推导了相互作用 Einstein 晶体情形的解析表达式，该式为：
+    $$
+    \langle \mathbf{r}^2 \rangle_{\lambda} = \langle \mathbf{r}^2 \rangle_{\mathrm{Ein},\lambda} - \frac{\beta n}{2} \frac{1}{2a(2\pi\beta\lambda)^{1/2}} \left(1 - P^{\mathrm{nn}}_{\mathrm{overlap}}(\lambda)\right)
+    \times \left[ (\sigma a - \sigma^2 - 1/(\beta\lambda))\exp(-\beta\lambda(a-\sigma)^2/2) + (\sigma a + \sigma^2 - 1/(\beta\lambda))\exp(-\beta\lambda(a+\sigma)^2/2) \right] ,
+    \tag{9.2.12}
+    $$
 
-$$
-\langle \mathbf{r}^2 \rangle_{\lambda} = \langle \mathbf{r}^2 \rangle_{\mathrm{Ein},\lambda} - \frac{\beta n}{2} \frac{1}{2a(2\pi\beta\lambda)^{1/2}} \left(1 - P^{\mathrm{nn}}_{\mathrm{overlap}}(\lambda)\right)
-\times \left[ (\sigma a - \sigma^2 - 1/(\beta\lambda))\exp(-\beta\lambda(a-\sigma)^2/2) + (\sigma a + \sigma^2 - 1/(\beta\lambda))\exp(-\beta\lambda(a+\sigma)^2/2) \right] ,
+    其中 $a$ 是两个最近邻粒子 $i$ 和 $j$ 的间距，$a = |\mathbf{r}_{0,i} - \mathbf{r}_{0,j}|$，$\sigma$ 是硬核直径，$n$ 是最近邻数（例如，对于 fcc（面心立方）和 hcp（六方密堆积）固体 $n = 12$，对于 bcc（体心立方） $n = 8$）；$P^{\mathrm{nn}}_{\mathrm{overlap}}(\lambda)$ 是两个最近邻重叠的概率。该概率由下式给出：
 
-$$
+    $$
+    P^{\mathrm{nn}}_{\mathrm{overlap}}(\lambda) = \frac{\mathrm{erf}((\beta\lambda/2)^{1/2}(\sigma+a)) + \mathrm{erf}((\beta\lambda/2)^{1/2}(\sigma-a))}{2}
+    - \frac{\exp[-\beta\lambda(\sigma-a)^2/2] - \exp[-\beta\lambda(\sigma+a)^2/2]}{(2\pi\beta\lambda)^{1/2}a} .
+    \tag{9.2.13}
+    $$
 
-其中 $a$ 是两个最近邻粒子 $i$ 和 $j$ 的间距，$a = |\mathbf{r}_{0,i} - \mathbf{r}_{0,j}|$，$\sigma$ 是硬核直径，$n$ 是最近邻数（例如，对于 fcc（面心立方）和 hcp（六方密堆积）固体 $n = 12$，对于 bcc（体心立方） $n = 8$）；$P^{\mathrm{nn}}_{\mathrm{overlap}}(\lambda)$ 是两个最近邻重叠的概率。该概率由下式给出：
+    该方程也可用于修正非相互作用 Einstein 晶体的自由能 (9.2.23)：
 
-$$
-P^{\mathrm{nn}}_{\mathrm{overlap}}(\lambda) = \frac{\mathrm{erf}((\beta\lambda/2)^{1/2}(\sigma+a)) + \mathrm{erf}((\beta\lambda/2)^{1/2}(\sigma-a))}{2}
-- \frac{\exp[-\beta\lambda(\sigma-a)^2/2] - \exp[-\beta\lambda(\sigma+a)^2/2]}{(2\pi\beta\lambda)^{1/2}a} .
+    $$
+    \frac{\beta F_{\mathrm{Ein}}(\lambda)}{N} = \frac{\beta F_{\mathrm{Ein}}}{N} + \frac{n}{2}\ln\left(1 - P^{\mathrm{nn}}_{\mathrm{overlap}}(\lambda)\right) .
+    \tag{9.2.14}
+    $$
 
-$$
+    我们选择 $\lambda_{\max}$ 使得对于大于此最大值的 $\lambda$ 值，$\langle \mathbf{r}^2 \rangle_{\lambda}$ 遵循解析表达式。通常，这意味着两个谐束缚粒子重叠的概率应远小于 1\%。这些模拟的结果展示在图 9.3 中。该图表明，如果我们仅依赖非相互作用 Einstein 晶体的解析结果，我们必须取 $\lambda_{\max} \approx 1000$--$2000$。如果我们使用式 (9.2.12) 来计算 $\langle \mathbf{r}^2 \rangle_{\lambda}$，则 $\lambda_{\max} = 500$--$1000$ 就足够了。
 
-该方程也可用于修正非相互作用 Einstein 晶体的自由能 (9.2.23)：
+![图 9.3](../images/fig_9_3.png)
 
-$$
-\frac{\beta F_{\mathrm{Ein}}(\lambda)}{N} = \frac{\beta F_{\mathrm{Ein}}}{N} + \frac{n}{2}\ln\left(1 - P^{\mathrm{nn}}_{\mathrm{overlap}}(\lambda)\right) .
-
-$$
-
-我们选择 $\lambda_{\max}$ 使得对于大于此最大值的 $\lambda$ 值，$\langle \mathbf{r}^2 \rangle_{\lambda}$ 遵循解析表达式。通常，这意味着两个谐束缚粒子重叠的概率应远小于 1\%。这些模拟的结果展示在图 9.3 中。该图表明，如果我们仅依赖非相互作用 Einstein 晶体的解析结果，我们必须取 $\lambda_{\max} \approx 1000$--$2000$。如果我们使用式 (9.2.12) 来计算 $\langle \mathbf{r}^2 \rangle_{\lambda}$，则 $\lambda_{\max} = 500$--$1000$ 就足够了。
-
-![硬球（FCC）固体（54 个粒子，在密度 $\rho = 1.04$ 处，6 层 $3 \times 3$ 密排原子）的均方位移 $\langle \mathbf{r](../images/ch09_fig9_3.jpeg "硬球（FCC）固体（54 个粒子，在密度 $\rho = 1.04$ 处，6 层 $3 \times 3$ 密排原子）的均方位移 $\langle \mathbf{r")
+*图 9.3　硬球（FCC）固体（54 个粒子，在密度 $\rho = 1.04$ 处，6 层 $3 \times 3$ 密排原子）的均方位移 $\langle \mathbf{r}^2 \rangle_{\lambda}$ 随耦合参数 $\lambda$ 的变化。左图显示低 $\lambda$ 值的模拟结果，右图为高 $\lambda$ 值的结果。实线考虑了最近邻相互作用 (9.2.12)；虚线假设非相互作用 Einstein 晶体 (9.2.11)。空心符号为模拟结果。*
 
 我们现在需要对下式进行积分：
 
@@ -374,7 +383,9 @@ $$
 
 使用文献 ^[425] 中 $\rho = 1.04086$ 处固体的值 $5.91889(4)$，我们得到凝固密度 $\rho_l = 0.9391$ 和熔化密度 $\rho_s = 1.0376$。在共存时，压力为 $P_{\mathrm{coex}} = 11.567$，化学势为 $\mu_{\mathrm{coex}} = 17.071$。事实上，正如我们将在下面论证的，平衡晶体中空位的存在会使共存压力略微降低：$P_{\mathrm{coex}} = 11.564$。这些结果与 Hoover 和 Ree ^[307] 的原始数据出人意料地一致，后者获得的固-液共存密度估计为 $\rho_s = 1.041 \pm 0.004$ 和 $\rho_l = 0.943 \pm 0.004$，压力为 $11.70 \pm 0.18$。
 
-![$\beta F^{\mathrm{ex](../images/ch09_fig9_4.jpeg "$\beta F^{\mathrm{ex")
+![图 9.4](../images/fig_9_4.png)
+
+*图 9.4　$\beta F^{\mathrm{ex}}/N + \ln(N)/N$ 随 $1/N$ 的变化，针对密度 $\rho\sigma^3 = 1.0409$ 的硬球 fcc 晶体。实线是对数据的线性拟合。$1/N$ 项的系数为 $-6.0(2)$，截距（即 $\beta F^{\mathrm{ex}}/N$ 的无限系统极限）等于 $5.91889(4)$。*
 
 大尺寸硬球晶体在熔点处的 FCC 和 HCP 之间的自由能差非常接近于 0，但 FCC 结构似乎更稳定 ^[303,412,426,427]。
 
@@ -386,7 +397,7 @@ $$
 
 $$
 Q = c_N \int \mathrm{d}\mathbf{r}^{dN} \mathrm{d}\mathbf{p}^{dN} \exp[-\beta H(\mathbf{r}_i, \mathbf{p}_i)] ,
-
+\tag{9.2.15}
 $$
 
 其中 $c_N = (h^{dN_{\mathrm{mol}}}N_1!N_2!\cdots N_m!)^{-1}$，$N_1$ 表示第 1 种不可区分粒子的数目，$N_2$ 表示第 2 种粒子的数目，等等，$N_1 + N_2 + \cdots + N_m = N_{\mathrm{mol}}$。在所有遵循经典统计力学的系统之间的相平衡计算中，Planck 常数 $h$ 从结果中消去。
@@ -396,14 +407,14 @@ $$
 $$
 Q_{\mathrm{con}} = c_N \int \mathrm{d}\mathbf{r}^{dN} \mathrm{d}\mathbf{p}^{dN} \exp[-\beta H(\mathbf{r}_i, \mathbf{p}_i)]
 \times \delta[\sigma(\mathbf{r})]\delta(G^{-1} \cdot \dot{\sigma}) ,
-
+\tag{9.2.16}
 $$
 
 其中 $\sigma(\mathbf{r})$ 和 $\dot{\sigma}$ 分别是约束和约束的时间导数，且
 
 $$
 G_{kl} = \sum_{i=1}^{N} \frac{1}{m_i} \nabla_{\mathbf{r}_i}\sigma_k \cdot \nabla_{\mathbf{r}_i}\sigma_l .
-
+\tag{9.2.17}
 $$
 
 为了约束质心（CM），我们取 $\sigma(\mathbf{r}) = \sum_{i=1}^{N}\mu_i\mathbf{r}_i$，从而 $\dot{\sigma} = \sum_{i=1}^{N}(\mu_i/m_i)\mathbf{p}_i$，其中 $\mu_i \equiv m_i / \sum_i m_i$。为简化问题，我们假设不存在额外的分子内约束（如固定的键长或键角）。
@@ -418,14 +429,14 @@ $$
 
 $$
 Q_{\mathrm{Ein}}^{\mathrm{CM}} = Z_{\mathrm{Ein}}^{\mathrm{CM}} P_{\mathrm{Ein}}^{\mathrm{CM}} ,
-
+\tag{9.2.18}
 $$
 
 其中
 
 $$
 Z_{\mathrm{Ein}}^{\mathrm{CM}} = \int \mathrm{d}\mathbf{r}^{dN} \prod_{i=1}^{N} \exp\left(-\frac{\beta\alpha_i}{2}\mathbf{r}_i^2\right) \delta\left(\sum_{i=1}^{N}\mu_i\mathbf{r}_i\right)
-
+\tag{9.2.19}
 $$
 
 和
@@ -434,56 +445,56 @@ $$
 P_{\mathrm{Ein}}^{\mathrm{CM}} = \int \mathrm{d}\mathbf{p}^{dN} \prod_{i=1}^{N} \exp\left(-\frac{\beta}{2m_i}\mathbf{p}_i^2\right) \delta\left(\sum_{i=1}^{N}\mathbf{p}_i\right)
 = \left(\frac{\beta}{2\pi M}\right)^{d/2} \prod_{i=1}^{N}\left(\frac{2\pi m_i}{\beta}\right)^{d/2}
 = \left(\frac{\beta}{2\pi M}\right)^{d/2} P_{\mathrm{Ein}} ,
-
+\tag{9.2.20}
 $$
 
 其中 $M = \sum_i m_i$，$Z_{\mathrm{Ein}}$ 和 $P_{\mathrm{Ein}}$ 分别是无约束 Einstein 晶体配分函数 $Q_{\mathrm{Ein}}$ 的构型和动能贡献。由此可得
 
 $$
 Q_{\mathrm{Ein}}^{\mathrm{CM}} = \left(\frac{\sum_i m_i}{\sum_i m_i^2/\alpha_i}\right)^{d/2} \left(\frac{\beta^2}{4\pi^2}\right)^{d/2} Q_{\mathrm{Ein}} .
-
+\tag{9.2.21}
 $$
 
 事实上，如果我们做特定选择 $\alpha_i = \alpha m_i$，该表达式可以进一步简化。在这种情况下，
 
 $$
 Q_{\mathrm{Ein}}^{\mathrm{CM}} = \left(\frac{\beta^2\alpha}{4\pi^2}\right)^{d/2} Q_{\mathrm{Ein}} .
-
+\tag{9.2.22}
 $$
 
 做出这种 $\alpha_i$ 选择有一个很好的理由：在这种情况下，谐弹簧对晶体质心施加的合力始终为零，前提是当所有粒子都在其格点位置时该合力为零。这使得在具有固定质心的 Einstein 晶体上执行 MD 模拟更加容易。约束 Einstein 晶体与无约束 Einstein 晶体之间的自由能差为
 
 $$
 F_{\mathrm{Ein}}^{\mathrm{CM}} = F_{\mathrm{Ein}} - k_BT \ln\left(\frac{\beta^2\alpha}{4\pi^2}\right)^{d/2} .
-
+\tag{9.2.23}
 $$
 
 对于在没有外力作用下的任意晶体系统，受 CM 约束的配分函数为
 
 $$
 Q^{\mathrm{CM}} = Z^{\mathrm{CM}} \left(\frac{\beta}{2\pi M}\right)^{d/2} \prod_{i=1}^{N}\left(\frac{2\pi m_i}{\beta}\right)^{d/2} ,
-
+\tag{9.2.24}
 $$
 
 其中
 
 $$
 Z^{\mathrm{CM}} = \int \mathrm{d}\mathbf{r}^{dN} \exp[-\beta U(\mathbf{r}_i)] \delta\left(\sum_{i=1}^{N}\mu_i\mathbf{r}_i\right) ,
-
+\tag{9.2.25}
 $$
 
 而无约束晶体的配分函数为
 
 $$
 Q = Z \prod_{i=1}^{N}\left(\frac{2\pi m_i}{\beta}\right)^{d/2} ,
-
+\tag{9.2.26}
 $$
 
 其中
 
 $$
 Z = \int \mathrm{d}\mathbf{r}^{dN} \exp[-\beta U(\mathbf{r}_i)] .
-
+\tag{9.2.27}
 $$
 
 注意，就配分函数的动能部分而言，固定质心约束对 Einstein 晶体和任意``现实的''晶体具有相同的效果。
@@ -492,7 +503,7 @@ $$
 
 $$
 F^{\mathrm{CM}} = F - k_BT \ln(Z^{\mathrm{CM}}/Z) - k_BT \ln(\beta/2\pi M)^{d/2} .
-
+\tag{9.2.28}
 $$
 
 我们注意到
@@ -500,7 +511,7 @@ $$
 $$
 \frac{Z^{\mathrm{CM}}}{Z} = \frac{\int \mathrm{d}\mathbf{r}^{dN} \exp[-\beta U(\mathbf{r}_i)] \delta\left(\sum_i \mu_i\mathbf{r}_i\right)}{\int \mathrm{d}\mathbf{r}^{dN} \exp[-\beta U(\mathbf{r}_i)]}
 = \left\langle \delta\left(\sum_i \mu_i\mathbf{r}_i\right) \right\rangle = P(\mathbf{r}_{\mathrm{CM}} = 0) ,
-
+\tag{9.2.29}
 $$
 
 其中 $\mathbf{r}_{\mathrm{CM}} \equiv \sum_i \mu_i\mathbf{r}_i$，$P(\mathbf{r}_{\mathrm{CM}})$ 是质心 $\mathbf{r}_{\mathrm{CM}}$ 的概率分布函数。为了计算 $P(\mathbf{r}_{\mathrm{CM}})$，我们利用晶格质心的概率分布均匀分布在等于 Wigner-Seitz 胞体积的空间上这一事实。[^7]将质心坐标的积分限制在单个 Wigner-Seitz 胞的原因是，如果质心移动到另一个 Wigner-Seitz 胞，我们实际上创建了晶体的一个副本，对应于粒子的另一种排列。这样的构型不应被计为独立的。因此 $P(\mathbf{r}_{\mathrm{CM}}) = 1/V_{\mathrm{WS}} = N_{\mathrm{WS}}/V$，其中 $V_{\mathrm{WS}}$ 是一个 Wigner-Seitz 胞的体积，$N_{\mathrm{WS}}$ 是系统中此类胞的数目。因此 $Z^{\mathrm{CM}}/Z = P(\mathbf{r}_{\mathrm{CM}} = 0) = N_{\mathrm{WS}}/V$。在每胞一个分子的情况下，这意味着 $Z^{\mathrm{CM}}/Z = N_{\mathrm{mol}}/V$，其中 $N_{\mathrm{mol}}$ 是系统中的分子数。
@@ -509,14 +520,14 @@ $$
 
 $$
 \frac{\beta F}{N} = \frac{\beta\Delta F^{\mathrm{CM}}}{N} + \frac{\beta F_{\mathrm{Ein}}}{N} + \frac{\ln(N_{\mathrm{mol}}/V)}{N} - \frac{d}{2N}\ln(\beta\alpha M/2\pi) .
-
+\tag{9.2.30}
 $$
 
 如果我们考虑相同原子粒子的特殊情况（$m_i = m$，$N = N_{\mathrm{mol}}$），我们得到：
 
 $$
 \frac{\beta F}{N} = \frac{\beta\Delta F^{\mathrm{CM}}}{N} + \frac{\beta F_{\mathrm{Ein}}}{N} + \frac{\ln\rho}{N} - \frac{d}{2N}\ln N - \frac{d}{2N}\ln\left(\frac{\beta\alpha m}{2\pi}\right) .
-
+\tag{9.2.31}
 $$
 
 在实践中，我们通常计算超额自由能 $F^{\mathrm{ex}} \equiv F - F^{\mathrm{id}}$，其中 $F^{\mathrm{id}}$ 是理想气体自由能。因此，我们计算后者的有限尺寸修正：给定
@@ -530,44 +541,46 @@ $$
 $$
 \frac{\beta F^{\mathrm{ex}}}{N} = \frac{\beta\Delta F^{\mathrm{CM}}}{N} + \frac{\beta F_{\mathrm{Ein}}}{N} + \frac{\ln\rho}{N} - \frac{d}{2N}\ln\left(\frac{\beta\alpha m}{2\pi}\right)
 - \frac{d+1}{2}\frac{\ln N}{N} - \ln\rho + 1 - \frac{\ln 2\pi}{2N} ,
-
+\tag{9.2.32}
 $$
 
 其中我们使用了 Stirling 近似：$\ln N! \approx N\ln N - N + (\ln 2\pi N)/2$。
 
 Hoover 分析了具有周期性边界的经典谐晶体的系统尺寸依赖性 ^[429]。在该研究中，确定了谐晶体每粒子自由能的主要有限尺寸修正为 $k_BT \ln N / N$。假设该结果可以推广到任意晶体，我们应预期 $\beta F^{\mathrm{ex}}/N + (d-1)\ln N/(2N)$ 将以 $N^{-1}$ 标度，加上 $O(1/N^2)$ 量级的修正项。图 9.4 展示了三维硬球的 $\beta F^{\mathrm{ex}}/N + (d-1)\ln N/(2N)$ 的 $N$ 依赖性。该图清楚地表明剩余的系统尺寸依赖性以 $1/N$ 标度。这是一个有用的结果，因为它为我们提供了一种将有限系统的自由能计算外推到 $N \to \infty$ 极限的程序。更多细节请参见文献 ^[425]。
 
-\paragraph*{示例 12（FCC 还是 HCP？）} 硬球晶体可以以不同的晶相存在。其中最著名的是面心立方（FCC）和六方密堆积（HCP）结构。确定哪种相在热力学上最稳定并不容易。原因是各种结构之间的自由能差在每粒子 $10^{-3}k_BT$ 或更小的量级。因此，早期旨在计算此自由能差的数值研究 ^[314] 并未得出结论。后续研究 ^[303,412] 最终证明 fcc 结构是最稳定的。虽然后一项模拟中的一项使用了文献 ^[314] 的 Einstein 晶体方法，但其他方法基于不同的方法。这里我们简要讨论 Bruce 等人 ^[412] 的所谓晶格切换 Monte Carlo 方法。
+???+ example "例证 12（FCC 还是 HCP？）"
 
-密堆积晶体由在垂直方向上堆叠的六方密堆积二维平面组成。假设我们通过堆叠平面来构造晶体。对于每一个新平面，有两种不同的方式将其堆叠在前一个平面上，使得所有原子都适合前一平面原子之间的三角孔。让我们用 B 和 C 表示新平面的这两个位置，用 A 表示原始平面的位置。用这种记法，FCC 堆叠遵循以下序列 $\cdots\mathrm{ABCABCABC}\cdots$，而 HCP 结构的特征是 $\cdots\mathrm{ABABABA}\cdots$。此外，许多混合密堆积结构也是可能的，只要我们从不将两个相同的平面堆叠在一起（即 BAAB 是被禁止的）。
+    硬球晶体可以以不同的晶相存在。其中最著名的是面心立方（FCC）和六方密堆积（HCP）结构。确定哪种相在热力学上最稳定并不容易。原因是各种结构之间的自由能差在每粒子 $10^{-3}k_BT$ 或更小的量级。因此，早期旨在计算此自由能差的数值研究 ^[314] 并未得出结论。后续研究 ^[303,412] 最终证明 fcc 结构是最稳定的。虽然后一项模拟中的一项使用了文献 ^[314] 的 Einstein 晶体方法，但其他方法基于不同的方法。这里我们简要讨论 Bruce 等人 ^[412] 的所谓晶格切换 Monte Carlo 方法。
 
-在任何给定时刻，一层中的原子并不完全在格点上。因此我们可以写出
+    密堆积晶体由在垂直方向上堆叠的六方密堆积二维平面组成。假设我们通过堆叠平面来构造晶体。对于每一个新平面，有两种不同的方式将其堆叠在前一个平面上，使得所有原子都适合前一平面原子之间的三角孔。让我们用 B 和 C 表示新平面的这两个位置，用 A 表示原始平面的位置。用这种记法，FCC 堆叠遵循以下序列 $\cdots\mathrm{ABCABCABC}\cdots$，而 HCP 结构的特征是 $\cdots\mathrm{ABABABA}\cdots$。此外，许多混合密堆积结构也是可能的，只要我们从不将两个相同的平面堆叠在一起（即 BAAB 是被禁止的）。
 
-$$
-\mathbf{r}_i = \mathbf{R}_i(\alpha) + \mathbf{u}_i ,
-$$
+    在任何给定时刻，一层中的原子并不完全在格点上。因此我们可以写出
 
-其中 $\mathbf{R}_i(\alpha)$ 是粒子 $i$ 在结构 $\alpha$ 中的理想参考晶格位置，$\alpha$ 标记晶体结构（例如 FCC 或 HCP）。我们现在可以执行 Monte Carlo 模拟，其中除了通常的粒子位移移动外，我们还尝试不影响位移矢量 $\mathbf{u}_i$ 但将参考晶格 $\mathbf{R}_i(\alpha)$ 从 FCC 切换到 HCP 的移动。原则上，这两种结构之间的自由能差将直接从在这种 Monte Carlo 模拟中找到两种结构的相对概率得出：
+    $$
+    \mathbf{r}_i = \mathbf{R}_i(\alpha) + \mathbf{u}_i ,
+    $$
 
-$$
-F_{\mathrm{hcp}} - F_{\mathrm{fcc}} = k_BT \ln\left(\frac{P(\mathrm{fcc})}{P(\mathrm{hcp})}\right) .
-$$
+    其中 $\mathbf{R}_i(\alpha)$ 是粒子 $i$ 在结构 $\alpha$ 中的理想参考晶格位置，$\alpha$ 标记晶体结构（例如 FCC 或 HCP）。我们现在可以执行 Monte Carlo 模拟，其中除了通常的粒子位移移动外，我们还尝试不影响位移矢量 $\mathbf{u}_i$ 但将参考晶格 $\mathbf{R}_i(\alpha)$ 从 FCC 切换到 HCP 的移动。原则上，这两种结构之间的自由能差将直接从在这种 Monte Carlo 模拟中找到两种结构的相对概率得出：
 
-然而在实践中，这种晶格切换的接受概率非常低。解决此类问题的常用方法是将大的试探移动分解为许多小步骤，每个步骤都有合理的接受概率。Bruce 等人的晶格切换方法采用了 Berg 和 Neuhaus ^[350] 的多正则方法。该方法是第 8.6.6 节中描述的伞形采样方案的一个版本。此过程的第一步是定义一个方便的连接两个状态的``序参量''。为此，Bruce 等人定义了一个重叠序参量 $M$：
+    $$
+    F_{\mathrm{hcp}} - F_{\mathrm{fcc}} = k_BT \ln\left(\frac{P(\mathrm{fcc})}{P(\mathrm{hcp})}\right) .
+    $$
 
-$$
-M(\mathbf{u}^N) = M(\mathbf{u}^N,\mathrm{fcc}) - M(\mathbf{u}^N,\mathrm{hcp}) ,
-$$
+    然而在实践中，这种晶格切换的接受概率非常低。解决此类问题的常用方法是将大的试探移动分解为许多小步骤，每个步骤都有合理的接受概率。Bruce 等人的晶格切换方法采用了 Berg 和 Neuhaus ^[350] 的多正则方法。该方法是第 8.6.6 节中描述的伞形采样方案的一个版本。此过程的第一步是定义一个方便的连接两个状态的``序参量''。为此，Bruce 等人定义了一个重叠序参量 $M$：
 
-其中 $M(\mathbf{u}^N,\alpha)$ 是如果使用 $\alpha$ 晶格作为参考，构型 $\mathbf{u}^N$ 中硬球重叠对的数目。例如，对于一组如果我们选择 HCP 参考晶格不会产生任何重叠的位移矢量 $\mathbf{u}^N$，$M(\mathbf{u}^N,\mathrm{hcp}) = 0$。特别令人感兴趣的是 $M(\mathbf{u}^N) = 0$ 的构型，因为对于这些构型，晶格切换总是被接受。让我们定义偏置分布
+    $$
+    M(\mathbf{u}^N) = M(\mathbf{u}^N,\mathrm{fcc}) - M(\mathbf{u}^N,\mathrm{hcp}) ,
+    $$
 
-$$
-P(\mathbf{u}^N,\alpha|\{\eta\}) \propto P(\mathbf{u}^N,\alpha) \exp\left(\eta[M(\mathbf{u}^N)]\right) ,
-$$
+    其中 $M(\mathbf{u}^N,\alpha)$ 是如果使用 $\alpha$ 晶格作为参考，构型 $\mathbf{u}^N$ 中硬球重叠对的数目。例如，对于一组如果我们选择 HCP 参考晶格不会产生任何重叠的位移矢量 $\mathbf{u}^N$，$M(\mathbf{u}^N,\mathrm{hcp}) = 0$。特别令人感兴趣的是 $M(\mathbf{u}^N) = 0$ 的构型，因为对于这些构型，晶格切换总是被接受。让我们定义偏置分布
 
-其中 $P(\mathbf{u}^N,\alpha)$ 是未加权分布，$\eta[M(\mathbf{u}^N)]$ 是需要设定的权重。这些权重应选择使得所有相关的 $M$ 值都能被采样到。从给定的模拟中，我们可以对这些权重进行估计，然后在下一次（更长的）模拟中加以使用和更新，直到达到所需的精度。
+    $$
+    P(\mathbf{u}^N,\alpha|\{\eta\}) \propto P(\mathbf{u}^N,\alpha) \exp\left(\eta[M(\mathbf{u}^N)]\right) ,
+    $$
 
-Bruce 等人 ^[412] 使用该方法以 $10^{-5}k_BT$ 的统计误差计算了 HCP 和 FCC 结构之间的自由能差。Bruce 等人的计算进一步支持了 FCC 结构比 HCP 结构更稳定的观察结果。Mau 和 Huse ^[430] 表明，FCC 和 HCP 堆叠的所有混合物都具有高于纯 FCC 结构的自由能。
+    其中 $P(\mathbf{u}^N,\alpha)$ 是未加权分布，$\eta[M(\mathbf{u}^N)]$ 是需要设定的权重。这些权重应选择使得所有相关的 $M$ 值都能被采样到。从给定的模拟中，我们可以对这些权重进行估计，然后在下一次（更长的）模拟中加以使用和更新，直到达到所需的精度。
+
+    Bruce 等人 ^[412] 使用该方法以 $10^{-5}k_BT$ 的统计误差计算了 HCP 和 FCC 结构之间的自由能差。Bruce 等人的计算进一步支持了 FCC 结构比 HCP 结构更稳定的观察结果。Mau 和 Huse ^[430] 表明，FCC 和 HCP 堆叠的所有混合物都具有高于纯 FCC 结构的自由能。
 
 ## 空位与间隙原子
 
@@ -579,7 +592,7 @@ Bruce 等人 ^[412] 使用该方法以 $10^{-5}k_BT$ 的统计误差计算了 HC
 
 $$
 F(n) = F(0) - nf_1 = Mf_0 - nf_1 ,
-
+\tag{9.3.1}
 $$
 
 其中 $M$ 是晶体的格点数，$f_0$ 是无缺陷晶体中每粒子的自由能，$-f_1$ 是在特定格点处创建一个空位引起的晶体自由能变化。
@@ -589,7 +602,7 @@ $$
 $$
 g_{\mathrm{vac}} \equiv G_{M+1,1}(N,P,T) - G_{M,0}(N,P,T)
 = F_{M+1,1}(V_{M+1,1}) - F_{M,0}(V_{M,0}) + P(V_{M+1,1} - V_{M,0}) .
-
+\tag{9.3.2}
 $$
 
 在上式中，第一个下标指系统中的格点数，第二个下标指空位数。显然，粒子数 $N$ 等于第一个下标与第二个下标之差。下一步是写出
@@ -601,7 +614,7 @@ $$
 &\quad + F_{M+1,1}(V_{M+1,0}) - F_{M+1,0}(V_{M+1,0}) \\
 &\quad + F_{M+1,0}(V_{M+1,0}) - F_{M,0}(V_{M,0}) .
 \end{aligned}
-
+\tag{9.3.3}
 $$
 
 该式右边第一行等于 $-P\delta v$，其中 $\delta v \equiv v_{\mathrm{vac}} - v_{\mathrm{part}}$ 是在恒定压力和恒定格点数下一个粒子被空位替代时晶体体积的变化。第二行简单地等于 $-f_1$，在式 (9.3.1) 中定义：
@@ -614,7 +627,7 @@ $$
 
 $$
 F_{M+1,1}(V_{M+1,1}) - F_{M,0}(V_{M,0}) = -P\delta v - f_1 + f_0 .
-
+\tag{9.3.4}
 $$
 
 体积也是广延量；因此 $V_{M,0} = \frac{M}{M+1}V_{M+1,0}$。由此可得
@@ -655,30 +668,30 @@ $$
 
 $$
 \mu = \frac{G_0 - \langle n \rangle k_BT}{N} = \mu_0 - \frac{\langle n \rangle k_BT}{N} \approx \mu_0 - x_v k_BT ,
-
+\tag{9.3.5}
 $$
 
 其中我们定义了 $x_v \equiv n/N$。因此由于空位存在引起的固体化学势变化为
 
 $$
 \delta\mu = -x_v k_BT ,
-
+\tag{9.3.6}
 $$
 
 由此可得，在固定化学势下固体的压力变化等于
 
 $$
 \delta P = x_v \rho_s k_BT .
-
+\tag{9.3.7}
 $$
 
-\subsubsection*{空位}
+#### 空位
 
 在数值上，计算平衡空位浓度是直接的。需要计算的核心量是 $-f_1$，即在特定格点处创建一个空位引起的晶体自由能变化。实际上，考虑 $+f_1$（在特定格点处移除一个空位引起的自由能变化）更为方便。该量可以通过几种方式计算。例如，我们可以使用粒子插入方法。我们从包含一个空位的晶体出发，尝试在该空位周围的 Wigner-Seitz 胞中进行试探插入。则 $f_1$ 由下式给出：
 
 $$
 f_1 = -k_BT \ln\left(\frac{V_{\mathrm{WS}}\langle\exp(-\beta\delta U)\rangle}{\Lambda^d}\right) ,
-
+\tag{9.3.8}
 $$
 
 其中 $V_{\mathrm{WS}}$ 是 Wigner-Seitz 胞的体积，$\delta U$ 是与试探粒子插入相关的势能变化。对于硬粒子
@@ -707,27 +720,27 @@ $$
 
 代入数值估计 $x^{(0)} \approx 2.6 \times 10^{-4}$，由于空位引起的共存压力降低为 $\delta P_{\mathrm{coex}} \approx -2.57 \times 10^{-3}$。共存化学势的相应偏移为 $\delta\mu_{\mathrm{coex}} = -2.74 \times 10^{-3}$。注意，与晶体固体绝对自由能计算的精度相比，这些偏移是可观的。
 
-\subsubsection*{间隙原子}
+#### 间隙原子
 
 到目前为止，我们忽略了间隙原子。然而，将它们忽略并非显然是合理的。在计算间隙原子浓度时唯一的新要素是确定 $f_I$。这最好通过热力学积分来完成。为此，我们首先模拟包含一个间隙原子的晶体。然后我们确定间隙原子偏离其平均位置的偏移量。接下来，我们定义一个体积 $v_0$，使得间隙原子（以压倒性概率）在此体积内。随机插入 Wigner-Seitz 胞中的点粒子在此体积内的概率为
 
 $$
 P_{\mathrm{acc}} = \frac{v_0}{V_{\mathrm{WS}}} .
-
+\tag{9.3.9}
 $$
 
 接下来，我们将粒子``生长''到其余球体的大小。这将需要可逆功 $w$。后一个量可以容易地计算，因为模拟给出了作用在该球体表面上的压力。在给定八面体孔中添加间隙原子所涉及的总自由能变化为
 
 $$
 f_I = -k_BT \ln\left(\frac{P_{\mathrm{acc}}}{V_{\mathrm{WS}}\Lambda^3}\right) + w
-
+\tag{9.3.10}
 $$
 
 以及
 
 $$
 x_I = \exp\left(-\beta\left[w - k_BT \ln\left(\frac{P_{\mathrm{acc}}}{V_{\mathrm{WS}}\Lambda^3}\right) - \mu\right]\right) .
-
+\tag{9.3.11}
 $$
 
 与之前一样，$\Lambda^3$ 项从最终结果中消去（正如应该的那样）。更多细节请参见文献 ^[433,434,435,436,437]。
