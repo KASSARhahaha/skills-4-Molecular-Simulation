@@ -54,3 +54,7 @@
 | [附录H](chapters/appH-sdpd.md) | 确定性颗粒动力学 |
 | [附录I](chapters/appI-saving-cpu.md) | 节省CPU时间 |
 | [附录J](chapters/appJ-algorithms.md) | 算法汇总 |
+
+## 参考文献
+
+[参考文献总表](chapters/references.md)（786 条，编号与英文原版一致，正文引用可直接跳转）

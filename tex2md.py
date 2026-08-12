@@ -187,12 +187,35 @@ def process_refs(text):
     return text
 
 
+def _compress(nums):
+    """[3,4,5,9] -> '3–5,9'，与 LaTeX 端 cite 宏包的压缩规则一致。"""
+    nums = sorted(set(nums))
+    out, i = [], 0
+    while i < len(nums):
+        j = i
+        while j + 1 < len(nums) and nums[j + 1] == nums[j] + 1:
+            j += 1
+        if j - i >= 2:
+            out.append(f"{nums[i]}–{nums[j]}")
+        else:
+            out.extend(str(n) for n in nums[i:j + 1])
+        i = j + 1
+    return ",".join(out)
+
+
 def process_citations(text):
-    """Convert [N] style citations to superscript."""
-    # [1], [2,3], [3--5], [21--24,26,105] -> ^[N]
-    text = re.sub(r"\[(\d+(?:[,\-\d]*\d)*)\]", r"^[\1]", text)
-    # \cite{...} -> superscript number
-    text = re.sub(r"\\cite\{(\d+(?:[,\-\d]*\d)*)\}", r"^[\1]", text)
+    r"""\cite{3,4,5} -> 链接到参考文献页的 [3–5]。
+
+    正文里的裸 [N] 早已在 LaTeX 源中统一成 \cite{}，此处只兜底处理残留。
+    """
+    def sub_cite(m):
+        nums = [int(x) for x in re.findall(r"\d+", m.group(1))]
+        if not nums:
+            return m.group(0)
+        label = _compress(nums)
+        return f"[[{label}]](references.md#ref-{nums[0]})"
+
+    text = re.sub(r"\\cite\{([\d,\s\-]+)\}", sub_cite, text)
     return text
 
 
@@ -859,6 +882,52 @@ def sync_images():
     return missing
 
 
+def generate_references():
+    r"""把 references_cn.tex 的 \bibitem 转成带锚点的参考文献页。
+
+    正文里的 \cite{N} 会链到本页的 #ref-N，锚点用 attr_list 语法挂在条目段落上。
+    """
+    path = os.path.join(TEX_DIR, "references_cn.tex")
+    if not os.path.exists(path):
+        print(f"警告：找不到 {path}，跳过参考文献页")
+        return 0
+    with open(path, encoding="utf-8") as f:
+        tex = f.read()
+    body = tex.split(r"\begin{thebibliography}", 1)[-1]
+    body = body.split(r"\end{thebibliography}", 1)[0]
+
+    entries = []
+    for m in re.finditer(r"\\bibitem\{(\d+)\}(.*?)(?=\\bibitem\{|\Z)", body, re.S):
+        num, txt = int(m.group(1)), m.group(2)
+        txt = re.sub(r"%.*", "", txt)                       # 行末注释
+        txt = re.sub(r"\\(textit|textbf|emph|texttt)\{([^{}]*)\}", r"\2", txt)
+        txt = txt.replace("~", " ").replace(r"\&", "&").replace("\\%", "%")
+        txt = re.sub(r"(?<!-)--(?!-)", "\u2013", txt)
+        txt = " ".join(txt.split())
+        # 裸 DOI/URL 转成链接
+        txt = re.sub(r"(https?://[^\s,]+?)(\.?)(?=$|[\s,])", r"[\1](\1)\2", txt)
+        if txt:
+            entries.append((num, txt))
+
+    entries.sort()
+    lines = [
+        "# 参考文献",
+        "",
+        f"原书参考文献共 {len(entries)} 条，编号与英文原版一致；",
+        "正文中的 \\[N] 均链接到此处对应条目。",
+        "",
+    ]
+    for num, txt in entries:
+        lines.append(f"**[{num}]** {txt}")
+        lines.append("{ #ref-%d }" % num)
+        lines.append("")
+    out = os.path.join(DOCS_DIR, "chapters", "references.md")
+    with open(out, "w", encoding="utf-8") as f:
+        f.write("\n".join(lines))
+    print(f"Wrote references.md（{len(entries)} 条）")
+    return len(entries)
+
+
 def main():
     os.makedirs(os.path.join(DOCS_DIR, "chapters"), exist_ok=True)
     load_labels()
@@ -920,6 +989,10 @@ def main():
 | [附录H](chapters/appH-sdpd.md) | 确定性颗粒动力学 |
 | [附录I](chapters/appI-saving-cpu.md) | 节省CPU时间 |
 | [附录J](chapters/appJ-algorithms.md) | 算法汇总 |
+
+## 参考文献
+
+[参考文献总表](chapters/references.md)（786 条，编号与英文原版一致，正文引用可直接跳转）
 """
     with open(os.path.join(DOCS_DIR, "index.md"), "w", encoding="utf-8") as f:
         f.write(index_content)
@@ -936,6 +1009,8 @@ def main():
         path = write_md(slug, md)
         lines = md.count("\n") + 1
         print(f"  -> {path} ({lines} lines)")
+
+    generate_references()
 
     print(f"\nDone! {len(CHAPTERS)} chapters converted.")
     sync_images()
