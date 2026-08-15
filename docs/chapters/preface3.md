@@ -2,7 +2,7 @@
 
 《理解分子模拟》的第三版与前两版相比有了很大的不同。我们选择全新写作方式的主要原因是，模拟的使用方式已经发生了巨大的变化。不过，在讨论这些变化之前，我们首先要强调哪些内容保持不变：本书仍然致力于帮助读者**理解**分子模拟。正如我们在第一版前言中所写的那样：“本书不是一本分子模拟的菜谱”，这一点至今未变。
 
-自第二版出版至今已逾二十年，正是因为Covid-19疫情导致的封锁，我们才得以抽出时间来完成这项相当艰巨的修订工作。
+自第二版出版至今已逾二十年，正是因为 Covid-19 疫情导致的封锁，我们才得以抽出时间来完成这项相当艰巨的修订工作。
 
 二十年是一段很长的时间，读者有理由问：书中发生了哪些变化？首先也是最重要的变化是，使用分子模拟的人群规模已经大幅增长——而且对于其中许多人来说，模拟并不是他们研究的核心焦点。在我们这本书的第一版出版时，许多模拟工作者都在编写自己的代码；这一群体虽然仍然非常活跃，但已经成为少数。近年来，相当一部分分子模拟的研究成果发表在同时也报道甚至主要以实验工作为主的论文中。这种新用户的涌入与若干功能强大的模拟软件包的日益普及是同步发生的。这一发展的重要性怎么强调都不为过，因为它消除了阻碍分子模拟广泛应用的一个重要障碍。
 
@@ -16,21 +16,21 @@
 
 ## 计算碳排放
 
-关于全球计算基础设施能耗的估计差异很大。但有一点是明确的：计算所消耗的能源在总量中占有相当大的比例。目前，大部分电力仍由化石燃料产生。这意味着什么？根据维基百科，2022年一台典型超级计算机的能耗在兆瓦量级，相当于每天消耗数公吨化石燃料。而且，用于计算的能源总量还在持续增长。显然，计算必须走向可持续化。在“供给侧”，这意味着计算机应该使用可持续产生的电力来驱动。但用户也可以通过更高效的计算来做出贡献。这正是算法可以发挥巨大作用的地方——前提是提高的效率不被用来运行更大的模拟。在计算领域，“小即是美”往往是成立的。
+关于全球计算基础设施能耗的估计差异很大。但有一点是明确的：计算所消耗的能源在总量中占有相当大的比例。目前，大部分电力仍由化石燃料产生。这意味着什么？根据维基百科，2022 年一台典型超级计算机的能耗在兆瓦量级，相当于每天消耗数公吨化石燃料。而且，用于计算的能源总量还在持续增长。显然，计算必须走向可持续化。在“供给侧”，这意味着计算机应该使用可持续产生的电力来驱动。但用户也可以通过更高效的计算来做出贡献。这正是算法可以发挥巨大作用的地方——前提是提高的效率不被用来运行更大的模拟。在计算领域，“小即是美”往往是成立的。
 
 ## 致谢
 
-特别感谢以下人士对改进文本提出的建议：Rosalind Allen、Dick Bedeaux、Peter Bolhuis、Giovanni Bussi、Bingqing Cheng、Samuel Coles、Stephen Cox、Alex Cumberworth、John Chodera、Giovanni Ciccotti、Christoph Dellago、Oded Farago、Susana Garcia、Bjørn Hafskjold、Kevin Jablonka、Signe Kjelstrup、Werner Krauth、Alessandro Laio、Ben Leimkuhler、Andrea Liu、Erik Luijten、Tony Maggs、Sauradeep Majumdar、Elias Moubarak、Beatriz Mouri\ {n}o、Frank No\'{e}、Miriam Pougin、Benjamin Rotenberg、David Shalloway、Michiel Sprik、Eric Vanden-Eijnden、Joren Van Herck、Fred Verhoeckx、Patrick Warren、Peter Wirnsberger和Xiaoqi Zhang。特别感谢Jacobus van Meel为本书封面图像提供了原始素材，该图像展示了固体表面空腔中微晶的成核过程。
+特别感谢以下人士对改进文本提出的建议：Rosalind Allen、Dick Bedeaux、Peter Bolhuis、Giovanni Bussi、Bingqing Cheng、Samuel Coles、Stephen Cox、Alex Cumberworth、John Chodera、Giovanni Ciccotti、Christoph Dellago、Oded Farago、Susana Garcia、Bjørn Hafskjold、Kevin Jablonka、Signe Kjelstrup、Werner Krauth、Alessandro Laio、Ben Leimkuhler、Andrea Liu、Erik Luijten、Tony Maggs、Sauradeep Majumdar、Elias Moubarak、Beatriz Mouri\ {n}o、Frank No\'{e}、Miriam Pougin、Benjamin Rotenberg、David Shalloway、Michiel Sprik、Eric Vanden-Eijnden、Joren Van Herck、Fred Verhoeckx、Patrick Warren、Peter Wirnsberger 和 Xiaoqi Zhang。特别感谢 Jacobus van Meel 为本书封面图像提供了原始素材，该图像展示了固体表面空腔中微晶的成核过程。
 
-我们的部分在线练习基于Manav Kumar和David Coker编写的Python代码。我们对他们表示衷心的感谢。然而，他们对我们在修改代码时引入的错误不承担任何责任。
+我们的部分在线练习基于 Manav Kumar 和 David Coker 编写的 Python 代码。我们对他们表示衷心的感谢。然而，他们对我们在修改代码时引入的错误不承担任何责任。
 
 此外，我们感谢赵丹（新加坡国立大学）对中文翻译工作的支持与帮助。
 
-我们感谢所有指出前几版中错误和排版错误的人，特别是Giovanni Ciccotti、Clemens Foerst、Viktor Ivanov、Brian Laird、Ting Li、Erik Luijten、Mat Mansell、Bortolo Mognetti、Nicy Nicy、Gerardo Odriozola、Arno Proeme、Mikhail Stukan、Petr Sulc、Krzysztof Szalewicz、David Toneian、Patrick Varilly、Patrick Warren和Martijn Wehrens。
+我们感谢所有指出前几版中错误和排版错误的人，特别是 Giovanni Ciccotti、Clemens Foerst、Viktor Ivanov、Brian Laird、Ting Li、Erik Luijten、Mat Mansell、Bortolo Mognetti、Nicy Nicy、Gerardo Odriozola、Arno Proeme、Mikhail Stukan、Petr Sulc、Krzysztof Szalewicz、David Toneian、Patrick Varilly、Patrick Warren 和 Martijn Wehrens。
 
 我们已尽力解决所提出的所有问题。我们强调，文本中所有遗留的错误和不当之处完全由我们本人负责。
 
- 杨凯、Daan Frenkel、Berend Smit，2026年
+ 杨凯、Daan Frenkel、Berend Smit，2026 年
 
 ---
 

@@ -1,10 +1,10 @@
 # 光滑耗散粒子动力学
 
-## Navier-Stokes方程与Fourier定律
+## Navier-Stokes 方程与 Fourier 定律
 
-我们简要总结支撑Español和Revenga [[694]](references.md#ref-694)的光滑耗散粒子动力学（SDPD）方法的最重要关系式。SDPD的描述适合这本基于粒子的模拟书籍，因为它提供了流体输运的基于粒子的图像，该图像与非平衡热力学[[57]](references.md#ref-57) 兼容，正确地考虑了熵产生。此外，与DPD一样，它正确地考虑了热涨落。
+我们简要总结支撑 Español 和 Revenga [[694]](references.md#ref-694)的光滑耗散粒子动力学（SDPD）方法的最重要关系式。SDPD 的描述适合这本基于粒子的模拟书籍，因为它提供了流体输运的基于粒子的图像，该图像与非平衡热力学[[57]](references.md#ref-57) 兼容，正确地考虑了熵产生。此外，与 DPD 一样，它正确地考虑了热涨落。
 
-如正文所述，该方法是对20世纪70年代光滑粒子流体动力学方法[[695–697]](references.md#ref-695) 的扩展，旨在通过一组粒子轨迹来表示连续的流体动力学流场，这些粒子遵循运动方程，在足够大的尺度上模拟粘性流的Navier-Stokes方程，并结合热传导方程。
+如正文所述，该方法是对 20 世纪 70 年代光滑粒子流体动力学方法[[695–697]](references.md#ref-695) 的扩展，旨在通过一组粒子轨迹来表示连续的流体动力学流场，这些粒子遵循运动方程，在足够大的尺度上模拟粘性流的 Navier-Stokes 方程，并结合热传导方程。
 
 流体“粒子”$i$的能量通过形如$E_i = E(m, S_i, V_i)$的状态方程与基本热力学参数相关联，该方程仍待确定。每个粒子具有温度$T_i$和压力$P_i$，由下式给出：
 
@@ -12,7 +12,7 @@ $$
 T_i = \left( \frac{\partial E}{\partial S} \right)_V \quad \text{和} \quad P_i = -\left( \frac{\partial E}{\partial V} \right)_S .
 $$
 
-在不存在热涨落的情况下，宏观输运由Navier-Stokes方程描述：
+在不存在热涨落的情况下，宏观输运由 Navier-Stokes 方程描述：
 
 $$
 m\rho \frac{d\mathbf{v}}{dt} = -\nabla P + \eta \nabla^2 \mathbf{v} + \left(\zeta + \frac{\eta}{3}\right) \nabla (\nabla \cdot \mathbf{v}) ,
@@ -44,9 +44,9 @@ $$
 
 在上述方程中，$\rho$表示数密度：为与本书其他部分的记号保持一致，我们使用的记号与文献[[694]](references.md#ref-694) 略有不同。$\mathbf{v}$表示流动速度，$P$表示静水压力，$\eta$表示剪切粘度，$\zeta$表示体积粘度，$s$表示每个粒子的熵，$\kappa$表示热导率。
 
-## 离散化SDPD方程
+## 离散化 SDPD 方程
 
-式(H.1.1)至(H.1.3)的离散化形式为：
+式(H.1.1) 至(H.1.3) 的离散化形式为：
 
 $$
 m\dot{\mathbf{v}}_i = -\frac{(\nabla P)_i}{\rho_i} + \frac{\eta (\nabla^2 \mathbf{v})_i}{\rho_i} + \frac{(\zeta + \eta/3)(\nabla \nabla \cdot \mathbf{v})_i}{\rho_i} ,
@@ -68,9 +68,9 @@ $$
 \tag{H.2.3}
 $$
 
-其中我们现在使用密度、压力和速度梯度的局部表达式。然而，为了将连续形式的Navier-Stokes方程联系起来，我们现在必须给出在粒子$i$附近计算梯度项的规定。
+其中我们现在使用密度、压力和速度梯度的局部表达式。然而，为了将连续形式的 Navier-Stokes 方程联系起来，我们现在必须给出在粒子$i$附近计算梯度项的规定。
 
-为了在Navier-Stokes方程和基于粒子的描述之间建立这种联系，Español和Revenga假设了粒子$i$的体积$V_i$与该粒子周围的局部密度$\rho_i$之间的如下关系：
+为了在 Navier-Stokes 方程和基于粒子的描述之间建立这种联系，Español 和 Revenga 假设了粒子$i$的体积$V_i$与该粒子周围的局部密度$\rho_i$之间的如下关系：
 
 $$
 V_i \equiv 1/\rho_i
@@ -124,7 +124,7 @@ m\dot{\mathbf{v}}_i = \sum_j \left[
 \tag{H.2.4}
 $$
 
-式(H.2.4)与
+式(H.2.4) 与
 
 $$
 \dot{\mathbf{r}}_i = \mathbf{v}_i ,

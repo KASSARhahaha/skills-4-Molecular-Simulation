@@ -1,16 +1,16 @@
 # 拉格朗日与哈密顿运动方程
 
-了解Newton运动方程足以理解分子动力学方法的基础。然而，许多更高级的模拟技术利用了经典力学的Lagrange表述或Hamilton表述。在这里，我们简要勾勒这些不同方法之间的关系（另见[[54]](references.md#ref-54)）。关于经典力学更详细和更严格的描述，读者可参考Goldstein的著作[[54]](references.md#ref-54)。
+了解 Newton 运动方程足以理解分子动力学方法的基础。然而，许多更高级的模拟技术利用了经典力学的 Lagrange 表述或 Hamilton 表述。在这里，我们简要勾勒这些不同方法之间的关系（另见[[54]](references.md#ref-54)）。关于经典力学更详细和更严格的描述，读者可参考 Goldstein 的著作[[54]](references.md#ref-54)。
 
 ## 作用量
 
-经典力学的Lagrange表述基于变分原理。经典系统在时间间隔$\{t_b, t_e\}$内、从初始位置$\mathbf{x}_b$到最终位置$\mathbf{x}_e$之间所遵循的实际轨迹，是使作用量$S$取极值（通常为极小值）的轨迹。经典作用量$S$对于任意轨迹的定义为系统动能$K$与势能$U$之差沿该轨迹的时间积分：
+经典力学的 Lagrange 表述基于变分原理。经典系统在时间间隔$\{t_b, t_e\}$内、从初始位置$\mathbf{x}_b$到最终位置$\mathbf{x}_e$之间所遵循的实际轨迹，是使作用量$S$取极值（通常为极小值）的轨迹。经典作用量$S$对于任意轨迹的定义为系统动能$K$与势能$U$之差沿该轨迹的时间积分：
 
 $$
 S = \int_{t_b}^{t_e} \mathrm{d}t\,[K - U].
 $$
 
-在考虑由这个极值原理导出的一般Lagrange运动方程之前，让我们先考虑几个简单的例子。
+在考虑由这个极值原理导出的一般 Lagrange 运动方程之前，让我们先考虑几个简单的例子。
 
 第一种情况是在没有外势的情况下运动的单个粒子，即$U = 0$。由于粒子必须在时间间隔$t_e - t_b$内从$\mathbf{x}_b$运动到$\mathbf{x}_e$，我们已经知道其平均速度：$\mathbf{v}_{\mathrm{av}}$。如果粒子始终以这个平均速度运动，它将遵循一条直线轨迹，我们用$\bar{\mathbf{x}}(t)$表示。设粒子的真实轨迹为$\mathbf{x}(t) = \bar{\mathbf{x}}(t) + \boldsymbol{\eta}(t)$，其中$\boldsymbol{\eta}(t)$是尚待确定的偏差。则粒子的速度是平均速度$\mathbf{v}_{\mathrm{av}}$和偏差$\dot{\boldsymbol{\eta}}(t)$之和：
 
@@ -30,7 +30,7 @@ $$
 S = \frac{1}{2}m \int \mathrm{d}t\,[\mathbf{v}_{\mathrm{av}} + \dot{\boldsymbol{\eta}}(t)]^2 = S_{\mathrm{av}} + \frac{1}{2}m \int \mathrm{d}t\,\dot{\boldsymbol{\eta}}^2(t).
 $$
 
-由于最后一项不可能小于零，作用量在$\dot{\boldsymbol{\eta}}(t) = 0$（对所有$t$）时取极小值。换言之，我们恢复了众所周知的结果：在没有外力的情况下，粒子以恒定速度运动。这就是Newton第一定律。
+由于最后一项不可能小于零，作用量在$\dot{\boldsymbol{\eta}}(t) = 0$（对所有$t$）时取极小值。换言之，我们恢复了众所周知的结果：在没有外力的情况下，粒子以恒定速度运动。这就是 Newton 第一定律。
 
 接下来，考虑在一维势$U(x)$中运动的粒子。此时作用量为
 
@@ -63,11 +63,11 @@ m\frac{d^2\bar{x}(t)}{dt^2} = -\frac{\partial U(\bar{x})}{\partial x},
 \tag{A.1.2}
 $$
 
-这正是Newton第二定律。换言之，Newton运动方程可以从粒子遵循使作用量取极值的路径这一陈述中推导出来。
+这正是 Newton 第二定律。换言之，Newton 运动方程可以从粒子遵循使作用量取极值的路径这一陈述中推导出来。
 
 ## 拉格朗日量
 
-如果这种经典力学定律的替代表达方式不能使我们做比简单重新推导$F = ma$更多的事情，那么引入它就没有什么意义。事实上，经典力学的Lagrange表述被证明是非常强大的。例如，Lagrange方法使得在非笛卡尔坐标系中推导运动方程变得容易。假设我们希望使用某些广义坐标$q$代替笛卡尔坐标$x$。例如，考虑均匀重力场中长度为$l$的摆。摆与竖直方向（即与重力场方向）所成的角度可以用来指定其取向。由于摆所遵循的路径显然与我们碰巧用来指定其状态的坐标无关，作用量$S$应该是相同的：
+如果这种经典力学定律的替代表达方式不能使我们做比简单重新推导$F = ma$更多的事情，那么引入它就没有什么意义。事实上，经典力学的 Lagrange 表述被证明是非常强大的。例如，Lagrange 方法使得在非笛卡尔坐标系中推导运动方程变得容易。假设我们希望使用某些广义坐标$q$代替笛卡尔坐标$x$。例如，考虑均匀重力场中长度为$l$的摆。摆与竖直方向（即与重力场方向）所成的角度可以用来指定其取向。由于摆所遵循的路径显然与我们碰巧用来指定其状态的坐标无关，作用量$S$应该是相同的：
 
 $$
 S = \int \mathrm{d}t\,L(\mathbf{x},\dot{\mathbf{x}}) = \int \mathrm{d}t\,L(q,\dot{q}),
@@ -96,7 +96,7 @@ $$
 L(q,\dot{q}) = L(\bar{q},\dot{\bar{q}}) + \frac{\partial L(\bar{q},\dot{\bar{q}})}{\partial \dot{q}}\dot{\eta}(t) + \frac{\partial L(\bar{q},\dot{\bar{q}})}{\partial q}\eta(t).
 $$
 
-如前一节一样，我们使用$S$的$\eta(t)$幂次的泛函展开来推导经典路径的表达式。为此，我们将拉格朗日量代入作用量的表达式(A.2.1)中。接下来，我们将粒子可能的路径写为实际路径和修正$\eta(t)$之和。如前所述，我们使用分部积分并利用$\eta(t)$在积分边界处为零的事实。由此可得，作用量取极值的条件是：
+如前一节一样，我们使用$S$的$\eta(t)$幂次的泛函展开来推导经典路径的表达式。为此，我们将拉格朗日量代入作用量的表达式(A.2.1) 中。接下来，我们将粒子可能的路径写为实际路径和修正$\eta(t)$之和。如前所述，我们使用分部积分并利用$\eta(t)$在积分边界处为零的事实。由此可得，作用量取极值的条件是：
 
 $$
 \int \mathrm{d}t \left[-\frac{d}{\mathrm{d}t}\left(\frac{\partial L(\bar{q},\dot{\bar{q}})}{\partial \dot{q}}\right) + \frac{\partial L(\bar{q},\dot{\bar{q}})}{\partial q}\right]\eta(t) = 0,
@@ -110,14 +110,14 @@ $$
 \tag{A.2.4}
 $$
 
-这就是Lagrange运动方程。为了将此运动方程写成更熟悉的形式，我们引入与广义坐标$q$关联的广义动量$p$：
+这就是 Lagrange 运动方程。为了将此运动方程写成更熟悉的形式，我们引入与广义坐标$q$关联的广义动量$p$：
 
 $$
 p \equiv \frac{\partial L(q,\dot{q})}{\partial \dot{q}}.
 \tag{A.2.5}
 $$
 
-将此表达式代入式(A.2.4)得到：
+将此表达式代入式(A.2.4) 得到：
 
 $$
 \dot{p} = \frac{\partial L(q,\dot{q})}{\partial q}.
@@ -142,11 +142,11 @@ $$
 m\ddot{x} = -\frac{\partial U(x)}{\partial x},
 $$
 
-这确实是我们从Newton运动方程得到的结果。
+这确实是我们从 Newton 运动方程得到的结果。
 
 ???+ example "例证 24（重力场中的摆）"
 
-    考虑长度为$l$、质量为$m$的简单摆（见图A.1）。均匀重力场作用在摆上，势能是摆与竖直方向所成角度$\theta$的简单函数：
+    考虑长度为$l$、质量为$m$的简单摆（见图 A.1）。均匀重力场作用在摆上，势能是摆与竖直方向所成角度$\theta$的简单函数：
 
     $$
     U(\theta) = mgl[1 - \cos(\theta)].
@@ -164,7 +164,7 @@ $$
     p_\theta = \frac{\partial L}{\partial \dot{q}} = ml^2\dot{\theta}
     $$
 
-    运动方程由式(A.2.6)得到：
+    运动方程由式(A.2.6) 得到：
 
     $$
     \dot{p}_\theta = -\frac{\partial U(\theta)}{\partial \theta}
@@ -207,7 +207,7 @@ dH(q,p) &= d(p\dot{q}) - dL(q,\dot{q}) \\
 \end{aligned}
 $$
 
-其中我们分别使用了$p$和$\dot{p}$的定义，即式(A.2.5)和(A.2.6)。由此直接得到：
+其中我们分别使用了$p$和$\dot{p}$的定义，即式(A.2.5) 和(A.2.6)。由此直接得到：
 
 $$
 \begin{align}
@@ -229,7 +229,7 @@ $$
 H(x,p_x) = \dot{x}p_x - L(x,\dot{x}) = m\dot{x}^2 - \frac{1}{2}m\dot{x}^2 + U(x) = \frac{1}{2m}p_x^2 + U(x),
 $$
 
-Hamilton运动方程简化为Newton方程：
+Hamilton 运动方程简化为 Newton 方程：
 
 $$
 \begin{aligned}
@@ -238,11 +238,11 @@ $$
 \end{aligned}
 $$
 
-Hamilton运动方程是两个一阶微分方程——一个是关于$p$的，另一个是关于$q$的。相比之下，Lagrange形式产生一个二阶微分方程。然而，两种形式产生相同的结果。两者之间的选择取决于数学便利性的考虑。
+Hamilton 运动方程是两个一阶微分方程——一个是关于$p$的，另一个是关于$q$的。相比之下，Lagrange 形式产生一个二阶微分方程。然而，两种形式产生相同的结果。两者之间的选择取决于数学便利性的考虑。
 
 ???+ example "例 28（重力场中的摆：第二部分）"
 
-    我们再次考虑均匀重力场中的简单摆，如例24中所引入的：
+    我们再次考虑均匀重力场中的简单摆，如例 24 中所引入的：
 
     $$
     U(\theta) = mgl[1 - \cos(\theta)],
@@ -250,7 +250,7 @@ Hamilton运动方程是两个一阶微分方程——一个是关于$p$的，另
 
     其中$\theta$是摆与竖直方向的夹角，$g$是重力加速度。
 
-    在例24中，我们从拉格朗日量导出了关于$\theta$的二阶微分方程形式的运动方程。现在我们将使用Hamilton表述。
+    在例 24 中，我们从拉格朗日量导出了关于$\theta$的二阶微分方程形式的运动方程。现在我们将使用 Hamilton 表述。
 
     拉格朗日量为：
 
@@ -258,13 +258,13 @@ Hamilton运动方程是两个一阶微分方程——一个是关于$p$的，另
     L(\theta,\dot{\theta}) = U_K - U_P = \frac{ml^2}{2}\dot{\theta}^2 - U(\theta).
     $$
 
-    拉格朗日量依赖于变量$\theta$和$\dot{\theta}$，而在Hamilton语言中我们希望以$\theta$及其共轭动量$p_\theta$表达运动方程。该共轭动量由式(A.2.5)定义：
+    拉格朗日量依赖于变量$\theta$和$\dot{\theta}$，而在 Hamilton 语言中我们希望以$\theta$及其共轭动量$p_\theta$表达运动方程。该共轭动量由式(A.2.5) 定义：
 
     $$
     p_\theta \equiv \frac{\partial L(\theta,\dot{\theta})}{\partial \dot{\theta}} = ml^2\dot{\theta}.
     $$
 
-    哈密顿量由勒让德变换(A.3.1)得到：
+    哈密顿量由勒让德变换(A.3.1) 得到：
 
     $$
     H = p_\theta\dot{\theta} - L(\theta,\dot{\theta}) = \frac{p_\theta^2}{2ml^2} + U(\theta) = \frac{1}{2}ml^2\dot{\theta}^2 + U(\theta),
@@ -272,7 +272,7 @@ Hamilton运动方程是两个一阶微分方程——一个是关于$p$的，另
 
     当然，这等于摆的总能量。
 
-    运动方程由式(A.3.3)和(A.3.4)得到：
+    运动方程由式(A.3.3) 和(A.3.4) 得到：
 
     $$
     \begin{aligned}
@@ -285,11 +285,11 @@ Hamilton运动方程是两个一阶微分方程——一个是关于$p$的，另
 
 ## 哈密顿动力学与统计力学
 
-在经典力学的Hamilton表述和Lagrange表述之间的选择取决于便利性的考虑。Lagrange形式更方便的一个例子是在推导带有约束的系统的运动方程时（见第14.1节）。另一方面，当建立与统计力学的联系时（见第2章），应使用Hamilton表达式。
+在经典力学的 Hamilton 表述和 Lagrange 表述之间的选择取决于便利性的考虑。Lagrange 形式更方便的一个例子是在推导带有约束的系统的运动方程时（见第 14.1 节）。另一方面，当建立与统计力学的联系时（见第 2 章），应使用 Hamilton 表达式。
 
 ### 正则变换
 
-在Hamilton表述中，广义坐标和动量是独立变量。因此可以同时引入两个变量的变换。例如，坐标$q$、$p$到$Q$、$P$的变换记为：
+在 Hamilton 表述中，广义坐标和动量是独立变量。因此可以同时引入两个变量的变换。例如，坐标$q$、$p$到$Q$、$P$的变换记为：
 
 $$
 \begin{align}
@@ -326,7 +326,7 @@ $$
 \end{align}
 $$
 
-从式(A.4.1)和坐标$q$、$p$的Hamilton运动方程可得：
+从式(A.4.1) 和坐标$q$、$p$的 Hamilton 运动方程可得：
 
 $$
 \dot{Q} = \left(\frac{\partial Q(q,p)}{\partial q}\right)\dot{q} + \left(\frac{\partial Q(q,p)}{\partial p}\right)\dot{p} = \left(\frac{\partial Q(q,p)}{\partial q}\right)\left(\frac{\partial H(q,p)}{\partial p}\right) - \left(\frac{\partial Q(q,p)}{\partial p}\right)\left(\frac{\partial H(q,p)}{\partial q}\right).
@@ -338,7 +338,7 @@ $$
 \left(\frac{\partial H'(Q,P)}{\partial P}\right) = \left(\frac{\partial H(q,p)}{\partial p}\right)\left(\frac{\partial p(P,Q)}{\partial P}\right) + \left(\frac{\partial H(q,p)}{\partial q}\right)\left(\frac{\partial q(P,Q)}{\partial P}\right).
 $$
 
-该方程只有在以下条件满足时才能与$\dot{Q}$的表达式(A.4.4)相等：
+该方程只有在以下条件满足时才能与$\dot{Q}$的表达式(A.4.4) 相等：
 
 $$
 \begin{align}
@@ -362,7 +362,7 @@ $$
 
 ### 辛条件
 
-我们可以通过使用矩阵记号将上述正则变换的条件表达为单个方程。设$\boldsymbol{\xi}$为包含$N$个粒子在$d$维中的广义坐标$q_i$和动量$p_i$的$2dN$维向量（见第2.5.1节）。Hamilton运动方程(A.3.3)和(A.3.4)可以写为：
+我们可以通过使用矩阵记号将上述正则变换的条件表达为单个方程。设$\boldsymbol{\xi}$为包含$N$个粒子在$d$维中的广义坐标$q_i$和动量$p_i$的$2dN$维向量（见第 2.5.1 节）。Hamilton 运动方程(A.3.3) 和(A.3.4) 可以写为：
 
 $$
 \dot{\boldsymbol{\xi}} = \boldsymbol{\omega}\frac{\partial H}{\partial \boldsymbol{\xi}},
@@ -375,7 +375,7 @@ $$
 \boldsymbol{\omega} = \begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}.
 $$
 
-类似地，我们可以定义$\boldsymbol{\xi}$为包含广义坐标$Q_i$和$P_i$的$2N$维向量。使用矩阵记号，从$Q$、$P$到$q$、$p$的变换(A.4.1)写为：
+类似地，我们可以定义$\boldsymbol{\xi}$为包含广义坐标$Q_i$和$P_i$的$2N$维向量。使用矩阵记号，从$Q$、$P$到$q$、$p$的变换(A.4.1) 写为：
 
 $$
 \boldsymbol{\xi} = \boldsymbol{\xi}(\boldsymbol{\zeta}).
@@ -387,7 +387,7 @@ $$
 \dot{\boldsymbol{\xi}} = \mathbf{M}\dot{\boldsymbol{\zeta}},
 $$
 
-其中$\mathbf{M}$是变换的Jacobian矩阵。该矩阵的元素为：
+其中$\mathbf{M}$是变换的 Jacobian 矩阵。该矩阵的元素为：
 
 $$
 M_{ij} = \frac{\partial \xi_i}{\partial \zeta_j}.
@@ -414,20 +414,20 @@ $$
 \tag{A.4.11}
 $$
 
-如果我们定义式(A.4.9)中定义的$\mathbf{M}$的转置矩阵[^4]：
+如果我们定义式(A.4.9) 中定义的$\mathbf{M}$的转置矩阵[^4]：
 
 $$
 \tilde{M}_{ij} = \frac{\partial \xi_j}{\partial \zeta_i}.
 $$
 
-这使我们可以将式(A.4.11)用矩阵记号重写为：
+这使我们可以将式(A.4.11) 用矩阵记号重写为：
 
 $$
 \frac{\partial H(\boldsymbol{\zeta})}{\partial \boldsymbol{\zeta}} = \tilde{\mathbf{M}}\frac{\partial H(\boldsymbol{\xi})}{\partial \boldsymbol{\xi}}.
 \tag{A.4.12}
 $$
 
-结合式(A.4.10)和(A.4.12)，我们有：
+结合式(A.4.10) 和(A.4.12)，我们有：
 
 $$
 \dot{\boldsymbol{\xi}} = \mathbf{M}\boldsymbol{\omega}\tilde{\mathbf{M}}\frac{\partial H}{\partial \boldsymbol{\xi}}.
@@ -457,7 +457,7 @@ $$
 \tag{A.4.14}
 $$
 
-其中$h$是Planck常数，$\delta$函数将积分限制在由$H(\mathbf{p},\mathbf{q}) = E$定义的相空间超曲面上。我们可以用其他相空间坐标重新表达这个积分，但此时必须考虑两种坐标集中的体积元不一定相同。与$\boldsymbol{\zeta}$关联的体积元为：
+其中$h$是 Planck 常数，$\delta$函数将积分限制在由$H(\mathbf{p},\mathbf{q}) = E$定义的相空间超曲面上。我们可以用其他相空间坐标重新表达这个积分，但此时必须考虑两种坐标集中的体积元不一定相同。与$\boldsymbol{\zeta}$关联的体积元为：
 
 $$
 d\boldsymbol{\zeta} = dq_1... dq_N\,dp_1... dp_N
@@ -469,23 +469,23 @@ $$
 d\boldsymbol{\xi} = dQ_1... dQ_N\,dP_1... dP_N.
 $$
 
-这两个体积元通过变换矩阵的Jacobian矩阵相关联：
+这两个体积元通过变换矩阵的 Jacobian 矩阵相关联：
 
 $$
 d\boldsymbol{\zeta} = |\mathrm{Det}(\mathbf{M})|\,d\boldsymbol{\xi}.
 \tag{A.4.15}
 $$
 
-该方程表明，通常坐标变换将导致配分函数中出现Jacobian：
+该方程表明，通常坐标变换将导致配分函数中出现 Jacobian：
 
 $$
 \Omega_{N,V,E} = \frac{1}{h^{3N}N!}\int \mathrm{d}P^N \mathrm{d}Q^N\,|\mathrm{Det}(\mathbf{M})|\,\delta\left[H'(\mathbf{P},\mathbf{Q}) - E\right].
 \tag{A.4.16}
 $$
 
-在计算非原始笛卡尔坐标系中的系综平均时，变换的Jacobian $\mathbf{M}$可能不等于1，应当加以考虑。在下文中，我们用符号$\omega$表示Jacobian $|\mathrm{Det}(\mathbf{M})|$。
+在计算非原始笛卡尔坐标系中的系综平均时，变换的 Jacobian $\mathbf{M}$可能不等于 1，应当加以考虑。在下文中，我们用符号$\omega$表示 Jacobian $|\mathrm{Det}(\mathbf{M})|$。
 
-对于正则变换，即满足条件(A.4.13)的变换，Jacobian的绝对值为1。为了推导这个结果，我们对辛条件(A.4.13)两边取行列式：
+对于正则变换，即满足条件(A.4.13) 的变换，Jacobian 的绝对值为 1。为了推导这个结果，我们对辛条件(A.4.13) 两边取行列式：
 
 $$
 \begin{aligned}
@@ -494,7 +494,7 @@ $$
 \end{aligned}
 $$
 
-这个方程只有在$\mathbf{M}$的行列式为$\pm 1$时才成立，这意味着对于正则变换，与该变换关联的Jacobian的绝对值必须为1。
+这个方程只有在$\mathbf{M}$的行列式为$\pm 1$时才成立，这意味着对于正则变换，与该变换关联的 Jacobian 的绝对值必须为 1。
 
 经典系统在相空间中的自然时间演化可以被视为一种坐标变换：
 
@@ -502,13 +502,13 @@ $$
 \boldsymbol{\zeta}(t_0) \to \boldsymbol{\zeta}(t).
 $$
 
-Hamilton系统的一个重要性质是自然时间演化对应于辛坐标变换。我们可以将$\boldsymbol{\zeta}(t_0)$到$\boldsymbol{\zeta}(t)$的变换视为具有时间步$\delta t$的无穷小变换序列。假设我们定义时间间隔$\delta t$内坐标的演化为从$\boldsymbol{\zeta}$到$\boldsymbol{\xi}$的坐标变换：
+Hamilton 系统的一个重要性质是自然时间演化对应于辛坐标变换。我们可以将$\boldsymbol{\zeta}(t_0)$到$\boldsymbol{\zeta}(t)$的变换视为具有时间步$\delta t$的无穷小变换序列。假设我们定义时间间隔$\delta t$内坐标的演化为从$\boldsymbol{\zeta}$到$\boldsymbol{\xi}$的坐标变换：
 
 $$
 \boldsymbol{\xi} = \boldsymbol{\xi}(\boldsymbol{\zeta}) = \boldsymbol{\zeta}(t + \delta t) = \boldsymbol{\zeta}(t) + \dot{\boldsymbol{\zeta}}(t)\delta t.
 $$
 
-此变换的Jacobian为：
+此变换的 Jacobian 为：
 
 $$
 \mathbf{M} \equiv \frac{\partial \boldsymbol{\xi}}{\partial \boldsymbol{\zeta}} = \mathbf{1} + \delta t\frac{\partial}{\partial \boldsymbol{\zeta}}\left[\boldsymbol{\omega}\frac{\partial H}{\partial \boldsymbol{\zeta}}\right] = \mathbf{1} + \delta t\,\boldsymbol{\omega}\frac{\partial^2 H}{\partial \boldsymbol{\zeta}\partial \boldsymbol{\zeta}},
@@ -526,7 +526,7 @@ $$
 \tilde{\mathbf{M}} = \mathbf{1} - \frac{\partial^2 H}{\partial \boldsymbol{\zeta}\partial \boldsymbol{\zeta}}\boldsymbol{\omega}.
 $$
 
-将Jacobian的这个表达式代入辛条件(A.4.13)得到（在$\delta t$的一阶近似下）：
+将 Jacobian 的这个表达式代入辛条件(A.4.13) 得到（在$\delta t$的一阶近似下）：
 
 $$
 \begin{aligned}
@@ -538,14 +538,14 @@ $$
 
 因此辛条件在无穷小时间间隔内$\boldsymbol{\zeta}$的演化中成立。由于我们可以将有限时间间隔内$\boldsymbol{\zeta}$的演化视为无穷小步长正则变换的序列，总的时间演化也满足辛条件。
 
-可以将哈密顿量视为作用于相空间所有点的正则变换的生成元。由于正则变换的Jacobian等于1，相空间中体积元的大小在Hamilton系统的自然时间演化过程中不变。此外，相空间中任意点周围的密度$f(\mathbf{q}(t),\mathbf{p}(t))$在时间演化过程中也保持不变。要理解这一点，考虑相空间中由曲面$S$包围的体积$V$。在时间演化过程中，曲面移动，曲面内的所有点也随之移动。然而，点不能穿过曲面。原因很简单：如果相空间中的两条轨迹相交，将意味着两条轨迹从同一相空间点出发。但这是不可能的，因为这将意味着从该点出发的轨迹不由其初始条件唯一确定。因此，任意体积内的相空间点数不随时间变化。由于体积本身也是恒定的，这意味着相空间密度（即单位体积的点数）是恒定的。换言之：Hamilton系统的相空间密度表现得像不可压缩流体：
+可以将哈密顿量视为作用于相空间所有点的正则变换的生成元。由于正则变换的 Jacobian 等于 1，相空间中体积元的大小在 Hamilton 系统的自然时间演化过程中不变。此外，相空间中任意点周围的密度$f(\mathbf{q}(t),\mathbf{p}(t))$在时间演化过程中也保持不变。要理解这一点，考虑相空间中由曲面$S$包围的体积$V$。在时间演化过程中，曲面移动，曲面内的所有点也随之移动。然而，点不能穿过曲面。原因很简单：如果相空间中的两条轨迹相交，将意味着两条轨迹从同一相空间点出发。但这是不可能的，因为这将意味着从该点出发的轨迹不由其初始条件唯一确定。因此，任意体积内的相空间点数不随时间变化。由于体积本身也是恒定的，这意味着相空间密度（即单位体积的点数）是恒定的。换言之：Hamilton 系统的相空间密度表现得像不可压缩流体：
 
 $$
 \frac{df}{dt} = 0.
 \tag{A.4.17}
 $$
 
-虽然Hamilton运动方程的精确解将满足不可压缩性条件，但离散的数值格式——通常——会违反它。如前所述，我们可以将任何数值MD算法（例如Verlet、速度Verlet等）视为从$(\mathbf{q}(t),\mathbf{p}(t))$到$(\mathbf{q}(t + \Delta t),\mathbf{q}(t + \Delta t))$的变换。然后我们可以计算此变换的Jacobian，并检查它是否等于1（见第4.3节和第4.3.4节）。对于所有求解Newton运动方程的“好的”算法，从$(\mathbf{q}(t),\mathbf{p}(t))$到$(\mathbf{q}(t + \Delta t),\mathbf{q}(t + \Delta t))$的变换的Jacobian等于1——这种算法被称为“保面积”的。应当注意，辛条件所蕴含的不仅仅是保面积性质。不幸的是，这些其他后果没有如此简单的直观解释。当我们说一个算法应该是辛的时候，我们的意思不仅仅是它应该是保面积的——它应该真正满足辛条件。幸运的是，在许多情况下，利用任何一组经典Hamilton运动方程都满足辛条件这一事实，算法的辛性质很容易证明。可以写成由简单哈密顿量生成的精确时间演化序列的算法，因此必然是辛的。一个例子是Verlet算法。正如第4.3.4节中所讨论的，该算法可以被视为使用哈密顿量的动能部分或势能部分的一系列精确传播。两种传播都满足辛条件。因此，Verlet算法整体上是辛的。关于辛动力学的通俗讨论，参见文献[[713]](references.md#ref-713)。关于分子动力学模拟中辛积分器的讨论可在文献[[714]](references.md#ref-714)中找到。
+虽然 Hamilton 运动方程的精确解将满足不可压缩性条件，但离散的数值格式——通常——会违反它。如前所述，我们可以将任何数值 MD 算法（例如 Verlet、速度 Verlet 等）视为从$(\mathbf{q}(t),\mathbf{p}(t))$到$(\mathbf{q}(t + \Delta t),\mathbf{q}(t + \Delta t))$的变换。然后我们可以计算此变换的 Jacobian，并检查它是否等于 1（见第 4.3 节和第 4.3.4 节）。对于所有求解 Newton 运动方程的“好的”算法，从$(\mathbf{q}(t),\mathbf{p}(t))$到$(\mathbf{q}(t + \Delta t),\mathbf{q}(t + \Delta t))$的变换的 Jacobian 等于 1——这种算法被称为“保面积”的。应当注意，辛条件所蕴含的不仅仅是保面积性质。不幸的是，这些其他后果没有如此简单的直观解释。当我们说一个算法应该是辛的时候，我们的意思不仅仅是它应该是保面积的——它应该真正满足辛条件。幸运的是，在许多情况下，利用任何一组经典 Hamilton 运动方程都满足辛条件这一事实，算法的辛性质很容易证明。可以写成由简单哈密顿量生成的精确时间演化序列的算法，因此必然是辛的。一个例子是 Verlet 算法。正如第 4.3.4 节中所讨论的，该算法可以被视为使用哈密顿量的动能部分或势能部分的一系列精确传播。两种传播都满足辛条件。因此，Verlet 算法整体上是辛的。关于辛动力学的通俗讨论，参见文献[[713]](references.md#ref-713)。关于分子动力学模拟中辛积分器的讨论可在文献[[714]](references.md#ref-714)中找到。
 
 ---
 
@@ -557,5 +557,5 @@ $dA = dE - d(TS) = -SdT - pdV$。
 由于历史原因，将拉格朗日量与哈密顿量联系起来的勒让德变换具有相反的符号。
 [^3]: 由于我们假设时间在这些方程中不显式出现，我们定义的是所谓的受限正则变换。
 [^4]: 给定矩阵$\mathbf{A}$的转置矩阵可以通过交换行和列得到，即$\tilde{a}_{ij} = a_{ji}$。
-[^5]: 要看出此条件与式(A.4.6)和(A.4.7)等价，我们必须从右边将此方程乘以$\tilde{\mathbf{M}}$的逆矩阵：
+[^5]: 要看出此条件与式(A.4.6) 和(A.4.7) 等价，我们必须从右边将此方程乘以$\tilde{\mathbf{M}}$的逆矩阵：
 $\mathbf{M}\boldsymbol{\omega} = \boldsymbol{\omega}\tilde{\mathbf{M}}^{-1}$。

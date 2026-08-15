@@ -88,7 +88,13 @@ def write_md(slug, content):
 
 
 def process_labels(text):
-    """Remove \label{...} commands."""
+    """Remove \label{...} commands.
+
+    索引标记 \sidx{排序键}{显示形式}、\aidx{姓名} 只服务纸质版的索引页，
+    在线版靠站内搜索，直接丢掉（\sidx 是两个参数，别只吃掉一个）。
+    """
+    text = re.sub(r"\\sidx\{[^{}]*\}\{[^{}]*\}", "", text)
+    text = re.sub(r"\\aidx\{[^{}]*\}", "", text)
     return re.sub(r"\\label\{[^}]*\}", "", text)
 
 
@@ -828,12 +834,50 @@ def cleanup(text):
     return text.strip()
 
 
+# 数学、代码、链接目标、HTML 标签、attr_list 花括号里不能动
+PANGU_SKIP = re.compile(
+    r"```.*?```|~~~.*?~~~|\$\$.*?\$\$|\$[^$\n]*\$|`[^`\n]*`"
+    r"|\]\([^)]*\)|<[^>\n]*>|\{[^}\n]*\}",
+    re.S)
+PANGU_CJK_FIRST = re.compile(r"(?<=[\u4e00-\u9fff])(?=[A-Za-z0-9])")
+PANGU_LAT_FIRST = re.compile(r"(?<=[A-Za-z0-9\)\]])(?=[\u4e00-\u9fff])")
+
+
+def pangu(text):
+    """中英/中数之间补一个空格（俗称「盘古之白」）。
+
+    LaTeX 端交给 xeCJK，源文件里空格可有可无；Markdown 端没有自动字距，
+    这里统一补齐，顺带把译稿里本来就不一致的那 4000 处也一并抹平。
+    """
+    out, last = [], 0
+    for m in PANGU_SKIP.finditer(text):
+        out.append(_pangu_plain(text[last:m.start()]))
+        out.append(m.group(0))
+        last = m.end()
+    out.append(_pangu_plain(text[last:]))
+    return "".join(out)
+
+
+# LaTeX 的 en dash；三个及以上是 markdown 的分隔线/表头，不能碰
+EN_DASH = re.compile(r"(?<!-)--(?!-)")
+
+
+def _pangu_plain(s):
+    s = EN_DASH.sub("\u2013", s)
+    return PANGU_LAT_FIRST.sub(" ", PANGU_CJK_FIRST.sub(" ", s))
+
+
 def convert_tex_to_md(tex_content):
     """Full conversion pipeline."""
     text = tex_content
 
     # Remove comment lines
     text = re.sub(r"^\s*%.*$", "", text, flags=re.MULTILINE)
+
+    # 索引标记只服务纸质版索引页，在线版靠站内搜索。必须在最前面剥掉：
+    # 图注、例证框等处理会先吃掉一层大括号，到后面就只剩半截匹配不上了。
+    text = re.sub(r"\\sidx\{[^{}]*\}\{[^{}]*\}", "", text)
+    text = re.sub(r"\\aidx\{[^{}]*\}", "", text)
 
     # Process in order: blocks first, then inline
     text = process_display_equations(text)
@@ -852,6 +896,7 @@ def convert_tex_to_md(tex_content):
     text = process_inline(text)
     text = process_citations(text)
     text = cleanup(text)
+    text = pangu(text)
 
     return text
 

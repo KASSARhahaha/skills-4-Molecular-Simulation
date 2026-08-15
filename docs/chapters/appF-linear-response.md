@@ -79,7 +79,7 @@ $$
 \tag{F.1.4}
 $$
 
-我们利用$\chi_{AA}(t)$与$A$的自关联函数（式2.5.17）之间的关系：
+我们利用$\chi_{AA}(t)$与$A$的自关联函数（式 2.5.17）之间的关系：
 
 $$
 \chi_{AA}(\omega) = \frac{1}{2\pi} \int_0^{\infty} \mathrm{d}t \, e^{-i\omega t} \left[ -\beta \langle A(0) \dot{A}(t) \rangle \right].
@@ -127,11 +127,11 @@ $$
 \tag{F.1.8}
 $$
 
-关于光谱性质与时间关联函数之间关系的更多细节，读者可参阅Madden在文献[[44]](references.md#ref-44)中的文章。
+关于光谱性质与时间关联函数之间关系的更多细节，读者可参阅 Madden 在文献[[44]](references.md#ref-44)中的文章。
 
 ## 电导率
 
-在第2章线性响应理论的推导中，我们假设系统在扰动开启时被制备为平衡态，然后让系统弛豫到扰动关闭的新平衡态。然而，这并不总是可行的。例如，考虑电导率。在这种情况下，扰动是一个电场，它将引起系统中电流的流动。因此，我们用电场开启时制备的系统的状态不是平衡态，而是稳定的非平衡态。恒定剪切下的系统也是如此。在这些情况下，似乎不能用最简单形式的线性响应理论框架来推导输运系数，如电导率$\sigma_e$或黏度$\eta$。幸运的是，情况并没有那么糟糕。以电导率为例，确实，如果我们将导电系统置于外场中，我们将产生一个非平衡稳态。但是，我们可以通过开启一个弱的均匀矢势$\mathbf{A}$来扰动系统。开启矢势后系统的哈密顿量为
+在第 2 章线性响应理论的推导中，我们假设系统在扰动开启时被制备为平衡态，然后让系统弛豫到扰动关闭的新平衡态。然而，这并不总是可行的。例如，考虑电导率。在这种情况下，扰动是一个电场，它将引起系统中电流的流动。因此，我们用电场开启时制备的系统的状态不是平衡态，而是稳定的非平衡态。恒定剪切下的系统也是如此。在这些情况下，似乎不能用最简单形式的线性响应理论框架来推导输运系数，如电导率$\sigma_e$或黏度$\eta$。幸运的是，情况并没有那么糟糕。以电导率为例，确实，如果我们将导电系统置于外场中，我们将产生一个非平衡稳态。但是，我们可以通过开启一个弱的均匀矢势$\mathbf{A}$来扰动系统。开启矢势后系统的哈密顿量为
 
 $$
 H' = \sum_{i=1}^{N} \frac{1}{2m_i} \left( \mathbf{p}_i - \frac{e_i}{c} \mathbf{A} \right)^2 + U_{\mathrm{pot}}.
@@ -166,7 +166,7 @@ $$
 \tag{F.2.5}
 $$
 
-对所加$\delta$函数电场尖峰的电流响应的唯象表达式为（参见式2.5.14）
+对所加$\delta$函数电场尖峰的电流响应的唯象表达式为（参见式 2.5.14）
 
 $$
 \langle \mathbf{j}(t) \rangle = \int_{-\infty}^{t} \mathrm{d}t' \, \boldsymbol{\sigma}(t - t') \mathbf{E}(t') = \boldsymbol{\sigma}(t) \frac{\mathbf{A}}{c}.
@@ -224,7 +224,7 @@ $$
 \tag{F.3.5}
 $$
 
-在我们感兴趣的均匀剪切效应的情况下，例如可以选择$\epsilon_{xy} = \epsilon$，而$\boldsymbol{\epsilon}$的所有其他元素为0。现在考虑我们用哈密顿量$H_1$使系统达到平衡，在$t = 0$时关闭无穷小变形$\boldsymbol{\epsilon}$。这意味着在$t = 0$时，系统经历剪切速率的$\delta$函数尖峰：
+在我们感兴趣的均匀剪切效应的情况下，例如可以选择$\epsilon_{xy} = \epsilon$，而$\boldsymbol{\epsilon}$的所有其他元素为 0。现在考虑我们用哈密顿量$H_1$使系统达到平衡，在$t = 0$时关闭无穷小变形$\boldsymbol{\epsilon}$。这意味着在$t = 0$时，系统经历剪切速率的$\delta$函数尖峰：
 
 $$
 \frac{\partial v_x}{\partial y} = -\epsilon \, \delta(t).
@@ -256,7 +256,7 @@ $$
 
 液体在剪切力作用下会流动。固体则不会。相反，固体的任何小变形都会引起弹性响应（应力）来抵消它。这种弹性应力与所加变形（应变）成正比。应力与应变（将在下面更精确定义）之间的比例常数称为弹性常数。下面我们讨论如何通过计算机模拟来测量这些常数。为简单起见，我们将讨论限制在各向同性（静水）压力下的晶体。
 
-当考虑应变对固体自由能的影响时，必须引入所谓的拉格朗日应变张量（参见例如文献[[182]](references.md#ref-182)）。[^1]原因是在局部尺度上，自由能的所有变化都是由构成固体的粒子之间距离的变化引起的。而测量这种变化的量正是拉格朗日应变。我们从弹性变形引起的新旧坐标关系开始：
+当考虑应变对固体自由能的影响时，必须引入所谓的拉格朗日应变张量（参见例如文献[[182]](references.md#ref-182)）。[^1] 原因是在局部尺度上，自由能的所有变化都是由构成固体的粒子之间距离的变化引起的。而测量这种变化的量正是拉格朗日应变。我们从弹性变形引起的新旧坐标关系开始：
 
 $$
 \mathbf{r}' = (\mathbf{1} + \boldsymbol{\epsilon}) \mathbf{r},
@@ -290,7 +290,7 @@ V' = V_0 \sqrt{\det(\mathbf{1} + 2\boldsymbol{\eta})}.
 \tag{F.4.4}
 $$
 
-现在我们将单位（未变形）体积$(V)$的Helmholtz自由能$(F)$按拉格朗日应变参数$\boldsymbol{\eta}$的幂次展开：
+现在我们将单位（未变形）体积$(V)$的 Helmholtz 自由能$(F)$按拉格朗日应变参数$\boldsymbol{\eta}$的幂次展开：
 
 $$
 F(\boldsymbol{\eta})/V = V^{-1} \left[ F(0) + \frac{\partial F}{\partial \eta_{\alpha\beta}} \eta_{\alpha\beta} + \frac{1}{2} \frac{\partial^2 F}{\partial \eta_{\alpha\beta} \partial \eta_{\gamma\delta}} \eta_{\alpha\beta} \eta_{\gamma\delta} + \cdots \right] = V^{-1} F(0) + C^{(1)}_{\alpha\beta} \eta_{\alpha\beta} + \frac{1}{2} C^{(2)}_{\alpha\beta\gamma\delta} \eta_{\alpha\beta} \eta_{\gamma\delta} + \cdots.
@@ -321,7 +321,7 @@ K = \sum \frac{1}{2} m_i \dot{\mathbf{r}}_i^2 = \sum \frac{1}{2} m_i \dot{\mathb
 \tag{F.4.8}
 $$
 
-其中$\mathbf{h}^T = (\mathbf{1} + \boldsymbol{\epsilon}^T)$是$\mathbf{h}$的转置，$\mathbf{G} = \mathbf{h}^T \mathbf{h}$是度量张量。由$\mathbf{h}$的定义可知$\mathbf{G} = (\mathbf{1} + 2\boldsymbol{\eta})$。我们现在可以写出与坐标$\mathbf{r}_{0,i}$共轭的广义动量$\mathbf{p}_{0,i}$（见附录A）：
+其中$\mathbf{h}^T = (\mathbf{1} + \boldsymbol{\epsilon}^T)$是$\mathbf{h}$的转置，$\mathbf{G} = \mathbf{h}^T \mathbf{h}$是度量张量。由$\mathbf{h}$的定义可知$\mathbf{G} = (\mathbf{1} + 2\boldsymbol{\eta})$。我们现在可以写出与坐标$\mathbf{r}_{0,i}$共轭的广义动量$\mathbf{p}_{0,i}$（见附录 A）：
 
 $$
 p_{0,i}^{\alpha} = \left( \frac{\partial K}{\partial \dot{r}_{0,i}^{\alpha}} \right) = m_i G^{\alpha\beta} \dot{r}_{0,i}^{\beta}
@@ -345,7 +345,7 @@ $$
 \end{align}
 $$
 
-$\{\mathbf{p}^N, \mathbf{r}^N\}$与$\{\mathbf{p}_0^N, \mathbf{r}_0^N\}$之间变换的雅可比行列式等于1。因此，我们可以写
+$\{\mathbf{p}^N, \mathbf{r}^N\}$与$\{\mathbf{p}_0^N, \mathbf{r}_0^N\}$之间变换的雅可比行列式等于 1。因此，我们可以写
 
 $$
 Q(\boldsymbol{\eta}) = \int \mathrm{d}\mathbf{p}^N \mathrm{d}\mathbf{r}^N \exp\left[ -\beta H\left( \mathbf{p}^N, \mathbf{r}^N \right) \right] = \int \mathrm{d}\mathbf{p}_0^N \mathrm{d}\mathbf{r}_0^N \exp\left[ -\beta \left\{ \sum \frac{1}{2m_i} \mathbf{p}_{0,i} \cdot (\mathbf{1} + 2\boldsymbol{\eta})^{-1} \cdot \mathbf{p}_{0,i} + U\left( \mathbf{r}_0^N; \boldsymbol{\eta} \right) \right\} \right].
@@ -394,14 +394,14 @@ $$
 \tag{F.4.18}
 $$
 
-为了确定二阶弹性常数$C^{(2)}_{\alpha\beta\gamma\delta}$，我们必须确定$C^{(1)}_{\alpha\beta}$对$\eta_{\gamma\delta}$的初始线性依赖。这种测量弹性常数的技术简单且相当精确（参见例如文献[[721]](references.md#ref-721)）。然而，需要多次计算来测量不同的弹性常数。晶体对称性越低，需要的计算次数越多。这可以通过直接考虑$C^{(2)}_{\alpha\beta\gamma\delta}$的微观表达式来避免。这样的表达式由Squire等人[[721]](references.md#ref-721)推导：
+为了确定二阶弹性常数$C^{(2)}_{\alpha\beta\gamma\delta}$，我们必须确定$C^{(1)}_{\alpha\beta}$对$\eta_{\gamma\delta}$的初始线性依赖。这种测量弹性常数的技术简单且相当精确（参见例如文献[[721]](references.md#ref-721)）。然而，需要多次计算来测量不同的弹性常数。晶体对称性越低，需要的计算次数越多。这可以通过直接考虑$C^{(2)}_{\alpha\beta\gamma\delta}$的微观表达式来避免。这样的表达式由 Squire 等人[[721]](references.md#ref-721)推导：
 
 $$
 C^{(2)}_{\alpha\beta\gamma\delta} = -\frac{1}{V k_B T} \langle \sigma_{\alpha\beta} \sigma_{\gamma\delta} \rangle + 2\rho k_B T (\delta_{\alpha\gamma} \delta_{\beta\delta} + \delta_{\alpha\delta} \delta_{\beta\gamma}) + 4 \sum_{i<j, k<l} \left( \frac{\partial^2 U}{\partial r_{ij}^2 \partial r_{kl}^2} \right) r_{ij}^{\alpha} r_{ij}^{\beta} r_{kl}^{\gamma} r_{kl}^{\delta}.
 \tag{F.4.19}
 $$
 
-使用式（F.4.19），只需要一次模拟即可测量所有弹性常数。不幸的是，评估这个涨落表达式的统计误差通常大于计算式（F.4.16）时的误差。在恒应力MD模拟中统计问题更加严重，其中弹性柔度（而非模量）由盒子形状的涨落确定[[179]](references.md#ref-179)。式（F.4.19）仅在分子间势处处连续时才能使用。然而，Farago和Kantor [[723]](references.md#ref-723)已经开发了一种适用于硬核系统的涨落表达式。关于弹性常数数值评估的更多细节可以在文献[[436,721,723,724]](references.md#ref-436)中找到，而有限温度下弹性性质的一般框架在文献[[182]](references.md#ref-182)中讨论。
+使用式（F.4.19），只需要一次模拟即可测量所有弹性常数。不幸的是，评估这个涨落表达式的统计误差通常大于计算式（F.4.16）时的误差。在恒应力 MD 模拟中统计问题更加严重，其中弹性柔度（而非模量）由盒子形状的涨落确定[[179]](references.md#ref-179)。式（F.4.19）仅在分子间势处处连续时才能使用。然而，Farago 和 Kantor [[723]](references.md#ref-723)已经开发了一种适用于硬核系统的涨落表达式。关于弹性常数数值评估的更多细节可以在文献[[436,721,723,724]](references.md#ref-436)中找到，而有限温度下弹性性质的一般框架在文献[[182]](references.md#ref-182)中讨论。
 
 ---
 
