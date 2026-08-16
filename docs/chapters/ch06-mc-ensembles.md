@@ -597,7 +597,7 @@ end function
 
 **算法的合理性证明**
 
-验证接受规则 (6.5.12)–(6.5.14) 确实导致对公式 (6.5.10) 给出分布的采样是有益的。考虑一个移动，我们从具有 $N$ 个粒子的构型出发，通过在系统中插入一个粒子移动到具有 $N+1$ 个粒子的构型。我们需要证明满足细致平衡：
+验证接受规则 (6.5.12)– (6.5.14) 确实导致对公式 (6.5.10) 给出分布的采样是有益的。考虑一个移动，我们从具有 $N$ 个粒子的构型出发，通过在系统中插入一个粒子移动到具有 $N+1$ 个粒子的构型。我们需要证明满足细致平衡：
 
 $$
 \mathcal{K}(N \to N + 1) = \mathcal{K}(N + 1 \to N),
@@ -795,7 +795,7 @@ $$
 
 $$
 \displaystyle
-\frac{d \ln f_{\text{tot}(\lambda)}{\mathrm{d}\lambda} = \sum_{\alpha=1}^n \left(\frac{\partial \ln f_{\text{tot}}(\lambda)}{\partial \xi_\alpha}\right)_{P,T,\{\xi_{\beta \neq \alpha}\}} \frac{d\xi_\alpha}{\mathrm{d}\lambda} = -\sum_{\alpha=1}^n \frac{\langle N_\alpha \rangle / N}{\xi_\alpha} \frac{d\xi_\alpha}{\mathrm{d}\lambda} = -\sum_{\alpha=1}^n \frac{\langle x_\alpha \rangle}{\xi_\alpha} \frac{d\xi_\alpha}{\mathrm{d}\lambda},
+\frac{d \ln f_{\text{tot}(\lambda)}{\mathrm{d}\lambda} = \sum_{\alpha=1}^n \left(\frac{\partial \ln f_{\text{tot}}(\lambda)}{\partial \xi_\alpha}\right)_{P,T,\{\xi_{\beta \neq \alpha}\}} \frac{\mathrm{d}\xi_\alpha}{\mathrm{d}\lambda} = -\sum_{\alpha=1}^n \frac{\langle N_\alpha \rangle / N}{\xi_\alpha} \frac{\mathrm{d}\xi_\alpha}{\mathrm{d}\lambda} = -\sum_{\alpha=1}^n \frac{\langle x_\alpha \rangle}{\xi_\alpha} \frac{\mathrm{d}\xi_\alpha}{\mathrm{d}\lambda},
 }
 \tag{6.5.31}
 $$

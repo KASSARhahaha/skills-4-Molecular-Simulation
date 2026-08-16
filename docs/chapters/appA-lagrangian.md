@@ -49,10 +49,10 @@ $$
 
 $$
 \begin{aligned}
-S &= \int_{t_b}^{t_e} \mathrm{d}t\,\frac{1}{2}m \left(\frac{d\bar{x}(t)}{\mathrm{d}t} + \frac{d\eta(t)}{\mathrm{d}t}\right)^2 - U[\bar{x}(t) + \eta(t)] \\
-&\approx \int_{t_b}^{t_e} \mathrm{d}t\,\frac{1}{2}m \left[\left(\frac{d\bar{x}(t)}{\mathrm{d}t}\right)^2 + 2\frac{d\bar{x}(t)}{\mathrm{d}t}\frac{d\eta(t)}{\mathrm{d}t}\right] - \left[U(\bar{x}(t)) + \frac{\partial U(\bar{x})}{\partial x}\eta(t)\right] \\
-&= \bar{S} + \int_{t_b}^{t_e} \mathrm{d}t \left[\frac{md\bar{x}(t)}{\mathrm{d}t}\frac{d\eta(t)}{\mathrm{d}t} - \frac{\partial U(\bar{x})}{\partial x}\eta(t)\right] \\
-&= \bar{S} + \left.m\frac{d\bar{x}(t)}{\mathrm{d}t}\eta(t)\right|_{t_b}^{t_e} - \int_{t_b}^{t_e} \mathrm{d}t \left[\frac{md^2\bar{x}(t)}{\mathrm{d}t^2} + \frac{\partial U(\bar{x})}{\partial x}\right]\eta(t),
+S &= \int_{t_b}^{t_e} \mathrm{d}t\,\frac{1}{2}m \left(\frac{\mathrm{d}\bar{x}(t)}{\mathrm{d}t} + \frac{\mathrm{d}\eta(t)}{\mathrm{d}t}\right)^2 - U[\bar{x}(t) + \eta(t)] \\
+&\approx \int_{t_b}^{t_e} \mathrm{d}t\,\frac{1}{2}m \left[\left(\frac{\mathrm{d}\bar{x}(t)}{\mathrm{d}t}\right)^2 + 2\frac{\mathrm{d}\bar{x}(t)}{\mathrm{d}t}\frac{\mathrm{d}\eta(t)}{\mathrm{d}t}\right] - \left[U(\bar{x}(t)) + \frac{\partial U(\bar{x})}{\partial x}\eta(t)\right] \\
+&= \bar{S} + \int_{t_b}^{t_e} \mathrm{d}t \left[\frac{md\bar{x}(t)}{\mathrm{d}t}\frac{\mathrm{d}\eta(t)}{\mathrm{d}t} - \frac{\partial U(\bar{x})}{\partial x}\eta(t)\right] \\
+&= \bar{S} + \left.m\frac{\mathrm{d}\bar{x}(t)}{\mathrm{d}t}\eta(t)\right|_{t_b}^{t_e} - \int_{t_b}^{t_e} \mathrm{d}t \left[\frac{md^2\bar{x}(t)}{\mathrm{d}t^2} + \frac{\partial U(\bar{x})}{\partial x}\right]\eta(t),
 \end{aligned}
 $$
 
@@ -96,7 +96,7 @@ $$
 L(q,\dot{q}) = L(\bar{q},\dot{\bar{q}}) + \frac{\partial L(\bar{q},\dot{\bar{q}})}{\partial \dot{q}}\dot{\eta}(t) + \frac{\partial L(\bar{q},\dot{\bar{q}})}{\partial q}\eta(t).
 $$
 
-如前一节一样，我们使用$S$的$\eta(t)$幂次的泛函展开来推导经典路径的表达式。为此，我们将拉格朗日量代入作用量的表达式(A.2.1) 中。接下来，我们将粒子可能的路径写为实际路径和修正$\eta(t)$之和。如前所述，我们使用分部积分并利用$\eta(t)$在积分边界处为零的事实。由此可得，作用量取极值的条件是：
+如前一节一样，我们使用$S$的$\eta(t)$幂次的泛函展开来推导经典路径的表达式。为此，我们将拉格朗日量代入作用量的表达式 (A.2.1) 中。接下来，我们将粒子可能的路径写为实际路径和修正$\eta(t)$之和。如前所述，我们使用分部积分并利用$\eta(t)$在积分边界处为零的事实。由此可得，作用量取极值的条件是：
 
 $$
 \int \mathrm{d}t \left[-\frac{d}{\mathrm{d}t}\left(\frac{\partial \mathcal{L}(\bar{q},\dot{\bar{q}})}{\partial \dot{q}}\right) + \frac{\partial \mathcal{L}(\bar{q},\dot{\bar{q}})}{\partial q}\right]\eta(t) = 0,
@@ -117,7 +117,7 @@ p \equiv \frac{\partial \mathcal{L}(q,\dot{q})}{\partial \dot{q}}.
 \tag{A.2.5}
 $$
 
-将此表达式代入式(A.2.4) 得到：
+将此表达式代入式 (A.2.4) 得到：
 
 $$
 \dot{p} = \frac{\partial \mathcal{L}(q,\dot{q})}{\partial q}.
@@ -164,7 +164,7 @@ $$
     p_\theta = \frac{\partial L}{\partial \dot{q}} = ml^2\dot{\theta}
     $$
 
-    运动方程由式(A.2.6) 得到：
+    运动方程由式 (A.2.6) 得到：
 
     $$
     \dot{p}_\theta = -\frac{\partial U(\theta)}{\partial \theta}
@@ -192,7 +192,7 @@ $$
 该方程定义了系统的哈密顿量$H$。由于$H$是$q$、$p$的函数，通常也是$t$的函数，显然我们可以将$H$的微小变化写为：
 
 $$
-d\mathcal{H}(q,p) = \frac{\partial \mathcal{H}}{\partial p}\mathrm{d}p + \frac{\partial \mathcal{H}}{\partial q}\mathrm{d}q + \frac{\partial \mathcal{H}}{\partial t}\mathrm{d}t.
+\mathrm{d}\mathcal{H}(q,p) = \frac{\partial \mathcal{H}}{\partial p}\mathrm{d}p + \frac{\partial \mathcal{H}}{\partial q}\mathrm{d}q + \frac{\partial \mathcal{H}}{\partial t}\mathrm{d}t.
 \tag{A.3.2}
 $$
 
@@ -207,7 +207,7 @@ $$
 \end{aligned}
 $$
 
-其中我们分别使用了$p$和$\dot{p}$的定义，即式(A.2.5) 和(A.2.6)。由此直接得到：
+其中我们分别使用了$p$和$\dot{p}$的定义，即式 (A.2.5) 和 (A.2.6)。由此直接得到：
 
 $$
 \begin{align}
@@ -258,13 +258,13 @@ $$
     L(\theta,\dot{\theta}) = U_K - U_P = \frac{ml^2}{2}\dot{\theta}^2 - U(\theta).
     $$
 
-    拉格朗日量依赖于变量$\theta$和$\dot{\theta}$，而在哈密顿语言中我们希望以$\theta$及其共轭动量$p_\theta$表达运动方程。该共轭动量由式(A.2.5) 定义：
+    拉格朗日量依赖于变量$\theta$和$\dot{\theta}$，而在哈密顿语言中我们希望以$\theta$及其共轭动量$p_\theta$表达运动方程。该共轭动量由式 (A.2.5) 定义：
 
     $$
     p_\theta \equiv \frac{\partial L(\theta,\dot{\theta})}{\partial \dot{\theta}} = ml^2\dot{\theta}.
     $$
 
-    哈密顿量由勒让德变换(A.3.1) 得到：
+    哈密顿量由勒让德变换 (A.3.1) 得到：
 
     $$
     H = p_\theta\dot{\theta} - L(\theta,\dot{\theta}) = \frac{p_\theta^2}{2ml^2} + U(\theta) = \frac{1}{2}ml^2\dot{\theta}^2 + U(\theta),
@@ -272,12 +272,12 @@ $$
 
     当然，这等于摆的总能量。
 
-    运动方程由式(A.3.3) 和(A.3.4) 得到：
+    运动方程由式 (A.3.3) 和 (A.3.4) 得到：
 
     $$
     \begin{aligned}
     \dot{\theta} &= \frac{\partial H}{\partial p_\theta} = \frac{P_\theta}{ml^2} \\
-    \dot{p}_\theta &= -\frac{\partial H}{\partial \theta} = -\frac{dU(\theta)}{\mathrm{d}\theta},
+    \dot{p}_\theta &= -\frac{\partial H}{\partial \theta} = -\frac{\mathrm{d}U(\theta)}{\mathrm{d}\theta},
     \end{aligned}
     $$
 
@@ -326,19 +326,19 @@ $$
 \end{align}
 $$
 
-从式(A.4.1) 和坐标$q$、$p$的哈密顿运动方程可得：
+从式 (A.4.1) 和坐标$q$、$p$的哈密顿运动方程可得：
 
 $$
 \dot{Q} = \left(\frac{\partial Q(q,p)}{\partial q}\right)\dot{q} + \left(\frac{\partial Q(q,p)}{\partial p}\right)\dot{p} = \left(\frac{\partial Q(q,p)}{\partial q}\right)\left(\frac{\partial H(q,p)}{\partial p}\right) - \left(\frac{\partial Q(q,p)}{\partial p}\right)\left(\frac{\partial H(q,p)}{\partial q}\right).
 $$
 
-利用式(A.4.3)，我们可以写：
+利用式 (A.4.3)，我们可以写：
 
 $$
 \left(\frac{\partial H'(Q,P)}{\partial P}\right) = \left(\frac{\partial H(q,p)}{\partial p}\right)\left(\frac{\partial p(P,Q)}{\partial P}\right) + \left(\frac{\partial H(q,p)}{\partial q}\right)\left(\frac{\partial q(P,Q)}{\partial P}\right).
 $$
 
-该方程只有在以下条件满足时才能与$\dot{Q}$的表达式(A.4.4) 相等：
+该方程只有在以下条件满足时才能与$\dot{Q}$的表达式 (A.4.4) 相等：
 
 $$
 \begin{align}
@@ -362,7 +362,7 @@ $$
 
 ### 辛条件
 
-我们可以通过使用矩阵记号将上述正则变换的条件表达为单个方程。设$\boldsymbol{\xi}$为包含$N$个粒子在$d$维中的广义坐标$q_i$和动量$p_i$的$2\mathrm{d}N$维向量（见第 2.5.1 节）。哈密顿运动方程(A.3.3) 和(A.3.4) 可以写为：
+我们可以通过使用矩阵记号将上述正则变换的条件表达为单个方程。设$\boldsymbol{\xi}$为包含$N$个粒子在$d$维中的广义坐标$q_i$和动量$p_i$的$2\mathrm{d}N$维向量（见第 2.5.1 节）。哈密顿运动方程 (A.3.3) 和 (A.3.4) 可以写为：
 
 $$
 \dot{\boldsymbol{\xi}} = \boldsymbol{\omega}\frac{\partial \mathcal{H}}{\partial \boldsymbol{\xi}},
@@ -375,7 +375,7 @@ $$
 \boldsymbol{\omega} = \begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}.
 $$
 
-类似地，我们可以定义$\boldsymbol{\xi}$为包含广义坐标$Q_i$和$P_i$的$2N$维向量。使用矩阵记号，从$Q$、$P$到$q$、$p$的变换(A.4.1) 写为：
+类似地，我们可以定义$\boldsymbol{\xi}$为包含广义坐标$Q_i$和$P_i$的$2N$维向量。使用矩阵记号，从$Q$、$P$到$q$、$p$的变换 (A.4.1) 写为：
 
 $$
 \boldsymbol{\xi} = \boldsymbol{\xi}(\boldsymbol{\zeta}).
@@ -394,14 +394,14 @@ M_{ij} = \frac{\partial \xi_i}{\partial \zeta_j}.
 \tag{A.4.9}
 $$
 
-利用式(A.4.8)，我们可以写$\boldsymbol{\xi}$的时间导数为：
+利用式 (A.4.8)，我们可以写$\boldsymbol{\xi}$的时间导数为：
 
 $$
 \dot{\boldsymbol{\xi}} = \mathbf{M}\boldsymbol{\omega}\frac{\partial \mathcal{H}}{\partial \boldsymbol{\zeta}}.
 \tag{A.4.10}
 $$
 
-类似地，我们可以定义逆变换(A.4.2)：
+类似地，我们可以定义逆变换 (A.4.2)：
 
 $$
 \boldsymbol{\zeta} = \boldsymbol{\zeta}(\boldsymbol{\xi}).
@@ -414,20 +414,20 @@ $$
 \tag{A.4.11}
 $$
 
-如果我们定义式(A.4.9) 中定义的$\mathbf{M}$的转置矩阵[^4]：
+如果我们定义式 (A.4.9) 中定义的$\mathbf{M}$的转置矩阵[^4]：
 
 $$
 \tilde{M}_{ij} = \frac{\partial \xi_j}{\partial \zeta_i}.
 $$
 
-这使我们可以将式(A.4.11) 用矩阵记号重写为：
+这使我们可以将式 (A.4.11) 用矩阵记号重写为：
 
 $$
 \frac{\partial \mathcal{H}(\boldsymbol{\zeta})}{\partial \boldsymbol{\zeta}} = \tilde{\mathbf{M}}\frac{\partial \mathcal{H}(\boldsymbol{\xi})}{\partial \boldsymbol{\xi}}.
 \tag{A.4.12}
 $$
 
-结合式(A.4.10) 和(A.4.12)，我们有：
+结合式 (A.4.10) 和 (A.4.12)，我们有：
 
 $$
 \dot{\boldsymbol{\xi}} = \mathbf{M}\boldsymbol{\omega}\tilde{\mathbf{M}}\frac{\partial H}{\partial \boldsymbol{\xi}}.
@@ -485,7 +485,7 @@ $$
 
 在计算非原始笛卡尔坐标系中的系综平均时，变换的雅可比矩阵 $\mathbf{M}$可能不等于 1，应当加以考虑。在下文中，我们用符号$\omega$表示雅可比行列式 $|\mathrm{Det}(\mathbf{M})|$。
 
-对于正则变换，即满足条件(A.4.13) 的变换，雅可比行列式的绝对值为 1。为了推导这个结果，我们对辛条件(A.4.13) 两边取行列式：
+对于正则变换，即满足条件 (A.4.13) 的变换，雅可比行列式的绝对值为 1。为了推导这个结果，我们对辛条件 (A.4.13) 两边取行列式：
 
 $$
 \begin{aligned}
@@ -526,7 +526,7 @@ $$
 \tilde{\mathbf{M}} = \mathbf{1} - \frac{\partial^2 H}{\partial \boldsymbol{\zeta}\partial \boldsymbol{\zeta}}\boldsymbol{\omega}.
 $$
 
-将雅可比行列式的这个表达式代入辛条件(A.4.13) 得到（在$\delta t$的一阶近似下）：
+将雅可比行列式的这个表达式代入辛条件 (A.4.13) 得到（在$\delta t$的一阶近似下）：
 
 $$
 \begin{aligned}
@@ -541,7 +541,7 @@ $$
 可以将哈密顿量视为作用于相空间所有点的正则变换的生成元。由于正则变换的雅可比行列式等于 1，相空间中体积元的大小在哈密顿系统的自然时间演化过程中不变。此外，相空间中任意点周围的密度$f(\mathbf{q}(t),\mathbf{p}(t))$在时间演化过程中也保持不变。要理解这一点，考虑相空间中由曲面$S$包围的体积$V$。在时间演化过程中，曲面移动，曲面内的所有点也随之移动。然而，点不能穿过曲面。原因很简单：如果相空间中的两条轨迹相交，将意味着两条轨迹从同一相空间点出发。但这是不可能的，因为这将意味着从该点出发的轨迹不由其初始条件唯一确定。因此，任意体积内的相空间点数不随时间变化。由于体积本身也是恒定的，这意味着相空间密度（即单位体积的点数）是恒定的。换言之：哈密顿系统的相空间密度表现得像不可压缩流体：
 
 $$
-\frac{df}{\mathrm{d}t} = 0.
+\frac{\mathrm{d}f}{\mathrm{d}t} = 0.
 \tag{A.4.17}
 $$
 
@@ -557,5 +557,5 @@ $\mathrm{d}A = \mathrm{d}E - d(TS) = -S\mathrm{d}T - p\mathrm{d}V$。
 由于历史原因，将拉格朗日量与哈密顿量联系起来的勒让德变换具有相反的符号。
 [^3]: 由于我们假设时间在这些方程中不显式出现，我们定义的是所谓的受限正则变换。
 [^4]: 给定矩阵$\mathbf{A}$的转置矩阵可以通过交换行和列得到，即$\tilde{a}_{ij} = a_{ji}$。
-[^5]: 要看出此条件与式(A.4.6) 和(A.4.7) 等价，我们必须从右边将此方程乘以$\tilde{\mathbf{M}}$的逆矩阵：
+[^5]: 要看出此条件与式 (A.4.6) 和 (A.4.7) 等价，我们必须从右边将此方程乘以$\tilde{\mathbf{M}}$的逆矩阵：
 $\mathbf{M}\boldsymbol{\omega} = \boldsymbol{\omega}\tilde{\mathbf{M}}^{-1}$。

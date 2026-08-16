@@ -28,7 +28,7 @@ $$
 \tag{F.1.1}
 $$
 
-因此，式（F.1.1）简化为
+因此，式 (F.1.1) 简化为
 
 $$
 \frac{\partial E}{\partial t} = \left\langle \frac{\partial H}{\partial t} \right\rangle = -\left\langle \dot{f}(t) A(\mathbf{p}^N, \mathbf{q}^N) \right\rangle = -\dot{f}(t) \langle A(t) \rangle.
@@ -156,7 +156,7 @@ $$
 \tag{F.2.3}
 $$
 
-我们可以用标准方法计算由此产生的电流。注意到我们可以将式（F.2.1）中的$H'$写为
+我们可以用标准方法计算由此产生的电流。注意到我们可以将式 (F.2.1) 中的$H'$写为
 
 $$
 \mathcal{H}' = \mathcal{H}_0 - \sum_{i=1}^{N} \frac{e_i}{c m_i} \mathbf{p}_i \cdot \mathbf{A} + \mathcal{O}(A^2) = \mathcal{H}_0 - \frac{\mathbf{A}}{c} \int \mathrm{d}\mathbf{r} \sum_{i=1}^{N} \frac{e_i}{m_i} \mathbf{p}_i \, \delta(\mathbf{r}_i - \mathbf{r}) = \mathcal{H}_0 - \frac{\mathbf{A}}{c} \int \mathrm{d}\mathbf{r} \, \mathbf{j}(\mathbf{r}),
@@ -242,7 +242,7 @@ $$
 \tag{F.3.7}
 $$
 
-将式（F.3.6）和（F.3.7）与式（2.5.14）结合，我们立即看到由稳定剪切产生的稳态应力$\sigma_{xy}$为
+将式 (F.3.6) 和 (F.3.7) 与式 (2.5.14) 结合，我们立即看到由稳定剪切产生的稳态应力$\sigma_{xy}$为
 
 $$
 \sigma_{xy} = \frac{\partial v_x}{\partial y} \times \frac{1}{V k_B T} \int_0^{\infty} \mathrm{d}t \, \langle \sigma_{xy}(0) \sigma_{xy}(t) \rangle,
@@ -401,7 +401,7 @@ $$
 \tag{F.4.17}
 $$
 
-表示变形系统中的微观应力。注意$\boldsymbol{\sigma}$可以在模拟中测量，而$\boldsymbol{\epsilon}$由所加应变固定。对于未变形的系统，$C^{(1)}$简单等于$-P$，其中$P$是静水压力。由式（F.4.16）还可得应力$\sigma_{ij}$与线性应变$\epsilon_{rs}$之间的比例常数为
+表示变形系统中的微观应力。注意$\boldsymbol{\sigma}$可以在模拟中测量，而$\boldsymbol{\epsilon}$由所加应变固定。对于未变形的系统，$C^{(1)}$简单等于$-P$，其中$P$是静水压力。由式 (F.4.16) 还可得应力$\sigma_{ij}$与线性应变$\epsilon_{rs}$之间的比例常数为
 
 $$
 \displaystyle
@@ -419,7 +419,7 @@ C^{(2)_{\alpha\beta\gamma\delta} = -\frac{1}{V k_B T} \langle \sigma_{\alpha\bet
 \tag{F.4.19}
 $$
 
-使用式（F.4.19），只需要一次模拟即可测量所有弹性常数。不幸的是，评估这个涨落表达式的统计误差通常大于计算式（F.4.16）时的误差。在恒应力 MD 模拟中统计问题更加严重，其中弹性柔度（而非模量）由盒子形状的涨落确定[[179]](references.md#ref-179)。式（F.4.19）仅在分子间势处处连续时才能使用。然而，Farago 和 Kantor [[723]](references.md#ref-723)已经开发了一种适用于硬核系统的涨落表达式。关于弹性常数数值评估的更多细节可以在文献[[436,721,723,724]](references.md#ref-436)中找到，而有限温度下弹性性质的一般框架在文献[[182]](references.md#ref-182)中讨论。
+使用式 (F.4.19)，只需要一次模拟即可测量所有弹性常数。不幸的是，评估这个涨落表达式的统计误差通常大于计算式 (F.4.16) 时的误差。在恒应力 MD 模拟中统计问题更加严重，其中弹性柔度（而非模量）由盒子形状的涨落确定[[179]](references.md#ref-179)。式 (F.4.19) 仅在分子间势处处连续时才能使用。然而，Farago 和 Kantor [[723]](references.md#ref-723)已经开发了一种适用于硬核系统的涨落表达式。关于弹性常数数值评估的更多细节可以在文献[[436,721,723,724]](references.md#ref-436)中找到，而有限温度下弹性性质的一般框架在文献[[182]](references.md#ref-182)中讨论。
 
 ---
 

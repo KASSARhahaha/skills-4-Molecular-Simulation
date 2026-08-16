@@ -16,7 +16,6 @@ $$
 
 $$
 m\rho \frac{\mathrm{d}\mathbf{v}}{\mathrm{d}t} = -\nabla P + \eta \nabla^2 \mathbf{v} + \left(\zeta + \frac{\eta}{3}\right) \nabla (\nabla \cdot \mathbf{v}) ,
-\quad (H.1.1)
 \tag{H.1.1}
 $$
 
@@ -24,7 +23,6 @@ $$
 
 $$
 T\rho \frac{\mathrm{d}s}{\mathrm{d}t} = \phi + \kappa \nabla^2 T
-\quad (H.1.2)
 \tag{H.1.2}
 $$
 
@@ -32,31 +30,28 @@ $$
 
 $$
 \phi = 2\eta \nabla \mathbf{v} : \nabla \mathbf{v} + \zeta (\nabla \cdot \mathbf{v})^2 ,
-\tag{H.1.3}
 $$
 
 最后是质量守恒定律：
 
 $$
-\frac{d\rho}{\mathrm{d}t} = -\rho \nabla \cdot \mathbf{v} .
-\quad (H.1.3)
+\frac{\mathrm{d}\rho}{\mathrm{d}t} = -\rho \nabla \cdot \mathbf{v} .
+\tag{H.1.3}
 $$
 
 在上述方程中，$\rho$表示数密度：为与本书其他部分的记号保持一致，我们使用的记号与文献[[694]](references.md#ref-694) 略有不同。$\mathbf{v}$表示流动速度，$P$表示静水压力，$\eta$表示剪切粘度，$\zeta$表示体积粘度，$s$表示每个粒子的熵，$\kappa$表示热导率。
 
 ## 离散化 SDPD 方程
 
-式(H.1.1) 至(H.1.3) 的离散化形式为：
+式 (H.1.1) 至 (H.1.3) 的离散化形式为：
 
 $$
 m\dot{\mathbf{v}}_i = -\frac{(\nabla P)_i}{\rho_i} + \frac{\eta (\nabla^2 \mathbf{v})_i}{\rho_i} + \frac{(\zeta + \eta/3)(\nabla \nabla \cdot \mathbf{v})_i}{\rho_i} ,
-\quad (H.2.1)
 \tag{H.2.1}
 $$
 
 $$
 T_i \dot{S}_i = \frac{\phi + \kappa(\nabla^2 T)_i}{\rho_i} ,
-\quad (H.2.2)
 \tag{H.2.2}
 $$
 
@@ -64,7 +59,6 @@ $$
 
 $$
 \dot{\rho}_i = -\rho_i (\nabla \cdot \mathbf{v})_i ,
-\quad (H.2.3)
 \tag{H.2.3}
 $$
 
@@ -120,11 +114,10 @@ m\dot{\mathbf{v}}_i = \sum_j \left[
 - \frac{5\eta}{\rho_i \rho_j} F_{ij} \mathbf{v}_{ij}
 - \frac{\zeta + \eta/3}{\rho_i \rho_j} F_{ij} (\mathbf{r}_{ij} \cdot \mathbf{v}_{ij}) \hat{\mathbf{e}}_{ij}
 \right] ,
-\quad (H.2.4)
 \tag{H.2.4}
 $$
 
-式(H.2.4) 与
+式 (H.2.4) 与
 
 $$
 \dot{\mathbf{r}}_i = \mathbf{v}_i ,
@@ -136,7 +129,6 @@ $$
 
 $$
 T_i \dot{S}_i = (\phi)_i - 2\kappa \sum_j \frac{F_{ij}}{\rho_i \rho_j} T_{ij} ,
-\quad (H.2.5)
 \tag{H.2.5}
 $$
 
