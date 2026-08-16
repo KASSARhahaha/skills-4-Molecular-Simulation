@@ -201,7 +201,6 @@ $$
 **算法 19　固定质心 MC：晶格束缚晶体的粒子移动**
 
 ```
- [[1]](references.md#ref-1)
  **function** mcmove
   尝试在保持质心固定的条件下移动粒子
   setlat：设置参考晶格
@@ -235,7 +234,6 @@ skip
 **算法 20　生成 fcc 晶体**
 
 ```
- [[1]](references.md#ref-1)
  **function** setlat$(n_x, n_y, n_z)$
   生成三维 fcc 晶体，包含 $n_x \times n_y \times n_z$ 个单胞，每个单胞含 4 个粒子
   $a_1 = (V/(n_x \times n_y \times n_z))^{1/3}$ \COMMENT{单胞直径}

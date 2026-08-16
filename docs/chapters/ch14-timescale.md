@@ -745,7 +745,6 @@ $$
 **算法 28　多时间步分子动力学**
 
 ```
- [[1]](references.md#ref-1)
  **input:**
  **function** multi(fl, fs)
  fl: long-range part of the force
