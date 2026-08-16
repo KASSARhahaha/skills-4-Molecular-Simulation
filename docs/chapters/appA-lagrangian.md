@@ -293,7 +293,7 @@ $$
 
 $$
 \begin{align}
-Q &= Q(q,p) \\
+Q &= Q(q,p) \nonumber \\
 P &= P(q,p)
 \tag{A.4.1}
 \end{align}
@@ -303,7 +303,7 @@ $$
 
 $$
 \begin{align}
-q &= q(Q,P) \\
+q &= q(Q,P) \nonumber \\
 p &= p(Q,P).
 \tag{A.4.2}
 \end{align}
@@ -342,7 +342,7 @@ $$
 
 $$
 \begin{align}
-\left(\frac{\partial Q(q,p)}{\partial q}\right) &= \left(\frac{\partial p(Q,P)}{\partial P}\right) \\
+\left(\frac{\partial Q(q,p)}{\partial q}\right) &= \left(\frac{\partial p(Q,P)}{\partial P}\right) \nonumber \\
 \left(\frac{\partial Q(q,p)}{\partial p}\right) &= -\left(\frac{\partial q(Q,P)}{\partial P}\right).
 \tag{A.4.6}
 \end{align}
@@ -352,7 +352,7 @@ $$
 
 $$
 \begin{align}
-\left(\frac{\partial P(q,p)}{\partial q}\right) &= -\left(\frac{\partial p(Q,P)}{\partial Q}\right) \\
+\left(\frac{\partial P(q,p)}{\partial q}\right) &= -\left(\frac{\partial p(Q,P)}{\partial Q}\right) \nonumber \\
 \left(\frac{\partial P(q,p)}{\partial p}\right) &= \left(\frac{\partial q(Q,P)}{\partial Q}\right).
 \tag{A.4.7}
 \end{align}

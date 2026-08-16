@@ -293,7 +293,7 @@ $$
 
 $$
 \begin{align}
-\phi_S(\mathbf{r}) &= \frac{1}{V}\sum_{\mathbf{k}\neq 0} \tilde{\phi}_S(\mathbf{k}) \exp(i\mathbf{k}\cdot\mathbf{r})\\
+\phi_S(\mathbf{r}) &= \frac{1}{V}\sum_{\mathbf{k}\neq 0} \tilde{\phi}_S(\mathbf{k}) \exp(i\mathbf{k}\cdot\mathbf{r}) \nonumber\\
 &= \sum_{\mathbf{k}\neq 0} \sum_{j=1}^{N} \frac{4\pi q_j}{Vk^2} \exp[i\mathbf{k}\cdot(\mathbf{r}-\mathbf{r}_j)] \exp\left(-k^2/4\alpha\right),
 \tag{11.2.15}
 \end{align}

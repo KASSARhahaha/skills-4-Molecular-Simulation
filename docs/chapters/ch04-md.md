@@ -487,9 +487,9 @@ $$
 
 $$
 \begin{align}
-\mathbf{r}(t+2\Delta t) &= \mathbf{r}(t) + 2\mathbf{v}(t)\Delta t + \dot{\mathbf{v}}(t)(2\Delta t)^2/2! + \ddot{\mathbf{v}}(2\Delta t)^3/3! + \cdots \\
-\mathbf{r}(t+\Delta t) &= \mathbf{r}(t) + \mathbf{v}(t)\Delta t + \dot{\mathbf{v}}(t)\Delta t^2/2! + \ddot{\mathbf{v}}\Delta t^3/3! + \cdots \\
-\mathbf{r}(t-\Delta t) &= \mathbf{r}(t) - \mathbf{v}(t)\Delta t + \dot{\mathbf{v}}(t)\Delta t^2/2! - \ddot{\mathbf{v}}\Delta t^3/3! + \cdots \\
+\mathbf{r}(t+2\Delta t) &= \mathbf{r}(t) + 2\mathbf{v}(t)\Delta t + \dot{\mathbf{v}}(t)(2\Delta t)^2/2! + \ddot{\mathbf{v}}(2\Delta t)^3/3! + \cdots \nonumber \\
+\mathbf{r}(t+\Delta t) &= \mathbf{r}(t) + \mathbf{v}(t)\Delta t + \dot{\mathbf{v}}(t)\Delta t^2/2! + \ddot{\mathbf{v}}\Delta t^3/3! + \cdots \nonumber \\
+\mathbf{r}(t-\Delta t) &= \mathbf{r}(t) - \mathbf{v}(t)\Delta t + \dot{\mathbf{v}}(t)\Delta t^2/2! - \ddot{\mathbf{v}}\Delta t^3/3! + \cdots \nonumber \\
 \mathbf{r}(t-2\Delta t) &= \mathbf{r}(t) - 2\mathbf{v}(t)\Delta t + \dot{\mathbf{v}}(t)(2\Delta t)^2/2! - \ddot{\mathbf{v}}(2\Delta t)^3/3! + \cdots.
 \tag{4.3.7}
 \end{align}
@@ -570,7 +570,7 @@ end for
 
     $$
     \begin{align}
-    q(t+\delta t) &= q(t) + \delta t\frac{p(t)}{m} + \frac{1}{2}\frac{F(t)}{m}(\delta t)^2 \\
+    q(t+\delta t) &= q(t) + \delta t\frac{p(t)}{m} + \frac{1}{2}\frac{F(t)}{m}(\delta t)^2 \nonumber \\
     p(t+\delta t) &= p(t) + \frac{1}{2}\delta t[F(t) + F(t+\delta t)].
     \tag{4.3.9}
     \end{align}
@@ -586,8 +586,8 @@ end for
 
     $$
     \begin{align}
-    k_BT_{pv} &= \langle p_i v_i \rangle_{\delta t}, \\
-    k_BT_{p^2} &= \langle p_i p_i/m_i \rangle_{\delta t}, \\
+    k_BT_{pv} &= \langle p_i v_i \rangle_{\delta t}, \nonumber \\
+    k_BT_{p^2} &= \langle p_i p_i/m_i \rangle_{\delta t}, \nonumber \\
     k_BT_{v^2} &= \langle m_i v_i v_i \rangle_{\delta t}.
     \tag{4.3.10}
     \end{align}
@@ -639,9 +639,9 @@ $$
 
 $$
 \begin{align}
-f(t) &= f(0) + iL_r t f(0) + \frac{(iL_r t)^2}{2!}f(0) + \cdots \\
-&= \exp\left[\dot{\mathbf{r}}(0)t\frac{\partial}{\partial \mathbf{r}}\right]f(0) \\
-&= \sum_{n=0}^{\infty}\frac{[\dot{\mathbf{r}}(0)t]^n}{n!}\frac{\partial^n}{\partial \mathbf{r}^n}f(0) \\
+f(t) &= f(0) + iL_r t f(0) + \frac{(iL_r t)^2}{2!}f(0) + \cdots \nonumber \\
+&= \exp\left[\dot{\mathbf{r}}(0)t\frac{\partial}{\partial \mathbf{r}}\right]f(0) \nonumber \\
+&= \sum_{n=0}^{\infty}\frac{[\dot{\mathbf{r}}(0)t]^n}{n!}\frac{\partial^n}{\partial \mathbf{r}^n}f(0) \nonumber \\
 &= f[\mathbf{p}^N(0), (\mathbf{r}+\dot{\mathbf{r}}(0)t)^N].
 \tag{4.3.15}
 \end{align}

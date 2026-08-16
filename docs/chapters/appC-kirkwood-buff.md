@@ -2,7 +2,7 @@
 
 ## 混合物的结构因子
 
-在第 2.5 节中，我们讨论了单组分系统的结构因子$S(\mathbf{q})$（式 (2.5.15)）与粒子密度傅里叶变换的均方值（式 (2.5.16)）之间的关系：
+在第 5.1.7.1 节中，我们讨论了单组分系统的结构因子$S(\mathbf{q})$（式 (5.1.40)）与粒子密度傅里叶变换的均方值（式 (5.1.38)）之间的关系：
 
 $$
 \rho(\mathbf{q}) = \sum_{i=1}^{N} \mathrm{e}^{\mathrm{i}\mathbf{q}\cdot\mathbf{r}_i} = \int_V \mathrm{d}\mathbf{r}\,\rho(\mathbf{r})\,\mathrm{e}^{\mathrm{i}\mathbf{q}\cdot\mathbf{r}}.
@@ -12,7 +12,7 @@ $$
 
 $$
 \begin{align}
-S_{ab}(\mathbf{q}) &= \frac{1}{\sqrt{\langle N_a \rangle \langle N_b \rangle}}\left\langle \delta\rho_a(\mathbf{q})\,\delta\rho_b(-\mathbf{q}) \right\rangle  \\
+S_{ab}(\mathbf{q}) &= \frac{1}{\sqrt{\langle N_a \rangle \langle N_b \rangle}}\left\langle \delta\rho_a(\mathbf{q})\,\delta\rho_b(-\mathbf{q}) \right\rangle \nonumber \\
 &= \frac{1}{\sqrt{\langle N_a \rangle \langle N_b \rangle}} \frac{1}{V^2}\int_V \mathrm{d}\mathbf{r}\int_V \mathrm{d}\mathbf{r}'\,\delta\rho_a(\mathbf{r})\,\delta\rho_b(\mathbf{r}')\,\mathrm{e}^{\mathrm{i}\mathbf{q}\cdot(\mathbf{r}-\mathbf{r}')},
 \tag{C.1.1}
 \end{align}

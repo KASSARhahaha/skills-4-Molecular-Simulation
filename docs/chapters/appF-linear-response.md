@@ -314,7 +314,7 @@ $$
 
 $$
 \begin{align}
-\mathbf{r}_i &= \mathbf{h} \mathbf{r}_{0,i} \\
+\mathbf{r}_i &= \mathbf{h} \mathbf{r}_{0,i} \nonumber \\
 \dot{\mathbf{r}}_i &= \mathbf{h} \dot{\mathbf{r}}_{0,i}
 \tag{F.4.7}
 \end{align}
@@ -345,7 +345,7 @@ $$
 
 $$
 \begin{align}
-\mathbf{p}_i &= m_i \dot{\mathbf{r}}_i = m_i \mathbf{h} \dot{\mathbf{r}}_{0,i} = (\mathbf{h}^T)^{-1} \mathbf{p}_{0,i} \\
+\mathbf{p}_i &= m_i \dot{\mathbf{r}}_i = m_i \mathbf{h} \dot{\mathbf{r}}_{0,i} = (\mathbf{h}^T)^{-1} \mathbf{p}_{0,i} \nonumber \\
 \mathbf{r}_i &= \mathbf{h} \mathbf{r}_{0,i},
 \tag{F.4.11}
 \end{align}
