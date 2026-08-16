@@ -188,6 +188,15 @@ def resolve_label(name):
 
 def process_refs(text):
     """把 \\ref{...} 解析为原书编号（而非丢弃）。"""
+    # \pageref 在网页上没有意义——线上版没有页码。整个括注换成按章节定位的说法，
+    # 指向第 1 章的「算法」小节，也就是印本里「第 7 页」那段伪代码约定。
+    text = re.sub(
+        r"（一般说明参见第~?\\pageref\{[^}]*\}~?页）",
+        "（一般说明见第 1 章「算法」）",
+        text,
+    )
+    text = re.sub(r"\\pageref\{[^}]*\}", "", text)   # 兜底：其余 pageref 一律去掉
+
     def sub_ref(m):
         num = resolve_label(m.group(1))
         return num if num else ""
@@ -721,7 +730,13 @@ def process_inline(text):
     # \emph{...} -> *...*
     text = re.sub(r"\\emph\{([^}]*)\}", r"*\1*", text)
     # \texttt{...} -> `...`
-    text = re.sub(r"\\texttt\{([^}]*)\}", r"`\1`", text)
+    # 反引号内是逐字文本，LaTeX 的 \_ \& \% \# \$ 转义要脱掉，
+    # 否则 new\_vlist 会照着反斜杠一起显示出来。
+    text = re.sub(
+        r"\\texttt\{([^}]*)\}",
+        lambda m: "`%s`" % re.sub(r"\\([_&%#$])", r"\1", m.group(1)),
+        text,
+    )
     # \textsuperscript{...} -> ^(...)
     text = re.sub(r"\\textsuperscript\{([^}]*)\}", r"^\1", text)
     # \ldots -> ...
