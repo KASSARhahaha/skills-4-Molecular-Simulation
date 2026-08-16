@@ -80,9 +80,9 @@
 | $\epsilon$ | 能量单位（Unit of energy） |
 | $\epsilon$ | 介电常数（Dielectric constant） |
 | $\epsilon_0$ | 真空介电常数（Dielectric permittivity of vacuum） |
-| $\zeta$ | 体积粘度（Bulk viscosity） |
+| $\zeta$ | 体积黏度（Bulk viscosity） |
 | $\eta$ | 效率（Efficiency） |
-| $\eta$ | 剪切粘度（Shear viscosity） |
+| $\eta$ | 剪切黏度（Shear viscosity） |
 | $\kappa$ | 热导率（Thermal conductivity） |
 | $\kappa$ | 透射系数（Transmission coefficient） |
 | $\lambda$ | 耦合参数（Coupling parameter） |

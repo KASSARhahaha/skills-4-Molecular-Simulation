@@ -471,7 +471,7 @@
 | non-equilibrium work | 非平衡功 |
 | non-Hamiltonian system | 非哈密顿系统 |
 | non-rigid molecules | 非刚性分子 |
-| nonbonded | 非成键 |
+| nonbonded | 非键合 |
 | nonlinear rigid molecules | 非线形刚性分子 |
 | normalizing flow method | 归一化流方法 |
 | Nosé-Hoover | Nosé-Hoover |
@@ -585,7 +585,7 @@
 | shadow orbit | 影子轨道 |
 | Shake | SHAKE |
 | shear stress | 剪切应力 |
-| shear viscosity | 剪切粘度 |
+| shear viscosity | 剪切黏度 |
 | shifting moves | 平移移动 |
 | shooting moves | 射击移动 |
 | simple truncation | 简单截断 |
@@ -674,7 +674,7 @@
 | Verlet lists | Verlet 列表 |
 | virtual moves | 虚拟移动 |
 | virtual volume changes | 虚拟体积变化 |
-| viscosity | 粘度 |
+| viscosity | 黏度 |
 | volume change | 体积改变 |
 | Voronoi | Voronoi |
 

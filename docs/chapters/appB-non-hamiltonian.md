@@ -20,7 +20,7 @@ $$
 \tag{B.0.1}
 $$
 
-其中$\kappa(\boldsymbol{\Gamma}_t, t)$，即动力学系统的相空间压缩因子，定义为：
+其中$\kappa(\boldsymbol{\Gamma}_t, t)$，即动力学系统的相空间压缩率，定义为：
 
 $$
 \kappa(\boldsymbol{\Gamma}_t, t) \equiv \nabla_{\boldsymbol{\Gamma}} \cdot \dot{\boldsymbol{\Gamma}}.
