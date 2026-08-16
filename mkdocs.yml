@@ -101,5 +101,7 @@ nav:
     - 附录I 节省CPU时间: chapters/appI-saving-cpu.md
     - 附录J 算法汇总: chapters/appJ-algorithms.md
   - 参考文献: chapters/references.md
+  - 缩略语表: acronyms.md
+  - 符号表: symbols.md
   - 英汉术语对照表: glossary.md
   - Skills 速查: skills/index.md
