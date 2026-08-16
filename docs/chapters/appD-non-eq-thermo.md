@@ -190,7 +190,7 @@ $$
 \tag{D.3.1}
 $$
 
-其中$k_B$是玻尔兹曼常数，$\delta_{ij}$是 Kronecker delta。式 (D.3.1) 可由以下事实推导：
+其中$k_B$是玻尔兹曼常数，$\delta_{ij}$是克罗内克 $\delta$。式 (D.3.1) 可由以下事实推导：
 
 $$
 \langle \alpha_i X_j \rangle = k_B \int \mathrm{d}\{\alpha\}\, \alpha_i \frac{\partial P(\{\alpha\})}{\partial \alpha_j} = -k_B \int \mathrm{d}\{\alpha\}\, \frac{\partial \alpha_i}{\partial \alpha_j} P(\{\alpha\}) = -k_B \delta_{ij} ,

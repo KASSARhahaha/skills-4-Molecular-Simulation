@@ -957,6 +957,9 @@ def generate_references():
         txt = txt.replace("~", " ").replace(r"\&", "&").replace("\\%", "%")
         txt = re.sub(r"(?<!-)--(?!-)", "\u2013", txt)
         txt = " ".join(txt.split())
+        # 译稿仓把 DOI 包进了 \url{}（LaTeX 靠它断行），这边先脱掉，
+        # 否则下面那步会把大括号一起卷进链接地址
+        txt = re.sub(r"\\url\{([^}]*)\}", r"\1", txt)
         # 裸 DOI/URL 转成链接
         txt = re.sub(r"(https?://[^\s,]+?)(\.?)(?=$|[\s,])", r"[\1](\1)\2", txt)
         if txt:

@@ -12,7 +12,10 @@
 | 原名 | 汉译 |
 |---|---|
 | Avogadro | 阿伏伽德罗 |
+| Bogoliubov | 博戈柳博夫 |
 | Boltzmann | 玻尔兹曼 |
+| Boyle | 玻意耳 |
+| Boyle-Gay-Lussac | 玻意耳-盖-吕萨克 |
 | Brown | 布朗 |
 | Brownian | 布朗 |
 | Clausius | 克劳修斯 |
@@ -24,22 +27,31 @@
 | Einstein | 爱因斯坦 |
 | Euler | 欧拉 |
 | Fermi | 费米 |
+| Fick | 菲克 |
 | Fokker-Planck | 福克-普朗克 |
 | Fourier | 傅里叶 |
 | Gauss | 高斯 |
 | Gauss-Legendre | 高斯-勒让德 |
 | Gaussian | 高斯 |
+| Gay-Lussac | 盖-吕萨克 |
 | Gibbs | 吉布斯 |
+| Gibbs-Bogoliubov | 吉布斯-博戈柳博夫 |
 | Gibbs-Duhem | 吉布斯-杜亥姆 |
 | Hamilton | 哈密顿 |
 | Hamiltonian | 哈密顿量 |
+| Heaviside | 亥维赛 |
 | Helmholtz | 亥姆霍兹 |
+| Henry | 亨利 |
+| Hessian | 黑塞 |
 | Jacobi | 雅可比 |
 | Jacobian | 雅可比行列式 |
 | Kelvin | 开尔文 |
+| Kolmogorov | 柯尔莫哥洛夫 |
+| Kronecker | 克罗内克 |
 | Lagrange | 拉格朗日 |
 | Lagrangian | 拉格朗日量 |
 | Langevin | 朗之万 |
+| Laplace | 拉普拉斯 |
 | Legendre | 勒让德 |
 | Liouville | 刘维尔 |
 | Lyapunov | 李雅普诺夫 |
@@ -50,11 +62,17 @@
 | Navier-Stokes | 纳维-斯托克斯 |
 | Newton | 牛顿 |
 | Onsager | 昂萨格 |
+| Peclet | 佩克莱 |
 | Planck | 普朗克 |
 | Poisson | 泊松 |
+| Reynolds | 雷诺 |
+| Schrodinger | 薛定谔 |
+| Smoluchowski | 斯莫卢霍夫斯基 |
+| Stirling | 斯特林 |
 | Stokes | 斯托克斯 |
 | Taylor | 泰勒 |
 | van der Waals | 范德华 |
+| Wiener-Khinchin | 维纳-辛钦 |
 | Wigner-Seitz | 维格纳-塞茨 |
 
 ### 保留拉丁原名的专名
@@ -65,28 +83,41 @@
 | Bennett | 本内特（接受比方法专名） |
 | Bennett-Chandler | 本内特-钱德勒（反应速率方法专名） |
 | Berendsen | 贝伦德森（恒温器专名） |
+| Blue-Moon | （稀有事件系综专名；原文取“blue moon＝难得一遇”之意，不是人名） |
+| Box-Muller | 博克斯-穆勒（高斯随机数算法专名） |
+| Bussi | （随机速度重标定恒温器专名） |
+| Caillol-Levesque | （超球面模拟方法专名） |
 | Car-Parrinello | 卡尔-帕里内洛（第一性原理分子动力学专名） |
 | Ewald | 埃瓦尔德（求和方法专名） |
+| Gillespie | 吉莱斯皮（随机化学动力学算法专名） |
 | Green-Kubo | 格林-久保（输运系数关系，中文文献通行原名） |
+| Heyes | （恒温器专名） |
 | Ising | 伊辛（格点模型专名） |
 | Jarzynski | 亚辛斯基（非平衡功等式专名） |
 | Kirkwood-Buff | 柯克伍德-布夫（溶液理论，中文文献通行原名） |
 | Kofke | 科夫克（吉布斯-杜亥姆积分法专名） |
 | Lennard-Jones | 勒纳德-琼斯（势/力场专名） |
+| Lowe-Andersen | （恒温器专名） |
+| Maggs | （局域电动力学方法专名） |
 | Metropolis | 梅特罗波利斯（算法专名） |
 | Monte Carlo | 蒙特卡罗（方法专名，保留原名） |
+| Mueller-Brown | （势能面模型专名） |
 | Nosé-Hoover | 能濑-胡佛（恒温器专名） |
 | Parrinello-Rahman | 帕里内洛-拉赫曼（恒压方法专名） |
 | Potts | 波茨（格点模型专名） |
 | RATTLE | （约束算法专名） |
 | Rosenbluth | 罗森布卢思（取样方法专名） |
 | SHAKE | （约束算法专名） |
+| Shing-Gubbins | （自由能测量方法专名） |
 | Stockmayer | 斯托克迈尔（势模型专名） |
 | Swendsen-Wang | 斯温森-王（团簇算法专名） |
 | Trotter | 特罗特（分解式专名） |
 | Verlet | 韦尔莱（算法专名） |
+| Voter | （超动力学方法专名） |
+| Walker | 沃克（别名抽样法专名） |
 | Wang-Landau | 王-兰道（态密度算法专名） |
 | Widom | 维多姆（粒子插入法专名） |
+| Wolf | 沃尔夫（截断求和方法专名） |
 | Wolff | 沃尔夫（团簇算法专名） |
 | Yukawa | 汤川（势模型专名） |
 
@@ -249,7 +280,7 @@
 |---|---|
 | fast multipole methods | 快速多极方法 |
 | FCC | 面心立方 |
-| Fick’s law | Fick 定律 |
+| Fick’s law | 菲克定律 |
 | finite-size corrections | 有限尺寸修正 |
 | finite-size effects | 有限尺寸效应 |
 | first law | 第一定律 |
@@ -278,7 +309,7 @@
 | Gibbs | 吉布斯 |
 | Gibbs ensemble | 吉布斯系综 |
 | Gibbs free energy | 吉布斯自由能 |
-| Gibbs-Bogoliubov inequality | Gibbs-Bogoliubov 不等式 |
+| Gibbs-Bogoliubov inequality | 吉布斯-博戈柳博夫不等式 |
 | Gibbs-Duhem | 吉布斯-杜亥姆 |
 | Gibbs-Duhem integration | 吉布斯-杜亥姆积分 |
 | Gibbs-ensemble technique | 吉布斯系综方法 |
@@ -303,7 +334,7 @@
 | heat capacity | 热容 |
 | Helmholtz | 亥姆霍兹 |
 | Helmholtz free energy | 亥姆霍兹自由能 |
-| Henry coefficient | Henry 系数 |
+| Henry coefficient | 亨利系数 |
 | histogram reweighting technique | 直方图重加权方法 |
 | holonomic constrain | 完整约束 |
 | hybrid | 杂化 |
@@ -570,7 +601,7 @@
 | statistical mechanics | 统计力学 |
 | statistical thermodynamics | 统计热力学 |
 | steady-state velocity | 稳态速度 |
-| Stirling approximation | Stirling 近似 |
+| Stirling approximation | 斯特林近似 |
 | Stockmayer fluid | Stockmayer 流体 |
 | structure factor | 结构因子 |
 | super-detailed balance | 超细致平衡 |
@@ -655,7 +686,7 @@
 | water | 水 |
 | WF potential | WF 势 |
 | Widom method | Widom 方法 |
-| Wiener-Khinchin theorem | Wiener-Khinchin 定理 |
+| Wiener-Khinchin theorem | 维纳-辛钦定理 |
 | Wigner-Seitz cell | 维格纳-塞茨胞 |
 | Wolf algorithm | Wolf 方法 |
 | Wolff algorithm | Wolff 算法 |

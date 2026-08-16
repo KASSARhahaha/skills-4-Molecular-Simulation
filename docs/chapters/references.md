@@ -360,7 +360,7 @@
 **[119]** H. Yoshida, Symplectic integrators for Hamiltonian systems: basic theory, in: S. Ferraz-Mello (Ed.), Chaos, Resonance and Collective Dynamical Phenomena in the Solar System, Kluwer Academic Publishers, Dordrecht, 1992, pp. 407–411.
 { #ref-119 }
 
-**[120]** H. Yoshida, Recent progress in the theory and application of symplectic integrators, Celest. Mech. Dyn. Astron. 56 (1993) 27–43, [https://doi.org/10.1007/978-94-011-2030-2\_3](https://doi.org/10.1007/978-94-011-2030-2\_3).
+**[120]** H. Yoshida, Recent progress in the theory and application of symplectic integrators, Celest. Mech. Dyn. Astron. 56 (1993) 27–43, [https://doi.org/10.1007/978-94-011-2030-2_3](https://doi.org/10.1007/978-94-011-2030-2_3).
 { #ref-120 }
 
 **[121]** P. Saha, S. Tremaine, Symplectic integrators for solar system dynamics, Astron. J. 104 (4) (1992) 1633–1640, [https://doi.org/10.1086/116347](https://doi.org/10.1086/116347).
@@ -2031,7 +2031,7 @@
 **[676]** A. Malevanets, R. Kapral, Solute molecular dynamics in a mesoscale solvent, J. Chem. Phys. 112 (16) (2000) 7260–7269, [https://doi.org/10.1063/1.481289](https://doi.org/10.1063/1.481289).
 { #ref-676 }
 
-**[677]** G. Gompper, T. Ihle, D.M. Kroll, R.G. Winkler, Multi-particle collision dynamics: a particle-based mesoscale simulation approach to the hydrodynamics of complex fluids, Adv. Polym. Sci. 221 (2009) 1–87, [https://doi.org/10.1007/12\_2008\_5](https://doi.org/10.1007/12\_2008\_5).
+**[677]** G. Gompper, T. Ihle, D.M. Kroll, R.G. Winkler, Multi-particle collision dynamics: a particle-based mesoscale simulation approach to the hydrodynamics of complex fluids, Adv. Polym. Sci. 221 (2009) 1–87, [https://doi.org/10.1007/12_2008_5](https://doi.org/10.1007/12_2008_5).
 { #ref-677 }
 
 **[678]** S. Succi, The Lattice Boltzmann Equation: for Complex States of Flowing Matter, Oxford University Press, Oxford UK, 2018.
