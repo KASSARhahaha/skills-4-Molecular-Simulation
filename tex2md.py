@@ -118,6 +118,16 @@ def brace_arg(text, start):
     return None, start
 
 
+
+def web_image(path):
+    """把正文里的图名换成网页能显示的文件名。
+
+    .tex 引的是 tools/refigure.py 裁出的矢量 PDF（印刷用），浏览器
+    <img> 显示不了；同一个脚本按 1400 px 渲了同名 .png，这里换过去。
+    """
+    name = path.replace("figures/", "")
+    return name[:-4] + ".png" if name.endswith(".pdf") else name
+
 def process_boxed_figures(text):
     """转换 \\begin{center} 里的插图。
 
@@ -141,7 +151,7 @@ def process_boxed_figures(text):
                 )
                 return (f"\n*{cap}*\n{body}\n" if cap else f"\n{body}\n")
             return m.group(0)
-        img_path = img.group(1).replace("figures/", "")
+        img_path = web_image(img.group(1))
 
         caption = ""
         cm = re.search(r"\\captionof\{figure\}", inner)
@@ -353,9 +363,7 @@ def process_figures(text):
             # 无图的 figure 浮动体是算法续排框（如算法 10 的下半部分），
             # 保留正文，交给后续 process_code_blocks 转成代码块，切勿丢弃
             return "\n" + re.sub(r"\\(?:centering|label\{[^}]*\})", "", inner) + "\n"
-        img_path = img_match.group(1)
-        # Normalize path: strip figures/ prefix, make relative
-        img_path = img_path.replace("figures/", "")
+        img_path = web_image(img_match.group(1))
         # 题注常含 $...$ 与嵌套花括号，必须配对提取，不能用 [^}]*
         caption = ""
         cm = re.search(r"\\caption\{", inner)
