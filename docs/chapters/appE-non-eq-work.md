@@ -52,7 +52,7 @@ $$
 \tag{E.1.4}
 $$
 
-其中 $P_B(\Gamma_0, \lambda_0) = \exp\left(-\beta [E(\Gamma_0; \lambda_0) - F(\lambda_0)]\right)$，而 Helmholtz 自由能 $F$ 如通常一样由下式给出：
+其中 $P_B(\Gamma_0, \lambda_0) = \exp\left(-\beta [E(\Gamma_0; \lambda_0) - F(\lambda_0)]\right)$，而亥姆霍兹自由能 $F$ 如通常一样由下式给出：
 
 $$
 \beta F(\lambda) = -\ln \sum_{\Gamma} e^{-\beta E(\Gamma; \lambda)}.

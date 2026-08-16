@@ -193,7 +193,7 @@ $$
 \tag{14.1.10}
 $$
 
-如果我们在时间 $t + \Delta t$ 满足约束，则 $\sigma_k^c(t + \Delta t) = 0$。但如果系统沿无约束轨迹运动，约束在 $t + \Delta t$ 时不会被满足。我们假设可以对约束进行 Taylor 展开：
+如果我们在时间 $t + \Delta t$ 满足约束，则 $\sigma_k^c(t + \Delta t) = 0$。但如果系统沿无约束轨迹运动，约束在 $t + \Delta t$ 时不会被满足。我们假设可以对约束进行泰勒展开：
 
 $$
 \sigma_k^c(t + \Delta t) = \sigma_k^u(t + \Delta t) + \sum_{i=1}^{N} \left. \frac{\partial \sigma_k}{\partial \mathbf{r}_i} \right|_{\mathbf{r}^u(t+\Delta t)} \cdot [\mathbf{r}_i^c(t + \Delta t) - \mathbf{r}_i^u(t + \Delta t)] + \mathcal{O}(\Delta t^4).
@@ -214,9 +214,9 @@ $$
 \tag{14.1.13}
 $$
 
-通过矩阵求逆，我们可以求解向量 $\boldsymbol{\lambda}$。然而，由于我们在式 (14.1.11) 中截断了 Taylor 展开，我们应该在修正后的位置重新计算 $\sigma$，然后迭代上述方程直至收敛。
+通过矩阵求逆，我们可以求解向量 $\boldsymbol{\lambda}$。然而，由于我们在式 (14.1.11) 中截断了泰勒展开，我们应该在修正后的位置重新计算 $\sigma$，然后迭代上述方程直至收敛。
 
-虽然这里概述的方法是可行的，但计算上并不廉价，因为每次迭代都需要进行矩阵求逆。因此，在实践中，人们通常使用更简单的迭代方案来满足约束。在这种称为 SHAKE [[606]](references.md#ref-606) 的方案中，前面描述的迭代过程不是同时应用于所有约束，而是依次应用于每个约束。具体来说，我们对 $\sigma_k$ 使用式 (14.1.11) 的 Taylor 展开，但将 $\mathbf{r}_i^c - \mathbf{r}_i^u$ 近似为
+虽然这里概述的方法是可行的，但计算上并不廉价，因为每次迭代都需要进行矩阵求逆。因此，在实践中，人们通常使用更简单的迭代方案来满足约束。在这种称为 SHAKE [[606]](references.md#ref-606) 的方案中，前面描述的迭代过程不是同时应用于所有约束，而是依次应用于每个约束。具体来说，我们对 $\sigma_k$ 使用式 (14.1.11) 的泰勒展开，但将 $\mathbf{r}_i^c - \mathbf{r}_i^u$ 近似为
 
 $$
 \mathbf{r}_i^c(t + \Delta t) - \mathbf{r}_i^u(t) \approx -\frac{\Delta t^2}{m_i} \lambda_k \nabla_i \sigma_k(t).
@@ -594,7 +594,7 @@ $$
 
 ## 多重时间步长方法
 
-处理多原子分子高频振动模式的另一种方案基于经典运动方程的 Trotter 展开 Liouville 表示（式 (4.3.18)）。这里的思想不仅是分离坐标和动量的传播，而且将高频模式的传播分解为许多更短的时间步，同时为低频模式保持较长的时间步。为了实现这种分离，我们将粒子上的力分为两部分：
+处理多原子分子高频振动模式的另一种方案基于经典运动方程的 Trotter 展开刘维尔表示（式 (4.3.18)）。这里的思想不仅是分离坐标和动量的传播，而且将高频模式的传播分解为许多更短的时间步，同时为低频模式保持较长的时间步。为了实现这种分离，我们将粒子上的力分为两部分：
 
 $$
 \mathbf{F} = \mathbf{F}_{\mathrm{short}} + \mathbf{F}_{\mathrm{long}}.
@@ -602,7 +602,7 @@ $$
 
 这种划分是任意的，但对于我们的双原子分子，我们可以将势能分为负责键振动的短程相互作用和原子间的长程吸引力。核心思想是，在原子振动的时间尺度上，势能的长程部分几乎不发生变化，因此这种“昂贵的势能”不需要像势能的“廉价”短程部分那样频繁更新。这表明应该使用多个时间步：对振动使用短时间步，对其余相互作用使用长得多的时间步。
 
-Martyna 等人[[126]](references.md#ref-126) 使用 Liouville 形式来求解使用多个时间步的运动方程。在我们的讨论中，我们考虑 $NVE$ 系综。关于如何在其他系综中使用多个时间步的详细信息，请参阅文献[[126]](references.md#ref-126)。让我们从简单的情况开始，推导受力为 $F$ 的单个粒子的运动方程。该系统的 Liouville 算子（$iL$）为式 (4.3.12)：
+Martyna 等人[[126]](references.md#ref-126) 使用刘维尔形式来求解使用多个时间步的运动方程。在我们的讨论中，我们考虑 $NVE$ 系综。关于如何在其他系综中使用多个时间步的详细信息，请参阅文献[[126]](references.md#ref-126)。让我们从简单的情况开始，推导受力为 $F$ 的单个粒子的运动方程。该系统的刘维尔算子（$iL$）为式 (4.3.12)：
 
 $$
 iL = iL_r + iL_p = v \frac{\partial}{\partial r} + \frac{F}{m} \frac{\partial}{\partial v}.
@@ -614,7 +614,7 @@ $$
 e^{iL\Delta t} \approx e^{iL_p \Delta t/2} e^{iL_r \Delta t} e^{iL_p \Delta t/2}.
 $$
 
-时刻 $t$ 的位置和速度由在初始条件 $(r(0), v(0))$ 下应用 Liouville 算子得到。如第 4.3.4 节所示，$iL_r \Delta t$ 对应于坐标的移动，$iL_p \Delta t$ 对应于动量的移动。如果我们分三步执行这些操作，得到
+时刻 $t$ 的位置和速度由在初始条件 $(r(0), v(0))$ 下应用刘维尔算子得到。如第 4.3.4 节所示，$iL_r \Delta t$ 对应于坐标的移动，$iL_p \Delta t$ 对应于动量的移动。如果我们分三步执行这些操作，得到
 
 $$
 \displaystyle
@@ -703,14 +703,14 @@ $$
 
     更多细节，请参见补充材料（案例研究 22）。
 
-现在让我们将 Liouville 算子 $iL_p$ 分为两部分：
+现在让我们将刘维尔算子 $iL_p$ 分为两部分：
 
 $$
 iL_{\mathrm{short}} = \frac{F_{\mathrm{short}}}{m} \frac{\partial}{\partial v}, \qquad
 iL_{\mathrm{long}} = \frac{F - F_{\mathrm{short}}}{m} \frac{\partial}{\partial v} = \frac{F_{\mathrm{long}}}{m} \frac{\partial}{\partial v}.
 $$
 
-我们使用具有两个时间步的 Trotter 展开：一个长时间步 $\Delta t$ 和一个短时间步 $\delta t = \Delta t/n$。总 Liouville 算子为
+我们使用具有两个时间步的 Trotter 展开：一个长时间步 $\Delta t$ 和一个短时间步 $\delta t = \Delta t/n$。总刘维尔算子为
 
 $$
 e^{iL\Delta t} = e^{i(L_{\mathrm{short}} + L_{\mathrm{long}} + L_r)\Delta t}
@@ -725,7 +725,7 @@ e^{iL\Delta t} = e^{iL_{\mathrm{long}}\Delta t/2}
 e^{iL_{\mathrm{long}}\Delta t/2}.
 $$
 
-我们将此 Liouville 算子应用于初始位置和速度。我们首先使用“昂贵的” $F_{\mathrm{long}}$ 进行一步：
+我们将此刘维尔算子应用于初始位置和速度。我们首先使用“昂贵的” $F_{\mathrm{long}}$ 进行一步：
 
 $$
 e^{iL_{\mathrm{long}}\Delta t/2} f[\dot{r}(0), r(0)] = f[\dot{r}(0) + F_{\mathrm{long}}(0)\Delta t/2m,\, r(0)],

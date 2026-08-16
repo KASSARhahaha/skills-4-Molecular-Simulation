@@ -294,7 +294,7 @@ V' = V_0 \sqrt{\det(\mathbf{1} + 2\boldsymbol{\eta})}.
 \tag{F.4.4}
 $$
 
-现在我们将单位（未变形）体积$(V)$的 Helmholtz 自由能$(F)$按拉格朗日应变参数$\boldsymbol{\eta}$的幂次展开：
+现在我们将单位（未变形）体积$(V)$的亥姆霍兹自由能$(F)$按拉格朗日应变参数$\boldsymbol{\eta}$的幂次展开：
 
 $$
 \displaystyle

@@ -82,7 +82,7 @@ $$
 \end{align}
 $$
 
-由 Gibbs-Duhem 方程（$\mathrm{d}\Omega|_{V,T} = -\sum_r \langle N_r \rangle\,\mathrm{d}\mu_r$）可得：
+由吉布斯-杜亥姆方程（$\mathrm{d}\Omega|_{V,T} = -\sum_r \langle N_r \rangle\,\mathrm{d}\mu_r$）可得：
 
 $$
 \frac{\partial^2 \Omega}{\partial N_a\,\partial N_b}\bigg|_{T,V,N'} = -\frac{\partial \mu_a}{\partial N_b}\bigg|_{T,V,N'} - \sum_{r=1}^{n} \langle N_r \rangle \frac{\partial^2 \mu_r}{\partial N_a\,\partial N_b}\bigg|_{T,V,N'}.

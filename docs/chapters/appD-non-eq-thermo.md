@@ -2,7 +2,7 @@
 
 ## 熵产生
 
-当一个系统从非平衡态弛豫时，会产生熵。由 Onsager [[55,56]](references.md#ref-55)建立的非平衡热力学（不可逆热力学）确定了熵产生的不同贡献之间的关系。因此，我们需要一个熵产生的表达式作为出发点。熵产生的“经典”推导可以在 De Groot 和 Mazur 所著的《Non-equilibrium Thermodynamics》[[57]](references.md#ref-57)一书中找到。然而，文献[[57]](references.md#ref-57)中熵产生表达式的推导虽然完整，但有些令人生畏。在这里，我们选择了一条不同的路线：它不够完整，但更加简洁，也更容易理解其中的物理本质。
+当一个系统从非平衡态弛豫时，会产生熵。由昂萨格 [[55,56]](references.md#ref-55)建立的非平衡热力学（不可逆热力学）确定了熵产生的不同贡献之间的关系。因此，我们需要一个熵产生的表达式作为出发点。熵产生的“经典”推导可以在 De Groot 和 Mazur 所著的《Non-equilibrium Thermodynamics》[[57]](references.md#ref-57)一书中找到。然而，文献[[57]](references.md#ref-57)中熵产生表达式的推导虽然完整，但有些令人生畏。在这里，我们选择了一条不同的路线：它不够完整，但更加简洁，也更容易理解其中的物理本质。
 
 让我们首先简要考察将一个封闭系统的两个子系统（I 和 II）接触时所产生的熵产生。这两个子系统可以交换能量和粒子。我们忽略介质可能发生流动这一事实——这是为保持问题简洁所付出的代价。实际上，粘性流是一个重要的非平衡现象，将其纳入熵产生表达式的方法在文献[[57]](references.md#ref-57)中有详细描述。
 
@@ -170,7 +170,7 @@ J_i = \sum_j L_{ij} X_j .
 \tag{D.2.8}
 $$
 
-在这一阶段，我们对输运系数（transport coefficients）$L_{ij}$一无所知。Onsager [[55]](references.md#ref-55)假设，描述变量$\alpha_i$向其平衡值（零）衰减速度的定律对于任意小的$\alpha_i$都成立，因此也描述了平衡附近自发涨落向其平均值衰减的速度。这一“Onsager 回归假设”（Onsager Regression Hypothesis）提供了宏观输运系数与平衡态系统微观动力学之间的联系。回归假设可以被视为 Einstein 关于扩散输运可以处理为布朗运动的宏观表现这一假设的推广。
+在这一阶段，我们对输运系数（transport coefficients）$L_{ij}$一无所知。Onsager [[55]](references.md#ref-55)假设，描述变量$\alpha_i$向其平衡值（零）衰减速度的定律对于任意小的$\alpha_i$都成立，因此也描述了平衡附近自发涨落向其平均值衰减的速度。这一“昂萨格回归假设”（Onsager Regression Hypothesis）提供了宏观输运系数与平衡态系统微观动力学之间的联系。回归假设可以被视为爱因斯坦关于扩散输运可以处理为布朗运动的宏观表现这一假设的推广。
 
 由式 (D.2.4) 可以容易地导出熵产生$\dot{S}$的表达式：
 
@@ -180,7 +180,7 @@ $$
 \tag{D.2.9}
 $$
 
-## Onsager 倒易关系
+## 昂萨格倒易关系
 
 为了与平衡态中涨落的衰减建立联系，我们现在证明平衡涨落$\alpha_i$仅与其共轭力$X_j$相关：
 
@@ -190,7 +190,7 @@ $$
 \tag{D.3.1}
 $$
 
-其中$k_B$是 Boltzmann 常数，$\delta_{ij}$是 Kronecker delta。式 (D.3.1) 可由以下事实推导：
+其中$k_B$是玻尔兹曼常数，$\delta_{ij}$是 Kronecker delta。式 (D.3.1) 可由以下事实推导：
 
 $$
 \langle \alpha_i X_j \rangle = k_B \int \mathrm{d}\{\alpha\}\, \alpha_i \frac{\partial P(\{\alpha\})}{\partial \alpha_j} = -k_B \int \mathrm{d}\{\alpha\}\, \frac{\partial \alpha_i}{\partial \alpha_j} P(\{\alpha\}) = -k_B \delta_{ij} ,
@@ -205,7 +205,7 @@ $$
 \tag{D.3.3}
 $$
 
-式 (D.3.3) 使我们能够推导 Onsager 倒易关系（Onsager reciprocal relations）。但在推导之前，请注意，从微观上看，式 (D.3.3) 有些奇怪，因为时刻$t$的涨落只会导致$t > 0$时的流。事实上，由于$\alpha_j$和$J_j$具有不同的时间反演对称性，等时积$\langle \alpha_j(t) J_i(t) \rangle$实际上为零。非零的量是$\langle \alpha_j(t) J_i(t+\epsilon) \rangle$。我们稍后将回到这一点。目前，我们继续使用式 (D.3.3) 并将其重写为：
+式 (D.3.3) 使我们能够推导昂萨格倒易关系（Onsager reciprocal relations）。但在推导之前，请注意，从微观上看，式 (D.3.3) 有些奇怪，因为时刻$t$的涨落只会导致$t > 0$时的流。事实上，由于$\alpha_j$和$J_j$具有不同的时间反演对称性，等时积$\langle \alpha_j(t) J_i(t) \rangle$实际上为零。非零的量是$\langle \alpha_j(t) J_i(t+\epsilon) \rangle$。我们稍后将回到这一点。目前，我们继续使用式 (D.3.3) 并将其重写为：
 
 $$
 \int_0^\infty \mathrm{d}t\, \langle \alpha_j(0) \dot{J}_i(t) \rangle = -k_B L_{ij} ,
@@ -243,7 +243,7 @@ L_{ij} = L_{ji} .
 \tag{D.3.7}
 $$
 
-这就是 Onsager 倒易关系：它表明输运系数矩阵$L_{ij}$是对称的。这一关系是非平衡热力学的核心结果之一，在计算如互扩散系数等耦合输运性质时具有深远的意义。
+这就是昂萨格倒易关系：它表明输运系数矩阵$L_{ij}$是对称的。这一关系是非平衡热力学的核心结果之一，在计算如互扩散系数等耦合输运性质时具有深远的意义。
 
 ---
 
