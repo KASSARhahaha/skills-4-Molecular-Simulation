@@ -71,7 +71,7 @@
 | Ising | 伊辛（格点模型专名） |
 | Jarzynski | 亚辛斯基（非平衡功等式专名） |
 | Kirkwood-Buff | 柯克伍德-布夫（溶液理论，中文文献通行原名） |
-| Kofke | 科夫克（Gibbs-Duhem 积分法专名） |
+| Kofke | 科夫克（吉布斯-杜亥姆积分法专名） |
 | Lennard-Jones | 勒纳德-琼斯（势/力场专名） |
 | Metropolis | 梅特罗波利斯（算法专名） |
 | Monte Carlo | 蒙特卡罗（方法专名，保留原名） |

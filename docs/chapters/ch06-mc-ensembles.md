@@ -1134,7 +1134,7 @@ $$
 **算法 15　基本吉布斯系综模拟**
 
 ```
-program mc_Gibbs                  % Gibbs 系综模拟
+program mc_Gibbs                  % 吉布斯系综模拟
 for 1 <= icycl <= ncycle do       % 执行 ncycl 个 MC 循环
     ran=R*(npart+nvol+nswap)
     if ran <= npart then

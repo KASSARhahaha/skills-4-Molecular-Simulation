@@ -139,7 +139,7 @@ else if switch == 2 then          % 速度 Verlet 第二步
     enddo
     for 1 <= i <= npart do
         if R < nu*dt then         % 检验是否与热浴碰撞
-            v(i)=gauss(0.,sqrt(temp))  % 从 Gauss 分布抽取
+            v(i)=gauss(0.,sqrt(temp))  % 从高斯分布抽取
         endif                          % 新速度赋予该粒子
     enddo
 endif

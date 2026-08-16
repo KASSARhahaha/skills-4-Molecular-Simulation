@@ -2,7 +2,7 @@
 
 将经典统计力学方法推广到非哈密顿系统的系统性方法由 Tuckerman 等人[[267,715]](references.md#ref-267)提出。在本附录中，我们简要概述分析扩展拉格朗日系统的一般方法。然而，我们将跳过大部分推导。对于使用微分几何数学方法的更完整、更严格的推导，读者可参考原始文献。
 
-一般而言，求解非哈密顿运动方程所产生的动力学不是保面积的。正如我们在附录 A.4.3 中所看到的，求解运动方程可以被视为从时间$t_0$处的相空间坐标到时间$t$处的相空间坐标的坐标变换。如果系统是哈密顿的，系统的时间演化将改变相空间中无穷小体积元的形状，但不会改变其体积$\mathrm{d}\boldsymbol{\Gamma}$。相比之下，对于非哈密顿系统，我们必须考虑与$\mathrm{d}\boldsymbol{\Gamma}(t_0) \rightarrow \mathrm{d}\boldsymbol{\Gamma}(t)$演化相关的变换的雅可比行列式行列式：
+一般而言，求解非哈密顿运动方程所产生的动力学不是保面积的。正如我们在附录 A.4.3 中所看到的，求解运动方程可以被视为从时间$t_0$处的相空间坐标到时间$t$处的相空间坐标的坐标变换。如果系统是哈密顿的，系统的时间演化将改变相空间中无穷小体积元的形状，但不会改变其体积$\mathrm{d}\boldsymbol{\Gamma}$。相比之下，对于非哈密顿系统，我们必须考虑与$\mathrm{d}\boldsymbol{\Gamma}(t_0) \rightarrow \mathrm{d}\boldsymbol{\Gamma}(t)$演化相关的变换的雅可比行列式：
 
 $$
 \mathrm{d}\boldsymbol{\Gamma}_t = J(\boldsymbol{\Gamma}_t ; \boldsymbol{\Gamma}_0)\,\mathrm{d}\boldsymbol{\Gamma}_0,
