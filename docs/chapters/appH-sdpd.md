@@ -15,7 +15,7 @@ $$
 在不存在热涨落的情况下，宏观输运由纳维-斯托克斯方程描述：
 
 $$
-m\rho \frac{d\mathbf{v}}{dt} = -\nabla P + \eta \nabla^2 \mathbf{v} + \left(\zeta + \frac{\eta}{3}\right) \nabla (\nabla \cdot \mathbf{v}) ,
+m\rho \frac{\mathrm{d}\mathbf{v}}{\mathrm{d}t} = -\nabla P + \eta \nabla^2 \mathbf{v} + \left(\zeta + \frac{\eta}{3}\right) \nabla (\nabla \cdot \mathbf{v}) ,
 \quad (H.1.1)
 \tag{H.1.1}
 $$
@@ -23,7 +23,7 @@ $$
 并辅以由于粘性流动和热输运导致的熵产生的（简化）表达式：
 
 $$
-T\rho \frac{ds}{dt} = \phi + \kappa \nabla^2 T
+T\rho \frac{\mathrm{d}s}{\mathrm{d}t} = \phi + \kappa \nabla^2 T
 \quad (H.1.2)
 \tag{H.1.2}
 $$
@@ -38,7 +38,7 @@ $$
 最后是质量守恒定律：
 
 $$
-\frac{d\rho}{dt} = -\rho \nabla \cdot \mathbf{v} .
+\frac{d\rho}{\mathrm{d}t} = -\rho \nabla \cdot \mathbf{v} .
 \quad (H.1.3)
 $$
 

@@ -37,7 +37,7 @@
 首先，让我们将上述方法应用于标准的 Metropolis 方案。在正则系综中，粒子数、温度和体积是恒定的（参见图 6.1）。对于恒定-$NVT$ 的系统，找到构型 $\mathbf{r}^N$ 的概率与玻尔兹曼权重成正比：
 
 $$
-\mathcal{N}(\mathbf{r}^N) \propto \exp[-\beta U(\mathbf{r}^N)].
+\mathcal{N}(\mathbf{r}^N) \propto \exp[-\beta \mathcal{U}(\mathbf{r}^N)].
 \tag{6.2.1}
 $$
 
@@ -58,7 +58,7 @@ $$
    其中 $\Delta/2$ 是最大位移。$\Delta$ 的值应选择为使采样方案最优（参见第 3.4 节）。试探构型记为 $n$，其能量为 $U(n)$。
 1. 该移动以如下概率被接受（参见公式 (3.2.11)）
    $$
-   \text{acc}(o \to n) = \min(1, \exp\{-\beta[U(n) - U(o)]\}).
+   \text{acc}(o \to n) = \min(1, \exp\{-\beta[\mathcal{U}(n) - \mathcal{U}(o)]\}).
    \tag{6.2.3}
    $$
    如果被拒绝，则保留旧构型。
@@ -77,7 +77,7 @@ $$
 将此式代入细致平衡条件 (6.1.1)，连同公式 (6.1.2) 和期望分布 (6.2.1)，给出接受规则的条件
 
 $$
-\frac{\text{acc}(o \to n)}{\text{acc}(n \to o)} = \exp\{-\beta[U(n) - U(o)]\}.
+\frac{\text{acc}(o \to n)}{\text{acc}(n \to o)} = \exp\{-\beta[\mathcal{U}(n) - \mathcal{U}(o)]\}.
 \tag{6.2.5}
 $$
 
@@ -94,7 +94,7 @@ $$
 我们将以一种看似不必要地复杂的方式来推导恒定压力 Monte Carlo 的基本方程。然而，这种推导方式的优点是可以使用相同的框架来引入后面将要讨论的其他非-$NVT$ Monte Carlo 方法。为方便起见，我们首先假设处理的是一个由 $N$ 个相同原子组成的系统。该系统的配分函数为
 
 $$
-Q(N, V, T) = \frac{1}{\Lambda^{3N} N!} \int_0^L \cdots \int_0^L \mathrm{d}\mathbf{r}^N \exp[-\beta U(\mathbf{r}^N)].
+Q(N, V, T) = \frac{1}{\Lambda^{3N} N!} \int_0^L \cdots \int_0^L \mathrm{d}\mathbf{r}^N \exp[-\beta \mathcal{U}(\mathbf{r}^N)].
 \tag{6.3.1}
 $$
 
@@ -112,7 +112,7 @@ $$
 如果我们将这些标度坐标代入公式 (6.3.1)，我们得到
 
 $$
-Q(N, V, T) = \frac{V^N}{\Lambda^{3N} N!} \int_0^1 \cdots \int_0^1 \mathrm{d}\mathbf{s}^N \exp[-\beta U(\mathbf{s}^N; L)].
+Q(N, V, T) = \frac{V^N}{\Lambda^{3N} N!} \int_0^1 \cdots \int_0^1 \mathrm{d}\mathbf{s}^N \exp[-\beta \mathcal{U}(\mathbf{s}^N; L)].
 \tag{6.3.3}
 $$
 
@@ -120,7 +120,7 @@ $$
 
 $$
 \displaystyle
-F(N, V, T) = -k_B T \ln Q = -k_B T \ln \left[\frac{V^N{\Lambda^{3N} N!}\right] - k_B T \ln \left[\int \mathrm{d}\mathbf{s}^N \exp[-\beta U(\mathbf{s}^N; L)]\right] = F^{\text{id}}(N, V, T) + F^{\text{ex}}(N, V, T).
+F(N, V, T) = -k_B T \ln Q = -k_B T \ln \left[\frac{V^N{\Lambda^{3N} N!}\right] - k_B T \ln \left[\int \mathrm{d}\mathbf{s}^N \exp[-\beta \mathcal{U}(\mathbf{s}^N; L)]\right] = F^{\text{id}}(N, V, T) + F^{\text{ex}}(N, V, T).
 }
 \tag{6.3.4}
 $$
@@ -129,7 +129,7 @@ $$
 
 $$
 \displaystyle
-Q(N, M, V, V_0, T) = Q(M, V_0 - V, T) \frac{V^N{\Lambda^{3M} N!} \int \mathrm{d}\mathbf{s}^N e^{-\beta U(\mathbf{s}^N; L)} = e^{-\beta F_R(M, V_0 - V, T)} \frac{V^N}{\Lambda^{3M} N!} \int \mathrm{d}\mathbf{s}^N e^{-\beta U(\mathbf{s}^N; L)},
+Q(N, M, V, V_0, T) = Q(M, V_0 - V, T) \frac{V^N{\Lambda^{3M} N!} \int \mathrm{d}\mathbf{s}^N e^{-\beta \mathcal{U}(\mathbf{s}^N; L)} = e^{-\beta F_R(M, V_0 - V, T)} \frac{V^N}{\Lambda^{3M} N!} \int \mathrm{d}\mathbf{s}^N e^{-\beta \mathcal{U}(\mathbf{s}^N; L)},
 }
 \tag{6.3.5}
 $$
@@ -137,7 +137,7 @@ $$
 其中 $F_R$ 表示储库的亥姆霍兹自由能。该组合系统的总自由能为 $F^{\text{tot}} = -k_B T \ln Q(N, M, V, V_0, T)$。现在假设两个子系统可以交换体积。在这种情况下，$N$ 粒子子系统的体积 $V$ 可以涨落。$V$ 的最概然值将是使组合系统自由能最小的那个值。$N$ 粒子子系统具有体积 $V$ 的概率密度 $\mathcal{N}(V)$ 为[^1]
 
 $$
-\mathcal{N}(V) = \frac{\exp[-\beta F_R(M, V_0 - V, T)] V^N \int \mathrm{d}\mathbf{s}^N \exp[-\beta U(\mathbf{s}^N; L)]}{\int_0^{V_0} \mathrm{d}V' \exp[-\beta F_R(M, V_0 - V', T)] V'^N \int \mathrm{d}\mathbf{s}^N \exp[-\beta U(\mathbf{s}^N; L')]}.
+\mathcal{N}(V) = \frac{\exp[-\beta F_R(M, V_0 - V, T)] V^N \int \mathrm{d}\mathbf{s}^N \exp[-\beta \mathcal{U}(\mathbf{s}^N; L)]}{\int_0^{V_0} \mathrm{d}V' \exp[-\beta F_R(M, V_0 - V', T)] V'^N \int \mathrm{d}\mathbf{s}^N \exp[-\beta \mathcal{U}(\mathbf{s}^N; L')]}.
 \tag{6.3.6}
 $$
 
@@ -151,14 +151,14 @@ $$
 组合配分函数 (6.3.5) 于是可以写为
 
 $$
-Q(N, P, T) \equiv \frac{\beta P}{\Lambda^{3N} N!} \int \mathrm{d}V \, V^N \exp(-\beta PV) \int \mathrm{d}\mathbf{s}^N \exp[-\beta U(\mathbf{s}^N; L)],
+Q(N, P, T) \equiv \frac{\beta P}{\Lambda^{3N} N!} \int \mathrm{d}V \, V^N \exp(-\beta PV) \int \mathrm{d}\mathbf{s}^N \exp[-\beta \mathcal{U}(\mathbf{s}^N; L)],
 \tag{6.3.8}
 $$
 
 其中我们包含了一个因子 $\beta P$ 以使 $Q(N, P, T)$ 无量纲（这一选择并非显然的——参见脚注 1）。这给出，对于公式 (6.3.6)，
 
 $$
-\mathcal{N}_{N,P,T}(V) = \frac{V^N \exp(-\beta PV) \int \mathrm{d}\mathbf{s}^N \exp[-\beta U(\mathbf{s}^N; L)]}{\int_0^{V_0} \mathrm{d}V' \, V'^N \exp(-\beta PV') \int \mathrm{d}\mathbf{s}^N \exp[-\beta U(\mathbf{s}^N; L')]}.
+\mathcal{N}_{N,P,T}(V) = \frac{V^N \exp(-\beta PV) \int \mathrm{d}\mathbf{s}^N \exp[-\beta \mathcal{U}(\mathbf{s}^N; L)]}{\int_0^{V_0} \mathrm{d}V' \, V'^N \exp(-\beta PV') \int \mathrm{d}\mathbf{s}^N \exp[-\beta \mathcal{U}(\mathbf{s}^N; L')]}.
 \tag{6.3.9}
 $$
 
@@ -172,7 +172,7 @@ $$
 公式 (6.3.9) 是恒定-$NPT$ Monte Carlo 模拟的出发点。其核心思想是，找到小系统具有体积 $V$ 且 $N$ 个原子处于特定构型（由 $\mathbf{s}^N$ 指定）的概率密度为
 
 $$
-\mathcal{N}(V; \mathbf{s}^N) \propto V^N \exp(-\beta PV) \exp[-\beta U(\mathbf{s}^N; L)] = \exp\{-\beta[U(\mathbf{s}^N, V) + PV - N\beta^{-1} \ln V]\}.
+\mathcal{N}(V; \mathbf{s}^N) \propto V^N \exp(-\beta PV) \exp[-\beta \mathcal{U}(\mathbf{s}^N; L)] = \exp\{-\beta[\mathcal{U}(\mathbf{s}^N, V) + PV - N\beta^{-1} \ln V]\}.
 \tag{6.3.11}
 $$
 
@@ -181,21 +181,21 @@ $$
 在恒定-$NPT$ Monte Carlo 方法中，$V$ 被简单地视为一个额外的坐标，$V$ 中的试探移动必须满足与 $\mathbf{s}$ 中的试探移动相同的规则；特别是，我们应当保持底层马尔可夫链的微观可逆性。假设我们的试探移动由从体积 $V$ 变为 $V' = V + \Delta V$ 的尝试组成，其中 $\Delta V$ 是在区间 $[-\Delta V_{\max}, +\Delta V_{\max}]$ 上均匀分布的随机数。在 Metropolis 方案中，这样一个随机的体积变化移动将以如下概率被接受
 
 $$
-\text{acc}(o \to n) = \min\left(1, \exp\{-\beta[U(\mathbf{s}^N, V') - U(\mathbf{s}^N, V) + P(V' - V) - N\beta^{-1} \ln(V'/V)]\}\right).
+\text{acc}(o \to n) = \min\left(1, \exp\{-\beta[\mathcal{U}(\mathbf{s}^N, V') - \mathcal{U}(\mathbf{s}^N, V) + P(V' - V) - N\beta^{-1} \ln(V'/V)]\}\right).
 \tag{6.3.12}
 $$
 
 与其尝试对体积本身进行随机变化，不如构造对盒长 $L$ [[168]](references.md#ref-168) 或体积对数[[133]](references.md#ref-133) 的试探移动。这样的试探移动同样合法，只要底层马尔可夫链的微观可逆性得到保持即可。然而，这些替代方案会导致公式 (6.3.12) 的形式略有不同。配分函数 (6.3.8) 可以重写为
 
 $$
-Q(N, P, T) = \frac{\beta P}{\Lambda^{3N} N!} \int d(\ln V) \, V^{N+1} \exp(-\beta PV) \int \mathrm{d}\mathbf{s}^N \exp[-\beta U(\mathbf{s}^N; L)].
+Q(N, P, T) = \frac{\beta P}{\Lambda^{3N} N!} \int d(\ln V) \, V^{N+1} \exp(-\beta PV) \int \mathrm{d}\mathbf{s}^N \exp[-\beta \mathcal{U}(\mathbf{s}^N; L)].
 \tag{6.3.13}
 $$
 
 此公式表明，如果我们在 $\ln V$ 中进行随机游走，找到体积 $V$ 的概率为
 
 $$
-\mathcal{N}(V; \mathbf{s}^N) \propto V^{N+1} \exp(-\beta PV) \exp[-\beta U(\mathbf{s}^N; L)].
+\mathcal{N}(V; \mathbf{s}^N) \propto V^{N+1} \exp(-\beta PV) \exp[-\beta \mathcal{U}(\mathbf{s}^N; L)].
 \tag{6.3.14}
 $$
 
@@ -203,7 +203,7 @@ $$
 
 $$
 \displaystyle
-\text{acc(o \to n) = \min\left(1, \exp\{-\beta[U(\mathbf{s}^N, V') - U(\mathbf{s}^N, V) + P(V' - V) - (N+1)\beta^{-1} \ln(V'/V)]\}\right).
+\text{acc(o \to n) = \min\left(1, \exp\{-\beta[\mathcal{U}(\mathbf{s}^N, V') - \mathcal{U}(\mathbf{s}^N, V) + P(V' - V) - (N+1)\beta^{-1} \ln(V'/V)]\}\right).
 }
 \tag{6.3.15}
 $$
@@ -398,7 +398,7 @@ $$
 强度热力学变量 $P$、$T$ 和所有组分的 $\mu_i$ 是线性相关的（公式 (2.1.17)）。特别地，在恒定温度下，我们有
 
 $$
-N d\mu = V dP.
+N \mathrm{d}\mu = V \mathrm{d}P.
 \tag{6.5.1}
 $$
 
@@ -441,7 +441,7 @@ $$
 组合配分函数，通常用符号 $\Xi$ 表示，于是可以写为
 
 $$
-\Xi(\mu, V, T) \equiv \sum_{N=0}^{\infty} \frac{V^N \exp(\beta\mu N)}{\Lambda^{3N} N!} \int \mathrm{d}\mathbf{s}^N \exp[-\beta U(\mathbf{s}^N; L)],
+\Xi(\mu, V, T) \equiv \sum_{N=0}^{\infty} \frac{V^N \exp(\beta\mu N)}{\Lambda^{3N} N!} \int \mathrm{d}\mathbf{s}^N \exp[-\beta \mathcal{U}(\mathbf{s}^N; L)],
 \tag{6.5.4}
 $$
 
@@ -492,21 +492,21 @@ $$
 我们现在可以将巨正则配分函数重写为
 
 $$
-\Xi(f, V, T) \equiv \sum_{N=0}^{\infty} \frac{(f V)^N}{N!} \int \mathrm{d}\mathbf{s}^N \exp[-\beta U(\mathbf{s}^N); L],
+\Xi(f, V, T) \equiv \sum_{N=0}^{\infty} \frac{(f V)^N}{N!} \int \mathrm{d}\mathbf{s}^N \exp[-\beta \mathcal{U}(\mathbf{s}^N); L],
 \tag{6.5.9}
 $$
 
 对应的特定 $N$ 粒子构型的概率密度为
 
 $$
-\mathcal{N}_{f,V,T}(\mathbf{s}^N; L) \propto \frac{(f V)^N}{N!} \exp[-\beta U(\mathbf{s}^N); L].
+\mathcal{N}_{f,V,T}(\mathbf{s}^N; L) \propto \frac{(f V)^N}{N!} \exp[-\beta \mathcal{U}(\mathbf{s}^N); L].
 \tag{6.5.10}
 $$
 
 现在考虑一个试探移动，我们尝试将一个粒子从储库移动到体积 $V$ 中的任意位置。我们应当确保构造的底层马尔可夫链满足微观可逆性。此外，我们选择使添加和移除粒子的试探移动概率相等。将粒子移动到或从体积 $V$ 移出的试探移动的接受概率必须被选择为使得具有 $N+1$ 和 $N$ 个粒子的状态以公式 (6.5.10) 中相应概率密度的比值给出的相对概率被访问：
 
 $$
-\frac{\mathcal{N}_{f,V,T}(\mathbf{s}^{N+1}; L)}{\mathcal{N}_{f,V,T}(\mathbf{s}^N; L)} = \frac{f V}{(N + 1)} \exp\left\{-\beta\left[U(\mathbf{s}^{N+1}; L) - U(\mathbf{s}^N; L)\right]\right\}.
+\frac{\mathcal{N}_{f,V,T}(\mathbf{s}^{N+1}; L)}{\mathcal{N}_{f,V,T}(\mathbf{s}^N; L)} = \frac{f V}{(N + 1)} \exp\left\{-\beta\left[\mathcal{U}(\mathbf{s}^{N+1}; L) - \mathcal{U}(\mathbf{s}^N; L)\right]\right\}.
 \tag{6.5.11}
 $$
 
@@ -522,12 +522,12 @@ $$
 
 1. 粒子位移。随机选择一个粒子并赋予新的构象：例如，在原子的情况下，给予随机位移。此移动以如下概率被接受
    $$
-   \text{acc}(\mathbf{s} \to \mathbf{s}') = \min\left(1, \exp\{-\beta[U(\mathbf{s}'^N) - U(\mathbf{s}^N)]\}\right).
+   \text{acc}(\mathbf{s} \to \mathbf{s}') = \min\left(1, \exp\{-\beta[\mathcal{U}(\mathbf{s}'^N) - \mathcal{U}(\mathbf{s}^N)]\}\right).
    \tag{6.5.12}
    $$
 1. 粒子的插入和移除。在随机位置插入一个粒子或移除随机选择的粒子。由公式 (6.5.11) 可得，粒子插入的有效（Metropolis 风格）接受规则为
    $$
-   \text{acc}(N \to N + 1) = \min\left(1, \frac{f V}{(N + 1)} \exp\{-\beta[U(N + 1) - U(N)]\}\right)
+   \text{acc}(N \to N + 1) = \min\left(1, \frac{f V}{(N + 1)} \exp\{-\beta[\mathcal{U}(N + 1) - \mathcal{U}(N)]\}\right)
    \tag{6.5.13}
    $$
    粒子移除以如下概率被接受
@@ -651,21 +651,21 @@ $$
 为了讨论具有影响分子间相互作用的内自由度的分子体系的巨正则 MC，将处于同一内部状态 $i$ 的所有分子视为具有分子内能 $\epsilon_i$ 的独立物种是有用的。由于假设包含 $M$ 个分子的理想气体储库处于热平衡，状态 $i$ 的副本数为 $N_i^0 = M e^{-\beta\epsilon_i}/q(T)$，其中 $q(T) \equiv \sum_i e^{-\beta\epsilon_i}$ 表示分子内配分函数。我们可以将组合系统的配分函数写为
 
 $$
-Q(M, V_0, V, T) = \frac{(V_0 q(T))^M}{\Lambda^{3M} \prod_i N_i^0!} \times \sum_{\{N_i\}=0}^{\infty} \prod_i \frac{V^{N_i} N_i^0!}{V_0^{N_i} (N_i^0 - N_i)! N_i!} \int \mathrm{d}\mathbf{s}^N \exp[-\beta U(\mathbf{s}^N; L)].
+Q(M, V_0, V, T) = \frac{(V_0 q(T))^M}{\Lambda^{3M} \prod_i N_i^0!} \times \sum_{\{N_i\}=0}^{\infty} \prod_i \frac{V^{N_i} N_i^0!}{V_0^{N_i} (N_i^0 - N_i)! N_i!} \int \mathrm{d}\mathbf{s}^N \exp[-\beta \mathcal{U}(\mathbf{s}^N; L)].
 \tag{6.5.18}
 $$
 
 在公式 (6.5.18) 中，我们省略了一个因子 $\exp[-\beta \sum_i N_i^0 \epsilon_i]$，因为它不依赖于分子是在储库中还是系统中。现在我们利用当 $M \to \infty$ 时 $N_i^0 \gg N_i$ 这一事实，因此
 
 $$
-Q(M, V_0, V, T) = \frac{(V_0 q(T))^M}{\Lambda^{3M} \prod_i N_i^0!} \times \sum_{\{N_i\}=0}^{\infty} \prod_i \frac{V^{N_i} (N_i^0/V_0)^{N_i}}{N_i!} \int \mathrm{d}\mathbf{s}^N \exp[-\beta U(\mathbf{s}^N; L)].
+Q(M, V_0, V, T) = \frac{(V_0 q(T))^M}{\Lambda^{3M} \prod_i N_i^0!} \times \sum_{\{N_i\}=0}^{\infty} \prod_i \frac{V^{N_i} (N_i^0/V_0)^{N_i}}{N_i!} \int \mathrm{d}\mathbf{s}^N \exp[-\beta \mathcal{U}(\mathbf{s}^N; L)].
 \tag{6.5.19}
 $$
 
 此外，$N_i^0 = M e^{-\beta\epsilon_i}/q(T)$，因此利用 $M/V_0 \equiv f$，并省略常数前置因子 $(V_0 q(T)/\Lambda^3)^M / \prod_i (N_i^0)!$，我们得到巨正则配分函数 $\Xi$ 为
 
 $$
-\Xi(f, V, T) = \sum_{\{N_i\}=0}^{\infty} \prod_i \frac{\left(f V e^{-\beta\epsilon_i}/q(T)\right)^{N_i}}{N_i!} \int \mathrm{d}\mathbf{s}^N \exp[-\beta U(\mathbf{s}^N; L)],
+\Xi(f, V, T) = \sum_{\{N_i\}=0}^{\infty} \prod_i \frac{\left(f V e^{-\beta\epsilon_i}/q(T)\right)^{N_i}}{N_i!} \int \mathrm{d}\mathbf{s}^N \exp[-\beta \mathcal{U}(\mathbf{s}^N; L)],
 \tag{6.5.20}
 $$
 
@@ -728,7 +728,7 @@ $$
 第 6.5.3 节中的讨论表明，巨正则 MC 方法可以容易地扩展到分子混合物。如果我们有一个与固定各物种逸度 $f_\alpha$ 的储库接触的物种 $\alpha = 1, 2, \cdots$ 的混合物，那么我们可以将巨正则配分函数 $\Xi$ 写为
 
 $$
-\Xi(\{f_\alpha\}, V, T) = \sum_{\{N_\alpha\}=0}^{\infty} \prod_\alpha \frac{[f_\alpha V]^{N_\alpha}}{N_\alpha!} \int \mathrm{d}\mathbf{s}^N \exp[-\beta U(\mathbf{s}^N; L)].
+\Xi(\{f_\alpha\}, V, T) = \sum_{\{N_\alpha\}=0}^{\infty} \prod_\alpha \frac{[f_\alpha V]^{N_\alpha}}{N_\alpha!} \int \mathrm{d}\mathbf{s}^N \exp[-\beta \mathcal{U}(\mathbf{s}^N; L)].
 \tag{6.5.25}
 $$
 
@@ -750,7 +750,7 @@ $$
 其中 $\sum'$ 表示对满足 $\sum_{\alpha=1}^n N_\alpha = N$ 的所有 $N_\alpha$ 求和，$f_{\text{tot}}$ 是所有物种逸度之和。然后我们可以将公式 (6.5.25) 中的 $\Xi$ 表示为
 
 $$
-\Xi = \sum_{N=0}^{\infty} \frac{f_{\text{tot}}^N}{N!} \sum'_{N_1, \cdots, N_n} \prod_{\alpha=1}^n \frac{(f_\alpha V/f_{\text{tot}})^{N_\alpha}}{N_\alpha!} \int \mathrm{d}\mathbf{s}^N \exp[-\beta U(\mathbf{s}^N)].
+\Xi = \sum_{N=0}^{\infty} \frac{f_{\text{tot}}^N}{N!} \sum'_{N_1, \cdots, N_n} \prod_{\alpha=1}^n \frac{(f_\alpha V/f_{\text{tot}})^{N_\alpha}}{N_\alpha!} \int \mathrm{d}\mathbf{s}^N \exp[-\beta \mathcal{U}(\mathbf{s}^N)].
 \tag{6.5.27}
 $$
 
@@ -764,7 +764,7 @@ $$
 
 $$
 \displaystyle
-\Xi(f_{\text{tot}, \{\xi_\alpha\}, V, T) = \sum_{N=0}^{\infty} \frac{f_{\text{tot}}^N}{N!} \sum_{\text{identities}} \prod_{\alpha=1}^n (V \xi_\alpha)^{N_\alpha} \int \mathrm{d}\mathbf{s}^N \exp[-\beta U(\mathbf{s}^N)] \equiv \sum_{N=0}^{\infty} f_{\text{tot}}^N Y(N, \{\xi_\alpha\}, V, T),
+\Xi(f_{\text{tot}, \{\xi_\alpha\}, V, T) = \sum_{N=0}^{\infty} \frac{f_{\text{tot}}^N}{N!} \sum_{\text{identities}} \prod_{\alpha=1}^n (V \xi_\alpha)^{N_\alpha} \int \mathrm{d}\mathbf{s}^N \exp[-\beta \mathcal{U}(\mathbf{s}^N)] \equiv \sum_{N=0}^{\infty} f_{\text{tot}}^N \mathcal{Y}(N, \{\xi_\alpha\}, V, T),
 }
 \tag{6.5.28}
 $$
@@ -775,7 +775,7 @@ $$
 
 $$
 \displaystyle
-Y'(N, \{\xi_\alpha\, P, T) \equiv \beta P \int_0^{\infty} \mathrm{d}V \exp(-\beta PV) Y(N, \{\xi_\alpha\}, V, T) = \beta P \int_0^{\infty} \mathrm{d}V \exp(-\beta PV) \times \sum_{\text{identities}} \prod_{\alpha=1}^n (V \xi_\alpha)^{N_\alpha} \int \mathrm{d}\mathbf{s}^N \exp[-\beta U(\mathbf{s}^N)].
+\mathcal{Y'(N, \{\xi_\alpha\}, P, T) \equiv \beta P \int_0^{\infty} \mathrm{d}V \exp(-\beta PV) \mathcal{Y}(N, \{\xi_\alpha\}, V, T) = \beta P \int_0^{\infty} \mathrm{d}V \exp(-\beta PV) \times \sum_{\text{identities}} \prod_{\alpha=1}^n (V \xi_\alpha)^{N_\alpha} \int \mathrm{d}\mathbf{s}^N \exp[-\beta \mathcal{U}(\mathbf{s}^N)].
 }
 \tag{6.5.29}
 $$
@@ -783,7 +783,7 @@ $$
 与热力学的关系由下式给出
 
 $$
--k_B T \ln Y'(N, \{\xi_\alpha\}, P, T) = N k_B T \ln f_{\text{tot}}.
+-k_B T \ln \mathcal{Y}'(N, \{\xi_\alpha\}, P, T) = N k_B T \ln f_{\text{tot}}.
 \tag{6.5.30}
 $$
 
@@ -795,7 +795,7 @@ $$
 
 $$
 \displaystyle
-\frac{d \ln f_{\text{tot}(\lambda)}{d\lambda} = \sum_{\alpha=1}^n \left(\frac{\partial \ln f_{\text{tot}}(\lambda)}{\partial \xi_\alpha}\right)_{P,T,\{\xi_{\beta \neq \alpha}\}} \frac{d\xi_\alpha}{d\lambda} = -\sum_{\alpha=1}^n \frac{\langle N_\alpha \rangle / N}{\xi_\alpha} \frac{d\xi_\alpha}{d\lambda} = -\sum_{\alpha=1}^n \frac{\langle x_\alpha \rangle}{\xi_\alpha} \frac{d\xi_\alpha}{d\lambda},
+\frac{d \ln f_{\text{tot}(\lambda)}{\mathrm{d}\lambda} = \sum_{\alpha=1}^n \left(\frac{\partial \ln f_{\text{tot}}(\lambda)}{\partial \xi_\alpha}\right)_{P,T,\{\xi_{\beta \neq \alpha}\}} \frac{d\xi_\alpha}{\mathrm{d}\lambda} = -\sum_{\alpha=1}^n \frac{\langle N_\alpha \rangle / N}{\xi_\alpha} \frac{d\xi_\alpha}{\mathrm{d}\lambda} = -\sum_{\alpha=1}^n \frac{\langle x_\alpha \rangle}{\xi_\alpha} \frac{d\xi_\alpha}{\mathrm{d}\lambda},
 }
 \tag{6.5.31}
 $$
@@ -803,7 +803,7 @@ $$
 其中 $x_\alpha \equiv \langle N_\alpha \rangle / N$ 表示在 $\lambda$、$P$、$T$ 处测量的组分 $\alpha$ 的摩尔分数。然后我们得到
 
 $$
-\ln f_{\text{tot}}(\lambda = 1) = \ln f_1(\lambda = 0) + \int_0^1 \mathrm{d}\lambda \frac{d\ln f_{\text{tot}}(\lambda)}{\mathrm{d}\lambda}.
+\ln f_{\text{tot}}(\lambda = 1) = \ln f_1(\lambda = 0) + \int_0^1 \mathrm{d}\lambda \frac{\mathrm{d}\ln f_{\text{tot}}(\lambda)}{\mathrm{d}\lambda}.
 \tag{6.5.32}
 $$
 
@@ -828,7 +828,7 @@ $$
 我们还没有具体说明我们执行什么试探移动来改变粒子的身份。有许多可能的选择。最简单的一种是以概率 $\xi_{\alpha'}$ 选择 $\alpha'$，这与我们在巨正则系综中处理分子内状态的方式类似。在这种情况下，
 
 $$
-\text{acc}(\xi_\alpha \to \xi_{\alpha'}) = \min\left(1, \exp\left[-\beta \Delta U(\mathbf{s}^N)\right]\right).
+\text{acc}(\xi_\alpha \to \xi_{\alpha'}) = \min\left(1, \exp\left[-\beta \Delta \mathcal{U}(\mathbf{s}^N)\right]\right).
 \tag{6.5.35}
 $$
 
@@ -1000,8 +1000,8 @@ $$
 \begin{aligned}
 Q_G(N, V, T) &\equiv \frac{1}{V \Lambda^{3N}} \sum_{n_1=0}^{N} \int_0^V \mathrm{d}V_1\,
 \frac{V_1^{n_1}(V - V_1)^{N-n_1}}{n_1!\,(N-n_1)!} \\
-&\qquad \times \int \mathrm{d}\mathbf{s}_1^{n_1} \exp\left[-\beta U(\mathbf{s}_1^{n_1})\right]
-\int \mathrm{d}\mathbf{s}_2^{N-n_1} \exp\left[-\beta U(\mathbf{s}_2^{N-n_1})\right].
+&\qquad \times \int \mathrm{d}\mathbf{s}_1^{n_1} \exp\left[-\beta \mathcal{U}(\mathbf{s}_1^{n_1})\right]
+\int \mathrm{d}\mathbf{s}_2^{N-n_1} \exp\left[-\beta \mathcal{U}(\mathbf{s}_2^{N-n_1})\right].
 \end{aligned}
 \tag{6.6.1}
 $$
@@ -1010,7 +1010,7 @@ $$
 
 $$
 \mathcal{N}(n_1, V_1, \mathbf{s}_1^{n_1}, \mathbf{s}_2^{N-n_1}) \propto \frac{V_1^{n_1}(V - V_1)^{N-n_1}}{n_1!\,(N-n_1)!}
-\exp\left\{-\beta\left[U(\mathbf{s}_1^{n_1}) + U(\mathbf{s}_2^{N-n_1})\right]\right\}.
+\exp\left\{-\beta\left[\mathcal{U}(\mathbf{s}_1^{n_1}) + \mathcal{U}(\mathbf{s}_2^{N-n_1})\right]\right\}.
 \tag{6.6.2}
 $$
 
@@ -1043,14 +1043,14 @@ $$
 设状态 $n$ 是由状态 $o$ 经盒 1 中一个随机选取的粒子位移得到的。这两个构型的统计权重之比为
 
 $$
-\frac{\mathcal{N}(n)}{\mathcal{N}(o)} = \frac{\exp[-\beta U(\mathbf{s}_n^{n_1})]}{\exp[-\beta U(\mathbf{s}_o^{n_1})]}.
+\frac{\mathcal{N}(n)}{\mathcal{N}(o)} = \frac{\exp[-\beta \mathcal{U}(\mathbf{s}_n^{n_1})]}{\exp[-\beta \mathcal{U}(\mathbf{s}_o^{n_1})]}.
 \tag{6.6.5}
 $$
 
 把该比值代入细致平衡条件 (6.1.1)，得到接受规则
 
 $$
-\text{acc}(o \to n) = \min\left(1, \exp\{-\beta[U(\mathbf{s}_n^{n_1}) - U(\mathbf{s}_o^{n_1})]\}\right).
+\text{acc}(o \to n) = \min\left(1, \exp\{-\beta[\mathcal{U}(\mathbf{s}_n^{n_1}) - \mathcal{U}(\mathbf{s}_o^{n_1})]\}\right).
 \tag{6.6.6}
 $$
 
@@ -1061,7 +1061,7 @@ $$
 若盒 1 的体积改变 $\Delta V$，即 $V_1^n = V_1^o + \Delta V$，则移动前后两构型的统计权重之比为
 
 $$
-\frac{\mathcal{N}(n)}{\mathcal{N}(o)} = \frac{(V_1^n)^{n_1}(V - V_1^n)^{N-n_1}\exp[-\beta U(\mathbf{s}_n^N)]}{(V_1^o)^{n_1}(V - V_1^o)^{N-n_1}\exp[-\beta U(\mathbf{s}_o^N)]}.
+\frac{\mathcal{N}(n)}{\mathcal{N}(o)} = \frac{(V_1^n)^{n_1}(V - V_1^n)^{N-n_1}\exp[-\beta \mathcal{U}(\mathbf{s}_n^N)]}{(V_1^o)^{n_1}(V - V_1^o)^{N-n_1}\exp[-\beta \mathcal{U}(\mathbf{s}_o^N)]}.
 \tag{6.6.7}
 $$
 
@@ -1069,7 +1069,7 @@ $$
 
 $$
 \displaystyle
-\text{acc(o \to n) = \min\left(1, \frac{(V_1^n)^{n_1}(V - V_1^n)^{N-n_1}}{(V_1^o)^{n_1}(V - V_1^o)^{N-n_1}}\exp\{-\beta[U(\mathbf{s}_n^N) - U(\mathbf{s}_o^N)]\}\right).
+\text{acc(o \to n) = \min\left(1, \frac{(V_1^n)^{n_1}(V - V_1^n)^{N-n_1}}{(V_1^o)^{n_1}(V - V_1^o)^{N-n_1}}\exp\{-\beta[\mathcal{U}(\mathbf{s}_n^N) - \mathcal{U}(\mathbf{s}_o^N)]\}\right).
 }
 \tag{6.6.8}
 $$
@@ -1089,7 +1089,7 @@ $$
 此时体积为 $V_1$ 的构型 $n$ 的统计权重正比于
 
 $$
-\mathcal{N}(n) \propto \frac{(V_1^n)^{n_1+1}(V - V_1^n)^{N-n_1+1}}{V\, n_1!(N-n_1)!}\exp[-\beta U(\mathbf{s}_n^N)].
+\mathcal{N}(n) \propto \frac{(V_1^n)^{n_1+1}(V - V_1^n)^{N-n_1+1}}{V\, n_1!(N-n_1)!}\exp[-\beta \mathcal{U}(\mathbf{s}_n^N)].
 \tag{6.6.9}
 $$
 
@@ -1097,7 +1097,7 @@ $$
 
 $$
 \displaystyle
-\text{acc(o \to n) = \min\left(1, \left(\frac{V_1^n}{V_1^o}\right)^{n_1+1}\left(\frac{V - V_1^n}{V - V_1^o}\right)^{N-n_1+1}\exp\{-\beta[U(\mathbf{s}_n^N) - U(\mathbf{s}_o^N)]\}\right).
+\text{acc(o \to n) = \min\left(1, \left(\frac{V_1^n}{V_1^o}\right)^{n_1+1}\left(\frac{V - V_1^n}{V - V_1^o}\right)^{N-n_1+1}\exp\{-\beta[\mathcal{U}(\mathbf{s}_n^N) - \mathcal{U}(\mathbf{s}_o^N)]\}\right).
 }
 \tag{6.6.10}
 $$

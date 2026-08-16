@@ -26,7 +26,7 @@
 在考虑不同方案进行恒定温度的分子动力学模拟之前，我们首先应该明确恒定温度的含义。从统计力学的角度来看，不存在歧义：我们可以通过允许系统与一个大的热浴交换能量来施加系统的温度（见第 2.2 节）。在这些条件下，在给定能态找到系统的概率由玻尔兹曼分布给出，对于经典系统，麦克斯韦-玻尔兹曼速度分布随之而来：
 
 $$
-P(\mathbf{p}) = \left(\frac{\beta}{2\pi m}\right)^{3/2} \exp\left[-\beta p^2/(2m)\right].
+\mathcal{P}(\mathbf{p}) = \left(\frac{\beta}{2\pi m}\right)^{3/2} \exp\left[-\beta p^2/(2m)\right].
 \tag{7.1.1}
 $$
 
@@ -58,7 +58,7 @@ $$
 
 $$
 \displaystyle
-\frac{\sigma_{T_k^2}{\langle T_k \rangle_{NVT}^2} \equiv \frac{\langle T_k^2 \rangle_{NVT} - \langle T_k \rangle_{NVT}^2}{\langle T_k \rangle_{NVT}^2} = \frac{N\langle p^4 \rangle + N(N-1)\langle p^2 \rangle\langle p^2 \rangle - N^2 \langle p^2 \rangle^2}{N^2 \langle p^2 \rangle^2} = \frac{1}{N}\frac{\langle p^4 \rangle - \langle p^2 \rangle^2}{\langle p^2 \rangle^2} = \frac{2}{dN}.
+\frac{\sigma_{T_k^2}{\langle T_k \rangle_{NVT}^2} \equiv \frac{\langle T_k^2 \rangle_{NVT} - \langle T_k \rangle_{NVT}^2}{\langle T_k \rangle_{NVT}^2} = \frac{N\langle p^4 \rangle + N(N-1)\langle p^2 \rangle\langle p^2 \rangle - N^2 \langle p^2 \rangle^2}{N^2 \langle p^2 \rangle^2} = \frac{1}{N}\frac{\langle p^4 \rangle - \langle p^2 \rangle^2}{\langle p^2 \rangle^2} = \frac{2}{\mathrm{d}N}.
 }
 $$
 
@@ -81,7 +81,7 @@ P(t;\nu) = \nu \exp[-\nu t],
 \tag{7.1.2}
 $$
 
-其中$P(t;\nu)dt$是在$t = 0$时发生碰撞的条件下，下一次碰撞发生在区间$[t, t+dt]$内的概率。
+其中$P(t;\nu)\mathrm{d}t$是在$t = 0$时发生碰撞的条件下，下一次碰撞发生在区间$[t, t+\mathrm{d}t]$内的概率。
 
 恒定温度模拟现在包括以下步骤：
 
@@ -187,7 +187,7 @@ end function
 朗之万动力学的思想比分子动力学方法的引入早了近半个世纪。1908 年，Paul 朗之万发表了一篇文章[[260]](references.md#ref-260)，提出了一个描述球形胶体粒子在粘性流体中布朗运动的简单方程。原始的朗之万方程为（仅考虑速度的一个分量）：
 
 $$
-m\dot{v}_x(t) = -\gamma v_x(t) + R_x(t),
+m\dot{v}_x(t) = -\gamma v_x(t) + \mathcal{R}_x(t),
 \tag{7.1.3}
 $$
 
@@ -196,7 +196,7 @@ $$
 在模拟中，朗之万方程包括溶质粒子之间保守力的效应：
 
 $$
-m\dot{v}_x(t) = -\gamma v_x(t) - \frac{\partial U(\mathbf{r}^N)}{\partial x} + R_x(t),
+m\dot{v}_x(t) = -\gamma v_x(t) - \frac{\partial \mathcal{U}(\mathbf{r}^N)}{\partial x} + \mathcal{R}_x(t),
 \tag{7.1.4}
 $$
 
@@ -205,7 +205,7 @@ $$
 公式(7.1.3) 描述了一个孤立粒子在流体中仅受随机力$R$和摩擦力$-\gamma v$作用时速度的随机时间演化。重要的是，$\gamma$和$R$是相关的：
 
 $$
-\langle R_x(0)R_x(t)\rangle = 2\gamma k_B T \delta(t).
+\langle \mathcal{R}_x(0)\mathcal{R}_x(t)\rangle = 2\gamma k_B T \delta(t).
 \tag{7.1.5}
 $$
 
@@ -218,19 +218,19 @@ $$
 其中（为方便起见）我们假设了$(\gamma/m)\Delta t \ll 1$。由于随机动量转移导致的能量增益为
 
 $$
-(1/2m)\langle(p_x + P_x)^2 - p_x^2\rangle = (1/2m)\langle P_x^2\rangle.
+(1/2m)\langle(p_x + \mathcal{P}_x)^2 - p_x^2\rangle = (1/2m)\langle \mathcal{P}_x^2\rangle.
 \tag{7.1.6}
 $$
 
 两者在温度$T$下应平衡：
 
 $$
-(1/2m)\langle P_x^2\rangle = mk_B T \gamma \Delta t,
+(1/2m)\langle \mathcal{P}_x^2\rangle = mk_B T \gamma \Delta t,
 \tag{7.1.7}
 $$
 
 $$
-\langle P_x^2\rangle = 2k_B T \gamma \Delta t,
+\langle \mathcal{P}_x^2\rangle = 2k_B T \gamma \Delta t,
 \tag{7.1.8}
 $$
 
@@ -247,7 +247,7 @@ $$
 朗之万动力学的一个重要极限是平动运动被强过阻尼的情况，即朗之万方程中的惯性项可以忽略不计。在这种情况下，朗之万方程简化为
 
 $$
-0 = -\gamma \dot{x}(t) - \frac{\partial U(\mathbf{r}^N)}{\partial x} + R_x(t),
+0 = -\gamma \dot{x}(t) - \frac{\partial \mathcal{U}(\mathbf{r}^N)}{\partial x} + \mathcal{R}_x(t),
 \tag{7.1.9}
 $$
 
@@ -268,7 +268,7 @@ MD 模拟中最早的恒温器通过对所有粒子速度进行瞬时或渐进�
 为了构造等温分子动力学，Nos\'{e}提出在经典$N$体系统的拉格朗日量中引入一个额外的坐标$s$：
 
 $$
-\mathcal{L}_{\mathrm{Nose}} = \sum_{i=1}^{N}\frac{m_i}{2}s^2\dot{\mathbf{r}}_i^2 - U(\mathbf{r}^N) + \frac{Q}{2}\dot{s}^2 - \frac{L}{\beta}\ln s,
+\mathcal{L}_{\mathrm{Nose}} = \sum_{i=1}^{N}\frac{m_i}{2}s^2\dot{\mathbf{r}}_i^2 - \mathcal{U}(\mathbf{r}^N) + \frac{Q}{2}\dot{s}^2 - \frac{L}{\beta}\ln s,
 \tag{7.1.10}
 $$
 
@@ -289,11 +289,11 @@ $$
 一旦我们有了动量，就可以写出$N$个粒子加上额外坐标$s$的扩展系统的哈密顿量：
 
 $$
-\mathcal{H}_{\mathrm{Nose}} = \sum_{i=1}^{N}\frac{\mathbf{p}_i^2}{2m_i s^2} + U(\mathbf{r}^N) + \frac{p_s^2}{2Q} + \frac{L}{\beta}\ln s.
+\mathcal{H}_{\mathrm{Nose}} = \sum_{i=1}^{N}\frac{\mathbf{p}_i^2}{2m_i s^2} + \mathcal{U}(\mathbf{r}^N) + \frac{p_s^2}{2Q} + \frac{L}{\beta}\ln s.
 \tag{7.1.13}
 $$
 
-我们考虑一个包含$N$个原子的系统。由于$\mathcal{H}_{\mathrm{Nose}}$守恒，由该哈密顿量产生的动力学采样一个微正则系综，但处于具有$2dN + 2$个坐标和动量的扩展系统中。[^4] 该系综的配分函数为：
+我们考虑一个包含$N$个原子的系统。由于$\mathcal{H}_{\mathrm{Nose}}$守恒，由该哈密顿量产生的动力学采样一个微正则系综，但处于具有$2\mathrm{d}N + 2$个坐标和动量的扩展系统中。[^4] 该系综的配分函数为：
 
 $$
 Q_{\mathrm{Nose}} = \frac{1}{N!}\int \mathrm{d}\mathbf{p}_s\, \mathrm{d}s\, \mathrm{d}\mathbf{p}^N\, \mathrm{d}\mathbf{r}^N\, \delta(E - \mathcal{H}_{\mathrm{Nose}}),
@@ -303,21 +303,21 @@ $$
 其中，在第二行中，我们定义了$\mathbf{p}' \equiv \mathbf{p}/s$。引入$\mathbf{p}'$的理由将在后面变得清楚。然后我们可以将哈密顿量中依赖于$\mathbf{p}'$和$\mathbf{r}$的部分写为
 
 $$
-H(\mathbf{p}',\mathbf{r}) \equiv \sum_{i=1}^{N}\frac{\mathbf{p}_i'^2}{2m_i} + U(\mathbf{r}^N).
+\mathcal{H}(\mathbf{p}',\mathbf{r}) \equiv \sum_{i=1}^{N}\frac{\mathbf{p}_i'^2}{2m_i} + \mathcal{U}(\mathbf{r}^N).
 \tag{7.1.15}
 $$
 
 当$\delta$函数的参数是函数$h(s)$时，如果$h(s)$在$s_0$处有唯一根，我们可以写出$\delta[h(s)] = \delta(s - s_0)/|h'(s_0)|$，其中$h'(s)$表示$h$对$s$的导数。如果我们将这个表达式代入公式(7.1.14) 并使用公式(7.1.15)，对于配分函数我们得到：
 
 $$
-Q_{\mathrm{Nose}} = C\int \mathrm{d}\mathbf{p}'^N\, \mathrm{d}\mathbf{r}^N\, \exp\left[-\beta H(\mathbf{p}',\mathbf{r})\right],
+Q_{\mathrm{Nose}} = C\int \mathrm{d}\mathbf{p}'^N\, \mathrm{d}\mathbf{r}^N\, \exp\left[-\beta \mathcal{H}(\mathbf{p}',\mathbf{r})\right],
 \tag{7.1.16}
 $$
 
-因此，我们看到 Nos\'{e}巧妙地选择额外变量确保动力学在$\{\mathbf{p}', \mathbf{r}\}$空间中生成一个正比于$\exp\left[-\beta[(dN + 1)/L] H(\mathbf{p}',\mathbf{r})\right]$的概率密度。因此，如果选择$L = dN + 1$，$\{\mathbf{p}', \mathbf{r}\}$空间中的概率密度等于$\exp\left[-\beta H(\mathbf{p}',\mathbf{r})\right]$！动力学变量$A$的系综平均可以写为：
+因此，我们看到 Nos\'{e}巧妙地选择额外变量确保动力学在$\{\mathbf{p}', \mathbf{r}\}$空间中生成一个正比于$\exp\left[-\beta[(\mathrm{d}N + 1)/L] H(\mathbf{p}',\mathbf{r})\right]$的概率密度。因此，如果选择$L = \mathrm{d}N + 1$，$\{\mathbf{p}', \mathbf{r}\}$空间中的概率密度等于$\exp\left[-\beta H(\mathbf{p}',\mathbf{r})\right]$！动力学变量$A$的系综平均可以写为：
 
 $$
-\langle A(\mathbf{p}/s, \mathbf{r})\rangle_{\mathrm{Nose}} = \frac{(1/N!)\int \mathrm{d}\mathbf{p}'^N\, \mathrm{d}\mathbf{r}^N\, A(\mathbf{p}',\mathbf{r})\,\exp\left[-\beta H(\mathbf{p}',\mathbf{r})\right]}{Q(NVT)} = \langle A(\mathbf{p}',\mathbf{r})\rangle_{NVT}.
+\langle A(\mathbf{p}/s, \mathbf{r})\rangle_{\mathrm{Nose}} = \frac{(1/N!)\int \mathrm{d}\mathbf{p}'^N\, \mathrm{d}\mathbf{r}^N\, A(\mathbf{p}',\mathbf{r})\,\exp\left[-\beta \mathcal{H}(\mathbf{p}',\mathbf{r})\right]}{Q(NVT)} = \langle A(\mathbf{p}',\mathbf{r})\rangle_{NVT}.
 \tag{7.1.17}
 $$
 
@@ -380,13 +380,13 @@ $$
 \langle A(\mathbf{p}/s, \mathbf{r})\rangle_{NVT}.
 $$
 
-注意在这种情况下，如果我们选择$L = dN$，则恢复正则平均。因此，如果使用基于实际时间中等时间步长的采样方案，我们必须使用不同的$L$值。在示例 7 中，我们讨论了一个正确选择自由度数至关重要的系统。
+注意在这种情况下，如果我们选择$L = \mathrm{d}N$，则恢复正则平均。因此，如果使用基于实际时间中等时间步长的采样方案，我们必须使用不同的$L$值。在示例 7 中，我们讨论了一个正确选择自由度数至关重要的系统。
 
 ???+ example "例证 7（受限气体的扩散系数）"
 
     经典$N$体系统的总平动动能等于$\sum_{i=1}^{N}\sum_{\alpha=1}^{d}p_{i,\alpha}^2/(2m_i)$。经典统计力学的能量均分定律指出，该求和中每一项相关的平均热能等于$(1/2)k_BT$。如果每个动量分量都是一个独立的自由度，这个表达式将是正确的。
 
-    对于宏观系统，朴素的均分定律是合理的，因为动能中的自由度数近似等于$dN$。然而，如果我们在小系统上执行分子动力学模拟，我们必须更加小心。在块体系统的模拟中，我们经常使用周期性边界条件并固定系统的总动量。对总动量的这种约束固定了$L$个自由度。在三维中，动能中的实际自由度数是$3N - 3$。
+    对于宏观系统，朴素的均分定律是合理的，因为动能中的自由度数近似等于$\mathrm{d}N$。然而，如果我们在小系统上执行分子动力学模拟，我们必须更加小心。在块体系统的模拟中，我们经常使用周期性边界条件并固定系统的总动量。对总动量的这种约束固定了$L$个自由度。在三维中，动能中的实际自由度数是$3N - 3$。
 
     然而，自由度数会改变，如果我们模拟一个受限系统，例如吸附在孔隙中的气体。大多数孔隙被建模为刚性系统；因此，对于孔隙内的气体分子，与孔隙原子的相互作用代表一个外场。由于这种外场，$N$个原子的质心动量不是固定的，这些气体分子的自由度是$3N$。我们需要模拟中正确的自由度数来计算温度，并且在某些算法中，作为恒温模拟的输入（例如 Nos\'{e}-Hoover）。如果我们模拟大于 1,000 个粒子的系统，$N$和$N - 3$之间的差异通常太小而不会产生任何可见影响（尽管这不是错误执行模拟的借口）。
 
@@ -403,48 +403,48 @@ $$
     从哈密顿量公式(7.1.13)，我们可以推导虚拟变量$\mathbf{p}$、$\mathbf{r}$和$t$的运动方程：
 
     $$
-    \frac{d\mathbf{r}_i}{dt} = \frac{\partial \mathcal{H}_{\mathrm{Nose}}}{\partial \mathbf{p}_i} = \frac{\mathbf{p}_i}{m_i s^2},
+    \frac{\mathrm{d}\mathbf{r}_i}{\mathrm{d}t} = \frac{\partial \mathcal{H}_{\mathrm{Nose}}}{\partial \mathbf{p}_i} = \frac{\mathbf{p}_i}{m_i s^2},
     \tag{7.1.25}
     $$
 
     $$
-    \frac{d\mathbf{p}_i}{dt} = -\frac{\partial \mathcal{H}_{\mathrm{Nose}}}{\partial \mathbf{r}_i} = -\frac{\partial U(\mathbf{r}^N)}{\partial \mathbf{r}_i},
+    \frac{\mathrm{d}\mathbf{p}_i}{\mathrm{d}t} = -\frac{\partial \mathcal{H}_{\mathrm{Nose}}}{\partial \mathbf{r}_i} = -\frac{\partial U(\mathbf{r}^N)}{\partial \mathbf{r}_i},
     $$
 
     $$
-    \frac{ds}{dt} = \frac{\partial \mathcal{H}_{\mathrm{Nose}}}{\partial p_s} = p_s/Q,
+    \frac{\mathrm{d}s}{\mathrm{d}t} = \frac{\partial \mathcal{H}_{\mathrm{Nose}}}{\partial p_s} = p_s/Q,
     $$
 
     $$
-    \frac{dp_s}{dt} = -\frac{\partial \mathcal{H}_{\mathrm{Nose}}}{\partial s} = \sum_i \frac{\mathbf{p}_i^2}{m_i s^3} - \frac{L}{\beta s}.
+    \frac{\mathrm{d}p_s}{\mathrm{d}t} = -\frac{\partial \mathcal{H}_{\mathrm{Nose}}}{\partial s} = \sum_i \frac{\mathbf{p}_i^2}{m_i s^3} - \frac{L}{\beta s}.
     \tag{7.1.26}
     $$
 
     用实变量表示，这些运动方程可以写为：
 
     $$
-    \frac{d\mathbf{r}_i'}{dt'} = \frac{\mathbf{p}_i'}{m_i},
+    \frac{\mathrm{d}\mathbf{r}_i'}{\mathrm{d}t'} = \frac{\mathbf{p}_i'}{m_i},
     $$
 
     $$
-    \frac{d\mathbf{p}_i'}{dt'} = -\frac{\partial U(\mathbf{r}'^N)}{\partial \mathbf{r}_i'} - (s' p_s'/Q)\mathbf{p}_i',
+    \frac{\mathrm{d}\mathbf{p}_i'}{\mathrm{d}t'} = -\frac{\partial \mathcal{U}(\mathbf{r}'^N)}{\partial \mathbf{r}_i'} - (s' p_s'/Q)\mathbf{p}_i',
     \tag{7.1.27}
     $$
 
     $$
-    \frac{ds'}{dt'} = s'^2 p_s'/Q,
+    \frac{\mathrm{d}s'}{\mathrm{d}t'} = s'^2 p_s'/Q,
     \tag{7.1.28}
     $$
 
     $$
-    \frac{d(s' p_s'/Q)}{dt'} = \sum_i \frac{\mathbf{p}_i'^2}{m_i} - \frac{L}{\beta Q}.
+    \frac{d(s' p_s'/Q)}{\mathrm{d}t'} = \sum_i \frac{\mathbf{p}_i'^2}{m_i} - \frac{L}{\beta Q}.
     \tag{7.1.29}
     $$
 
     对于这些运动方程，以下量是守恒的：
 
     $$
-    \mathcal{H}'_{\mathrm{Nose}} = \sum_{i=1}^{N}\frac{\mathbf{p}_i'^2}{2m_i} + U(\mathbf{r}'^N) + \frac{s'^2 p_s'^2}{2Q} + L\frac{\ln s'}{\beta}.
+    \mathcal{H}'_{\mathrm{Nose}} = \sum_{i=1}^{N}\frac{\mathbf{p}_i'^2}{2m_i} + \mathcal{U}(\mathbf{r}'^N) + \frac{s'^2 p_s'^2}{2Q} + L\frac{\ln s'}{\beta}.
     \tag{7.1.30}
     $$
 
@@ -571,7 +571,7 @@ $$
 Andersen 的拉格朗日量（在三维中）具有以下形式：[^7]
 
 $$
-\mathcal{L} = \sum_{i=1}^{N}\frac{m_i}{2}s_i^{2/d}\dot{\mathbf{s}}_i\cdot\dot{\mathbf{s}}_i - U(\mathbf{s}^N;Q) + \frac{M}{2}\dot{Q}^2 - \alpha Q,
+\mathcal{L} = \sum_{i=1}^{N}\frac{m_i}{2}s_i^{2/d}\dot{\mathbf{s}}_i\cdot\dot{\mathbf{s}}_i - \mathcal{U}(\mathbf{s}^N;Q) + \frac{M}{2}\dot{Q}^2 - \alpha Q,
 \tag{7.2.1}
 $$
 
@@ -582,16 +582,16 @@ $$
 用实坐标和系统的实际体积表示，Andersen 的运动方程从拉格朗日量（公式(7.2.1)）和关系$\mathbf{r}_i = Q^{1/d}\mathbf{s}_i$，$\mathbf{p}_i = Q^{-1/d}\boldsymbol{\pi}_i$，$V = Q$和$P = \alpha$得出：
 
 $$
-\dot{\mathbf{r}}_i = \frac{\mathbf{p}_i}{m_i} + \left(\frac{1}{d}\right)\mathbf{r}_i\frac{d\ln V}{dt},
+\dot{\mathbf{r}}_i = \frac{\mathbf{p}_i}{m_i} + \left(\frac{1}{d}\right)\mathbf{r}_i\frac{\mathrm{d}\ln V}{\mathrm{d}t},
 \tag{7.2.2}
 $$
 
 $$
-\dot{\mathbf{p}}_i = -\sum_{j=1}^{N}\hat{\mathbf{r}}_{ij}u'(r_{ij}) - \left(\frac{1}{d}\right)\mathbf{p}_i\frac{d\ln V}{dt},
+\dot{\mathbf{p}}_i = -\sum_{j=1}^{N}\hat{\mathbf{r}}_{ij}u'(r_{ij}) - \left(\frac{1}{d}\right)\mathbf{p}_i\frac{\mathrm{d}\ln V}{\mathrm{d}t},
 $$
 
 $$
-M\frac{d^2V}{dt^2} = -P + \left(\frac{1}{dV}\right)\left[\sum_{i=1}^{N}\frac{\mathbf{p}_i\cdot\mathbf{p}_i}{m_i} - \sum_{i<j}r_{ij}u'(r_{ij})\right],
+M\frac{d^2V}{\mathrm{d}t^2} = -P + \left(\frac{1}{\mathrm{d}V}\right)\left[\sum_{i=1}^{N}\frac{\mathbf{p}_i\cdot\mathbf{p}_i}{m_i} - \sum_{i<j}r_{ij}u'(r_{ij})\right],
 $$
 
 其中我们假设分子间相互作用是成对可加的。

@@ -90,7 +90,7 @@ end function
 
 1. 键长具有以下分布：
    $$
-   p(l) \propto \exp[-\beta \cdot 0.5 k_v (l - l_0)^2] dl \propto l^2 \exp[-\beta \cdot 0.5 k_v (l - l_0)^2] dl
+   p(l) \propto \exp[-\beta \cdot 0.5 k_v (l - l_0)^2] \mathrm{d}l \propto l^2 \exp[-\beta \cdot 0.5 k_v (l - l_0)^2] \mathrm{d}l
    $$
 1. 我们利用了 $x - 1 \geq \ln x$ 这一事实。
 1. $\text{gauss}(\alpha, l_M)$ 是一维正态分布，见第 J.1 节。

@@ -19,19 +19,19 @@
 让我们首先从现象学角度考察单分子反应。我们用$c_A$和$c_B$分别表示物种 A 和 B 的数量密度。现象学速率方程为
 
 $$
-\frac{dc_A(t)}{dt} = -k_{A \to B} c_A(t) + k_{B \to A} c_B(t)
+\frac{\mathrm{d}c_A(t)}{\mathrm{d}t} = -k_{A \to B} c_A(t) + k_{B \to A} c_B(t)
 \tag{15.1.1}
 $$
 
 $$
-\frac{dc_B(t)}{dt} = +k_{A \to B} c_A(t) - k_{B \to A} c_B(t).
+\frac{\mathrm{d}c_B(t)}{\mathrm{d}t} = +k_{A \to B} c_A(t) - k_{B \to A} c_B(t).
 \tag{15.1.2}
 $$
 
 显然，由于在此转化反应中分子总数守恒，总数量密度守恒：
 
 $$
-\frac{d[c_A(t) + c_B(t)]}{dt} = 0.
+\frac{d[c_A(t) + c_B(t)]}{\mathrm{d}t} = 0.
 \tag{15.1.3}
 $$
 
@@ -46,7 +46,7 @@ $$
 其中$K$是反应的平衡常数。现在考虑如果我们取一个处于平衡态的体系，对物种 A 的浓度施加一个小扰动$\delta c_A$（从而也影响物种 B），会发生什么。我们可以写出决定此扰动衰减的速率方程为
 
 $$
-\frac{d\delta c_A(t)}{dt} = -k_{A \to B} \delta c_A(t) - k_{B \to A} \delta c_A(t),
+\frac{d\delta c_A(t)}{\mathrm{d}t} = -k_{A \to B} \delta c_A(t) - k_{B \to A} \delta c_A(t),
 $$
 
 其中我们使用了式（15.1.3）和（15.1.4）。该方程的解为
@@ -74,7 +74,7 @@ $$
 类比第 2.5 节的讨论，我们考虑一个改变找到物种 A 和 B 的相对概率的外部扰动。为此，我们在哈密顿量中添加一项，降低$q < q^*$时的势能：
 
 $$
-H = H_0 - \epsilon g_A(q - q^*),
+\mathcal{H} = \mathcal{H}_0 - \epsilon g_A(q - q^*),
 \tag{15.1.7}
 $$
 
@@ -110,7 +110,7 @@ $$
 接下来，考虑如果在时间$t = 0$突然关闭扰动会发生什么。物种 A 的浓度将弛豫到其平衡值，如式（2.5.8）所述，我们发现精确到$\epsilon$的一阶，
 
 $$
-\delta c_A(t) = \beta \epsilon \frac{\int \mathrm{d}\Gamma \exp(-\beta H_0)(g_A(0) - \langle g_A \rangle) \exp(iL_0 t)(g_A(0) - \langle g_A \rangle)}{\int \mathrm{d}\Gamma \exp(-\beta H_0)} = \beta \epsilon \langle \Delta g_A(0) \Delta g_A(t) \rangle.
+\delta c_A(t) = \beta \epsilon \frac{\int \mathrm{d}\Gamma \exp(-\beta \mathcal{H}_0)(g_A(0) - \langle g_A \rangle) \exp(iL_0 t)(g_A(0) - \langle g_A \rangle)}{\int \mathrm{d}\Gamma \exp(-\beta \mathcal{H}_0)} = \beta \epsilon \langle \Delta g_A(0) \Delta g_A(t) \rangle.
 \tag{15.1.9}
 $$
 
@@ -199,7 +199,7 @@ $$
 式（15.2.3）右边的第一部分是一个条件平均，即在$q(0) = q^*$条件下乘积$\dot{q}(0)\theta(q(t) - q^*)$的平均。第二部分表示在势垒顶部找到体系的概率密度除以体系在势垒反应物一侧的概率。我们用$P(q^*)$表示这个密度，其中$P(q)$定义为
 
 $$
-P(q) \equiv \frac{\langle \delta(q - q(X)) \rangle}{\langle \theta(q^* - q(X)) \rangle} = \frac{\int \mathrm{d}X \exp(-\beta U) \delta(q - q(X))}{\int \mathrm{d}X \exp(-\beta U) \theta(q^* - q(X))}.
+P(q) \equiv \frac{\langle \delta(q - q(\mathcal{X})) \rangle}{\langle \theta(q^* - q(\mathcal{X})) \rangle} = \frac{\int \mathrm{d}\mathcal{X} \exp(-\beta \mathcal{U}) \delta(q - q(\mathcal{X}))}{\int \mathrm{d}\mathcal{X} \exp(-\beta \mathcal{U}) \theta(q^* - q(\mathcal{X}))}.
 \tag{15.2.4}
 $$
 
@@ -246,7 +246,7 @@ $$
 下面，我们推导$P(q)$随$q$变化的显式表达式，使用约束 MD 重构从势阱底部到势垒顶部的完整$P(q)$，从而可以计算$P(q^*)$。事实上，与其计算$P(q)$对$q$的导数，我们不如对$\ln P(q)$求导：
 
 $$
-\frac{\partial \ln P(q)}{\partial q} = \frac{\int \mathrm{d}X \exp(-\beta U) \partial \delta(q - q(X))/\partial q}{\int \mathrm{d}X \exp(-\beta U) \delta(q - q(X))}.
+\frac{\partial \ln P(q)}{\partial q} = \frac{\int \mathrm{d}\mathcal{X} \exp(-\beta \mathcal{U}) \partial \delta(q - q(\mathcal{X}))/\partial q}{\int \mathrm{d}\mathcal{X} \exp(-\beta \mathcal{U}) \delta(q - q(\mathcal{X}))}.
 \tag{15.2.7}
 $$
 
@@ -257,7 +257,7 @@ $$
 \frac{\partial \ln P(q)}{\partial q} &= \frac{\int \mathrm{d}Q \, \mathrm{d}q \, |J| \exp(-\beta U) \partial \delta(q - q(X))/\partial q}{\int \mathrm{d}X \exp(-\beta U) \delta(q - q(X))} \\
 &= \frac{\int \mathrm{d}Q \, \mathrm{d}q \, [\partial |J| \exp(-\beta U)/\partial q(X)] \delta(q - q(X))}{\int \mathrm{d}X \exp(-\beta U) \delta(q - q(X))} \\
 &= \frac{\int \mathrm{d}X [\partial (\ln(|J|) - \beta U)/\partial q(X)] \exp[-\beta U] \delta(q - q(X))}{\int \mathrm{d}X \exp(-\beta U) \delta(q - q(X))} \\
-&= \frac{\langle [\partial (\ln(|J|) - \beta U)/\partial q(X)] \delta(q - q(X)) \rangle}{\langle \delta(q - q(X)) \rangle},
+&= \frac{\langle [\partial (\ln(|J|) - \beta \mathcal{U})/\partial q(\mathcal{X})] \delta(q - q(\mathcal{X})) \rangle}{\langle \delta(q - q(\mathcal{X})) \rangle},
 \end{aligned}
 \tag{15.2.8}
 $$
@@ -267,14 +267,14 @@ $$
 由于分子和分母中的平均值都包含$\delta(q - q(X))$，很自然地将式（15.2.8）用约束平均表示，这样可以在约束分子动力学模拟中方便地计算。与式（15.2.6）一样，我们必须修正硬约束引入的偏倚：
 
 $$
-\frac{\partial \ln P(q)}{\partial q} = \frac{\langle |H|^{-1/2} \partial (\ln(|J|) - \beta U)/\partial q \rangle_c}{\langle |H|^{-1/2} \rangle_c},
+\frac{\partial \ln P(q)}{\partial q} = \frac{\langle |H|^{-1/2} \partial (\ln(|J|) - \beta \mathcal{U})/\partial q \rangle_c}{\langle |H|^{-1/2} \rangle_c},
 \tag{15.2.9}
 $$
 
 其中下标$c$表示在$q(X)$被约束为$q$的系综中求平均。如果我们将式（15.2.9）从势阱底部积分到势垒顶部，得到
 
 $$
-\ln \left(\frac{P(q^*)}{P(q = q_A)}\right) = \int_{q_A}^{q^*} \mathrm{d}q \frac{\langle |H|^{-1/2} \partial (\ln(|J|) - \beta U)/\partial q \rangle_c}{\langle |H|^{-1/2} \rangle_c}.
+\ln \left(\frac{P(q^*)}{P(q = q_A)}\right) = \int_{q_A}^{q^*} \mathrm{d}q \frac{\langle |H|^{-1/2} \partial (\ln(|J|) - \beta \mathcal{U})/\partial q \rangle_c}{\langle |H|^{-1/2} \rangle_c}.
 \tag{15.2.10}
 $$
 
@@ -466,7 +466,7 @@ $$
     为了估计方差，我们利用$\langle \theta^2 \rangle \approx 0.5$和
 
     $$
-    \frac{4 \langle \dot{q}^2 \rangle}{\langle |\dot{q}| \rangle^2} \sim O(1).
+    \frac{4 \langle \dot{q}^2 \rangle}{\langle |\dot{q}| \rangle^2} \sim \mathcal{O}(1).
     \tag{15.3.15}
     $$
 
@@ -671,7 +671,7 @@ $$
     在模拟中，时间以时间步长$\Delta t$离散化。但在理论分析中，我们可以考虑$\Delta t \to 0$的极限。通过离散化时间，我们在$x$空间中创建了离散的时间片。一条轨迹就是连续时间片中$x$值的序列。体系的动力学决定了给定轨迹的概率。例如，如果我们在时间$t_0$从$x_0$出发，则遵循特定轨迹$\{x_0, x_{\Delta t}, x_{2\Delta t}, \cdots, x_T\}$的概率由在时间$t = 0$找到体系在$x_0$的（Boltzmann）概率$N(x_0)$乘以路径从$x_0$经过$x_{\Delta t}$、$x_{2\Delta t}$、$x_{3\Delta t}$等到达$x_T$的概率$P[x(T)]$决定：
 
     $$
-    P[x(T)] = N(x_0) \prod_{i=0}^{(T/\Delta t)-1} \pi(x_{i\Delta t} \to x_{(i+1)\Delta t}),
+    \mathcal{P}[x(\mathcal{T})] = \mathcal{N}(x_0) \prod_{i=0}^{(\mathcal{T}/\Delta t)-1} \pi(x_{i\Delta t} \to x_{(i+1)\Delta t}),
     \tag{15.4.4}
     $$
 
@@ -680,14 +680,14 @@ $$
     使用这种记法，式（15.4.1）中的系综平均可以写成对以平衡分布$N(x_0)$加权的初始条件的积分。我们首先注意到可以将式（15.4.1）写为
 
     $$
-    C(t) = \frac{\int \mathrm{d}x_0 N(x_0) h_A(x_0) h_B(x_t)}{\int \mathrm{d}x_0 N(x_0) h_A(x_0)}.
+    C(t) = \frac{\int \mathrm{d}x_0 \mathcal{N}(x_0) h_A(x_0) h_B(x_t)}{\int \mathrm{d}x_0 \mathcal{N}(x_0) h_A(x_0)}.
     \tag{15.4.5}
     $$
 
     利用式（15.4.4），我们可以将式（15.4.5）写成对路径概率$P[x(t)]$的平均：
 
     $$
-    C(t) = \frac{\int \mathcal{D}x(t) h_A(x_0) P[x(t)] h_B(x_t)}{\int \mathcal{D}x(t) h_A(x_0) P[x(t)]},
+    C(t) = \frac{\int \mathcal{D}x(t) h_A(x_0) \mathcal{P}[x(t)] h_B(x_t)}{\int \mathcal{D}x(t) h_A(x_0) \mathcal{P}[x(t)]},
     \tag{15.4.6}
     $$
 
@@ -749,7 +749,7 @@ $$
     让我们定义$P(\lambda, t)$为从 A 在$t = 0$出发、在时间$t$具有序参数$\lambda = \lambda(x_t)$的体系的概率密度：
 
     $$
-    P(\lambda, t) \equiv \frac{\int \mathrm{d}x_0 N(x_0) h_A(x_0) \delta[\lambda - \lambda(x_t)]}{\int \mathrm{d}x_0 N(x_0) h_A(x_0)}.
+    P(\lambda, t) \equiv \frac{\int \mathrm{d}x_0 \mathcal{N}(x_0) h_A(x_0) \delta[\lambda - \lambda(x_t)]}{\int \mathrm{d}x_0 \mathcal{N}(x_0) h_A(x_0)}.
     \tag{15.4.10}
     $$
 
@@ -771,7 +771,7 @@ $$
     换言之：$C(t)$可以表示为在时间$t'$在 B 中找到粒子的概率乘以一个修正因子的乘积，该修正因子等于在时间$t$和$t'$最终到达 B 的路径数之比。这个修正的计算看起来与$C(t)$的计算一样复杂。然而，我们可以将这一项转换为更方便的形式。为此，我们定义一个略有不同的路径系综，即在时间间隔$t \in [0;T]$内至少访问过 B 一次的路径系综。该系综中的系综平均可以写为
 
     $$
-    \langle h_B(x_t) \rangle_{A, H_B(T)} = \frac{\int \mathrm{d}x_0 N(x_0) h_A(x_0) H_B(x_T) h_B(x_t)}{\int \mathrm{d}x_0 N(x_0) h_A(x_0) H_B(x_T)},
+    \langle h_B(x_t) \rangle_{A, H_B(\mathcal{T})} = \frac{\int \mathrm{d}x_0 \mathcal{N}(x_0) h_A(x_0) H_B(x_\mathcal{T}) h_B(x_t)}{\int \mathrm{d}x_0 \mathcal{N}(x_0) h_A(x_0) H_B(x_\mathcal{T})},
 
     \tag{15.4.12}
     $$
@@ -783,7 +783,7 @@ $$
     $$
     \begin{aligned}
     C(t) &= \frac{\langle h_A(x_0) h_B(x_t) H_B(x_T) \rangle}{\langle h_A(x_0) H_B(x_T) \rangle} \times \frac{\langle h_A(x_0) H_B(x_T) \rangle}{\int h_A(x_0) h_B(x'_t) H_B(x_T)} \times C(t') \\
-    &= \frac{\langle h_B(x_t) \rangle_{A, H_B(T)}}{\langle h_B(x'_t) \rangle_{A, H_B(T)}} \times C(t').
+    &= \frac{\langle h_B(x_t) \rangle_{A, H_B(\mathcal{T})}}{\langle h_B(x'_t) \rangle_{A, H_B(\mathcal{T})}} \times C(t').
     \end{aligned}
 
     \tag{15.4.13}
@@ -792,7 +792,7 @@ $$
     在这个方程中，我们将修正因子改写为两个系综平均的比值。这个系综平均的优点是两个平均值都可以从长度为$T$的路径采样的单次模拟中获得。对于速率常数$k(t)$，我们有
 
     $$
-    k(t) = \frac{dC(t)}{dt} = C(t') \frac{1}{\langle h_B(x'_t) \rangle_{A, H_B(T)}} \langle \dot{h}_B(x_t) \rangle_{A, H_B(T)} \equiv \eta(t, t') C(t').
+    k(t) = \frac{dC(t)}{\mathrm{d}t} = C(t') \frac{1}{\langle h_B(x'_t) \rangle_{A, H_B(\mathcal{T})}} \langle \dot{h}_B(x_t) \rangle_{A, H_B(\mathcal{T})} \equiv \eta(t, t') C(t').
 
     \tag{15.4.14}
     $$
@@ -896,7 +896,7 @@ $$
 第二个路径系综由式 (15.4.12) 定义，是长度为$T$且从 A 出发并在时间间隔$t \in [0;T]$内的某时刻访问 B 的路径集合。该系综用于采样修正因子$\eta(t,t')$。该系综的概率分布为
 
 $$
-\mathcal{N}(A,H_B) \propto N(x_0) h_A(x_0) H_B(x_T).
+\mathcal{N}(A,H_B) \propto N(x_0) h_A(x_0) H_B(x_\mathcal{T}).
 
 \tag{15.4.21}
 $$

@@ -17,14 +17,14 @@ $$
 让我们计算系统能量变化的平均速率。这是系统吸收（或发射）的能量，单位时间内为：
 
 $$
-\frac{\partial E}{\partial t} = \left\langle \frac{dH}{dt} \right\rangle
+\frac{\partial E}{\partial t} = \left\langle \frac{\mathrm{d}H}{\mathrm{d}t} \right\rangle
 = \left\langle \sum_i \left( \dot{q}_i \frac{\partial H}{\partial q_i} + \dot{p}_i \frac{\partial H}{\partial p_i} \right) + \frac{\partial H}{\partial t} \right\rangle.
 $$
 
 但由哈密顿方程，我们有
 
 $$
-\dot{q}_i = \frac{\partial H}{\partial p_i} \quad \text{和} \quad \dot{p}_i = -\frac{\partial H}{\partial q_i}.
+\dot{q}_i = \frac{\partial \mathcal{H}}{\partial p_i} \quad \text{和} \quad \dot{p}_i = -\frac{\partial \mathcal{H}}{\partial q_i}.
 \tag{F.1.1}
 $$
 
@@ -138,7 +138,7 @@ $$
 在第 2 章线性响应理论的推导中，我们假设系统在扰动开启时被制备为平衡态，然后让系统弛豫到扰动关闭的新平衡态。然而，这并不总是可行的。例如，考虑电导率。在这种情况下，扰动是一个电场，它将引起系统中电流的流动。因此，我们用电场开启时制备的系统的状态不是平衡态，而是稳定的非平衡态。恒定剪切下的系统也是如此。在这些情况下，似乎不能用最简单形式的线性响应理论框架来推导输运系数，如电导率$\sigma_e$或黏度$\eta$。幸运的是，情况并没有那么糟糕。以电导率为例，确实，如果我们将导电系统置于外场中，我们将产生一个非平衡稳态。但是，我们可以通过开启一个弱的均匀矢势$\mathbf{A}$来扰动系统。开启矢势后系统的哈密顿量为
 
 $$
-H' = \sum_{i=1}^{N} \frac{1}{2m_i} \left( \mathbf{p}_i - \frac{e_i}{c} \mathbf{A} \right)^2 + U_{\mathrm{pot}}.
+\mathcal{H}' = \sum_{i=1}^{N} \frac{1}{2m_i} \left( \mathbf{p}_i - \frac{e_i}{c} \mathbf{A} \right)^2 + \mathcal{U}_{\mathrm{pot}}.
 \tag{F.2.1}
 $$
 
@@ -159,7 +159,7 @@ $$
 我们可以用标准方法计算由此产生的电流。注意到我们可以将式（F.2.1）中的$H'$写为
 
 $$
-H' = H_0 - \sum_{i=1}^{N} \frac{e_i}{c m_i} \mathbf{p}_i \cdot \mathbf{A} + \mathcal{O}(A^2) = H_0 - \frac{\mathbf{A}}{c} \int \mathrm{d}\mathbf{r} \sum_{i=1}^{N} \frac{e_i}{m_i} \mathbf{p}_i \, \delta(\mathbf{r}_i - \mathbf{r}) = H_0 - \frac{\mathbf{A}}{c} \int \mathrm{d}\mathbf{r} \, \mathbf{j}(\mathbf{r}),
+\mathcal{H}' = \mathcal{H}_0 - \sum_{i=1}^{N} \frac{e_i}{c m_i} \mathbf{p}_i \cdot \mathbf{A} + \mathcal{O}(A^2) = \mathcal{H}_0 - \frac{\mathbf{A}}{c} \int \mathrm{d}\mathbf{r} \sum_{i=1}^{N} \frac{e_i}{m_i} \mathbf{p}_i \, \delta(\mathbf{r}_i - \mathbf{r}) = \mathcal{H}_0 - \frac{\mathbf{A}}{c} \int \mathrm{d}\mathbf{r} \, \mathbf{j}(\mathbf{r}),
 \tag{F.2.4}
 $$
 
@@ -196,7 +196,7 @@ $$
 黏度相应的线性响应表达式似乎更加微妙，因为剪切通常不被解释为作用于所有分子的外场。尽管如此，我们可以通过与电导率情况类比，使用正则变换——即对应于均匀剪切的时间导数。为此，我们考虑一个由$N$个粒子组成的系统，其坐标为$\mathbf{r}^N$，哈密顿量为
 
 $$
-H_0 = \sum_{i=1}^{N} \frac{p_i^2}{2m_i} + U(\mathbf{r}^N).
+\mathcal{H}_0 = \sum_{i=1}^{N} \frac{p_i^2}{2m_i} + \mathcal{U}(\mathbf{r}^N).
 \tag{F.3.1}
 $$
 
@@ -210,7 +210,7 @@ $$
 新系统的哈密顿量可以写为
 
 $$
-H_1 = \sum_{i=1}^{N} \frac{1}{2m_i} \mathbf{p}'_i \cdot \mathbf{G}^{-1} \cdot \mathbf{p}'_i + U(\mathbf{r}'^N),
+\mathcal{H}_1 = \sum_{i=1}^{N} \frac{1}{2m_i} \mathbf{p}'_i \cdot \mathbf{G}^{-1} \cdot \mathbf{p}'_i + \mathcal{U}(\mathbf{r}'^N),
 \tag{F.3.3}
 $$
 
@@ -306,7 +306,7 @@ $$
 该方程定义了（二阶）弹性常数$C^{(2)}_{\alpha\beta\gamma\delta}$。为了数值计算弹性常数，我们需要$F$对$\boldsymbol{\eta}$依赖关系的微观表达式。为了推导这种关系，我们必须详细考虑系统变形对配分函数的影响。让我们首先考虑变形系统。该系统的配分函数（忽略常数，如$h^{-3N}$）为
 
 $$
-Q(\boldsymbol{\eta}) = \int \mathrm{d}\mathbf{p}^N \mathrm{d}\mathbf{r}^N \exp\left[ -\beta H\left( \mathbf{p}^N, \mathbf{r}^N \right) \right].
+Q(\boldsymbol{\eta}) = \int \mathrm{d}\mathbf{p}^N \mathrm{d}\mathbf{r}^N \exp\left[ -\beta \mathcal{H}\left( \mathbf{p}^N, \mathbf{r}^N \right) \right].
 \tag{F.4.6}
 $$
 
@@ -323,21 +323,21 @@ $$
 动能$K = \sum \frac{1}{2} m_i \dot{\mathbf{r}}_i^2$可以写为
 
 $$
-K = \sum \frac{1}{2} m_i \dot{\mathbf{r}}_i^2 = \sum \frac{1}{2} m_i \dot{\mathbf{r}}_{0,i} (\mathbf{h}^T \mathbf{h}) \dot{\mathbf{r}}_{0,i} \equiv \sum \frac{1}{2} m_i \dot{\mathbf{r}}_{0,i} \cdot \mathbf{G} \cdot \dot{\mathbf{r}}_{0,i},
+\mathcal{K} = \sum \frac{1}{2} m_i \dot{\mathbf{r}}_i^2 = \sum \frac{1}{2} m_i \dot{\mathbf{r}}_{0,i} (\mathbf{h}^T \mathbf{h}) \dot{\mathbf{r}}_{0,i} \equiv \sum \frac{1}{2} m_i \dot{\mathbf{r}}_{0,i} \cdot \mathbf{G} \cdot \dot{\mathbf{r}}_{0,i},
 \tag{F.4.8}
 $$
 
 其中$\mathbf{h}^T = (\mathbf{1} + \boldsymbol{\epsilon}^T)$是$\mathbf{h}$的转置，$\mathbf{G} = \mathbf{h}^T \mathbf{h}$是度量张量。由$\mathbf{h}$的定义可知$\mathbf{G} = (\mathbf{1} + 2\boldsymbol{\eta})$。我们现在可以写出与坐标$\mathbf{r}_{0,i}$共轭的广义动量$\mathbf{p}_{0,i}$（见附录 A）：
 
 $$
-p_{0,i}^{\alpha} = \left( \frac{\partial K}{\partial \dot{r}_{0,i}^{\alpha}} \right) = m_i G^{\alpha\beta} \dot{r}_{0,i}^{\beta}
+p_{0,i}^{\alpha} = \left( \frac{\partial \mathcal{K}}{\partial \dot{r}_{0,i}^{\alpha}} \right) = m_i G^{\alpha\beta} \dot{r}_{0,i}^{\beta}
 \tag{F.4.9}
 $$
 
 因此
 
 $$
-K = \sum \frac{1}{2} m_i \dot{\mathbf{r}}_{0,i} \cdot \mathbf{G} \cdot \dot{\mathbf{r}}_{0,i} = \sum \frac{1}{2m_i} \mathbf{p}_{0,i} \cdot \mathbf{G}^{-1} \cdot \mathbf{p}_{0,i} = \sum \frac{1}{2m_i} \mathbf{p}_{0,i} \cdot (\mathbf{1} + 2\boldsymbol{\eta})^{-1} \cdot \mathbf{p}_{0,i}.
+\mathcal{K} = \sum \frac{1}{2} m_i \dot{\mathbf{r}}_{0,i} \cdot \mathbf{G} \cdot \dot{\mathbf{r}}_{0,i} = \sum \frac{1}{2m_i} \mathbf{p}_{0,i} \cdot \mathbf{G}^{-1} \cdot \mathbf{p}_{0,i} = \sum \frac{1}{2m_i} \mathbf{p}_{0,i} \cdot (\mathbf{1} + 2\boldsymbol{\eta})^{-1} \cdot \mathbf{p}_{0,i}.
 \tag{F.4.10}
 $$
 
@@ -355,7 +355,7 @@ $\{\mathbf{p}^N, \mathbf{r}^N\}$与$\{\mathbf{p}_0^N, \mathbf{r}_0^N\}$之间变
 
 $$
 \displaystyle
-Q(\boldsymbol{\eta) = \int \mathrm{d}\mathbf{p}^N \mathrm{d}\mathbf{r}^N \exp\left[ -\beta H\left( \mathbf{p}^N, \mathbf{r}^N \right) \right] = \int \mathrm{d}\mathbf{p}_0^N \mathrm{d}\mathbf{r}_0^N \exp\left[ -\beta \left\{ \sum \frac{1}{2m_i} \mathbf{p}_{0,i} \cdot (\mathbf{1} + 2\boldsymbol{\eta})^{-1} \cdot \mathbf{p}_{0,i} + U\left( \mathbf{r}_0^N; \boldsymbol{\eta} \right) \right\} \right].
+Q(\boldsymbol{\eta) = \int \mathrm{d}\mathbf{p}^N \mathrm{d}\mathbf{r}^N \exp\left[ -\beta \mathcal{H}\left( \mathbf{p}^N, \mathbf{r}^N \right) \right] = \int \mathrm{d}\mathbf{p}_0^N \mathrm{d}\mathbf{r}_0^N \exp\left[ -\beta \left\{ \sum \frac{1}{2m_i} \mathbf{p}_{0,i} \cdot (\mathbf{1} + 2\boldsymbol{\eta})^{-1} \cdot \mathbf{p}_{0,i} + \mathcal{U}\left( \mathbf{r}_0^N; \boldsymbol{\eta} \right) \right\} \right].
 }
 \tag{F.4.12}
 $$

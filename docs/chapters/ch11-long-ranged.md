@@ -76,7 +76,7 @@ Ewald 求和所需的计算量不是以$N^2$标度的，但仍随粒子数的增
 让我们考虑一个由带正电和带负电的粒子（$q$）组成的系统。这些粒子被假定位处于一个直径为$L$（体积$V=L^3$）的立方盒子中。我们假设周期性边界条件。基本模拟盒子（单胞）中的粒子总数为$N$。我们假设系统整体上是电中性的；即$\sum_i q_i = 0$。此外，我们依赖于这样一个事实：非库仑短程排斥（Pauli 不相容原理）将阻止异号点电荷靠得任意近。我们希望计算这个$N$粒子系统的库仑对势能的贡献：
 
 $$
-U_{\text{Coul}} = \frac{1}{2}\sum_{i=1}^{N} q_i \phi(\mathbf{r}_i),
+\mathcal{U}_{\text{Coul}} = \frac{1}{2}\sum_{i=1}^{N} q_i \phi(\mathbf{r}_i),
 
 \tag{11.2.1}
 $$
@@ -405,7 +405,7 @@ $$
 其中最后一行定义了互补误差函数$\operatorname{erfc}(x) \equiv 1 - \operatorname{erf}(x)$。屏蔽库仑相互作用对势能的总贡献由下式给出
 
 $$
-U_{\text{short-range}} = \frac{1}{2}\sum_{i\neq j} q_i q_j \operatorname{erfc}\left(\sqrt{\alpha}r_{ij}\right)/r_{ij}.
+\mathcal{U}_{\text{short-range}} = \frac{1}{2}\sum_{i\neq j} q_i q_j \operatorname{erfc}\left(\sqrt{\alpha}r_{ij}\right)/r_{ij}.
 
 \tag{11.2.23}
 $$
@@ -413,7 +413,7 @@ $$
 势能的总静电贡献现在是式（11.2.16）、（11.2.21) 和（11.2.23）之和：
 
 $$
-U_{\text{Coul}} = \frac{1}{2V}\sum_{\mathbf{k}\neq 0} \frac{4\pi}{k^2} |\tilde{\rho}(\mathbf{k})|^2 \exp\left(-k^2/4\alpha\right)
+\mathcal{U}_{\text{Coul}} = \frac{1}{2V}\sum_{\mathbf{k}\neq 0} \frac{4\pi}{k^2} |\tilde{\rho}(\mathbf{k})|^2 \exp\left(-k^2/4\alpha\right)
 - \left(\frac{\alpha}{\pi}\right)^{1/2} \sum_{i=1}^{N} q_i^2
 + \frac{1}{2}\sum_{i\neq j} \frac{q_i q_j \operatorname{erfc}\left(\sqrt{\alpha}r_{ij}\right)}{r_{ij}}.
 
@@ -426,7 +426,7 @@ $$
 
 $$
 \displaystyle
-U_{\text{dipolar} = \frac{1}{2V}\sum_{\mathbf{k}\neq 0} \frac{4\pi}{k^2} \left|\tilde{M}(\mathbf{k})\right|^2 \exp\left(-k^2/4\alpha\right)
+\mathcal{U_{\text{dipolar}} = \frac{1}{2V}\sum_{\mathbf{k}\neq 0} \frac{4\pi}{k^2} \left|\tilde{M}(\mathbf{k})\right|^2 \exp\left(-k^2/4\alpha\right)
 - \frac{2\pi}{3}\left(\frac{\alpha}{\pi}\right)^{3/2} \sum_{i=1}^{N} \mu_i^2
 + \frac{1}{2}\sum_{i\neq j} \left[(\boldsymbol{\mu}_i \cdot \boldsymbol{\mu}_j) B(r_{ij}) - (\boldsymbol{\mu}_i \cdot \mathbf{r}_{ij})(\boldsymbol{\mu}_j \cdot \mathbf{r}_{ij}) C(r_{ij})\right],
 }
@@ -537,7 +537,7 @@ $$
 其中$\mathbf{P}\equiv\mathbf{M}/V$。现在让我们考虑为了产生净极化$\mathbf{P}$而必须对抗此退极化场所做的每单位体积的可逆功。利用
 
 $$
-dw = -\mathbf{E}\cdot d\mathbf{P} = \frac{4\pi}{2\epsilon'+1}\mathbf{P}\cdot d\mathbf{P},
+\mathrm{d}w = -\mathbf{E}\cdot \mathrm{d}\mathbf{P} = \frac{4\pi}{2\epsilon'+1}\mathbf{P}\cdot \mathrm{d}\mathbf{P},
 $$
 
 我们发现极化体积为$V$的系统所需的总功等于
@@ -636,7 +636,7 @@ $$
 由此得到时间
 
 $$
-\tau = \frac{8\sqrt{\tau_R\tau_F}N^{3/2}s^3}{\sqrt{3}\pi} = O(N^{3/2}).
+\tau = \frac{8\sqrt{\tau_R\tau_F}N^{3/2}s^3}{\sqrt{3}\pi} = \mathcal{O}(N^{3/2}).
 \tag{11.2.36}
 $$
 
@@ -675,7 +675,7 @@ $$
 按照 Deserno 和 Holm [[479]](references.md#ref-479)的做法，我们将傅里叶空间贡献写为
 
 $$
-U_S = \frac{1}{2}\frac{1}{V}\sum_{\mathbf{k}\neq 0}\sum_{i=1}^{N} q_i\left[\tilde{g}(\mathbf{k})\tilde{\gamma}(\mathbf{k})\tilde{\rho}(\mathbf{k})e^{i\mathbf{k}\cdot\mathbf{r}_i}\right]
+\mathcal{U}_S = \frac{1}{2}\frac{1}{V}\sum_{\mathbf{k}\neq 0}\sum_{i=1}^{N} q_i\left[\tilde{g}(\mathbf{k})\tilde{\gamma}(\mathbf{k})\tilde{\rho}(\mathbf{k})e^{i\mathbf{k}\cdot\mathbf{r}_i}\right]
 = \frac{1}{2}\sum_{i=1}^{N} q_i\phi_k(\mathbf{r}_i),
 \tag{11.3.1}
 $$

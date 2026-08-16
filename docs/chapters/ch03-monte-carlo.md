@@ -17,20 +17,20 @@ MCMC 方法并不局限于计算多体系统的性质：每当我们有一个可
 下面，我们描述马尔可夫链 Monte Carlo 方法的基本原理，除非特别说明，此后我们通常将其简称为 Monte Carlo（MC）方法。首先，我们关注基本的 MC 方法，该方法可用于模拟在给定体积 ($V$) 和给定温度 ($T$) 下具有固定粒子数 ($N$) 的系统。为了保持符号简洁，我们最初关注没有内部自由度的粒子。为了引入 Monte Carlo 方法，我们从配分函数 $Q$ 的经典表达式出发（公式 (2.2.19)）：
 
 $$
-Q = c \int \mathrm{d}\mathbf{p}^N \mathrm{d}\mathbf{r}^N \exp[-H(\mathbf{r}^N, \mathbf{p}^N)/k_BT],
+Q = c \int \mathrm{d}\mathbf{p}^N \mathrm{d}\mathbf{r}^N \exp[-\mathcal{H}(\mathbf{r}^N, \mathbf{p}^N)/k_BT],
 \tag{3.2.1}
 $$
 
 其中 哈密顿量 $H \equiv H(\mathbf{r}^N, \mathbf{p}^N)$ 的定义与公式 (2.3.1) 相同。系统的 哈密顿量将总能量表示为组成粒子坐标和动量的函数：$H = K + U$，其中 $K$ 是动能，$U$ 是势能。恒定 $NVT$ 下经典系统的可观测量 $A \equiv A(\mathbf{p}^N, \mathbf{r}^N)$ 的平衡平均由公式 (2.2.20) 给出：
 
 $$
-\langle A \rangle = \frac{\int \mathrm{d}\mathbf{p}^N \mathrm{d}\mathbf{r}^N A(\mathbf{p}^N, \mathbf{r}^N) \exp[-\beta H(\mathbf{p}^N, \mathbf{r}^N)]}{\int \mathrm{d}\mathbf{p}^N \mathrm{d}\mathbf{r}^N \exp[-\beta H(\mathbf{p}^N, \mathbf{r}^N)]},
+\langle A \rangle = \frac{\int \mathrm{d}\mathbf{p}^N \mathrm{d}\mathbf{r}^N A(\mathbf{p}^N, \mathbf{r}^N) \exp[-\beta \mathcal{H}(\mathbf{p}^N, \mathbf{r}^N)]}{\int \mathrm{d}\mathbf{p}^N \mathrm{d}\mathbf{r}^N \exp[-\beta \mathcal{H}(\mathbf{p}^N, \mathbf{r}^N)]},
 \tag{3.2.2}
 $$
 
 $K$ 是动量的二次函数，正如我们在公式 (2.3.3) 以下所论证的，对动量的积分可以解析完成，前提是 $A$ 是动量的简单函数，我们可以对其进行高斯积分。因此，仅依赖于动量的函数的平均通常容易计算[^3]。问题的困难部分在于计算依赖于坐标的函数 $A(\mathbf{r}^N)$ 的平均值。只有在少数例外情况下，粒子坐标的多维积分才能解析计算；在所有其他情况下，必须使用数值技术。
 
-换言之，我们需要一种数值技术，使我们能够计算依赖于大量坐标（通常为 $O(10^3 \text{--} 10^6)$）的函数的平均。似乎最直接的方法是通过数值求积来计算公式中 $\langle A \rangle$ 的值，例如使用高维版本的 Simpson 法则。然而，容易看出这种方法是完全无用的，即使独立坐标 $dN$（$d$ 是系统的维数）的数量还相当小。例如，考虑通过求积计算 $N = 100$ 个粒子系统的积分类型所需的计算量。这样的计算将涉及在 $dN$ 维构型空间的点网格上评估被积函数来进行求积。假设我们沿每个坐标轴取 $m$ 个等距点。需要评估被积函数的总点数等于 $m^{dN}$。对于除最小系统以外的所有系统，即使 $m$ 的值很小，这个数字也变得天文数字般庞大。例如，如果我们取三维中的 100 个粒子，$m = 5$，那么我们将需要在 $10^{210}$ 个点上评估被积函数！这种量级的计算在已知宇宙的寿命内无法完成。而这其实是幸运的，因为所得到的答案将受到很大统计误差的影响。毕竟，数值求积在被积函数在网格间距距离上光滑时效果最好。但对于大多数分子间势，玻尔兹曼因子是粒子坐标的一个快速变化函数。因此，精确地求积需要小的网格间距（即 $m$ 的大值）。此外，在对稠密液体评估被积函数时，我们会发现在绝大多数点上，玻尔兹曼因子趋于零。例如，对于凝固点处 100 个硬球的流体，玻尔兹曼因子在每 $10^{260}$ 个构型中只有一个是非零的！这个问题与求积点在网格上选择的事实无关：将积分估计为 $10^{260}$ 个随机选择的构型的平均同样无效。
+换言之，我们需要一种数值技术，使我们能够计算依赖于大量坐标（通常为 $O(10^3 \text{--} 10^6)$）的函数的平均。似乎最直接的方法是通过数值求积来计算公式中 $\langle A \rangle$ 的值，例如使用高维版本的 Simpson 法则。然而，容易看出这种方法是完全无用的，即使独立坐标 $\mathrm{d}N$（$d$ 是系统的维数）的数量还相当小。例如，考虑通过求积计算 $N = 100$ 个粒子系统的积分类型所需的计算量。这样的计算将涉及在 $\mathrm{d}N$ 维构型空间的点网格上评估被积函数来进行求积。假设我们沿每个坐标轴取 $m$ 个等距点。需要评估被积函数的总点数等于 $m^{dN}$。对于除最小系统以外的所有系统，即使 $m$ 的值很小，这个数字也变得天文数字般庞大。例如，如果我们取三维中的 100 个粒子，$m = 5$，那么我们将需要在 $10^{210}$ 个点上评估被积函数！这种量级的计算在已知宇宙的寿命内无法完成。而这其实是幸运的，因为所得到的答案将受到很大统计误差的影响。毕竟，数值求积在被积函数在网格间距距离上光滑时效果最好。但对于大多数分子间势，玻尔兹曼因子是粒子坐标的一个快速变化函数。因此，精确地求积需要小的网格间距（即 $m$ 的大值）。此外，在对稠密液体评估被积函数时，我们会发现在绝大多数点上，玻尔兹曼因子趋于零。例如，对于凝固点处 100 个硬球的流体，玻尔兹曼因子在每 $10^{260}$ 个构型中只有一个是非零的！这个问题与求积点在网格上选择的事实无关：将积分估计为 $10^{260}$ 个随机选择的构型的平均同样无效。
 
 显然，需要其他数值技术来计算热力学平均。其中一种技术是 Monte Carlo 方法，或者更准确地说，是 1953 年由 Metropolis 等人[[6]](references.md#ref-6) 引入的 Monte Carlo 重要性采样（importance sampling）算法。将该方法应用于原子和分子系统的数值模拟是本章的主题。
 
@@ -39,7 +39,7 @@ $K$ 是动量的二次函数，正如我们在公式 (2.3.3) 以下所论证的�
 如上所述，通常来说，通过求积评估形如 $\int \mathrm{d}\mathbf{r}^N \exp[-\beta U(\mathbf{r}^N)]$ 的积分是不可行的。然而，在许多情况下，我们对配分函数的构型部分本身并不感兴趣，而是对以下类型的平均值感兴趣（参见公式 (2.3.9)）：
 
 $$
-\langle A \rangle = \frac{\int \mathrm{d}\mathbf{r}^N \exp[-\beta U(\mathbf{r}^N)] A(\mathbf{r}^N)}{\int \mathrm{d}\mathbf{r}^N \exp[-\beta U(\mathbf{r}^N)]}.
+\langle A \rangle = \frac{\int \mathrm{d}\mathbf{r}^N \exp[-\beta \mathcal{U}(\mathbf{r}^N)] A(\mathbf{r}^N)}{\int \mathrm{d}\mathbf{r}^N \exp[-\beta \mathcal{U}(\mathbf{r}^N)]}.
 \tag{3.2.3}
 $$
 
@@ -126,7 +126,7 @@ $$
 由此可得[^6]：
 
 $$
-\frac{\text{acc}(o \to n)}{\text{acc}(n \to o)} = \frac{\mathcal{N}(n)}{\mathcal{N}(o)} = \exp\{-\beta[U(n) - U(o)]\}.
+\frac{\text{acc}(o \to n)}{\text{acc}(n \to o)} = \frac{\mathcal{N}(n)}{\mathcal{N}(o)} = \exp\{-\beta[\mathcal{U}(n) - \mathcal{U}(o)]\}.
 \tag{3.2.10}
 $$
 
@@ -188,7 +188,7 @@ MC 移动不需要满足的唯一标准是生成物理上合理的轨迹。在�
 1. 给粒子一个随机位移 $\mathbf{r}' = \mathbf{r} + \Delta$，并计算其新的势能 $U(\mathbf{r}'^N)$。
 1. 以如下概率接受从 $\mathbf{r}^N$ 到 $\mathbf{r}'^N$ 的移动：
    $$
-   \text{acc}(o \to n) = \min\{1, \exp\{-\beta[U(\mathbf{r}'^N) - U(\mathbf{r}^N)]\}\}.
+   \text{acc}(o \to n) = \min\{1, \exp\{-\beta[\mathcal{U}(\mathbf{r}'^N) - \mathcal{U}(\mathbf{r}^N)]\}\}.
    \tag{3.3.1}
    $$
 
@@ -302,7 +302,7 @@ $$
 如果分子间相互作用衰减得足够快，可以通过向 $U_{\text{tot}}$ 添加尾部贡献来校正由于在 $r_c$ 处截断势而产生的系统误差：
 
 $$
-U_{\text{tot}} = \sum_{i < j} u_{\text{trunc}}(r_{ij}) + \frac{N\rho}{2} \int_{r_c}^{\infty} \mathrm{d}r \, u(r) 4\pi r^2,
+\mathcal{U}_{\text{tot}} = \sum_{i < j} u_{\text{trunc}}(r_{ij}) + \frac{N\rho}{2} \int_{r_c}^{\infty} \mathrm{d}r \, u(r) 4\pi r^2,
 \tag{3.3.3}
 $$
 
@@ -580,7 +580,7 @@ $$
 \begin{align}
 x_i' &\to x_i + \Delta(R - 0.5) \nonumber\\
 y_i' &\to y_i + \Delta(R - 0.5) \\
-z_i' &\to z_i + \Delta(R - 0.5), \nonumber
+z_i' &\to z_i + \Delta(\mathcal{R} - 0.5), \nonumber
 \tag{3.4.1}
 \end{align}
 $$
@@ -594,7 +594,7 @@ $$
 $$
 \begin{align}
 \langle \Delta U \rangle &= \left\langle \frac{\partial U}{\partial r_i^{\alpha}} \right\rangle \overline{\Delta r_i^{\alpha}} + \frac{1}{2}\left\langle \frac{\partial^2 U}{\partial r_i^{\alpha} \partial r_i^{\beta}} \right\rangle \overline{\Delta r_i^{\alpha} \Delta r_i^{\beta}} + \cdots \nonumber\\
-&= 0 + f(U)\,\overline{\Delta r_i^2} + O(\Delta^4),
+&= 0 + f(\mathcal{U})\,\overline{\Delta r_i^2} + \mathcal{O}(\Delta^4),
 \tag{3.4.2}
 \end{align}
 $$
@@ -602,7 +602,7 @@ $$
 其中尖括号表示对系综求平均，上横线表示对随机试探移动求平均。$U$ 的二阶导数已被吸收进函数 $f(U)$ 中，其确切形式在此无关紧要。如果我们现在令上式左端的 $\langle \Delta U \rangle$ 等于 $k_BT$，就得到 $\overline{\Delta r_i^2}$ 的如下表达式：
 
 $$
-\overline{\Delta r_i^2} \approx k_BT/f(U).
+\overline{\Delta r_i^2} \approx k_BT/f(\mathcal{U}).
 \tag{3.4.3}
 $$
 
@@ -754,7 +754,7 @@ $$
 $$
 \begin{align}
 \mathcal{L} &= \sum_{i=1}^{N} \frac{m_i}{2}\frac{\partial \mathbf{r}_i}{\partial q_\alpha}\cdot\frac{\partial \mathbf{r}_i}{\partial q_\beta}\dot{q}_\alpha \dot{q}_\beta - U(\mathbf{q}^N) \nonumber\\
-&\equiv \frac{1}{2}\dot{\mathbf{q}} \cdot \mathsf{G} \cdot \dot{\mathbf{q}} - U(\mathbf{q}^N).
+&\equiv \frac{1}{2}\dot{\mathbf{q}} \cdot \mathsf{G} \cdot \dot{\mathbf{q}} - \mathcal{U}(\mathbf{q}^N).
 \tag{3.4.7}
 \end{align}
 $$
@@ -768,7 +768,7 @@ $$
 它给出 $p_\alpha = \mathsf{G}_{\alpha\beta}\dot{q}_\beta$。现在我们可以用广义坐标及其共轭动量写出哈密顿量 $\mathcal{H}$：
 
 $$
-\mathcal{H}(\mathbf{p},\mathbf{q}) = \frac{1}{2}\mathbf{p}\cdot\mathsf{G}^{-1}\cdot\mathbf{p} + U(\mathbf{q}^N).
+\mathcal{H}(\mathbf{p},\mathbf{q}) = \frac{1}{2}\mathbf{p}\cdot\mathsf{G}^{-1}\cdot\mathbf{p} + \mathcal{U}(\mathbf{q}^N).
 \tag{3.4.8}
 $$
 
@@ -777,7 +777,7 @@ $$
 $$
 \begin{align}
 \langle A \rangle &= \frac{\int \mathrm{d}\mathbf{q}^N \exp[-\beta U(\mathbf{q}^N)]A(\mathbf{q}^N)\int \mathrm{d}\mathbf{p}^N \exp(-\beta \mathbf{p}\cdot\mathsf{G}^{-1}\cdot\mathbf{p}/2)}{\int \mathrm{d}\mathbf{q}^N \mathrm{d}\mathbf{p}^N \exp(-\beta\mathcal{H})} \nonumber\\
-&= \frac{\int \mathrm{d}\mathbf{q}^N \exp[-\beta U(\mathbf{q}^N)]A(\mathbf{q}^N)|\mathsf{G}|^{1/2}}{\int \mathrm{d}\mathbf{q}^N \mathrm{d}\mathbf{p}^N \exp(-\beta\mathcal{H})}.
+&= \frac{\int \mathrm{d}\mathbf{q}^N \exp[-\beta \mathcal{U}(\mathbf{q}^N)]A(\mathbf{q}^N)|\mathsf{G}|^{1/2}}{\int \mathrm{d}\mathbf{q}^N \mathrm{d}\mathbf{p}^N \exp(-\beta\mathcal{H})}.
 \tag{3.4.9}
 \end{align}
 $$
@@ -889,7 +889,7 @@ $$
 [^1]: 我们用 $\mathbf{r}^N$ 表示系统中 $N$ 个粒子的 $x, y, z$ 坐标，$\mathbf{p}^N$ 表示相应的动量。
 [^2]: 关于 Metropolis 方法早期历史的有趣叙述可在文献[[1,2,64,65]](references.md#ref-1) 中找到。
 [^3]: 然而，在受约束的系统中需要特别注意；参见第 10.2.1 节。
-[^4]: 我们使用符号 $\delta d^N$ 来表示系统 $dN$ 维构型空间中的一个小超体积。
+[^4]: 我们使用符号 $\delta d^N$ 来表示系统 $\mathrm{d}N$ 维构型空间中的一个小超体积。
 [^5]: 在第 13 章中，我们将讨论不满足细致平衡的强大 MC 算法。然而，它们满足平衡条件，因此维持玻尔兹曼分布。
 [^6]: 显然，$\mathcal{N}$ 为非负的公式才有意义。
 [^7]: 在 MC 中随机选择粒子是标准做法，因为其他选择产生的算法不满足细致平衡。有趣的是，原始的 Metropolis 算法[[6]](references.md#ref-6) 是顺序移动粒子的，因此违反了细致平衡。然而，它确实满足平衡条件。在第 13.4.4 节中，我们将讨论打破细致平衡如何加速 MC 模拟的收敛。涉及随机选择粒子的试探移动的明确描述可以在 1957 年 Wood 和 Parker 的论文[[69]](references.md#ref-69) 中找到。

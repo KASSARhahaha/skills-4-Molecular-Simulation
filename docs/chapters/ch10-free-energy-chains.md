@@ -15,7 +15,7 @@
 Kumar 等人[[440,441]](references.md#ref-440) 提出了一种密切相关的测量链分子化学势的方法。在该方案中，链分子逐个单体地构建。Kumar 等人的方法类似于 Mon 和 Griffiths [[442]](references.md#ref-442) 早先提出的用于测量超额化学势的逐步插入方案。中间步骤所涉及的可逆功使用 Widom 方法测量；也就是说，长度为 $\ell$ 和 $\ell+1$ 的链的超额自由能之差通过计算 $\Delta U(\ell \to \ell+1)$（即与添加第 $(\ell+1)$ 个单体相关的势能变化）来测量。自由能变化由下式给出：
 
 $$
-\Delta F_{\mathrm{ex}}(\ell \to \ell+1) \equiv \mu_{\mathrm{ex}}^{\mathrm{incr}}(\ell \to \ell+1) = -k_B T \ln \langle \exp[-\beta \Delta U(\ell \to \ell+1)] \rangle .
+\Delta F_{\mathrm{ex}}(\ell \to \ell+1) \equiv \mu_{\mathrm{ex}}^{\mathrm{incr}}(\ell \to \ell+1) = -k_B T \ln \langle \exp[-\beta \Delta \mathcal{U}(\ell \to \ell+1)] \rangle .
 \tag{10.1.1}
 $$
 
@@ -30,7 +30,7 @@ $$
 回顾一下我们如何使用 Widom 技术计算链分子的 $\mu_{\mathrm{ex}}$ 是有益的。为此，我们引入以下记号：链分子第一个片段的位置用 $\mathbf{q}$ 表示，分子整体的构象用 $\Gamma$ 描述。链分子体系的构型部分配分函数可以写为[^1]
 
 $$
-Q_{\mathrm{chain}}(N, V, T) = \frac{1}{N!} \int \mathrm{d}\mathbf{q}^N \sum_{\Gamma_1, ..., \Gamma_N} \exp[-\beta U(\mathbf{q}^N, \Gamma^N)] .
+Q_{\mathrm{chain}}(N, V, T) = \frac{1}{N!} \int \mathrm{d}\mathbf{q}^N \sum_{\Gamma_1, ..., \Gamma_N} \exp[-\beta \mathcal{U}(\mathbf{q}^N, \Gamma^N)] .
 \tag{10.2.1}
 $$
 
@@ -54,7 +54,7 @@ $$
 
 $$
 \beta \mu_{\mathrm{ex}} = -\ln \frac{Q_{\mathrm{chain}}(N+1, V, T)}{Q(N, V, T) Q^{\mathrm{ideal}}(1, V, T)}
-= -\ln \left\langle \exp[-\beta \Delta U(\mathbf{q}^N, \Gamma^N; \mathbf{q}^{N+1}, \Gamma^{N+1})] \right\rangle ,
+= -\ln \left\langle \exp[-\beta \Delta \mathcal{U}(\mathbf{q}^N, \Gamma^N; \mathbf{q}^{N+1}, \Gamma^{N+1})] \right\rangle ,
 \tag{10.2.2}
 $$
 
@@ -89,14 +89,14 @@ Widom 方法处理式 (10.2.2) 的问题在于，几乎所有随机插入的理�
 我们使用这种方案生成大量构象，这些链的系综平均性质如下计算：
 
 $$
-\langle A \rangle_R = \frac{\sum_{n=1}^{M} \mathcal{W}(n) A(n)}{\sum_{n=1}^{M} \mathcal{W}(n)} ,
+\langle A \rangle_\mathcal{R} = \frac{\sum_{n=1}^{M} \mathcal{W}(n) A(n)}{\sum_{n=1}^{M} \mathcal{W}(n)} ,
 \tag{10.2.6}
 $$
 
 其中 $\langle \cdots \rangle_R$ 表示构象已由 Rosenbluth 方案生成。这个标记很重要，因为 Rosenbluth 算法不以正确的玻尔兹曼权重生成链。我们将 Rosenbluth 过程生成的分布称为 Rosenbluth 分布。在 Rosenbluth 分布中，生成特定构象 $n$ 的概率为
 
 $$
-P(n) = \prod_{i=1}^{\ell} \frac{\exp[-\beta u^{(i)}(n)]}{w_i} = \frac{k^{\ell} \exp[-\beta U(n)]}{\mathcal{W}(n)} .
+P(n) = \prod_{i=1}^{\ell} \frac{\exp[-\beta u^{(i)}(n)]}{w_i} = \frac{k^{\ell} \exp[-\beta \mathcal{U}(n)]}{\mathcal{W}(n)} .
 \tag{10.2.7}
 $$
 
@@ -109,15 +109,15 @@ $$
 其中求和遍及聚合物的所有可能构象。我们可以通过给不同的链构象赋予不同的权重来从 Rosenbluth 分布中恢复正则系综平均。这正是式 (10.2.6) 中所做的：
 
 $$
-\langle A \rangle_R = \frac{\sum_{n} \mathcal{W}(n) A(n) P(n)}{\sum_{n} \mathcal{W}(n) P(n)} .
+\langle A \rangle_\mathcal{R} = \frac{\sum_{n} \mathcal{W}(n) A(n) P(n)}{\sum_{n} \mathcal{W}(n) P(n)} .
 \tag{10.2.8}
 $$
 
 代入式 (10.2.5) 和 (10.2.7)，得到
 
 $$
-\langle A \rangle_R = \frac{\sum_{n} \mathcal{W}(n) k^{\ell} A(n) \exp[-\beta U(n)] / \mathcal{W}(n)}{\sum_{n} \mathcal{W}(n) k^{\ell} \exp[-\beta U(n)] / \mathcal{W}(n)}
-= \frac{\sum_{n} A(n) \exp[-\beta U(n)]}{\sum_{n} \exp[-\beta U(n)]}
+\langle A \rangle_\mathcal{R} = \frac{\sum_{n} \mathcal{W}(n) k^{\ell} A(n) \exp[-\beta \mathcal{U}(n)] / \mathcal{W}(n)}{\sum_{n} \mathcal{W}(n) k^{\ell} \exp[-\beta \mathcal{U}(n)] / \mathcal{W}(n)}
+= \frac{\sum_{n} A(n) \exp[-\beta \mathcal{U}(n)]}{\sum_{n} \exp[-\beta \mathcal{U}(n)]}
 = \langle A \rangle ,
 \tag{10.2.9}
 $$
@@ -144,9 +144,9 @@ $$
 
 $$
 \displaystyle
-W = \sum_{\Gamma \prod_{i=2}^{\ell} \frac{\exp[-\beta u^{(i)}(\Gamma_i)]}{w_i} \frac{k \exp[-\beta u^{(1)}(\Gamma_1)]}{w_1} \prod_{i=1}^{\ell} w_i
+\mathcal{W = \sum_{\Gamma} \prod_{i=2}^{\ell} \frac{\exp[-\beta u^{(i)}(\Gamma_i)]}{w_i} \frac{k \exp[-\beta u^{(1)}(\Gamma_1)]}{w_1} \prod_{i=1}^{\ell} w_i
 = \frac{1}{k} \sum_{\Gamma_1} \exp[-\beta u^{(1)}(\Gamma_1)] \prod_{i=2}^{\ell} \sum_{\Gamma_i} \frac{1}{k} \exp[-\beta u^{(i)}(\Gamma_i)]
-= \frac{1}{k^{\ell-1}} \sum_{\Gamma} \exp[-\beta U_{\Gamma}] ,
+= \frac{1}{k^{\ell-1}} \sum_{\Gamma} \exp[-\beta \mathcal{U}_{\Gamma}] ,
 }
 \tag{10.2.12}
 $$
@@ -154,7 +154,7 @@ $$
 其中我们已省略了对溶剂坐标 $\{\mathbf{q}^N, \Gamma^N\}$ 的所有显式引用。注意式 (10.2.12) 可以解释为对所有理想链构象的玻尔兹曼因子 $\exp[-\beta U_{\Gamma}]$ 的平均。如果现在将式 (10.2.12) 代入式 (10.2.11)，我们得到
 
 $$
-\langle \mathcal{W} \rangle = \left\langle \sum_{\Gamma} \exp[-\beta \Delta U(\mathbf{q}^N, \Gamma^N; \mathbf{q}^{N+1}, \Gamma^{N+1})] \right\rangle .
+\langle \mathcal{W} \rangle = \left\langle \sum_{\Gamma} \exp[-\beta \Delta \mathcal{U}(\mathbf{q}^N, \Gamma^N; \mathbf{q}^{N+1}, \Gamma^{N+1})] \right\rangle .
 \tag{10.2.13}
 $$
 
@@ -201,7 +201,7 @@ $$
 这种采样可以使用拒绝方法相当容易地完成（参见例如文献[[21]](references.md#ref-21)）。在下文中，我们使用符号 $\mathbf{e}_i$ 表示指定链分子第 $i$ 段方向的单位向量。对于这样生成的每个构象，我们计算玻尔兹曼因子 $\exp(-\beta U_{\mathrm{ext}})$。该玻尔兹曼权重的平均值等于
 
 $$
-\langle \exp(-\beta U_{\mathrm{ext}}) \rangle = \frac{\int \mathrm{d}\Gamma \exp[-\beta(U_{\mathrm{bond}} + U_{\mathrm{ext}})]}{\int \mathrm{d}\Gamma \exp(-\beta U_{\mathrm{bond}})} = Q/Q_{\mathrm{id}} .
+\langle \exp(-\beta \mathcal{U}_{\mathrm{ext}}) \rangle = \frac{\int \mathrm{d}\Gamma \exp[-\beta(\mathcal{U}_{\mathrm{bond}} + \mathcal{U}_{\mathrm{ext}})]}{\int \mathrm{d}\Gamma \exp(-\beta \mathcal{U}_{\mathrm{bond}})} = Q/Q_{\mathrm{id}} .
 \tag{10.2.16}
 $$
 
@@ -238,7 +238,7 @@ $$
 为了证明式 (10.2.18) 是正确的，让我们考虑生成给定链构象的概率。这个概率是若干因子的乘积。让我们先考虑一个片段的这些因子，然后将结果推广到完整链。生成具有方向 $\mathbf{e}_1$ 到 $\mathbf{e}_k$ 的一组 $k$ 个试探片段的概率为
 
 $$
-P_{\mathrm{id}}(\mathbf{e}_1) P_{\mathrm{id}}(\mathbf{e}_2) \cdots P_{\mathrm{id}}(\mathbf{e}_k) d\mathbf{e}_1 \cdots d\mathbf{e}_k .
+P_{\mathrm{id}}(\mathbf{e}_1) P_{\mathrm{id}}(\mathbf{e}_2) \cdots P_{\mathrm{id}}(\mathbf{e}_k) \mathrm{d}\mathbf{e}_1 \cdots \mathrm{d}\mathbf{e}_k .
 \tag{10.2.19}
 $$
 
@@ -249,7 +249,7 @@ p^{(i)}(j) = \frac{\exp[-\beta u_{\mathrm{ext}}^{(i)}(\mathbf{e}_j)]}{w_{i}^{\ma
 \tag{10.2.20}
 $$
 
-其中 $j = 2, 3, \cdots, \ell$。我们希望计算所有可能的试探片段集合和所有可能的片段选择的 $w_i^{\mathrm{ext}}$ 的平均值。为此，我们必须对所有 $j$ 求和并对所有方向 $\prod_{j=1}^{k} d\mathbf{e}_j$ 积分（即我们对片段 $i+1$ 方向的归一化概率分布进行平均）：
+其中 $j = 2, 3, \cdots, \ell$。我们希望计算所有可能的试探片段集合和所有可能的片段选择的 $w_i^{\mathrm{ext}}$ 的平均值。为此，我们必须对所有 $j$ 求和并对所有方向 $\prod_{j=1}^{k} \mathrm{d}\mathbf{e}_j$ 积分（即我们对片段 $i+1$ 方向的归一化概率分布进行平均）：
 
 $$
 \left\langle \frac{1}{w_i^{\mathrm{ext}}} \right\rangle = \int \prod_{j=1}^{k} \mathrm{d}\mathbf{e}_j P_{\mathrm{id}}(\mathbf{e}_j) \sum_{j=1}^{k} \frac{\exp[-\beta u_{\mathrm{ext}}^{(i)}(j')]}{w_i^{\mathrm{ext}}(\mathbf{e}_1, \cdots, \mathbf{e}_k)} \frac{w_i^{\mathrm{ext}}(\mathbf{e}_1, \cdots, \mathbf{e}_k)}{\sum_{j'=1}^{k} \exp[-\beta u_{\mathrm{ext}}^{(i)}(j')]} \frac{1}{k} .

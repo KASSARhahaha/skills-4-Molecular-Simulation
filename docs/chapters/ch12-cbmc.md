@@ -35,7 +35,7 @@ $$
 满足此条件的一个可能的接受规则为
 
 $$
-\mathrm{acc}(o \to n) = \min\left\{1, \frac{f[U(o)]}{f[U(n)]} \exp\{-\beta[U(n) - U(o)]\}\right\}.
+\mathrm{acc}(o \to n) = \min\left\{1, \frac{f[\mathcal{U}(o)]}{f[\mathcal{U}(n)]} \exp\{-\beta[\mathcal{U}(n) - \mathcal{U}(o)]\}\right\}.
 
 \tag{12.1.1}
 $$
@@ -407,7 +407,7 @@ end function
 生成特定构象$n$的概率来自式 (12.2.2) 的重复使用：
 
 $$
-\alpha(o \to n) = \prod_{i=1}^{\ell} \frac{\exp[-\beta u_i(n)]}{w_i(n)} = \frac{\exp[-\beta U(n)]}{W(n)}.
+\alpha(o \to n) = \prod_{i=1}^{\ell} \frac{\exp[-\beta u_i(n)]}{w_i(n)} = \frac{\exp[-\beta \mathcal{U}(n)]}{W(n)}.
 
 \tag{12.2.7}
 $$
@@ -415,7 +415,7 @@ $$
 类似地，对于反向移动：
 
 $$
-\alpha(n \to o) = \frac{\exp[-\beta U(o)]}{W(o)}.
+\alpha(n \to o) = \frac{\exp[-\beta \mathcal{U}(o)]}{W(o)}.
 
 \tag{12.2.8}
 $$
@@ -534,7 +534,7 @@ $$
 \begin{align}
 K(o \to n, \mathbf{b}^*, \mathbf{b}'^*) &= \mathcal{N}(o) \times \alpha(o \to n, \mathbf{b}^*, \mathbf{b}'^*) \times \mathrm{acc}(o \to n, \mathbf{b}^*, \mathbf{b}'^*) \notag \\
 &= \exp[-\beta u(o)] \times C \exp[-\beta u^{\mathrm{bond}}(n)] \times \frac{\exp[-\beta u^{\mathrm{ext}}(n)]}{w^{\mathrm{ext}}(\mathbf{b}_n, \mathbf{b}^*)} \notag \\
-&\quad \times \mathrm{acc}(o \to n, \mathbf{b}^*, \mathbf{b}'^*)\, P^{\mathrm{bond}}(\mathbf{b}^*, \mathbf{b}'^*).
+&\quad \times \mathrm{acc}(o \to n, \mathbf{b}^*, \mathbf{b}'^*)\, \mathcal{P}^{\mathrm{bond}}(\mathbf{b}^*, \mathbf{b}'^*).
 
 \tag{12.2.20}
 \end{align}
@@ -546,7 +546,7 @@ $$
 \begin{align}
 K(n \to o, \mathbf{b}'^*, \mathbf{b}^*) &= \mathcal{N}(n) \times \alpha(n \to o, \mathbf{b}'^*, \mathbf{b}^*) \times \mathrm{acc}(n \to o, \mathbf{b}'^*, \mathbf{b}^*) \notag \\
 &= \exp[-\beta u(n)] \times C \exp[-\beta u^{\mathrm{bond}}(o)] \times \frac{\exp[-\beta u^{\mathrm{ext}}(o)]}{w^{\mathrm{ext}}(\mathbf{b}_o, \mathbf{b}'^*)} \notag \\
-&\quad \times \mathrm{acc}(n \to o, \mathbf{b}'^*, \mathbf{b}^*)\, P^{\mathrm{bond}}(\mathbf{b}^*, \mathbf{b}'^*).
+&\quad \times \mathrm{acc}(n \to o, \mathbf{b}'^*, \mathbf{b}^*)\, \mathcal{P}^{\mathrm{bond}}(\mathbf{b}^*, \mathbf{b}'^*).
 
 \tag{12.2.21}
 \end{align}
@@ -614,15 +614,15 @@ $$
 我们生成试探构型$\mathbf{b}$的概率由下式给出（见式 (12.2.10)）：
 
 $$
-P(\mathbf{b})\, d\mathbf{b} = C \exp[-\beta u^{\mathrm{bond}}(\mathbf{b})]\, d\mathbf{b}.
+P(\mathbf{b})\, \mathrm{d}\mathbf{b} = C \exp[-\beta u^{\mathrm{bond}}(\mathbf{b})]\, \mathrm{d}\mathbf{b}.
 
 \tag{12.3.1}
 $$
 
-使用键长$r$、键角$\theta$和扭转角$\varphi$来表示原子的位置是方便的（见图 12.5）。使用这些坐标，体积元$d\mathbf{b}$由下式给出：
+使用键长$r$、键角$\theta$和扭转角$\varphi$来表示原子的位置是方便的（见图 12.5）。使用这些坐标，体积元$\mathrm{d}\mathbf{b}$由下式给出：
 
 $$
-d\mathbf{b} = r^2\, dr\, d\cos\theta\, d\varphi.
+\mathrm{d}\mathbf{b} = r^2\, \mathrm{d}r\, \mathrm{d}\cos\theta\, \mathrm{d}\varphi.
 
 \tag{12.3.2}
 $$
@@ -639,9 +639,9 @@ $$
 
 $$
 \begin{align}
-P(\mathbf{b})\, d\mathbf{b} &= P(r, \theta, \varphi)\, r^2\, dr\, d\cos\theta\, d\varphi \notag \\
-&= C \exp[-\beta u_\mathrm{vib}(r)]\, r^2\, dr \times \exp[-\beta u_\mathrm{bend}(\theta)]\, d\cos\theta \notag \\
-&\quad \times \exp[-\beta u_\mathrm{tors}(\varphi)]\, d\varphi.
+P(\mathbf{b})\, \mathrm{d}\mathbf{b} &= P(r, \theta, \varphi)\, r^2\, \mathrm{d}r\, \mathrm{d}\cos\theta\, \mathrm{d}\varphi \notag \\
+&= C \exp[-\beta u_\mathrm{vib}(r)]\, r^2\, \mathrm{d}r \times \exp[-\beta u_\mathrm{bend}(\theta)]\, \mathrm{d}\cos\theta \notag \\
+&\quad \times \exp[-\beta u_\mathrm{tors}(\varphi)]\, \mathrm{d}\varphi.
 
 \tag{12.3.4}
 \end{align}
@@ -656,7 +656,7 @@ $$
 让我们考虑图 12.5 所示的分子。第一个原子被放置在随机位置，现在我们必须添加第二个原子。为方便起见，假设模型具有固定的键长。第二个原子除了键长约束外没有其他键合相互作用。试探取向的分布，即式 (12.3.4)，简化为
 
 $$
-P_2(\mathbf{b})\, d\mathbf{b} \propto d\cos\theta\, d\varphi.
+P_2(\mathbf{b})\, \mathrm{d}\mathbf{b} \propto \mathrm{d}\cos\theta\, \mathrm{d}\varphi.
 
 \tag{12.3.5}
 $$
@@ -666,7 +666,7 @@ $$
 对于第三个原子，键合能量还包含键弯曲能量。这给出试探取向的分布为
 
 $$
-P_3(\mathbf{b})\, d\mathbf{b} \propto \exp[-\beta u_\mathrm{bend}(\theta)]\, d\cos\theta\, d\varphi.
+P_3(\mathbf{b})\, \mathrm{d}\mathbf{b} \propto \exp[-\beta u_\mathrm{bend}(\theta)]\, \mathrm{d}\cos\theta\, \mathrm{d}\varphi.
 
 \tag{12.3.6}
 $$
@@ -678,7 +678,7 @@ $$
 对于第四个及更高的原子，键合能量包括键弯曲和扭转能量。这给出式 (12.3.4) 为
 
 $$
-p_l^{\mathrm{bond}}(\mathbf{b})\, d\mathbf{b} \propto \exp[-\beta u_\mathrm{bend}(\theta)]\, \exp[-\beta u_\mathrm{tors}(\varphi)]\, d\cos\theta\, d\varphi.
+p_l^{\mathrm{bond}}(\mathbf{b})\, \mathrm{d}\mathbf{b} \propto \exp[-\beta u_\mathrm{bend}(\theta)]\, \exp[-\beta u_\mathrm{tors}(\varphi)]\, \mathrm{d}\cos\theta\, \mathrm{d}\varphi.
 
 \tag{12.3.7}
 $$
@@ -817,14 +817,14 @@ end function
     1. 生成一个随机取向，键长均匀分布在选定的球壳内，使得它们包含所有可接受的键长。例如，我们可以考虑对应于 50\%键拉伸或压缩的极限。在这种情况下，生成键长$l$的概率为
        $$
        p_1(l) \begin{cases}
-       \propto C\, dl \propto l^2\, dl & 0.5 \le l \le 1.5 \\
+       \propto C\, \mathrm{d}l \propto l^2\, \mathrm{d}l & 0.5 \le l \le 1.5 \\
        0 & \text{其他}
        \end{cases}.
        $$
     1. 生成随机取向和由键拉伸势规定的键长（如算法 25 所述）。使用此方案生成键长$l$的概率为
        $$
        p_2(l) \begin{cases}
-       \propto C \exp[-\beta u_\mathrm{vib}(l)]\, dl = C \exp[-\beta u_\mathrm{vib}(l)]\, l^2\, dl & 0.5 \le l \le 1.5 \\
+       \propto C \exp[-\beta u_\mathrm{vib}(l)]\, \mathrm{d}l = C \exp[-\beta u_\mathrm{vib}(l)]\, l^2\, \mathrm{d}l & 0.5 \le l \le 1.5 \\
        0 & \text{其他}
        \end{cases}.
        $$
@@ -960,7 +960,7 @@ $$
 修改的 Rosenbluth 权重被选择为使得涉及理想构象数量的因子除一个外全部相互抵消：
 
 $$
-P_\mathrm{gen}(\Gamma) \times W(\Gamma) = \frac{\prod_{i=1}^{n} \exp[-\beta u^{\mathrm{ext}}(i)]}{\Omega(\mathbf{r}_1, \mathbf{r}_2; n)} = \frac{\exp[-\beta U^{\mathrm{ext}}(\Gamma)]}{\Omega(\mathbf{r}_1, \mathbf{r}_2; n)}.
+P_\mathrm{gen}(\Gamma) \times W(\Gamma) = \frac{\prod_{i=1}^{n} \exp[-\beta u^{\mathrm{ext}}(i)]}{\Omega(\mathbf{r}_1, \mathbf{r}_2; n)} = \frac{\exp[-\beta \mathcal{U}^{\mathrm{ext}}(\Gamma)]}{\Omega(\mathbf{r}_1, \mathbf{r}_2; n)}.
 
 \tag{12.4.4}
 $$
@@ -1033,7 +1033,7 @@ $$
 \prod_{i=1}^{\ell} & P_{\mathrm{gen}}[\boldsymbol{\Gamma}_j(i)]\, w_i \nonumber\\
 &= \prod_{i=1}^{\ell} \left(\frac{p_1(\mathbf{r}_i - \mathbf{r}_{i-1})\, P(\mathbf{r}_i - \mathbf{r}_2; \ell - i)}{P(\mathbf{r}_{i-1} - \mathbf{r}_2; \ell - i + 1)}\right) \left(\frac{\exp\{-\beta u^{\mathrm{ext}}[\boldsymbol{\Gamma}_j(i)]\}}{\sum_{j'=1}^{k} \exp\{-\beta u^{\mathrm{ext}}[\boldsymbol{\Gamma}_{j'}(i)]\}}\right) \nonumber\\
 &\qquad \times \left(\frac{\sum_{j'=1}^{k} \exp\{-\beta u^{\mathrm{ext}}[\boldsymbol{\Gamma}_{j'}(i)]\}}{k}\right) \nonumber\\
-&= \frac{\exp[-\beta U^{\mathrm{ext}}(\boldsymbol{\Gamma}_{\mathrm{total}})] \prod_{i=1}^{\ell} p_1(\mathbf{r}_i - \mathbf{r}_{i-1})}{k^{\ell}\, P(\mathbf{r}_{12}; \ell)}.
+&= \frac{\exp[-\beta \mathcal{U}^{\mathrm{ext}}(\boldsymbol{\Gamma}_{\mathrm{total}})] \prod_{i=1}^{\ell} p_1(\mathbf{r}_i - \mathbf{r}_{i-1})}{k^{\ell}\, P(\mathbf{r}_{12}; \ell)}.
 
 \tag{12.4.10}
 \end{align}
@@ -1151,7 +1151,7 @@ $$
    $$
 1. 新分子以如下概率被接受：
    $$
-   \mathrm{acc}(N \to N+1) = \min\left(1, \frac{q(T)\exp(\beta\mu_B)V}{(N+1)W_\mathrm{ext}^{\mathrm{(n)}}}\right),
+   \mathrm{acc}(N \to N+1) = \min\left(1, \frac{q(T)\exp(\beta\mu_B)V}{(N+1)\mathcal{W}_\mathrm{ext}^{\mathrm{(n)}}}\right),
    \tag{12.6.5}
    $$
    其中$\mu_B$是由理想链分子组成的储库的化学势，$q(T)$是分子配分函数的动力学贡献（对于原子，$q(T) = 1/\Lambda^3$）。
@@ -1172,14 +1172,14 @@ $$
    $$
 1. 选定的分子以如下概率被移除：
    $$
-   \mathrm{acc}(N \to N-1) = \min\left(1, \frac{N q(T)V \exp(\beta\mu_B)}{W_\mathrm{ext}^{\mathrm{(o)}}}\right).
+   \mathrm{acc}(N \to N-1) = \min\left(1, \frac{N q(T)V \exp(\beta\mu_B)}{\mathcal{W}_\mathrm{ext}^{\mathrm{(o)}}}\right).
    \tag{12.6.7}
    $$
 
 我们将$\mu_B$定义为由理想链组成的储库的化学势。通常很方便使用非理想链（即同时具有成键和非键分子内相互作用的链）的理想气体作为参考态。这导致化学势的一个简单的、依赖于温度的偏移：
 
 $$
-\beta\mu_B \equiv \beta\mu_\mathrm{id.chain} = \beta\mu_\mathrm{nonid.chain} + \ln\langle W_\mathrm{nonbonded}\rangle,
+\beta\mu_B \equiv \beta\mu_\mathrm{id.chain} = \beta\mu_\mathrm{nonid.chain} + \ln\langle \mathcal{W}_\mathrm{nonbonded}\rangle,
 
 \tag{12.6.8}
 $$

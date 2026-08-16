@@ -35,7 +35,7 @@
 类似地，$q$和$w$之和等于系统内能$E$的变化：
 
 $$
-dE = q + w.
+\mathrm{d}E = q + w.
 \tag{2.1.1}
 $$
 
@@ -147,14 +147,14 @@ $$
 一般而言，由于从温度为$T$的储库可逆地添加微小热量$\delta q_{\text{rev}}$引起的系统熵变为：
 
 $$
-dS = \frac{\delta q_{\text{rev}}}{T}.
+\mathrm{d}S = \frac{\delta q_{\text{rev}}}{T}.
 \tag{2.1.10}
 $$
 
 我们还注意到$S$是广延量（extensive quantity）。
 这意味着两个非相互作用系统的总熵等于各子系统熵之和。
 考虑一个粒子数$N$固定、体积$V$固定的系统。
-如果我们向该系统传递微量热量$\delta q$，则系统内能的变化$dE$等于$\delta q$。
+如果我们向该系统传递微量热量$\delta q$，则系统内能的变化$\mathrm{d}E$等于$\delta q$。
 因此：
 
 $$
@@ -191,22 +191,22 @@ $$
 第一定律指出：
 
 $$
-dE = q + w.
+\mathrm{d}E = q + w.
 $$
 
-对于可逆变化，我们可以写$q = TdS$。
+对于可逆变化，我们可以写$q = T\mathrm{d}S$。
 对于$w$，有许多方式可以对系统做功，例如压缩、电极化、磁化、弹性变形等。
 这里我们只关注其中一种形式的功，即由于体积变化反抗外部压力$P$所做的功。
-在这种情况下，微小体积变化$dV$期间对系统所做的功为$w = -PdV$，第一定律可以写为：
+在这种情况下，微小体积变化$\mathrm{d}V$期间对系统所做的功为$w = -P\mathrm{d}V$，第一定律可以写为：
 
 $$
-dE = TdS - PdV.
+\mathrm{d}E = T\mathrm{d}S - P\mathrm{d}V.
 $$
 
 然而，还有另一种重要的方式可以改变系统的能量，即通过将物质移入或移出系统。
 为方便起见，我们考虑仅含一种组分的系统。
 如前所述，该组分的分子数用$N$表示。
-当我们（可逆地）在恒定$V$和$S$下改变系统中的分子数时，系统的能量变化为：$dE = \mu dN$。
+当我们（可逆地）在恒定$V$和$S$下改变系统中的分子数时，系统的能量变化为：$\mathrm{d}E = \mu \mathrm{d}N$。
 此表达式定义了比例常数$\mu$，即“化学势”（chemical potential）：
 
 $$
@@ -234,14 +234,14 @@ $$
 现在我们可以写出最常用的热力学第一定律形式：
 
 $$
-dE = TdS - PdV + \mu dN.
+\mathrm{d}E = T\mathrm{d}S - P\mathrm{d}V + \mu \mathrm{d}N.
 \tag{2.1.14}
 $$
 
 通常我们以下列形式使用上式：
 
 $$
-dS = \frac{1}{T}dE + \frac{P}{T}dV - \frac{\mu}{T}dN,
+\mathrm{d}S = \frac{1}{T}\mathrm{d}E + \frac{P}{T}\mathrm{d}V - \frac{\mu}{T}\mathrm{d}N,
 \tag{2.1.15}
 $$
 
@@ -276,13 +276,13 @@ $$
 现在考虑$E$的一个微小变化：
 
 $$
-dE = dTS - dPV + d\mu N = TdS + SdT - PdV - VdP + \mu dN + Nd\mu.
+\mathrm{d}E = dTS - dPV + \mathrm{d}\mu N = T\mathrm{d}S + S\mathrm{d}T - P\mathrm{d}V - V\mathrm{d}P + \mu \mathrm{d}N + Nd\mu.
 $$
 
 如果我们将其与热力学第一定律结合，可得：
 
 $$
-0 = SdT - VdP + Nd\mu.
+0 = S\mathrm{d}T - V\mathrm{d}P + Nd\mu.
 \tag{2.1.17}
 $$
 
@@ -298,7 +298,7 @@ $$
 
 ### 辅助函数
 
-公式$dE = TdS - PdV + \mu dN$将热力学第一定律表示为$E$随$S$、$V$和$N$变化的关系。
+公式$\mathrm{d}E = T\mathrm{d}S - P\mathrm{d}V + \mu \mathrm{d}N$将热力学第一定律表示为$E$随$S$、$V$和$N$变化的关系。
 有时，使用其他独立变量更为方便，例如用温度代替熵，用压力代替体积，或用化学势代替粒子数。
 “方便”的变量是那些可以在给定实验中控制的变量。
 有一个简单的步骤可以将第一定律用这些其他变量重新表述。
@@ -308,7 +308,7 @@ $$
 这个函数称为焓（Enthalpy，$H$），定义为$H \equiv E + PV$。显然：
 
 $$
-dH = dE + dPV = TdS - PdV + \mu dN + PdV + VdP = TdS + VdP + \mu dN.
+\mathrm{d}H = \mathrm{d}E + dPV = T\mathrm{d}S - P\mathrm{d}V + \mu \mathrm{d}N + P\mathrm{d}V + V\mathrm{d}P = T\mathrm{d}S + V\mathrm{d}P + \mu \mathrm{d}N.
 \tag{2.1.18}
 $$
 
@@ -319,7 +319,7 @@ $$
 与焓的情况一样，容易证明：
 
 $$
-dF = -SdT - PdV + \mu dN.
+\mathrm{d}F = -S\mathrm{d}T - P\mathrm{d}V + \mu \mathrm{d}N.
 \tag{2.1.19}
 $$
 
@@ -327,7 +327,7 @@ $$
 吉布斯自由能$G$定义为$F + PV$，满足：
 
 $$
-dG = -SdT + VdP + \mu dN.
+\mathrm{d}G = -S\mathrm{d}T + V\mathrm{d}P + \mu \mathrm{d}N.
 \tag{2.1.20}
 $$
 
@@ -339,7 +339,7 @@ $$
 最后，我们可以引入巨热力学势（Grand Potential）$\Omega$，定义为$\Omega \equiv F - \mu N$，满足：
 
 $$
-d\Omega = -SdT - PdV - Nd\mu.
+\mathrm{d}\Omega = -S\mathrm{d}T - P\mathrm{d}V - Nd\mu.
 \tag{2.1.21}
 $$
 
@@ -365,7 +365,7 @@ $$
 $$
 
 由于热浴（子系统 2）比子系统 1 大得多，当与子系统 1 交换少量能量时，其温度$T$不会改变。
-利用$dS = \delta q_{\text{rev}}/T$，我们可以写出：
+利用$\mathrm{d}S = \delta q_{\text{rev}}/T$，我们可以写出：
 
 $$
 \Delta S_2 = \frac{\Delta E_2}{T}.
@@ -397,7 +397,7 @@ $$
 换言之：当体积$V$中的$N$粒子系统与温度$T$（正值）的热浴接触时，自发变化永远不会增加其亥姆霍兹自由能：
 
 $$
-dF \leq 0.
+\mathrm{d}F \leq 0.
 \tag{2.1.26}
 $$
 
@@ -423,7 +423,7 @@ $$
 
 *图 2.2　一个孤立系统，由两个可以交换热量并以总体积和能量保持恒定的方式改变体积的盒子 1 和 2 组成。系统 2 比系统 1 大得多，因此可以充当对系统 1 施加恒定压力的热浴。*
 
- 或$dG/T \leq 0$，其中$dG$是吉布斯自由能的变化。
+ 或$\mathrm{d}G/T \leq 0$，其中$\mathrm{d}G$是吉布斯自由能的变化。
 在这个方程中，我们再次仅用系统 1 的性质表示了不等式。
 等温等压下系统的自发变化永远不会增加其吉布斯自由能。
 
@@ -467,23 +467,23 @@ $$
 例如：
 
 $$
-dF = dE - dTS.
+\mathrm{d}F = \mathrm{d}E - dTS.
 $$
 
 利用第一定律，我们可以将其重写为：
 
 $$
-dF = TdS - PdV + \mu dN - TdS - SdT = -SdT - PdV + \mu dN.
+\mathrm{dF = T\mathrm{d}S - P\mathrm{d}V + \mu \mathrm{d}N - T\mathrm{d}S - S\mathrm{d}T = -S\mathrm{d}T - P\mathrm{d}V + \mu \mathrm{d}N.}
 $$
 
 类似地，我们可以写出：
 
 $$
 \begin{align}
-dS &= \frac{1}{T}dE + \frac{P}{T}dV - \frac{\mu}{T}dN \\
-dF &= -SdT - PdV + \mu dN \\
-dG &= -SdT + VdP + \mu dN \\
-d\Omega &= -SdT - PdV - Nd\mu.
+\mathrm{d}S &= \frac{1}{T}\mathrm{d}E + \frac{P}{T}\mathrm{d}V - \frac{\mu}{T}\mathrm{d}N \\
+\mathrm{d}F &= -S\mathrm{d}T - P\mathrm{d}V + \mu \mathrm{d}N \\
+\mathrm{d}G &= -S\mathrm{d}T + V\mathrm{d}P + \mu \mathrm{d}N \\
+\mathrm{d}\Omega &= -S\mathrm{d}T - P\mathrm{d}V - Nd\mu.
 \tag{2.1.32}
 \end{align}
 $$
@@ -495,7 +495,7 @@ $$
 接下来，考虑一个包含两个子系统的封闭系统。
 系统的总体积$V = V_1 + V_2$固定。
 类似地，$N_1 + N_2$和$E_1 + E_2$固定。
-这些条件意味着$dV_1 = -dV_2$、$dN_1 = -dN_2$和$dE_1 = -dE_2$。
+这些条件意味着$\mathrm{d}V_1 = -\mathrm{d}V_2$、$\mathrm{d}N_1 = -\mathrm{d}N_2$和$\mathrm{d}E_1 = -\mathrm{d}E_2$。
 第二定律告诉我们，在平衡时，系统的总熵$S_{\text{tot}} = S_1 + S_2$必须是极值（注意$S_{\text{tot}}$不是固定的）。
 因此，$S_{\text{tot}}$对$E_1$、$N_1$和$V_1$的导数必须为零，即：
 
@@ -508,7 +508,7 @@ $$
 \end{align}
 $$
 
-如果我们将上式与$dS$的表达式结合，我们得到：
+如果我们将上式与$\mathrm{d}S$的表达式结合，我们得到：
 
 $$
 \begin{align}
@@ -737,7 +737,7 @@ $$
 
 $$
 \displaystyle
-\ln\Omega_2(E - E_i) = \ln\Omega_2(E) - E_i \frac{\partial \ln\Omega_2(E){\partial E} + O(1/E),
+\ln\Omega_2(E - E_i) = \ln\Omega_2(E) - E_i \frac{\partial \ln\Omega_2(E){\partial E} + \mathcal{O}(1/E),
 }
 \tag{2.2.10}
 $$
@@ -745,7 +745,7 @@ $$
 并利用前述关系，得到：
 
 $$
-\ln\Omega_2(E - E_i) = \ln\Omega_2(E) - E_i/k_B T + O(1/E).
+\ln\Omega_2(E - E_i) = \ln\Omega_2(E) - E_i/k_B T + \mathcal{O(1/E).}
 \tag{2.2.11}
 $$
 
@@ -837,14 +837,14 @@ $O([K, U])$代表包含$K$和$U$的对易子和高阶对易子的所有项。
 在这种情况下，我们可以写出：
 
 $$
-\text{Tr}\exp(-\beta \mathcal{H}) \approx \text{Tr}\exp(-\beta U)\exp(-\beta K).
+\text{Tr}\exp(-\beta \mathcal{H}) \approx \text{Tr}\exp(-\beta \mathcal{U})\exp(-\beta \mathcal{K}).
 \tag{2.2.17}
 $$
 
 如果我们用$|\mathbf{r}\rangle$表示位置算符的本征向量，用$|\mathbf{k}\rangle$表示动量算符的本征向量，我们可以将上式表示为：
 
 $$
-\text{Tr}\exp(-\beta \mathcal{H}) = \sum_{\mathbf{r}, \mathbf{k}} \langle \mathbf{r}|e^{-\beta U}|\mathbf{r}\rangle \langle \mathbf{r}|\mathbf{k}\rangle \langle \mathbf{k}|e^{-\beta K}|\mathbf{k}\rangle \langle \mathbf{k}|\mathbf{r}\rangle.
+\text{Tr}\exp(-\beta \mathcal{H}) = \sum_{\mathbf{r}, \mathbf{k}} \langle \mathbf{r}|e^{-\beta \mathcal{U}}|\mathbf{r}\rangle \langle \mathbf{r}|\mathbf{k}\rangle \langle \mathbf{k}|e^{-\beta \mathcal{K}}|\mathbf{k}\rangle \langle \mathbf{k}|\mathbf{r}\rangle.
 \tag{2.2.18}
 $$
 
@@ -874,7 +874,7 @@ $$
 
 $$
 \text{Tr}\exp(-\beta \mathcal{H})
-\approx \frac{1}{h^{\mathrm{d}N} N!} \int \mathrm{d}\mathbf{p}^N \mathrm{d}\mathbf{r}^N \exp\left[-\beta\left(\sum_i p_i^2/(2m_i) + U(\mathbf{r}^N)\right)\right]
+\approx \frac{1}{h^{dN} N!} \int \mathrm{d}\mathbf{p}^N \mathrm{d}\mathbf{r}^N \exp\left[-\beta\left(\sum_i p_i^2/(2m_i) + \mathcal{U}(\mathbf{r}^N)\right)\right]
 \equiv Q_{\text{classical}},
 \tag{2.2.19}
 $$
@@ -887,14 +887,14 @@ $$
 
 $$
 \langle A \rangle
-= \frac{\int \mathrm{d}\mathbf{p}^N \mathrm{d}\mathbf{r}^N \exp\left[-\beta\left(\sum_i p_i^2/(2m_i) + U(\mathbf{r}^N)\right)\right] A(\mathbf{p}^N, \mathbf{r}^N)}
-{\int \mathrm{d}\mathbf{p}^N \mathrm{d}\mathbf{r}^N \exp\left[-\beta\left(\sum_j p_j^2/(2m_j) + U(\mathbf{r}^N)\right)\right]}.
+= \frac{\int \mathrm{d}\mathbf{p}^N \mathrm{d}\mathbf{r}^N \exp\left[-\beta\left(\sum_i p_i^2/(2m_i) + \mathcal{U}(\mathbf{r}^N)\right)\right] A(\mathbf{p}^N, \mathbf{r}^N)}
+{\int \mathrm{d}\mathbf{p}^N \mathrm{d}\mathbf{r}^N \exp\left[-\beta\left(\sum_j p_j^2/(2m_j) + \mathcal{U}(\mathbf{r}^N)\right)\right]}.
 \tag{2.2.20}
 $$
 
 以上两式构成了经典多体系统各种模拟的出发点。
-这两个公式表示为对所有$N$个粒子的$dN$个动量和$dN$个坐标的高维积分，其中$d$表示系统的维度。
-由所有动量和坐标张成的$2dN$维空间称为相空间（phase space）。
+这两个公式表示为对所有$N$个粒子的$\mathrm{d}N$个动量和$\mathrm{d}N$个坐标的高维积分，其中$d$表示系统的维度。
+由所有动量和坐标张成的$2\mathrm{d}N$维空间称为相空间（phase space）。
 
 ## 系综
 
@@ -1380,7 +1380,7 @@ $$
 在公式(2.5.20) 的最后一行中，我们使用了时间关联函数的平稳性（stationarity）性质：
 
 $$
-\frac{d}{dt} \langle A(t)B(t + t') \rangle = 0.
+\frac{d}{\mathrm{d}t} \langle A(t)B(t + t') \rangle = 0.
 \tag{2.5.21}
 $$
 
@@ -1465,7 +1465,7 @@ Q(N, V, T) = \frac{1}{h^{3N} N!} \int \mathrm{d}\boldsymbol{\epsilon} \exp[-\bet
 = \frac{V^N}{\Lambda^{3N} N!},
 $$
 
-其中$\Lambda = h/\sqrt{2\pi m/\beta}$，$d\boldsymbol{\epsilon} = dq_1 \cdots dq_N \, dp_1 \cdots dp_N$。推导以下热力学性质的表达式：
+其中$\Lambda = h/\sqrt{2\pi m/\beta}$，$\mathrm{d}\boldsymbol{\epsilon} = \mathrm{d}q_1 \cdots \mathrm{d}q_N \, \mathrm{d}p_1 \cdots \mathrm{d}p_N$。推导以下热力学性质的表达式：
 
 - $F(N, V, T)$（提示：$\ln(N!) \approx N \ln(N) - N$）
 - $p(N, V, T)$（由此导出理想气体定律）
@@ -1512,25 +1512,25 @@ $$
 **问题 6（可逆功）。**热力学第一定律表达了系统能量$E$的守恒：
 
 $$
-dE = q + w,
+\mathrm{d}E = q + w,
 $$
 
 其中$q$和$w$分别表示由于热流和做功引起的系统（无穷小）能量变化。对于可逆变化，我们可以同时使用第一和第二定律来表示不同状态函数（$E$、$S$、$F$、$G$、$\cdots$）在可逆变换中的变化。最著名的表达式是：
 
 $$
-dE = T dS - P dV + \mu dN,
+\mathrm{d}E = T \mathrm{d}S - P \mathrm{d}V + \mu \mathrm{d}N,
 $$
 
 或者用亥姆霍兹自由能$F$表示：
 
 $$
-dF = -S dT - p dV + \mu dN.
+\mathrm{d}F = -S \mathrm{d}T - p \mathrm{d}V + \mu \mathrm{d}N.
 $$
 
-这个$dF$的表达式适用于可逆功是由于反抗外部压力$P$的体积变化而产生的情况。然而，我们也可以考虑其他形式的功，例如由于在恒定外加电场下改变系统的极化，或在恒定表面张力$\gamma$下改变表面积$A$。这里我们考虑后一种情况：
+这个$\mathrm{d}F$的表达式适用于可逆功是由于反抗外部压力$P$的体积变化而产生的情况。然而，我们也可以考虑其他形式的功，例如由于在恒定外加电场下改变系统的极化，或在恒定表面张力$\gamma$下改变表面积$A$。这里我们考虑后一种情况：
 
 $$
-dF = -S dT + \gamma dA - P dV + \mu dN.
+\mathrm{d}F = -S \mathrm{d}T + \gamma \mathrm{d}A - P \mathrm{d}V + \mu \mathrm{d}N.
 $$
 
 1. 我们假设$V$和$A$都与$N$成线性关系。利用系统的自由能是广延量这一事实，证明：

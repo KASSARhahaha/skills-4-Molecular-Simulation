@@ -65,7 +65,7 @@ $$
 现在让我们来看配分函数。假设我们有一个区分相 I 和相 II 的序参量$Q$，使得当系统处于 I 时$Q < 0$，否则$Q > 0$。那么我们可以将式(8.1.1) 改写为
 
 $$
-\frac{p_I}{P_{II}} = \frac{\int \mathrm{d}X \exp[-\beta H(X)]\theta(-Q)}{\int \mathrm{d}X \exp[-\beta H(X)]\theta(+Q)} \equiv \frac{Q_I(NVT)}{Q_{II}(NVT)},
+\frac{p_I}{P_{II}} = \frac{\int \mathrm{d}\mathcal{X} \exp[-\beta \mathcal{H}(\mathcal{X})]\theta(-Q)}{\int \mathrm{d}\mathcal{X} \exp[-\beta \mathcal{H}(\mathcal{X})]\theta(+Q)} \equiv \frac{Q_I(NVT)}{Q_{II}(NVT)},
 \tag{8.3.1}
 $$
 
@@ -117,24 +117,24 @@ $$
 #### 追踪共存曲线
 即使我们需要进行自由能计算来定位一级相变，通常也只需要少量这样的计算来追踪一条共存曲线。原因是一旦我们知道给定相在一个状态点的自由能，我们可以利用压力、温度和化学势之间的热力学关系来计算可以通过不跨越相变而到达的其他状态点的自由能。
 
-一种在已知曲线上一个点后确定完整共存曲线的数值技术由 Kofke 提出[[293,294]](references.md#ref-293)。Kofke 的吉布斯-杜亥姆积分方法的最简形式等价于克劳修斯-克拉珀龙方程的数值积分。让我们简要回顾克劳修斯-克拉珀龙方程的推导。当两个相$\alpha$和$\beta$在给定温度$T$和压力$P$下共存时，它们的化学势必须相等。如果我们分别将压力和温度改变无穷小量$dP$和$dT$，则两相化学势之差变为
+一种在已知曲线上一个点后确定完整共存曲线的数值技术由 Kofke 提出[[293,294]](references.md#ref-293)。Kofke 的吉布斯-杜亥姆积分方法的最简形式等价于克劳修斯-克拉珀龙方程的数值积分。让我们简要回顾克劳修斯-克拉珀龙方程的推导。当两个相$\alpha$和$\beta$在给定温度$T$和压力$P$下共存时，它们的化学势必须相等。如果我们分别将压力和温度改变无穷小量$\mathrm{d}P$和$\mathrm{d}T$，则两相化学势之差变为
 
 $$
-d\mu_\alpha - d\mu_\beta = -(s_\alpha - s_\beta)dT + (v_\alpha - v_\beta)dP.
+d\mu_\alpha - d\mu_\beta = -(s_\alpha - s_\beta)\mathrm{d}T + (v_\alpha - v_\beta)\mathrm{d}P.
 \tag{8.3.3}
 $$
 
 沿共存曲线$\mu_\alpha = \mu_\beta$，因此
 
 $$
-\frac{dP}{dT} = \frac{s_\alpha - s_\beta}{v_\alpha - v_\beta} = \frac{\Delta h}{T\Delta v},
+\frac{\mathrm{d}P}{\mathrm{d}T} = \frac{s_\alpha - s_\beta}{v_\alpha - v_\beta} = \frac{\Delta h}{T\Delta v},
 \tag{8.3.4}
 $$
 
-其中我们利用了在共存时$T\Delta s = \Delta h$，$h_\alpha$（$h_\beta$）表示相$\alpha$（$\beta$）的摩尔焓。由于$\Delta h$、$T$和$\Delta v$都可以直接在模拟中计算，$dP/dT$可以从式(8.3.4) 计算。如果两个共存相之一是（稀薄）气相，将式(8.3.4) 写成略有不同的形式更为方便：
+其中我们利用了在共存时$T\Delta s = \Delta h$，$h_\alpha$（$h_\beta$）表示相$\alpha$（$\beta$）的摩尔焓。由于$\Delta h$、$T$和$\Delta v$都可以直接在模拟中计算，$\mathrm{d}P/\mathrm{d}T$可以从式(8.3.4) 计算。如果两个共存相之一是（稀薄）气相，将式(8.3.4) 写成略有不同的形式更为方便：
 
 $$
-\frac{d\ln P}{d(1/T)} = -\frac{\Delta h}{P\Delta v/T}.
+\frac{\mathrm{d}\ln P}{d(1/T)} = -\frac{\Delta h}{P\Delta v/T}.
 \tag{8.3.5}
 $$
 
@@ -145,14 +145,14 @@ Kofke 及其合作者应用该方法定位了 Lennard-Jones 流体的气-液[[29
 在某些情况下，例如对于含长链分子的系统、渗流系统或格子模型，很难进行体积变化。Escobedo 和 de Pablo [[305]](references.md#ref-305)表明，在这些条件下，将吉布斯-杜亥姆积分与巨正则（恒定$\mu$、$V$、$T$）系综相结合可能更好。在该方案中，$\mu$和$T$是独立变量，而不是$P$和$T$。相$\alpha$和$\beta$压力差的变化由下式给出：
 
 $$
-dP_\alpha - dP_\beta = (\rho_\alpha - \rho_\beta)d\mu + \left(\frac{s_\alpha}{v_\alpha} - \frac{s_\beta}{v_\beta}\right)dT.
+\mathrm{d}P_\alpha - \mathrm{d}P_\beta = (\rho_\alpha - \rho_\beta)\mathrm{d}\mu + \left(\frac{s_\alpha}{v_\alpha} - \frac{s_\beta}{v_\beta}\right)\mathrm{d}T.
 \tag{8.3.6}
 $$
 
 沿共存线，我们有$P_\alpha = P_\beta$，这给出
 
 $$
-\frac{d\beta\mu}{d\beta} = \frac{\rho_\alpha h_\alpha - \rho_\beta h_\beta}{\rho_\alpha - \rho_\beta} = \frac{\rho_\alpha u_\alpha - \rho_\beta u_\beta}{\rho_\alpha - \rho_\beta}.
+\frac{\mathrm{d}\beta\mu}{\mathrm{d}\beta} = \frac{\rho_\alpha h_\alpha - \rho_\beta h_\beta}{\rho_\alpha - \rho_\beta} = \frac{\rho_\alpha u_\alpha - \rho_\beta u_\beta}{\rho_\alpha - \rho_\beta}.
 \tag{8.3.7}
 $$
 
@@ -169,13 +169,13 @@ $$
     极限情况包括硬球模型（$n \to \infty$）和单组分等离子体（$n = 1$）。在吉布斯-杜亥姆积分方案出现之前，已进行了个别模拟研究来定位$n = 1$ [[308]](references.md#ref-308)、$n = 4,6,9$ [[309,310]](references.md#ref-309)、$n = 12$ [[287,311–313]](references.md#ref-287)和$n = \infty$ [[307,314]](references.md#ref-307)的软球的凝固点。实际上，熔化时的晶体结构从大$n$时的面心立方（FCC）（或可能是六方密堆积（HCP））变为小$n$时的体心立方（BCC）。Hoover 和 Ree [[307]](references.md#ref-307)认为从 FCC 到 BCC 的转变发生在$n \approx 6$附近。Agrawal 和 Kofke [[295,315]](references.md#ref-295)表明，吉布斯-杜亥姆积分技术可以在一次模拟中定位所有软球模型的熔点。在该吉布斯-杜亥姆积分中改变的量是柔软度参数$s$，定义为$s \equiv 1/n$。我们可以将$s$解释为一个热力学变量，与压力$P$和温度$T$处于同等地位。热力学变量$T$、$P$和$s$的微小变化导致吉布斯自由能$G$的变化：
 
     $$
-    dG = -SdT + VdP + N\lambda\beta ds,
+    \mathrm{d}G = -S\mathrm{d}T + V\mathrm{d}P + N\lambda\beta \mathrm{d}s,
     $$
 
     其中我们定义$\lambda$为与$s$共轭的热力学“力”（因子$N/\beta$的引入是为了保持我们的符号与[[295,315]](references.md#ref-295)一致）。现在我们考虑恒温下的相共存。如果我们同时改变$P$和$s$，两相化学势之差将发生变化：
 
     $$
-    \beta\mu_\alpha - \beta\mu_\beta = \beta(v_\alpha - v_\beta)dP + (\lambda_\alpha - \lambda_\beta)ds,
+    \beta\mu_\alpha - \beta\mu_\beta = \beta(v_\alpha - v_\beta)\mathrm{d}P + (\lambda_\alpha - \lambda_\beta)\mathrm{d}s,
     $$
 
     其中$v_\alpha$（$v_\beta$）是相$\alpha$（$\beta$）的摩尔体积。沿共存曲线，$\mu_\alpha = \mu_\beta$，因此
@@ -247,7 +247,7 @@ $$
 $$
 F = -k_BT\ln Q(N,V,T) \equiv -k_BT\ln
 \left[
-\frac{\int \mathrm{d}p^N \mathrm{d}r^N \exp[-\beta\mathcal{H}(p^N,r^N)]}{h^{\mathrm{d}N}N!}
+\frac{\int \mathrm{d}p^N \mathrm{d}r^N \exp[-\beta\mathcal{H}(p^N,r^N)]}{h^{dN}N!}
 \right],
 $$
 
@@ -353,7 +353,7 @@ $$
 $U(\lambda)$的一个简单选择是
 
 $$
-U(\lambda) = (1 - \lambda)U_I + \lambda U_{II} = U_I + \lambda(U_{II} - U_I).
+\mathcal{U}(\lambda) = (1 - \lambda)\mathcal{U}_I + \lambda \mathcal{U}_{II} = \mathcal{U}_I + \lambda(\mathcal{U}_{II} - \mathcal{U}_I).
 \tag{8.4.6}
 $$
 
@@ -374,7 +374,7 @@ $$
 &= -\frac{1}{\beta}\frac{\partial}{\partial\lambda}\ln Q(N,V,T,\lambda) \nonumber\\
 &= -\frac{1}{\beta Q(N,V,T,\lambda)}\frac{\partial Q(N,V,T,\lambda)}{\partial\lambda} \nonumber\\
 &= \frac{\int \mathrm{d}r^N (\partial U(\lambda)/\partial\lambda)\exp[-\beta U(\lambda)]}{\int \mathrm{d}r^N \exp[-\beta U(\lambda)]} \nonumber\\
-&= \left\langle\frac{\partial U(\lambda)}{\partial\lambda}\right\rangle_\lambda,
+&= \left\langle\frac{\partial \mathcal{U}(\lambda)}{\partial\lambda}\right\rangle_\lambda,
 \tag{8.4.7}
 \end{align}
 $$
@@ -384,7 +384,7 @@ $$
 系统 II 和系统 I 之间的自由能差可以通过积分公式(8.4.7) 得到：
 
 $$
-F(\lambda = 1) - F(\lambda = 0) = \int_{\lambda=0}^{\lambda=1} \mathrm{d}\lambda \left\langle\frac{\partial U(\lambda)}{\partial\lambda}\right\rangle_\lambda.
+F(\lambda = 1) - F(\lambda = 0) = \int_{\lambda=0}^{\lambda=1} \mathrm{d}\lambda \left\langle\frac{\partial \mathcal{U}(\lambda)}{\partial\lambda}\right\rangle_\lambda.
 \tag{8.4.8}
 $$
 
@@ -478,7 +478,7 @@ Widom 表达式可以从物种$a$的化学势$\mu_a$的统计力学定义在几�
 这种系统的经典配分函数为
 
 $$
-Q(N,V,T) = \frac{V^N}{\Lambda^{\mathrm{d}N}N!}\int_0^1\cdots\int_0^1 \mathrm{d}s^N \exp[-\beta U(s^N;L)].
+Q(N,V,T) = \frac{V^N}{\Lambda^{dN}N!}\int_0^1\cdots\int_0^1 \mathrm{d}s^N \exp[-\beta \mathcal{U}(s^N;L)].
 \tag{8.5.2}
 $$
 
@@ -525,8 +525,8 @@ $\Delta U \equiv U(s^{N+1}) - U(s^N)$。
 利用这种分离，我们可以将$\mu^{\mathrm{ex}}$写为
 
 $$
-\mu^{\mathrm{ex}} = -k_BT\ln\int \mathrm{d}s_{N+1}\langle\exp(-\beta\Delta U)\rangle_N
-= -k_BT\ln\langle\exp(-\beta\Delta U)\rangle_N,
+\mu^{\mathrm{ex}} = -k_BT\ln\int \mathrm{d}s_{N+1}\langle\exp(-\beta\Delta \mathcal{U})\rangle_N
+= -k_BT\ln\langle\exp(-\beta\Delta \mathcal{U})\rangle_N,
 \tag{8.5.5}
 $$
 
@@ -584,7 +584,7 @@ $N$个粒子的位置不相关。Widom 方法为我们提供了一种强大的�
 这一陈述也适用于粒子插入法。可以将该方法视为计算物种$\alpha$的逸度$f_\alpha$的技术：
 
 $$
-f_\alpha = \frac{\rho_\alpha}{\langle\exp(-\beta\Delta U_\alpha)\rangle},
+f_\alpha = \frac{\rho_\alpha}{\langle\exp(-\beta\Delta \mathcal{U}_\alpha)\rangle},
 \tag{8.5.6}
 $$
 
@@ -599,7 +599,7 @@ $$
 换句话说，
 
 $$
-\mu = k_BT\ln\left[\frac{\rho(\mathbf{r})}{\langle\exp[-\beta\Delta U(\mathbf{r})]\rangle_N}\right]
+\mu = k_BT\ln\left[\frac{\rho(\mathbf{r})}{\langle\exp[-\beta\Delta \mathcal{U}(\mathbf{r})]\rangle_N}\right]
 \tag{8.5.7}
 $$
 
@@ -671,7 +671,7 @@ $$
 因此，
 
 $$
--k_BT \ln \left\langle \frac{V/\Lambda^d}{N+1} \exp(-\beta \Delta U) \right\rangle_\mu = \mu.
+-k_BT \ln \left\langle \frac{V/\Lambda^d}{N+1} \exp(-\beta \Delta \mathcal{U}) \right\rangle_\mu = \mu.
 \tag{8.5.10}
 $$
 
@@ -680,13 +680,13 @@ $$
 接下来，我们考虑恒定 $N, P, T$ 下的粒子插入法（参见[[334,335]](references.md#ref-334)）。我们从吉布斯自由能的表达式出发：
 
 $$
-G(N, P, T) = -k_BT \ln \left[ \int \mathrm{d}V\, V^N \exp(-\beta PV) \frac{1}{\Lambda^{\mathrm{d}N} N!} \int \mathrm{d}\mathbf{s}^N \exp\left(-\beta U(\mathbf{s}^N; V)\right) \right].
+G(N, P, T) = -k_BT \ln \left[ \int \mathrm{d}V\, V^N \exp(-\beta PV) \frac{1}{\Lambda^{dN} N!} \int \mathrm{d}\mathbf{s}^N \exp\left(-\beta U(\mathbf{s}^N; V)\right) \right].
 $$
 
 则 $\mu = G(N+1, P, T) - G(N, P, T)$ 为
 
 $$
-\mu = -k_BT \ln \left\langle \frac{V/\Lambda^d}{(N+1)} \int \mathrm{d}\mathbf{s}^{N+1} \exp(-\beta \Delta U) \right\rangle_P,
+\mu = -k_BT \ln \left\langle \frac{V/\Lambda^d}{(N+1)} \int \mathrm{d}\mathbf{s}^{N+1} \exp(-\beta \Delta \mathcal{U}) \right\rangle_P,
 \tag{8.5.11}
 $$
 
@@ -711,14 +711,14 @@ $$
 出发。在微正则系综中，熵 $S$ 与可达状态总数 $\Omega(N, V, E)$ 的关系为 $S = k_B \ln \Omega(N, V, E)$。$\Omega(N, V, E)$ 的经典表达式为
 
 $$
-\Omega(N, V, E) = \frac{1}{h^{3N} N!} \int \mathrm{d}\mathbf{p}^N \mathrm{d}\mathbf{r}^N \delta(H(\mathbf{p}^N, \mathbf{r}^N) - E).
+\Omega(N, V, E) = \frac{1}{h^{3N} N!} \int \mathrm{d}\mathbf{p}^N \mathrm{d}\mathbf{r}^N \delta(\mathcal{H}(\mathbf{p}^N, \mathbf{r}^N) - E).
 \tag{8.5.13}
 $$
 
 推导过程与之前类似，但现在我们必须计算 $\Omega(N+1, V, E)/\Omega(N, V, E)$。这稍显繁琐（参见[[331–333]](references.md#ref-331)），我们只给出最终结果：
 
 $$
-\beta \mu^{\text{ex}} = -\ln \left[ \langle T \rangle^{-3/2} \left\langle T^{3/2} \exp(-\Delta U/k_BT) \right\rangle \right],
+\beta \mu^{\text{ex}} = -\ln \left[ \langle T \rangle^{-3/2} \left\langle T^{3/2} \exp(-\Delta \mathcal{U}/k_BT) \right\rangle \right],
 \tag{8.5.14}
 $$
 
@@ -756,7 +756,7 @@ $$
 在式（8.5.17）的第一行中，我们使用了吉布斯-杜亥姆关系。我们假设 $A$ 和 $B$ 的理想气体化学势贡献是已知的。我们需要计算的量是 $\Delta \mu^{\text{ex}} \equiv (\mu_A - \mu_B)^{\text{ex}}$。直观地，我们可能尝试使用粒子插入法分别获得物质 $A$ 和 $B$ 的 $\mu^{\text{ex}}$，然后相减来测量这个量。虽然这种方法在原则上正确，但耗时且精度不高。幸运的是，$\Delta \mu^{\text{ex}}$ 可以通过测量与虚拟试验移动相关的玻尔兹曼因子更直接地获得，在虚拟试验移动中，随机选取的一个 $B$ 型粒子被转变为 $A$ 型粒子[[334,335,339]](references.md#ref-334)（见图 8.3）。我们留给读者作为练习来推导 $\Delta \mu^{\text{ex}}$ 的结果表达式为
 
 $$
-\Delta \mu^{\text{ex}} = -k_BT \ln \left\langle \frac{N_B}{N_A + 1} \exp(-\beta \Delta U^{+-}) \right\rangle,
+\Delta \mu^{\text{ex}} = -k_BT \ln \left\langle \frac{N_B}{N_A + 1} \exp(-\beta \Delta \mathcal{U}^{+-}) \right\rangle,
 \tag{8.5.18}
 $$
 
@@ -776,7 +776,7 @@ $$
 $$
 \begin{align}
 \mu &= +k_BT \ln(Q_N/Q_{N+1}) \nonumber \\
-&= \mu^{\text{id}} + k_BT \ln \langle \exp(+\beta \Delta U) \rangle_{N+1},
+&= \mu^{\text{id}} + k_BT \ln \langle \exp(+\beta \Delta \mathcal{U}) \rangle_{N+1},
 \tag{8.6.1}
 \end{align}
 $$
@@ -789,7 +789,7 @@ $$
 $$
 \begin{align}
 \Delta F &= -k_BT \ln(Q_1/Q_0) \nonumber \\
-&= -k_BT \ln \frac{\int \mathrm{d}\mathbf{X} \exp[-\beta U_1(\mathbf{X})]}{\int \mathrm{d}\mathbf{X} \exp[-\beta U_0(\mathbf{X})]}.
+&= -k_BT \ln \frac{\int \mathrm{d}\mathbf{X} \exp[-\beta \mathcal{U}_1(\mathbf{X})]}{\int \mathrm{d}\mathbf{X} \exp[-\beta \mathcal{U}_0(\mathbf{X})]}.
 \tag{8.6.2}
 \end{align}
 $$
@@ -797,7 +797,7 @@ $$
 假设我们正在对系统 1 的构型空间进行（Metropolis）采样。在采样系统 1 期间访问的每个构型中，我们可以计算同一构型下系统 0 的势能（$U_0(\mathbf{s}^N)$），从而得到势能差 $\Delta U = U_1(\mathbf{s}^N) - U_0(\mathbf{s}^N)$。我们利用此信息构建一个直方图来测量势能差 $\Delta U$ 的概率密度。我们将此概率密度记为 $p_1(\Delta U)$。在 $N, V, T$ 系综中，$p_1(\Delta U)$ 为
 
 $$
-p_1(\Delta U) = \frac{\int \mathrm{d}\mathbf{X} \exp(-\beta U_1) \delta(U_1 - U_0 - \Delta U)}{q_1},
+p_1(\Delta \mathcal{U}) = \frac{\int \mathrm{d}\mathbf{X} \exp(-\beta \mathcal{U}_1) \delta(\mathcal{U}_1 - \mathcal{U}_0 - \Delta \mathcal{U})}{q_1},
 \tag{8.6.3}
 $$
 
@@ -807,7 +807,7 @@ $$
 \begin{align}
 p_1(\Delta U) &= \frac{\int \mathrm{d}\mathbf{X} \exp[-\beta(U_0 + \Delta U)] \delta(U_1 - U_0 - \Delta U)}{q_1} \nonumber \\
 &= \frac{q_0}{q_1} \exp(-\beta \Delta U) \frac{\int \mathrm{d}\mathbf{s}^N \exp(-\beta U_0) \delta(U_1 - U_0 - \Delta U)}{q_0} \nonumber \\
-&= \frac{q_0}{q_1} \exp(-\beta \Delta U) p_0(\Delta U),
+&= \frac{q_0}{q_1} \exp(-\beta \Delta \mathcal{U}) p_0(\Delta \mathcal{U}),
 \tag{8.6.4}
 \end{align}
 $$
@@ -815,21 +815,21 @@ $$
 其中 $p_0(\Delta U)$ 是在对系统 0 的可达构型进行玻尔兹曼采样时，发现系统 1 和系统 0 之间势能差为 $\Delta U$ 的概率密度。由于系统 1 和系统 0 之间的自由能差就是 $\Delta F = -k_BT \ln(q_1/q_0)$，由式（8.6.4）我们得到
 
 $$
-\ln p_1(\Delta U) = \beta(\Delta F - \Delta U) + \ln p_0(\Delta U).
+\ln p_1(\Delta \mathcal{U}) = \beta(\Delta F - \Delta \mathcal{U}) + \ln p_0(\Delta \mathcal{U}).
 \tag{8.6.5}
 $$
 
 为了在实际情况下从式（8.6.5）获得 $\Delta F$，方便定义两个函数 $f_0$ 和 $f_1$：
 
 $$
-f_0(\Delta U) = \ln p_0(\Delta U) - \frac{\beta \Delta U}{2}
+f_0(\Delta \mathcal{U}) = \ln p_0(\Delta \mathcal{U}) - \frac{\beta \Delta \mathcal{U}}{2}
 \tag{8.6.6}
 $$
 
 和
 
 $$
-f_1(\Delta U) = \ln p_1(\Delta U) + \frac{\beta \Delta U}{2}
+f_1(\Delta \mathcal{U}) = \ln p_1(\Delta \mathcal{U}) + \frac{\beta \Delta \mathcal{U}}{2}
 \tag{8.6.7}
 $$
 
@@ -844,7 +844,7 @@ $$
 现在考虑粒子插入-移除问题。假设系统 1 是一个包含 $N$ 个相互作用粒子的系统，而系统 0 包含 $N-1$ 个相互作用粒子和 1 个理想气体粒子。这两个系统之间的自由能差显然等于 $\mu^{\text{ex}}$。将式（8.6.5）应用于此特定情况，我们得到
 
 $$
-\beta \mu^{\text{ex}} = f_1(\Delta U) - f_0(\Delta U).
+\beta \mu^{\text{ex}} = f_1(\Delta \mathcal{U}) - f_0(\Delta \mathcal{U}).
 \tag{8.6.8}
 $$
 
@@ -887,14 +887,14 @@ $$
 $$
 
 $$
-1 = \exp(\beta \Delta F) \langle \exp(-\beta \Delta U) \rangle_0,
+1 = \exp(\beta \Delta F) \langle \exp(-\beta \Delta \mathcal{U}) \rangle_0,
 \tag{8.6.9}
 $$
 
 或
 
 $$
-\exp(-\beta \Delta F) = \langle \exp(-\beta \Delta U) \rangle_0.
+\exp(-\beta \Delta F) = \langle \exp(-\beta \Delta \mathcal{U}) \rangle_0.
 \tag{8.6.10}
 $$
 
@@ -905,7 +905,7 @@ $$
 $$
 \begin{align}
 P &= -\left(\frac{\partial F}{\partial V}\right)_{N,T} = -\lim_{\Delta V \to 0} \frac{F(V + \Delta V) - F(V)}{\Delta V} \nonumber \\
-&= \rho k_BT + k_BT \lim_{\Delta V \to 0} \frac{\ln \langle \exp(-\beta[U(V + \Delta V) - U(V)]) \rangle}{\Delta V}.
+&= \rho k_BT + k_BT \lim_{\Delta V \to 0} \frac{\ln \langle \exp(-\beta[\mathcal{U}(V + \Delta V) - \mathcal{U}(V)]) \rangle}{\Delta V}.
 \tag{8.6.11}
 \end{align}
 $$
@@ -924,10 +924,10 @@ $$
 
 $$
 \displaystyle
-\frac{Z_0{Z_1} = \frac{Z_0 \int \mathrm{d}X\, w(X)\exp[-\beta(U_0(X) + U_1(X))]}{\int \mathrm{d}X\, w(X)\exp[-\beta(U_0(X) + U_1(X))]}
-= \frac{\int \mathrm{d}X\, w(X)\exp[-\beta(U_0(X) + U_1(X))]}{Z_1}
-\times \frac{Z_0}{\int \mathrm{d}X\, w(X)\exp[-\beta(U_0(X) + U_1(X))]}
-= \frac{\langle w \exp(-\beta U_0)\rangle_1}{\langle w \exp(-\beta U_1)\rangle_0}.
+\frac{Z_0{Z_1} = \frac{Z_0 \int \mathrm{d}\mathcal{X}\, w(\mathcal{X})\exp[-\beta(\mathcal{U}_0(\mathcal{X}) + \mathcal{U}_1(\mathcal{X}))]}{\int \mathrm{d}\mathcal{X}\, w(\mathcal{X})\exp[-\beta(\mathcal{U}_0(\mathcal{X}) + \mathcal{U}_1(\mathcal{X}))]}
+= \frac{\int \mathrm{d}\mathcal{X}\, w(\mathcal{X})\exp[-\beta(\mathcal{U}_0(\mathcal{X}) + \mathcal{U}_1(\mathcal{X}))]}{Z_1}
+\times \frac{Z_0}{\int \mathrm{d}\mathcal{X}\, w(\mathcal{X})\exp[-\beta(\mathcal{U}_0(\mathcal{X}) + \mathcal{U}_1(\mathcal{X}))]}
+= \frac{\langle w \exp(-\beta \mathcal{U}_0)\rangle_1}{\langle w \exp(-\beta \mathcal{U}_1)\rangle_0}.
 }
 \tag{8.6.12}
 $$
@@ -937,7 +937,7 @@ $$
 让我们首先用$w$表示$\Delta F$：
 
 $$
-\beta\Delta F = \ln\langle w \exp(-\beta U_0)\rangle_1 - \ln\langle w \exp(-\beta U_1)\rangle_0.
+\beta\Delta F = \ln\langle w \exp(-\beta \mathcal{U}_0)\rangle_1 - \ln\langle w \exp(-\beta \mathcal{U}_1)\rangle_0.
 \tag{8.6.13}
 $$
 
@@ -998,12 +998,12 @@ $$
 $$
 \displaystyle
 =
-\frac{\displaystyle\int \mathrm{dX
+\frac{\displaystyle\int \mathrm{d\mathcal{X}
 \left[
-\frac{Z_0}{n_0}\exp(-\beta U_1(X)) + \frac{Z_1}{n_1}\exp(-\beta U_0(X))
+\frac{Z_0}{n_0}\exp(-\beta \mathcal{U}_1(\mathcal{X})) + \frac{Z_1}{n_1}\exp(-\beta \mathcal{U}_0(\mathcal{X}))
 \right]
-\times w^2 \exp[-\beta(U_0(X) + U_1(X))]}{
-\left[\displaystyle\int \mathrm{d}X\, w \exp[-\beta(U_0(X) + U_1(X))]\right]^2}
+\times w^2 \exp[-\beta(\mathcal{U}_0(\mathcal{X}) + \mathcal{U}_1(\mathcal{X}))]}{
+\left[\displaystyle\int \mathrm{d}\mathcal{X}\, w \exp[-\beta(\mathcal{U}_0(\mathcal{X}) + \mathcal{U}_1(\mathcal{X}))]\right]^2}
 - \frac{1}{n_0} - \frac{1}{n_1}.
 }
 \tag{8.6.14}
@@ -1012,23 +1012,23 @@ $$
 注意，如果我们将$w$乘以一个常数因子，式（8.6.14）的右边不会改变。因此，不失一般性，我们可以选择$w$的如下归一化：
 
 $$
-\int \mathrm{d}X\, w \exp[-\beta(U_0(X) + U_1(X))] = C.
+\int \mathrm{d}\mathcal{X}\, w \exp[-\beta(\mathcal{U}_0(\mathcal{X}) + \mathcal{U}_1(\mathcal{X}))] = \mathcal{C}.
 \tag{8.6.15}
 $$
 
 接下来，我们在约束（8.6.15）下对$w$最小化$\beta\Delta F$的统计误差。使用拉格朗日乘子法最为方便：
 
 $$
-0 = \left[\frac{Z_0}{n_0}\exp(-\beta U_1) + \frac{Z_1}{n_1}\exp(-\beta U_0)\right]
-\exp[-\beta(U_0 + U_1)]\, w\, \delta w
-- \lambda \exp[-\beta(U_0 + U_1)]\, \delta w
+0 = \left[\frac{Z_0}{n_0}\exp(-\beta \mathcal{U}_1) + \frac{Z_1}{n_1}\exp(-\beta \mathcal{U}_0)\right]
+\exp[-\beta(\mathcal{U}_0 + \mathcal{U}_1)]\, w\, \delta w
+- \lambda \exp[-\beta(\mathcal{U}_0 + \mathcal{U}_1)]\, \delta w
 \tag{8.6.16}
 $$
 
 即
 
 $$
-w = \frac{C}{\frac{Z_0}{n_0}\exp(-\beta U_1) + \frac{Z_1}{n_1}\exp(-\beta U_0)}.
+w = \frac{\mathcal{C}}{\frac{Z_0}{n_0}\exp(-\beta \mathcal{U}_1) + \frac{Z_1}{n_1}\exp(-\beta \mathcal{U}_0)}.
 \tag{8.6.17}
 $$
 
@@ -1036,8 +1036,8 @@ $$
 
 $$
 \frac{Z_0}{Z_1} =
-\frac{\langle \{1 + \exp[\beta(U_0 - U_1 + C)]\}^{-1}\rangle_1}
-{\langle \{1 + \exp[\beta(U_1 - U_0 - C)]\}^{-1}\rangle_0}
+\frac{\langle \{1 + \exp[\beta(\mathcal{U}_0 - \mathcal{U}_1 + C)]\}^{-1}\rangle_1}
+{\langle \{1 + \exp[\beta(\mathcal{U}_1 - \mathcal{U}_0 - C)]\}^{-1}\rangle_0}
 \exp(\beta C),
 \tag{8.6.18}
 $$
@@ -1046,8 +1046,8 @@ $$
 
 $$
 \frac{Z_0}{Z_1} =
-\frac{\langle f(U_0 - U_1 + C)\rangle_1}
-{\langle f(U_1 - U_0 - C)\rangle_0}
+\frac{\langle f(\mathcal{U}_0 - \mathcal{U}_1 + C)\rangle_1}
+{\langle f(\mathcal{U}_1 - \mathcal{U}_0 - C)\rangle_0}
 \exp(\beta C).
 \tag{8.6.19}
 $$
@@ -1063,14 +1063,14 @@ $$
 $$
 
 $$
-\langle f(U_1 - U_0 - C)\rangle_0 = \frac{1}{n_0}\sum_{m'} f_{m'}(U_1 - U_0 - C),
+\langle f(\mathcal{U}_1 - \mathcal{U}_0 - C)\rangle_0 = \frac{1}{n_0}\sum_{m'} f_{m'}(\mathcal{U}_1 - \mathcal{U}_0 - C),
 \tag{8.6.20}
 $$
 
 其中$\sum_m$（$\sum_{m'}$）代表对系统 1（系统 0）的 Monte Carlo 模拟中采样的所有构型求和。将式（8.6.20）和式（8.6.19）代入式（8.6.13），我们得到
 
 $$
-\beta\Delta F = \ln\frac{\sum_1 f(U_0 - U_1 + C)}{\sum_0 f(U_1 - U_0 - C)} - \ln(n_1/n_0) + \beta C,
+\beta\Delta F = \ln\frac{\sum_1 f(\mathcal{U}_0 - \mathcal{U}_1 + C)}{\sum_0 f(\mathcal{U}_1 - \mathcal{U}_0 - C)} - \ln(n_1/n_0) + \beta C,
 \tag{8.6.21}
 $$
 
@@ -1084,7 +1084,7 @@ $$
 显然，式（8.6.21）和式（8.6.22）只有当以下条件满足时才是一致的：
 
 $$
-\sum_m f(U_0 - U_1 + C) = \sum_{m'} f(U_1 - U_0 - C).
+\sum_m f(\mathcal{U}_0 - \mathcal{U}_1 + C) = \sum_{m'} f(\mathcal{U}_1 - \mathcal{U}_0 - C).
 \tag{8.6.23}
 $$
 
@@ -1103,15 +1103,15 @@ $$
 我们（着重）强调，自由能函数$F(Q)$的值取决于$Q$的函数形式的选择。为了说明这一点，我们回顾式（8.1.1），它表明在两个宏观态中找到系统的概率之比与这两个态之间的自由能差有关。我们现在将这一关系推广到系统可以处于由序参数$Q$表征的不同状态的情况。在给定$Q$值下找到系统的概率密度为：
 
 $$
-P(Q) = \frac{\int \mathrm{d}X\, \delta(Q(X) - Q)\exp[-\beta U(X)]}
-{\int \mathrm{d}X\, \exp[-\beta U(X)]}.
+\mathcal{P}(\mathcal{Q}) = \frac{\int \mathrm{d}\mathcal{X}\, \delta(\mathcal{Q}(\mathcal{X}) - \mathcal{Q})\exp[-\beta \mathcal{U}(\mathcal{X})]}
+{\int \mathrm{d}\mathcal{X}\, \exp[-\beta \mathcal{U}(\mathcal{X})]}.
 \tag{8.6.24}
 $$
 
 我们对$P(Q)$的定义保证了它是归一化的。我们现在可以将自由能$F(Q)$定义为$Q$的函数：
 
 $$
-\beta F(Q) = C - \ln[P(Q)].
+\beta F(\mathcal{Q}) = \mathcal{C} - \ln[\mathcal{P}(\mathcal{Q})].
 \tag{8.6.25}
 $$
 
@@ -1124,8 +1124,8 @@ $$
 现在让我们选择一个不同的序参数$Q' \equiv g(Q)$，其中$g$是$Q$的单调函数；例如：$Q' = Q^{17}$。我们现在可以定义一个自由能函数$F'(Q')$。由于概率保持不变，我们必须有
 
 $$
-e^{-\beta F(Q)} dQ = e^{-\beta F'(Q')} dQ' = e^{-\beta F'(Q')}
-\left|\frac{\partial Q'}{\partial Q}\right| dQ,
+e^{-\beta F(\mathcal{Q})} d\mathcal{Q} = e^{-\beta F'(\mathcal{Q}')} d\mathcal{Q}' = e^{-\beta F'(\mathcal{Q}')}
+\left|\frac{\partial \mathcal{Q}'}{\partial \mathcal{Q}}\right| d\mathcal{Q},
 \tag{8.6.26}
 $$
 
@@ -1147,8 +1147,8 @@ $$
 
 $$
 \frac{P_\alpha}{P_\beta} =
-\frac{\int_\alpha \mathrm{d}Q\, e^{-\beta F(Q)}}
-{\int_\beta \mathrm{d}Q\, e^{-\beta F(Q)}},
+\frac{\int_\alpha \mathrm{d}\mathcal{Q}\, e^{-\beta F(\mathcal{Q})}}
+{\int_\beta \mathrm{d}\mathcal{Q}\, e^{-\beta F(\mathcal{Q})}},
 \tag{8.6.27}
 $$
 
@@ -1173,21 +1173,21 @@ $$
 幸运的是，如果我们对采样进行偏倚使其偏向感兴趣的区域，我们仍然可以在平衡模拟中采样自由能势垒。在实践中，这意味着我们进行同一系统的模拟，但现在施加一个仅依赖于序参数的势$V_\text{bias}(Q)$，迫使系统采样那些否则几乎不会被访问的$Q$区域。当然，在偏倚模拟中获得的$Q$的概率分布不是原始分布$P_0(Q)$（下标 0 表示无偏概率分布），而是
 
 $$
-P_B(Q) \sim \exp[-\beta V_\text{bias}(Q)] P_0(Q),
+P_B(\mathcal{Q}) \sim \exp[-\beta \mathcal{V}_\text{bias}(\mathcal{Q})] P_0(\mathcal{Q}),
 \tag{8.6.28}
 $$
 
 其中$P_B$的下标$B$指偏倚势。然而，我们知道$V_\text{bias}(Q)$，因此我们可以将$P_B(Q)$去偏以获得$P_0(Q)$，最多差一个乘性常数。换句话说（使用式（8.6.25））：
 
 $$
-F_0(Q) = F_B(Q) - V_\text{bias}(Q) + C.
+F_0(\mathcal{Q}) = F_B(\mathcal{Q}) - \mathcal{V}_\text{bias}(\mathcal{Q}) + \mathcal{C}.
 \tag{8.6.29}
 $$
 
 现在让我们回到关于如何采样作为某序参数$Q$的函数的自由能剖面的讨论。式（8.6.29）表明，使用一个能消除自由能面中所有势垒的偏倚势$V(Q)$是方便的，使得$F_B(Q)$为常数。事实上，这样的偏倚势存在：它由下式给出
 
 $$
-V_\text{bias}(Q) = -F(Q)
+\mathcal{V}_\text{bias}(\mathcal{Q}) = -F(\mathcal{Q})
 \tag{8.6.30}
 $$
 
@@ -1198,7 +1198,7 @@ $$
 一类特别重要的偏倚势是那些简单地与定义系统状态的热力学广延变量成正比的偏倚势：$E$、$V$或$\{N_1, N_2, \cdots, N_n\}$。对于这种热力学偏倚势，偏倚分布有一个简单的物理解释。让我们以能量偏倚为例。更具体地说，我们将考虑一个与势能$U(X)$成正比的偏倚势，其中$X$如前所述表示所有粒子坐标的集合。在这种情况下
 
 $$
-V(Q) = a\, U(X),
+\mathcal{V}(\mathcal{Q}) = a\, \mathcal{U}(\mathcal{X}),
 \tag{8.6.31}
 $$
 
@@ -1206,8 +1206,8 @@ $$
 
 $$
 \displaystyle
-P_B(U) \sim \int \mathrm{dX\, \delta(U(X) - U)\exp[-\beta a\, U(X)]\exp[-\beta U(X)]
-= \int \mathrm{d}X\, \delta(U(X) - U)\exp[-\beta(1 + a)U(X)],
+\mathcal{P_B(U) \sim \int \mathrm{d}\mathcal{X}\, \delta(U(\mathcal{X}) - U)\exp[-\beta a\, U(\mathcal{X})]\exp[-\beta U(\mathcal{X})]
+= \int \mathrm{d}\mathcal{X}\, \delta(U(\mathcal{X}) - U)\exp[-\beta(1 + a)U(\mathcal{X})],
 }
 \tag{8.6.32}
 $$
@@ -1220,16 +1220,16 @@ $$
 
 $$
 \displaystyle
-P_0(U) \sim \int \mathrm{dX\, \delta(U(X) - U)\exp[-\beta U(X)]
-= \exp[-\beta U] \int \mathrm{d}X\, \delta(U(X) - U) \equiv \exp[-\beta U]\, \Omega(U),
+\mathcal{P_0(U) \sim \int \mathrm{d}\mathcal{X}\, \delta(U(\mathcal{X}) - U)\exp[-\beta U(\mathcal{X})]
+= \exp[-\beta U] \int \mathrm{d}\mathcal{X}\, \delta(U(\mathcal{X}) - U) \equiv \exp[-\beta U]\, \mathcal{N}(U),
 }
 \tag{8.6.33}
 $$
 
-其中$\Omega(U)$是系统在势能$U$处的（未归一化）态密度。注意$\Omega(U)$不依赖于温度。一旦指定了系统的哈密顿量，它就是固定的。如果我们能够计算系统的态密度，那么我们就可以在任何温度下计算该系统的自由能（构型部分），最多差一个（不重要的）可加常数：
+其中$\mathcal{N}(U)$是系统在势能$U$处的（未归一化）态密度。注意$\mathcal{N}(U)$不依赖于温度。一旦指定了系统的哈密顿量，它就是固定的。如果我们能够计算系统的态密度，那么我们就可以在任何温度下计算该系统的自由能（构型部分），最多差一个（不重要的）可加常数：
 
 $$
-F(N, V, T) = -k_BT \ln\left[\int \mathrm{d}U\, \Omega(U)\exp(-\beta U)\right].
+F(N, V, T) = -k_BT \ln\left[\int \mathrm{d}U\, \mathcal{N}(U)\exp(-\beta U)\right].
 \tag{8.6.34}
 $$
 
@@ -1253,18 +1253,18 @@ $$
 在伞形采样的情况下，$\langle\exp(-\beta\Delta U)\rangle_0$的表达式变为（见式（8.6.2））：
 
 $$
-\langle\exp(-\beta\Delta U)\rangle_0 =
-\frac{\int \mathrm{d}X\, \pi(X)\exp[-\beta U_1(X)]/\pi(X)}
-{\int \mathrm{d}X\, \pi(X)\exp[-\beta U_0(X)]/\pi(X)},
+\langle\exp(-\beta\Delta \mathcal{U})\rangle_0 =
+\frac{\int \mathrm{d}\mathcal{X}\, \pi(\mathcal{X})\exp[-\beta \mathcal{U}_1(\mathcal{X})]/\pi(\mathcal{X})}
+{\int \mathrm{d}\mathcal{X}\, \pi(\mathcal{X})\exp[-\beta \mathcal{U}_0(\mathcal{X})]/\pi(\mathcal{X})},
 \tag{8.6.35}
 $$
 
 或者引入记号 $\langle \cdots \rangle_\pi$ 表示对正比于 $\pi(X)$ 的概率分布所取的平均，则有
 
 $$
-\langle\exp(-\beta\Delta U)\rangle_0 =
-\frac{\left\langle \exp(-\beta U_1)/\pi \right\rangle_\pi}
-{\left\langle \exp(-\beta U_0)/\pi \right\rangle_\pi}.
+\langle\exp(-\beta\Delta \mathcal{U})\rangle_0 =
+\frac{\left\langle \exp(-\beta \mathcal{U}_1)/\pi \right\rangle_\pi}
+{\left\langle \exp(-\beta \mathcal{U}_0)/\pi \right\rangle_\pi}.
 \tag{8.6.36}
 $$
 
@@ -1294,7 +1294,7 @@ $$
     \begin{align}
     P(\varphi) &= \frac{\int \exp(-\beta U_{\text{tot}})\, w \left[\delta(\varphi - \varphi_1)/w\right] \mathrm{d}\mathbf{r}^N \mathrm{d}\varphi_1}{\int \exp(-\beta U_{\text{tot}})\, w\, w^{-1}\, \mathrm{d}\mathbf{r}^N \mathrm{d}\varphi_1} \nonumber \\
     &= \frac{\int \exp(-\beta U_{\text{inter}}) \left[\delta(\varphi - \varphi_1)\exp(-\beta U_{\text{intra}})\right] \mathrm{d}\mathbf{r}^N \mathrm{d}\varphi_1}{\int \exp(-\beta U_{\text{inter}}) \exp(-\beta U_{\text{intra}})\, \mathrm{d}\mathbf{r}^N \mathrm{d}\varphi_1} \nonumber \\
-    &= \frac{\left\langle \delta(\varphi - \varphi_1)\exp(-\beta U_{\text{intra}}) \right\rangle_{\text{inter}}}{\left\langle \exp(-\beta U_{\text{intra}}) \right\rangle_{\text{inter}}} .
+    &= \frac{\left\langle \delta(\varphi - \varphi_1)\exp(-\beta \mathcal{U}_{\text{intra}}) \right\rangle_{\text{inter}}}{\left\langle \exp(-\beta \mathcal{U}_{\text{intra}}) \right\rangle_{\text{inter}}} .
     \tag{8.6.37}
     \end{align}
     $$
@@ -1413,14 +1413,14 @@ $$
 一旦 $g(Q)$ 收敛，我们又可以利用细致平衡条件得到相应的偏倚概率分布函数 $P_g(X)$，下标 $g$ 表示由函数 $g(U)$ 引起的偏倚：
 
 $$
-\frac{P_g(X_n)}{P_g(X_o)} = \frac{\exp(-\beta U_n)g(Q_o)}{\exp(-\beta U_o)g(Q_n)}.
+\frac{\mathcal{P}_g(\mathcal{X}_n)}{\mathcal{P}_g(\mathcal{X}_o)} = \frac{\exp(-\beta \mathcal{U}_n)g(\mathcal{Q}_o)}{\exp(-\beta \mathcal{U}_o)g(\mathcal{Q}_n)}.
 \tag{8.6.39}
 $$
 
 需要注意的重要一点是：$P_g(X)$ 是构型空间中状态上的分布，而不是序参数上的分布。不过由上式可知
 
 $$
-P_g(X) \sim \frac{\exp(-\beta U(X))}{g(Q(X))}.
+\mathcal{P}_g(\mathcal{X}) \sim \frac{\exp(-\beta \mathcal{U}(\mathcal{X}))}{g(\mathcal{Q}(\mathcal{X}))}.
 \tag{8.6.40}
 $$
 
@@ -1429,7 +1429,7 @@ $$
 $$
 \begin{align}
 P_g(Q) &\sim \int \mathrm{d}X\, \delta(Q(X)-Q)P_g(X) \nonumber\\
-&= \frac{1}{g(Q)}\int \mathrm{d}X\, \delta(Q(X)-Q)\exp[-\beta U(X)] = \frac{P(Q)}{g(Q)} .
+&= \frac{1}{g(\mathcal{Q})}\int \mathrm{d}\mathcal{X}\, \delta(\mathcal{Q}(\mathcal{X})-\mathcal{Q})\exp[-\beta \mathcal{U}(\mathcal{X})] = \frac{P(\mathcal{Q})}{g(\mathcal{Q})} .
 \tag{8.6.41}
 \end{align}
 $$
@@ -1437,14 +1437,14 @@ $$
 但我们知道，如果 Wang-Landau 采样已经收敛，$P_g(Q)$ 应当是平坦的。因此
 
 $$
-g(Q) \sim P(Q),
+g(\mathcal{Q}) \sim P(\mathcal{Q}),
 \tag{8.6.42}
 $$
 
 即
 
 $$
-\beta F(Q) = \text{（常数）} - \ln g(Q).
+\beta F(\mathcal{Q}) = \text{（常数）} - \ln g(\mathcal{Q}).
 \tag{8.6.43}
 $$
 
@@ -1568,14 +1568,14 @@ $$
 现在假设我们并非在单次模拟中计算 $P(Q)$，而是执行 $k = 1\cdots K$ 次分别被函数 $V_k(Q)$ 偏倚的模拟。第 $k$ 个偏倚分布的表达式为
 
 $$
-P_k(Q) = \frac{\int \mathrm{d}X\, \delta(Q(X)-Q)\exp\{-\beta[U(X)+V_k(Q(X))]\}}{\int \mathrm{d}X \exp\{-\beta[U(X)+V_k(Q(X))]\}}.
+\mathcal{P}_k(\mathcal{Q}) = \frac{\int \mathrm{d}\mathcal{X}\, \delta(\mathcal{Q}(\mathcal{X})-\mathcal{Q})\exp\{-\beta[\mathcal{U}(\mathcal{X})+V_k(\mathcal{Q}(\mathcal{X}))]\}}{\int \mathrm{d}\mathcal{X} \exp\{-\beta[\mathcal{U}(\mathcal{X})+V_k(\mathcal{Q}(\mathcal{X}))]\}}.
 \tag{8.6.47}
 $$
 
 同样，我们采用简写：$Z_k \equiv \int \mathrm{d}X\exp\{-\beta[U(X)+V_k(Q(X))]\}$，$\beta F_k \equiv -\ln Z_k$。由偏倚分布 $P_k(Q)$，我们可以用
 
 $$
-P(Q) = \exp[+\beta V_k(Q)]P_k(Q)\times \frac{Z_k}{Z}
+\mathcal{P}(\mathcal{Q}) = \exp[+\beta V_k(\mathcal{Q})]\mathcal{P}_k(\mathcal{Q})\times \frac{Z_k}{Z}
 \tag{8.6.48}
 $$
 
@@ -1586,42 +1586,42 @@ MBAR 使我们能够对不同偏倚函数 $V_k$ 得到比值 $Z_k/Z$ 的估计�
 MBAR 背后的关键思想是：我们只对那些被实际采样到的点拥有信息。设想我们只采样了一个点，坐标为 $X_i$，那么我们对 $P(X)$ 的最佳估计就是 $P(X) = \delta(X-X_i)$。如果我们在不同的偏倚势 $V_k$（$k=\{1,2,\cdots,K\}$）下执行了 $K$ 次模拟，偏倚 $V_k$ 下有 $N_k$ 个点，那么 MBAR 假定 $P(X)$ 必定具有如下形式：
 
 $$
-P(X) = Z^{-1}\sum_{k=1}^{K}\sum_{n=1}^{N_k} p_{k,n}\,\delta\left(X - X_{k,n}\right),
+P(\mathcal{X}) = \mathcal{Z}^{-1}\sum_{k=1}^{K}\sum_{n=1}^{N_k} p_{k,n}\,\delta\left(\mathcal{X} - \mathcal{X}_{k,n}\right),
 \tag{8.6.49}
 $$
 
 其中
 
 $$
-Z \equiv \sum_{k=1}^{K}\sum_{n=1}^{N_k} p_{k,n}.
+\mathcal{Z} \equiv \sum_{k=1}^{K}\sum_{n=1}^{N_k} p_{k,n}.
 \tag{8.6.50}
 $$
 
 在此阶段，权重 $p_{k,n}$ 是未知的。不过，一旦确定了 $p_{k,n}$，我们就可以写出偏倚分布：
 
 $$
-P_k(X) = Z_k^{-1}\sum_{k'=1}^{K}\sum_{n=1}^{N_{k'}} p_{k',n}\exp[-\beta V_k(X)]\,\delta\left(X-X_{k',n}\right),
+P_k(\mathcal{X}) = \mathcal{Z}_k^{-1}\sum_{k'=1}^{K}\sum_{n=1}^{N_{k'}} p_{k',n}\exp[-\beta V_k(\mathcal{X})]\,\delta\left(\mathcal{X}-\mathcal{X}_{k',n}\right),
 \tag{8.6.51}
 $$
 
 其中
 
 $$
-Z_k \equiv \sum_{k'=1}^{K}\sum_{n=1}^{N_{k'}} p_{k',n}\exp\left[-\beta V_k(X_{k',n})\right].
+\mathcal{Z}_k \equiv \sum_{k'=1}^{K}\sum_{n=1}^{N_{k'}} p_{k',n}\exp\left[-\beta V_k(\mathcal{X}_{k',n})\right].
 \tag{8.6.52}
 $$
 
 我们通过考虑所观测样本的似然来确定 $p_{k,n}$。似然 $L$ 是在给定一组 $p_{k,n}$ 下生成所观测点集的概率：
 
 $$
-L \equiv \prod_{k=1}^{K}\left[\prod_{n=1}^{N_k} P_k\left(X_{k,n}\right)\right].
+L \equiv \prod_{k=1}^{K}\left[\prod_{n=1}^{N_k} P_k\left(\mathcal{X}_{k,n}\right)\right].
 \tag{8.6.53}
 $$
 
 显然，$L$ 依赖于所有 $p_{k,n}$。把 $P_k$ 的表达式代入上式（更方便的是代入 $\ln L$ 的表达式），就可以把这一依赖显式写出：
 
 $$
-\ln L \equiv \sum_{k=1}^{K}\sum_{n=1}^{N_k}\ln\left[\frac{p_{k,n}}{Z_k}\exp\left(-\beta V_k(X_{k,n})\right)\right].
+\ln L \equiv \sum_{k=1}^{K}\sum_{n=1}^{N_k}\ln\left[\frac{p_{k,n}}{\mathcal{Z}_k}\exp\left(-\beta V_k(\mathcal{X}_{k,n})\right)\right].
 \tag{8.6.54}
 $$
 
@@ -1630,7 +1630,7 @@ $$
 $$
 \begin{align}
 \ln L &= \text{常数} + \sum_{k=1}^{K}\sum_{n=1}^{N_k}\left[\ln p_{k,n} - \ln Z_k\right] \nonumber\\
-&= \text{常数} + \sum_{k=1}^{K}\sum_{n=1}^{N_k}\ln p_{k,n} - \sum_{k=1}^{K}N_k\ln Z_k
+&= \text{常数} + \sum_{k=1}^{K}\sum_{n=1}^{N_k}\ln p_{k,n} - \sum_{k=1}^{K}N_k\ln \mathcal{Z}_k
 \tag{8.6.55}
 \end{align}
 $$
@@ -1638,28 +1638,28 @@ $$
 求导。在第二行中，我们用到了对 $n$ 的第二个求和只是把同一项重复 $N_k$ 次这一事实。最大似然条件于是为
 
 $$
-0 = \frac{1}{p_{k,n}} - \sum_{k'=1}^{K}N_{k'}\frac{\exp[-\beta V_{k'}(X_{k,n})]}{Z_{k'}}.
+0 = \frac{1}{p_{k,n}} - \sum_{k'=1}^{K}N_{k'}\frac{\exp[-\beta V_{k'}(\mathcal{X}_{k,n})]}{\mathcal{Z}_{k'}}.
 \tag{8.6.56}
 $$
 
 现在我们可以写出 $p_{k,n}/Z$ 的表达式：
 
 $$
-p_{k,n}/Z = \frac{1}{\sum_{k'=1}^{K}N_{k'}\dfrac{\exp[-\beta V_{k'}(X_{k,n})]}{(Z_{k'}/Z)}}.
+p_{k,n}/\mathcal{Z} = \frac{1}{\sum_{k'=1}^{K}N_{k'}\dfrac{\exp[-\beta V_{k'}(\mathcal{X}_{k,n})]}{(\mathcal{Z}_{k'}/\mathcal{Z})}}.
 \tag{8.6.57}
 $$
 
 确定了权重 $p_{k,n}$ 之后，比值 $Z_k/Z = \exp(-\beta\Delta F_k)$ 就有了最佳估计。由此可得
 
 $$
-p_{k,n}/Z = \frac{1}{\sum_{k'=1}^{K}N_{k'}\exp\left[-\beta(V_{k'}(X_{k,n})-\Delta F_{k'})\right]}.
+p_{k,n}/\mathcal{Z} = \frac{1}{\sum_{k'=1}^{K}N_{k'}\exp\left[-\beta(V_{k'}(\mathcal{X}_{k,n})-\Delta F_{k'})\right]}.
 \tag{8.6.58}
 $$
 
 最后，把这一 $p_{k,n}$ 的表达式代入 $Z_i$ 的表达式，就得到 $Z_i/Z$、从而得到 $\Delta F_i$ 的表达式：
 
 $$
-\Delta F_i = -k_BT\ln \sum_{k=1}^{K}\sum_{n=1}^{N_k}\frac{\exp[-\beta V_i(X_{k,n})]}{\sum_{k'=1}^{K}N_{k'}\exp\left[-\beta(V_{k'}(X_{k,n})-\Delta F_{k'})\right]}.
+\Delta F_i = -k_BT\ln \sum_{k=1}^{K}\sum_{n=1}^{N_k}\frac{\exp[-\beta V_i(\mathcal{X}_{k,n})]}{\sum_{k'=1}^{K}N_{k'}\exp\left[-\beta(V_{k'}(\mathcal{X}_{k,n})-\Delta F_{k'})\right]}.
 \tag{8.6.59}
 $$
 

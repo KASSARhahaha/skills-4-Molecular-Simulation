@@ -24,7 +24,7 @@
 正如第 4 章中简要讨论的，温度通常通过计算每个自由度的平均动能来测量。对于具有$f$个自由度的系统，温度$T$由下式给出：
 
 $$
-k_BT = \frac{\langle 2K \rangle}{f}.
+k_BT = \frac{\langle 2\mathcal{K} \rangle}{f}.
 \tag{5.1.1}
 $$
 
@@ -35,7 +35,7 @@ $N$粒子系统的自由度数等于$Nd - N_c$，其中$d$是空间维数，$N_c
 上述描述对于 MD 模拟来说是一种过度简化，因为在 MD 中我们必然使用离散时间步长。主要原因是，正如文献[[114,115]](references.md#ref-114)所指出的，由速度 Verlet 算法生成的速度与动量之间的关系并不简单地是$v_i = p_i/m_i$。相反，“真实”速度通过哈密顿运动方程定义：$\dot{r}_i^{\mathrm{true}} \equiv \partial H/\partial p_i$。对于使用有限时间步长的模拟，哈密顿量并不守恒，而是“影子”哈密顿量$H_S$守恒（见式 (4.3.22)）[^1]。正是这个哈密顿量决定了相空间中的密度，并应该出现在玻尔兹曼因子中。于是我们可以使用
 
 $$
-\left\langle p_i \frac{\partial H_S}{\partial p_i} \right\rangle_{NVT} = \left\langle p_i \dot{r}_i^{\mathrm{true}} \right\rangle_{NVT} = k_BT.
+\left\langle p_i \frac{\partial \mathcal{H}_S}{\partial p_i} \right\rangle_{NVT} = \left\langle p_i \dot{r}_i^{\mathrm{true}} \right\rangle_{NVT} = k_BT.
 \tag{5.1.2}
 $$
 
@@ -84,7 +84,7 @@ $$
 显然，如果我们在模拟中测量$E$（到一个常数），那么我们可以通过在一系列温度下进行模拟并通过数值微分来估计$C_V$。然而，我们也可以通过研究内能的自发涨落，在固定温度下确定$C_V$。我们从以下表达式出发：
 
 $$
-C_V = \left( \frac{\partial E}{\partial T} \right)_{NV} = \left( \frac{\partial E}{\partial \beta} \right)_{NV} \left( \frac{d\beta}{dT} \right) = -\frac{1}{k_B T^2} \left( \frac{\partial E}{\partial \beta} \right)_{NV}.
+C_V = \left( \frac{\partial E}{\partial T} \right)_{NV} = \left( \frac{\partial E}{\partial \beta} \right)_{NV} \left( \frac{\mathrm{d}\beta}{\mathrm{d}T} \right) = -\frac{1}{k_B T^2} \left( \frac{\partial E}{\partial \beta} \right)_{NV}.
 \tag{5.1.5}
 $$
 
@@ -107,7 +107,7 @@ $$
 由于$C_V$与恒定温度下能量的涨落有关，似乎我们不能使用涨落表达式从恒定$N$、$V$和$E$的 MD 模拟中确定$C_V$。然而，Lebowitz 等人[[106]](references.md#ref-106)证明了我们可以通过测量动能$K$的涨落来确定恒定$N$、$V$、$E$下的$C_V$：
 
 $$
-\langle K^2 \rangle_{NVE} - \langle K \rangle_{NVE}^2 = \frac{3N k_B^2 T^2}{2} \left( 1 - \frac{3N k_B}{2C_V} \right).
+\langle \mathcal{K}^2 \rangle_{NVE} - \langle \mathcal{K} \rangle_{NVE}^2 = \frac{3N k_B^2 T^2}{2} \left( 1 - \frac{3N k_B}{2C_V} \right).
 \tag{5.1.8}
 $$
 
@@ -173,28 +173,28 @@ $$
 接下来，我们注意到势能$U$依赖于系统的体积，因为真实位置（$\mathbf{r}_i = \mathbf{s}_i L$）随$L$缩放。但在某些情况下，势能可能还有一部分依赖于$V$但不依赖于粒子坐标的贡献[[130]](references.md#ref-130)。这种情况发生在例如势能包含一个依赖于密度但不依赖于周期盒内粒子坐标、而依赖于不同周期盒中心之间距离的项时。利用链式法则，我们可以写出
 
 $$
-P_{\mathrm{exc}} = -\left\langle \sum_{i=1}^{N} \frac{\partial U}{\partial \mathbf{r}_i} \frac{\partial \mathbf{r}_i}{\partial V} + \left( \frac{\partial U}{\partial V} \right)_{\mathbf{r}_i} \right\rangle_{N,T} = \frac{1}{dV} \left\langle \sum_{i=1}^{N} \mathbf{F}_i \cdot \mathbf{r}_i \right\rangle_{N,T} - \left\langle \left( \frac{\partial U}{\partial V} \right)_{\mathbf{r}_i} \right\rangle_{N,T},
+P_{\mathrm{exc}} = -\left\langle \sum_{i=1}^{N} \frac{\partial U}{\partial \mathbf{r}_i} \frac{\partial \mathbf{r}_i}{\partial V} + \left( \frac{\partial U}{\partial V} \right)_{\mathbf{r}_i} \right\rangle_{N,T} = \frac{1}{\mathrm{d}V} \left\langle \sum_{i=1}^{N} \mathbf{F}_i \cdot \mathbf{r}_i \right\rangle_{N,T} - \left\langle \left( \frac{\partial U}{\partial V} \right)_{\mathbf{r}_i} \right\rangle_{N,T},
 \tag{5.1.16}
 $$
 
 其中$d$是空间维数，并且我们利用了
 
 $$
-\left( \frac{\partial \mathbf{r}_i}{\partial V} \right)_{\mathbf{s}_i} = \frac{\mathbf{r}_i}{dV}.
+\left( \frac{\partial \mathbf{r}_i}{\partial V} \right)_{\mathbf{s}_i} = \frac{\mathbf{r}_i}{\mathrm{d}V}.
 \tag{5.1.17}
 $$
 
 式(5.1.16) 通常写为
 
 $$
-P_{\mathrm{exc}} = \frac{1}{dV} \langle W \rangle,
+P_{\mathrm{exc}} = \frac{1}{\mathrm{d}V} \langle W \rangle,
 \tag{5.1.18}
 $$
 
 这定义了维里$W$：
 
 $$
-W \equiv \sum_{i=1}^{N} \mathbf{F}_i \cdot \mathbf{r}_i - dV \left\langle \left( \frac{\partial U}{\partial V} \right)_{\mathbf{s}_i} \right\rangle_{N,T}.
+W \equiv \sum_{i=1}^{N} \mathbf{F}_i \cdot \mathbf{r}_i - \mathrm{d}V \left\langle \left( \frac{\partial U}{\partial V} \right)_{\mathbf{s}_i} \right\rangle_{N,T}.
 \tag{5.1.19}
 $$
 
@@ -210,7 +210,7 @@ $$
 在这种情况下，我们可以写出：
 
 $$
-P_{\mathrm{exc}} = -\frac{1}{dV} \left\langle \sum_{i=1}^{N} \sum_{j \neq i} \frac{\partial u(r_{ij})}{\partial \mathbf{r}_i} \cdot \mathbf{r}_i \right\rangle_{N,T} = \frac{1}{dV} \left\langle \sum_{i=1}^{N} \sum_{j \neq i} \mathbf{f}(r_{ij}) \cdot \mathbf{r}_i \right\rangle_{N,T}.
+P_{\mathrm{exc}} = -\frac{1}{\mathrm{d}V} \left\langle \sum_{i=1}^{N} \sum_{j \neq i} \frac{\partial u(r_{ij})}{\partial \mathbf{r}_i} \cdot \mathbf{r}_i \right\rangle_{N,T} = \frac{1}{\mathrm{d}V} \left\langle \sum_{i=1}^{N} \sum_{j \neq i} \mathbf{f}(r_{ij}) \cdot \mathbf{r}_i \right\rangle_{N,T}.
 \tag{5.1.21}
 $$
 
@@ -218,8 +218,8 @@ $$
 
 $$
 \displaystyle
-P = \rho k_B T + \frac{1{2dV} \left\langle \sum_{i=1}^{N} \sum_{j \neq i} \mathbf{f}(r_{ij}) \cdot \mathbf{r}_i + \sum_{j=1}^{N} \sum_{i \neq j} \mathbf{f}(r_{ji}) \cdot \mathbf{r}_j \right\rangle_{N,T}
-= \rho k_B T + \frac{1}{2dV} \left\langle \sum_{i=1}^{N} \sum_{j \neq i} \mathbf{f}(r_{ij}) \cdot \mathbf{r}_{ij} \right\rangle_{N,T}
+P = \rho k_B T + \frac{1{2\mathrm{d}V} \left\langle \sum_{i=1}^{N} \sum_{j \neq i} \mathbf{f}(r_{ij}) \cdot \mathbf{r}_i + \sum_{j=1}^{N} \sum_{i \neq j} \mathbf{f}(r_{ji}) \cdot \mathbf{r}_j \right\rangle_{N,T}
+= \rho k_B T + \frac{1}{2\mathrm{d}V} \left\langle \sum_{i=1}^{N} \sum_{j \neq i} \mathbf{f}(r_{ij}) \cdot \mathbf{r}_{ij} \right\rangle_{N,T}
 }
 $$
 
@@ -236,7 +236,7 @@ $$
 在某些情况下，式(5.1.14) 不能使用，例如对于格点模型，体积不是连续变量。在这种情况下，我们可以使用热力学关系来计算流体的压力：
 
 $$
-d(PV)_{V,T} = N d\mu.
+d(PV)_{V,T} = N \mathrm{d}\mu.
 \tag{5.1.22}
 $$
 
@@ -309,7 +309,7 @@ $$
 我们从单组分系统的亥姆霍兹自由能随$N$、$V$、$T$和表面积$A$变化的表达式出发：
 
 $$
-dF = -S \, dT - P \, dV + \mu \, dN + \gamma \, dA,
+\mathrm{d}F = -S \, \mathrm{d}T - P \, \mathrm{d}V + \mu \, \mathrm{d}N + \gamma \, \mathrm{d}A,
 \tag{5.1.29}
 $$
 
@@ -594,7 +594,7 @@ $$
     压力可以从以下公式计算
 
     $$
-    P = \rho k_B T - \frac{1}{3} \cdot \frac{1}{2}\rho^2 \int_0^\infty \mathrm{d}r \, \frac{du(r)}{\mathrm{d}r} r g(r) = \rho k_B T - \frac{2}{3}\pi\rho^2 \int_0^\infty \mathrm{d}r \, \frac{du(r)}{\mathrm{d}r} r^3 g(r),
+    P = \rho k_B T - \frac{1}{3} \cdot \frac{1}{2}\rho^2 \int_0^\infty \mathrm{d}r \, \frac{\mathrm{d}u(r)}{\mathrm{d}r} r g(r) = \rho k_B T - \frac{2}{3}\pi\rho^2 \int_0^\infty \mathrm{d}r \, \frac{\mathrm{d}u(r)}{\mathrm{d}r} r^3 g(r),
     \tag{5.1.55}
     $$
 
@@ -885,7 +885,7 @@ $$
 其中，在两两可加的情况下，[^7]
 
 $$
-j_e^z = \frac{d}{dt} \sum_{i=1}^N z_i \frac{1}{2} \left( m_i v_i^2 + \sum_{j \neq i} u(\mathbf{r}_{ij}) \right);
+j_e^z = \frac{d}{\mathrm{d}t} \sum_{i=1}^N z_i \frac{1}{2} \left( m_i v_i^2 + \sum_{j \neq i} u(\mathbf{r}_{ij}) \right);
 \tag{5.2.24}
 $$
 

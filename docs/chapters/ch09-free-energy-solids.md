@@ -53,14 +53,14 @@ $$
 
 $$
 F = F_{\mathrm{Ein}} + \int_{\lambda=0}^{\lambda=1} \mathrm{d}\lambda \left\langle \frac{\partial U(\lambda)}{\partial \lambda} \right\rangle_{\lambda} \\
-= F_{\mathrm{Ein}} + \int_{\lambda=0}^{\lambda=1} \mathrm{d}\lambda \left\langle \sum_{i=1}^{N} \alpha_i (\mathbf{r}_i - \mathbf{r}_{0,i})^2 - \left[U(\mathbf{r}^N) - U(\mathbf{r}_0^N)\right] \right\rangle_{\lambda} .
+= F_{\mathrm{Ein}} + \int_{\lambda=0}^{\lambda=1} \mathrm{d}\lambda \left\langle \sum_{i=1}^{N} \alpha_i (\mathbf{r}_i - \mathbf{r}_{0,i})^2 - \left[\mathcal{U}(\mathbf{r}^N) - \mathcal{U}(\mathbf{r}_0^N)\right] \right\rangle_{\lambda} .
 \tag{9.2.2}
 $$
 
 非相互作用爱因斯坦晶体的构型自由能为：
 
 $$
-F_{\mathrm{Ein}} = U(\mathbf{r}_0^N) - \frac{d}{2\beta} \sum_{i=1}^{N} \ln(\pi / \alpha_i \beta) .
+F_{\mathrm{Ein}} = \mathcal{U}(\mathbf{r}_0^N) - \frac{d}{2\beta} \sum_{i=1}^{N} \ln(\pi / \alpha_i \beta) .
 \tag{9.2.3}
 $$
 
@@ -86,7 +86,7 @@ $$
 当然，选择爱因斯坦晶体作为参考态是一种人为的选择。我们也可以使用其他自由能已解析已知的参考态。最自然的选择是（经典）谐振晶体，即势能仅展开到粒子相对于其格点位移的二次项的模型晶体[[335,409]](references.md#ref-335)。根据我们对晶体势能极小值处黑塞矩阵的了解，可以获得谐振声子模式的所有非零本征频率 $\omega_i$（$i = 1, \cdots, d(N-1)$）。（固定质心的）谐振晶体的自由能 $F_h(N, V, T)$ 由下式给出：
 
 $$
-\beta F_h(N, V, T) = \beta U_0 + \sum_{i=1}^{d(N-1)} \ln(\beta\hbar\omega_i) ,
+\beta F_h(N, V, T) = \beta \mathcal{U}_0 + \sum_{i=1}^{d(N-1)} \ln(\beta\hbar\omega_i) ,
 \tag{9.2.5}
 $$
 
@@ -131,14 +131,14 @@ $$
 另一种替代方案是考虑一个可以开启弹簧常数，同时保持粒子间硬核相互作用不受影响的体系：
 
 $$
-U(\lambda) = U_0 + \lambda U = U_0 + \lambda \sum_{i=1}^{N} (\mathbf{r}_i - \mathbf{r}_{0,i})^2 ,
+\mathcal{U}(\lambda) = \mathcal{U}_0 + \lambda \mathcal{U} = \mathcal{U}_0 + \lambda \sum_{i=1}^{N} (\mathbf{r}_i - \mathbf{r}_{0,i})^2 ,
 \tag{9.2.6}
 $$
 
 其中 $N$ 表示粒子总数，$\mathbf{r}_{0,i}$ 是粒子 $i$ 被分配到的格点位置。耦合常数为 $\lambda$ 的体系与硬球流体之间的自由能差为
 
 $$
-F_{\mathrm{HS}} = F(\lambda_{\max}) - \int_{0}^{\lambda_{\max}} \mathrm{d}\lambda \left\langle U(\mathbf{r}^N,\lambda) \right\rangle_{\lambda} .
+F_{\mathrm{HS}} = F(\lambda_{\max}) - \int_{0}^{\lambda_{\max}} \mathrm{d}\lambda \left\langle \mathcal{U}(\mathbf{r}^N,\lambda) \right\rangle_{\lambda} .
 \tag{9.2.7}
 $$
 
@@ -188,7 +188,7 @@ $$
 
 $$
 \displaystyle
-\delta U_{\mathrm{Harm}(\lambda) = \lambda \sum_{j \neq i} \left[ \left(\boldsymbol{\delta}\mathbf{r}_j - \frac{\boldsymbol{\epsilon}_i}{N}\right)^2 - \boldsymbol{\delta}\mathbf{r}_j^2 \right] + \lambda \left[ \left(\boldsymbol{\delta}\mathbf{r}_i + \left(1-\frac{1}{N}\right)\boldsymbol{\epsilon}_i\right)^2 - \boldsymbol{\delta}\mathbf{r}_i^2 \right]
+\delta \mathcal{U_{\mathrm{Harm}}(\lambda) = \lambda \sum_{j \neq i} \left[ \left(\boldsymbol{\delta}\mathbf{r}_j - \frac{\boldsymbol{\epsilon}_i}{N}\right)^2 - \boldsymbol{\delta}\mathbf{r}_j^2 \right] + \lambda \left[ \left(\boldsymbol{\delta}\mathbf{r}_i + \left(1-\frac{1}{N}\right)\boldsymbol{\epsilon}_i\right)^2 - \boldsymbol{\delta}\mathbf{r}_i^2 \right]
 = \lambda \left( 2\boldsymbol{\delta}\mathbf{r}_i \cdot \boldsymbol{\epsilon}_i + \frac{N-1}{N}\boldsymbol{\epsilon}_i^2 \right) ,
 }
 \tag{9.2.8}
@@ -402,7 +402,7 @@ $$
 固定系统质心的约束从系统中消除了若干自由度，这对自由能产生影响。严格来说，由于任何硬约束引起的自由能变化是无限的。然而，由于我们总是考虑自由能差，无穷大项会相互抵消。剩余的自由能变化在热力学极限下可以忽略不计。然而，由于模拟必须在有限系统上执行，对有限尺寸效应的大小进行估计是重要的。下面，我们较详细地描述如何使用固定质心系统的模拟来计算无约束晶体的自由能。为了保持讨论的一般性，我们将考虑一个 $d$ 维晶体系统，包含 $N_{\mathrm{mol}}$ 个分子，由 $N$ 个原子组成。无约束固体的配分函数为
 
 $$
-Q = c_N \int \mathrm{d}\mathbf{r}^{dN} \mathrm{d}\mathbf{p}^{dN} \exp[-\beta H(\mathbf{r}_i, \mathbf{p}_i)] ,
+Q = c_N \int \mathrm{d}\mathbf{r}^{dN} \mathrm{d}\mathbf{p}^{dN} \exp[-\beta \mathcal{H}(\mathbf{r}_i, \mathbf{p}_i)] ,
 \tag{9.2.15}
 $$
 
@@ -411,7 +411,7 @@ $$
 因此，在下文中我们省略所有 $h$ 因子。如文献[[428]](references.md#ref-428) 所讨论的，约束系统的配分函数 $Q_{\mathrm{con}}$ 可以写为
 
 $$
-Q_{\mathrm{con}} = c_N \int \mathrm{d}\mathbf{r}^{dN} \mathrm{d}\mathbf{p}^{dN} \exp[-\beta H(\mathbf{r}_i, \mathbf{p}_i)]
+Q_{\mathrm{con}} = c_N \int \mathrm{d}\mathbf{r}^{dN} \mathrm{d}\mathbf{p}^{dN} \exp[-\beta \mathcal{H}(\mathbf{r}_i, \mathbf{p}_i)]
 \times \delta[\sigma(\mathbf{r})]\delta(G^{-1} \cdot \dot{\sigma}) ,
 \tag{9.2.16}
 $$
@@ -518,7 +518,7 @@ $$
 
 $$
 \frac{Z^{\mathrm{CM}}}{Z} = \frac{\int \mathrm{d}\mathbf{r}^{dN} \exp[-\beta U(\mathbf{r}_i)] \delta\left(\sum_i \mu_i\mathbf{r}_i\right)}{\int \mathrm{d}\mathbf{r}^{dN} \exp[-\beta U(\mathbf{r}_i)]}
-= \left\langle \delta\left(\sum_i \mu_i\mathbf{r}_i\right) \right\rangle = P(\mathbf{r}_{\mathrm{CM}} = 0) ,
+= \left\langle \delta\left(\sum_i \mu_i\mathbf{r}_i\right) \right\rangle = \mathcal{P}(\mathbf{r}_{\mathrm{CM}} = 0) ,
 \tag{9.2.29}
 $$
 

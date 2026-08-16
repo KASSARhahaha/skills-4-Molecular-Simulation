@@ -338,7 +338,7 @@ $$
 
 ### 混合 Monte Carlo
 
-为了说明无拒绝 MC 并不奇怪，我们首先考虑混合 MC（Hybrid MC）的情况。在分子模拟的背景下，混合 MC 方法顾名思义是 MC 和 MD 的混合[[564]](references.md#ref-564)。也就是说：试探移动不是粒子的随机位移，而是通过执行长度为$t$的 MD 模拟生成的粒子的集体位移。其基本思想是一个“好的”（时间可逆的、辛的）MD 算法（例如 Verlet 算法）生成一个完全有效的 MC 试探移动，因为 1）它是可逆的，2）它在相空间中守恒体积，这意味着体积元$d\Gamma \equiv d\mathbf{r}^N d\mathbf{p}^N$在系统的时间演化过程中不发生变化（参见第 4 章和参考文献[[117]](references.md#ref-117)）。
+为了说明无拒绝 MC 并不奇怪，我们首先考虑混合 MC（Hybrid MC）的情况。在分子模拟的背景下，混合 MC 方法顾名思义是 MC 和 MD 的混合[[564]](references.md#ref-564)。也就是说：试探移动不是粒子的随机位移，而是通过执行长度为$t$的 MD 模拟生成的粒子的集体位移。其基本思想是一个“好的”（时间可逆的、辛的）MD 算法（例如 Verlet 算法）生成一个完全有效的 MC 试探移动，因为 1）它是可逆的，2）它在相空间中守恒体积，这意味着体积元$\mathrm{d}\Gamma \equiv \mathrm{d}\mathbf{r}^N \mathrm{d}\mathbf{p}^N$在系统的时间演化过程中不发生变化（参见第 4 章和参考文献[[117]](references.md#ref-117)）。
 
 我们现在可以在点$\mathbf{r}^N(0)$处启动一次尝试 MD 运行。为了定义一条轨迹，我们必须根据某个（目前尚未指定的）概率分布$P(\mathbf{p}^N(0))$生成一组初始动量$\mathbf{p}^N(0)$。在指定了$\Gamma(0)$后，我们运行 MD 算法$n$步（$n$的选择可以稍后决定）。经过$n$步后，系统将处于由相空间坐标$\mathbf{r}^N(t), \mathbf{p}^N(t)$表征的状态。
 
@@ -508,10 +508,10 @@ $$
 
 我们展示这个例子，因为它表明 a）试探移动有时可以通过使用坐标标度来提高效率，b）如果我们使用改变从一组参考坐标$(\mathbf{s}^N)$到实际坐标的映射的试探移动，那么新旧雅可比行列式之比最终会出现在接受规则中。
 
-Jarzynski [[581]](references.md#ref-581)探索了如何通过适当选择的坐标变换来改善采样的更一般问题，特别是在估计自由能差的背景下。为说明该方法的要点，设想我们有一个性质清楚、易于采样的 $N$ 粒子参考体系（A），其 $dN$ 个坐标记为 $q$，势能为 $U_A(q)$，玻尔兹曼分布为 $\rho_A(q)$；而我们希望采样的体系 $B$ 具有更难采样的势能函数 $U_B(q')$ 与玻尔兹曼分布 $\rho_B(q')$。最理想的情形是构造一个从 $q$ 到 $q'$ 的坐标变换 $\mathcal{T}$，使得我们对 $A$ 的采样自动给出 $B$ 中所有具有正确玻尔兹曼权重的点。通过采样 $A$ 并从 $q$ 变换到 $q'$ 所生成的概率密度为
+Jarzynski [[581]](references.md#ref-581)探索了如何通过适当选择的坐标变换来改善采样的更一般问题，特别是在估计自由能差的背景下。为说明该方法的要点，设想我们有一个性质清楚、易于采样的 $N$ 粒子参考体系（A），其 $\mathrm{d}N$ 个坐标记为 $q$，势能为 $U_A(q)$，玻尔兹曼分布为 $\rho_A(q)$；而我们希望采样的体系 $B$ 具有更难采样的势能函数 $U_B(q')$ 与玻尔兹曼分布 $\rho_B(q')$。最理想的情形是构造一个从 $q$ 到 $q'$ 的坐标变换 $\mathcal{T}$，使得我们对 $A$ 的采样自动给出 $B$ 中所有具有正确玻尔兹曼权重的点。通过采样 $A$ 并从 $q$ 变换到 $q'$ 所生成的概率密度为
 
 $$
-\rho(q') \sim \frac{\exp(-\beta U_A)}{|J|_{\mathcal{T}}},
+\rho(q') \sim \frac{\exp(-\beta \mathcal{U}_A)}{|J|_{\mathcal{T}}},
 \tag{13.4.1}
 $$
 
@@ -544,32 +544,32 @@ Kofke 及其合作者把这一映射方法重新表述，使之适用于范围�
 
 近年来，若干研究组（见 Noé 等人[[583]](references.md#ref-583)、Wirnsberger 等人[[584]](references.md#ref-584) 以及 Gabrié 等人[[585]](references.md#ref-585)）表明：在我们的直觉可能不够好的场合，用机器学习来构造第 13.4 节所定义的 $q$ 与 $q'$ 之间“好的”可逆映射，具有相当大的前景。
 
-正如第 3.2.1 节所解释的，理想的静态 MC 程序应当以正比于玻尔兹曼权重的概率、在构型空间中生成相互独立的点。$d$ 维空间中 $N$ 个粒子的体系有 $dN$ 个自由度；我们可以把构型的生成看作把 $dN$ 个随机数 $R^{dN} = (R_1,...,R_{dN})$ 映射到 $dN$ 个坐标 $\mathbf{r}^N = (r_1,...,r_{dN})$ 的一个复杂非线性映射。一个平凡的例子是在边长为 $L$ 的立方盒中生成理想气体构型：把单位超立方体内的 $dN$ 个随机标度坐标 $s^N$（即 $0 \leq s_i < 1$）乘以盒长 $L$，就可以生成一个典型构型。
+正如第 3.2.1 节所解释的，理想的静态 MC 程序应当以正比于玻尔兹曼权重的概率、在构型空间中生成相互独立的点。$d$ 维空间中 $N$ 个粒子的体系有 $\mathrm{d}N$ 个自由度；我们可以把构型的生成看作把 $\mathrm{d}N$ 个随机数 $R^{dN} = (R_1,...,R_{dN})$ 映射到 $\mathrm{d}N$ 个坐标 $\mathbf{r}^N = (r_1,...,r_{dN})$ 的一个复杂非线性映射。一个平凡的例子是在边长为 $L$ 的立方盒中生成理想气体构型：把单位超立方体内的 $\mathrm{d}N$ 个随机标度坐标 $s^N$（即 $0 \leq s_i < 1$）乘以盒长 $L$，就可以生成一个典型构型。
 
 对于有相互作用的体系，上述映射毫无用处：几乎所有构型的玻尔兹曼权重都会消失。问题在于，我们能否定义某个复杂的非线性矢量函数 $F$，使得 $\mathbf{r}^N = F(R_1,\cdots,R_{dN})$，并且所生成构型出现的频率正比于其玻尔兹曼权重。过去这个问题的答案是“不能”，但这一局面正在改变。
 
-在继续之前我们指出，从 $R^{dN}$ 到 $\mathbf{r}^N$ 的映射应当是双射，即：每一组 $dN$ 个随机数应当且仅应当对应构型空间中的一个有效点，反之亦然。在第 13.4 节中，我们描述了利用映射思想来生成玻尔兹曼权重高于随机试探移动所生成构型的 MCMC 试探移动。这类映射通常是凭物理直觉“手工”构造的。但我们的物理直觉不足以设计出这样一种合理的映射：能在一次静态 MC 移动中，以接近其玻尔兹曼权重的概率生成构型。机器学习（ML）正是在此登场：其思想是我们可以训练一个神经网络来执行这样的双射变换。注意，大多数机器学习到的“映射”根本不是双射：通常许多输入会生成同一输出，例如同一个人的许多照片都应识别为同一个体。训练神经网络执行复杂双射变换的一类流行方法称为“归一化流”（normalizing flows）[[586]](references.md#ref-586)。
+在继续之前我们指出，从 $R^{dN}$ 到 $\mathbf{r}^N$ 的映射应当是双射，即：每一组 $\mathrm{d}N$ 个随机数应当且仅应当对应构型空间中的一个有效点，反之亦然。在第 13.4 节中，我们描述了利用映射思想来生成玻尔兹曼权重高于随机试探移动所生成构型的 MCMC 试探移动。这类映射通常是凭物理直觉“手工”构造的。但我们的物理直觉不足以设计出这样一种合理的映射：能在一次静态 MC 移动中，以接近其玻尔兹曼权重的概率生成构型。机器学习（ML）正是在此登场：其思想是我们可以训练一个神经网络来执行这样的双射变换。注意，大多数机器学习到的“映射”根本不是双射：通常许多输入会生成同一输出，例如同一个人的许多照片都应识别为同一个体。训练神经网络执行复杂双射变换的一类流行方法称为“归一化流”（normalizing flows）[[586]](references.md#ref-586)。
 
 我们不打算深入该方法的 ML 层面，只对术语作一点说明：之所以用“流”一词，是因为在实践中该映射被实现为一系列变换。随机数原本的归一化概率分布（更常见的是正态分布而非均匀分布），被映射到变换后坐标空间中的一个（可归一化的）概率分布。
 
 为解释接下来发生的事，不妨假定我们把在 $0 \leq R < 1$ 上均匀分布的随机数映射到体系的坐标。原本那个简单的分布通常被称为“潜空间”（latent space）分布。在实际情形中，潜空间分布不是均匀分布而是正态分布。把在 $\mathbf{r}^{dN}$ 中生成的概率分布记为 $P(\mathbf{r}^{dN})$，则
 
 $$
-P\left(R^{dN}\right)\mathrm{d}R^{dN} = P\left(\mathbf{r}^{dN}\right)\mathrm{d}\mathbf{r}^{dN} = P\left(\mathbf{r}^{dN}\right)J\left(R^{dN},\mathbf{r}^{dN}\right)\mathrm{d}R^{dN},
+\mathcal{P}\left(\mathcal{R}^{dN}\right)\mathrm{d}\mathcal{R}^{dN} = \mathcal{P}\left(\mathbf{r}^{dN}\right)\mathrm{d}\mathbf{r}^{dN} = \mathcal{P}\left(\mathbf{r}^{dN}\right)J\left(\mathcal{R}^{dN},\mathbf{r}^{dN}\right)\mathrm{d}\mathcal{R}^{dN},
 \tag{13.4.3}
 $$
 
 其中 $P(R^{dN}) = 1$，$J(R^{dN},\mathbf{r}^{dN})$ 表示从 $R^{dN}$ 到 $\mathbf{r}^{dN}$ 变换的雅可比行列式。我们希望找到一个映射，使 $P(\mathbf{r}^{dN})$ 正比于玻尔兹曼分布 $\exp[-\beta U(\mathbf{r}^{dN})]$，即
 
 $$
-\exp\left[-\beta U\left(\mathbf{r}^{dN}\right)\right]J\left(R^{dN},\mathbf{r}^{dN}\right) = \text{常数}.
+\exp\left[-\beta U\left(\mathbf{r}^{dN}\right)\right]J\left(\mathcal{R}^{dN},\mathbf{r}^{dN}\right) = \text{常数}.
 \tag{13.4.4}
 $$
 
 不失一般性，我们取该常数为 1。于是
 
 $$
-\beta U\left(\mathbf{r}^{dN}\right) = \ln J\left(R^{dN},\mathbf{r}^{dN}\right).
+\beta U\left(\mathbf{r}^{dN}\right) = \ln J\left(\mathcal{R}^{dN},\mathbf{r}^{dN}\right).
 \tag{13.4.5}
 $$
 
@@ -596,11 +596,11 @@ $$
     接下来我们考察用归一化流计算自由能差的做法。出发点是如下关系式[[581]](references.md#ref-581)，它把通过双射映射相联系的两个体系 $A$ 与 $B$ 的自由能差 $\Delta F \equiv F_B - F_A$ 表示为
 
     $$
-    e^{-\beta\Delta F} = \frac{Z_B}{Z_A} = \left\langle e^{-\beta[U_B - U_A - k_BT\ln J]}\right\rangle_A,
+    e^{-\beta\Delta F} = \frac{Z_B}{Z_A} = \left\langle e^{-\beta[\mathcal{U}_B - \mathcal{U}_A - k_BT\ln J]}\right\rangle_A,
     \tag{13.4.6}
     $$
 
-    其中 $J$ 是从 $A$ 到 $B$ 的映射的雅可比行列式。在我们的情形中，体系 $A$ 由 $dN$ 维正态分布描述，体系 $B$ 则是我们关心的体系。如果映射足够好，我们就能得到上式中平均值的良好估计，从而得到体系的自由能。但这一结果并不局限于单个目标体系 $B$：我们可以有多个目标体系（例如同一模型的不同晶体结构[[584]](references.md#ref-584)）。此时上式使我们能够计算不同结构之间的自由能差。不过要注意，文献[[583,589]](references.md#ref-583) 中的自由能计算并未直接使用上式，而是使用了基于第 8 章所述更精巧方法的变体。
+    其中 $J$ 是从 $A$ 到 $B$ 的映射的雅可比行列式。在我们的情形中，体系 $A$ 由 $\mathrm{d}N$ 维正态分布描述，体系 $B$ 则是我们关心的体系。如果映射足够好，我们就能得到上式中平均值的良好估计，从而得到体系的自由能。但这一结果并不局限于单个目标体系 $B$：我们可以有多个目标体系（例如同一模型的不同晶体结构[[584]](references.md#ref-584)）。此时上式使我们能够计算不同结构之间的自由能差。不过要注意，文献[[583,589]](references.md#ref-583) 中的自由能计算并未直接使用上式，而是使用了基于第 8 章所述更精巧方法的变体。
 
     但我们也可以对映射施加偏倚，从而探索体系 $B$ 作为给定序参数之函数的（朗道）自由能。Noé 等人[[583]](references.md#ref-583) 表明，后一做法给出的自由能剖面与用常规方法（例如伞形采样）所得结果符合良好（见图 13.4）。
 
@@ -623,7 +623,7 @@ Swendsen-Wang（SW）方案及其后续推广与改进背后的核心思想，�
 $$
 \begin{align}
 N(o)&P^o_{\text{Gen}}(\{\text{团簇}\})P^{\{cl\}}(o\to n)\,\mathrm{acc}(o\to n) \nonumber\\
-&= N(n)P^n_{\text{Gen}}(\{\text{团簇}\})P^{\{cl\}}(n\to o)\,\mathrm{acc}(n\to o),
+&= \mathcal{N}(n)P^n_{\text{Gen}}(\{\text{团簇}\})P^{\{cl\}}(n\to o)\,\mathrm{acc}(n\to o),
 \tag{13.4.7}
 \end{align}
 $$
@@ -631,14 +631,14 @@ $$
 其中 $N(o)$ 是旧构型的玻尔兹曼权重，$P^o_{\text{Gen}}(\{\text{团簇}\})$ 表示从体系的旧构型出发生成某个特定团簇的概率，$P^{\{cl\}}(o\to n)$ 是把所生成的团簇从旧状态变到新状态的概率，$\mathrm{acc}(o\to n)$ 则是给定试探移动的接受概率。我们可以从两方面简化上式。首先，我们要求先验概率 $P^{\{cl\}}(o\to n)$ 对正向与反向移动相同。此外，我们希望对正向与反向移动都令 $P_{\text{acc}} = 1$。这未必总能做到，但对我们接下来讨论的简单情形确实可行。于是细致平衡方程变为
 
 $$
-N(o)P^o_{\text{Gen}}(\{\text{团簇}\}) = N(n)P^n_{\text{Gen}}(\{\text{团簇}\}),
+\mathcal{N}(o)P^o_{\text{Gen}}(\{\text{团簇}\}) = \mathcal{N}(n)P^n_{\text{Gen}}(\{\text{团簇}\}),
 \tag{13.4.8}
 $$
 
 即
 
 $$
-\frac{P^o_{\text{Gen}}(\{\text{团簇}\})}{P^n_{\text{Gen}}(\{\text{团簇}\})} = \frac{N(n)}{N(o)} = \exp(-\beta\Delta U),
+\frac{P^o_{\text{Gen}}(\{\text{团簇}\})}{P^n_{\text{Gen}}(\{\text{团簇}\})} = \frac{\mathcal{N}(n)}{\mathcal{N}(o)} = \exp(-\beta\Delta \mathcal{U}),
 \tag{13.4.9}
 $$
 
@@ -648,7 +648,7 @@ $$
 考虑自旋体系的一个给定构型（维数无关紧要），其中有 $N_p$ 对自旋平行、$N_a$ 对自旋反平行。该构型的总能量为
 
 $$
-U = (N_a - N_p)J,
+\mathcal{U} = (N_a - N_p)J,
 \tag{13.4.10}
 $$
 
@@ -690,7 +690,7 @@ $$
 因此体系总能量的变化量为 $-2J\Delta$：
 
 $$
-U(n) = U(o) - 2J\Delta .
+\mathcal{U}(n) = \mathcal{U}(o) - 2J\Delta .
 \tag{13.4.15}
 $$
 
@@ -711,7 +711,7 @@ $$
 把它代入前面的比值式，就得到
 
 $$
-\frac{P^o_{\text{Gen}}(\{\text{团簇}\})}{P^n_{\text{Gen}}(\{\text{团簇}\})} = \frac{p^{n_c}(1-p)^{n_b}}{p^{n_c}(1-p)^{n_b+\Delta}} = (1-p)^{-\Delta} = \frac{N(n)}{N(o)} = \exp(2\beta J\Delta).
+\frac{P^o_{\text{Gen}}(\{\text{团簇}\})}{P^n_{\text{Gen}}(\{\text{团簇}\})} = \frac{p^{n_c}(1-p)^{n_b}}{p^{n_c}(1-p)^{n_b+\Delta}} = (1-p)^{-\Delta} = \frac{\mathcal{N}(n)}{\mathcal{N}(o)} = \exp(2\beta J\Delta).
 \tag{13.4.18}
 $$
 
@@ -791,7 +791,7 @@ $$
 $$
 \begin{align}
 \frac{\mathrm{acc}(o\to n)}{\mathrm{acc}(n\to o)} &= \frac{\exp\left[-\beta\sum_{j\neq i}^{+}\Delta u_{i,j}(o\to n)\right]}{\exp\left[+\beta\sum_{j\neq i}^{-}\Delta u_{i,j}(o\to n)\right]} \nonumber\\
-&= \exp\left[-\beta\sum_{j\neq i}\Delta u_{i,j}(o\to n)\right] = \frac{N(n)}{N(o)},
+&= \exp\left[-\beta\sum_{j\neq i}\Delta u_{i,j}(o\to n)\right] = \frac{\mathcal{N}(n)}{\mathcal{N}(o)},
 \tag{13.4.25}
 \end{align}
 $$
@@ -827,7 +827,7 @@ Whitelam 等人[[596,597]](references.md#ref-596) 的虚拟移动 Monte Carlo（
 为在 ECMC 方法的背景下解释平衡条件的概念，我们先考虑文献[[603]](references.md#ref-603) 讨论的一维硬核体系的例子。考虑长度为 $L$ 的线段上 $N$ 个直径为 $\sigma$ 的全同硬粒子，并施加周期性边界条件。粒子坐标记为 $x_1, x_2, \cdots x_i \cdots, x_N$。由于硬核排斥，两个粒子的距离不能小于 $\sigma$。我们还假定粒子不能相互穿越。现在考虑这样的情形：我们试图把随机选中的粒子移动一个随机距离 $\delta x$，$\delta x$ 抽自概率分布 $P(\delta x)$，且当 $\delta x < 0$ 时 $P(\delta x) = 0$。算法维持玻尔兹曼分布的必要条件是它满足平衡条件（式 (3.2.6)）：
 
 $$
-\sum_{o'}N(o')\pi(o'\to n) = N(n)\sum_{o}\pi(n\to o),
+\sum_{o'}\mathcal{N}(o')\pi(o'\to n) = \mathcal{N}(n)\sum_{o}\pi(n\to o),
 \tag{13.4.26}
 $$
 
@@ -890,7 +890,7 @@ $$
 的最大可能值，其中一个粒子位于 $i$ 所在格 $C_i$ 的表面 $S_i$ 上，与位于 $j$ 所在格 $C_j$ 表面 $S_j$ 上的另一粒子相互作用。注意粒子 $i$ 位于 $C_i$ 中任何位置时的真实拒绝率必定更低。为计算这一最大拒绝率 $q_{\max}(C_i,C_j)$，我们必须扫描格 $C_i$ 与 $C_j$ 的表面，找出使拒绝率最大的点对；但这只需在模拟开始时做一次。于是，粒子 $i$ 位移 $s$ 时的拒绝概率有如下上界：
 
 $$
-p_{\text{reject}}(s;C_i,C_j) = 1 - \exp[-s\,q_{\max}(C_i,C_j)].
+p_{\text{reject}}(s;\mathcal{C}_i,\mathcal{C}_j) = 1 - \exp[-s\,q_{\max}(\mathcal{C}_i,\mathcal{C}_j)].
 \tag{13.4.31}
 $$
 

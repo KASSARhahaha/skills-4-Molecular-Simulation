@@ -35,7 +35,7 @@ $$
 接下来，考虑在一维势$U(x)$中运动的粒子。此时作用量为
 
 $$
-S = \int_{t_b}^{t_e} \mathrm{d}t \left[ \frac{1}{2}m \left(\frac{dx(t)}{\mathrm{d}t}\right)^2 - U(x) \right].
+S = \int_{t_b}^{t_e} \mathrm{d}t \left[ \frac{1}{2}m \left(\frac{\mathrm{d}x(t)}{\mathrm{d}t}\right)^2 - \mathcal{U}(x) \right].
 \tag{A.1.1}
 $$
 
@@ -59,7 +59,7 @@ $$
 其中最后一步通过分部积分得到。由于根据定义，$\eta(t)$在边界处为零，等式右边的第二项消失。如果上述方程最后一行中的被积函数对任意$\eta(t)$都为零，则作用量取极值。这个条件当且仅当以下关系成立时才能满足：
 
 $$
-m\frac{d^2\bar{x}(t)}{dt^2} = -\frac{\partial U(\bar{x})}{\partial x},
+m\frac{d^2\bar{x}(t)}{\mathrm{d}t^2} = -\frac{\partial U(\bar{x})}{\partial x},
 \tag{A.1.2}
 $$
 
@@ -70,14 +70,14 @@ $$
 如果这种经典力学定律的替代表达方式不能使我们做比简单重新推导$F = ma$更多的事情，那么引入它就没有什么意义。事实上，经典力学的拉格朗日表述被证明是非常强大的。例如，拉格朗日方法使得在非笛卡尔坐标系中推导运动方程变得容易。假设我们希望使用某些广义坐标$q$代替笛卡尔坐标$x$。例如，考虑均匀重力场中长度为$l$的摆。摆与竖直方向（即与重力场方向）所成的角度可以用来指定其取向。由于摆所遵循的路径显然与我们碰巧用来指定其状态的坐标无关，作用量$S$应该是相同的：
 
 $$
-S = \int \mathrm{d}t\,L(\mathbf{x},\dot{\mathbf{x}}) = \int \mathrm{d}t\,L(q,\dot{q}),
+S = \int \mathrm{d}t\,\mathcal{L}(\mathbf{x},\dot{\mathbf{x}}) = \int \mathrm{d}t\,\mathcal{L}(q,\dot{q}),
 \tag{A.2.1}
 $$
 
 其中量$L$称为拉格朗日量。拉格朗日量定义为动能减去势能[^1]：
 
 $$
-L \equiv K(\dot{q}) - U(q).
+\mathcal{L} \equiv \mathcal{K}(\dot{q}) - \mathcal{U}(q).
 \tag{A.2.2}
 $$
 
@@ -99,28 +99,28 @@ $$
 如前一节一样，我们使用$S$的$\eta(t)$幂次的泛函展开来推导经典路径的表达式。为此，我们将拉格朗日量代入作用量的表达式(A.2.1) 中。接下来，我们将粒子可能的路径写为实际路径和修正$\eta(t)$之和。如前所述，我们使用分部积分并利用$\eta(t)$在积分边界处为零的事实。由此可得，作用量取极值的条件是：
 
 $$
-\int \mathrm{d}t \left[-\frac{d}{\mathrm{d}t}\left(\frac{\partial L(\bar{q},\dot{\bar{q}})}{\partial \dot{q}}\right) + \frac{\partial L(\bar{q},\dot{\bar{q}})}{\partial q}\right]\eta(t) = 0,
+\int \mathrm{d}t \left[-\frac{d}{\mathrm{d}t}\left(\frac{\partial \mathcal{L}(\bar{q},\dot{\bar{q}})}{\partial \dot{q}}\right) + \frac{\partial \mathcal{L}(\bar{q},\dot{\bar{q}})}{\partial q}\right]\eta(t) = 0,
 \tag{A.2.3}
 $$
 
 该式对任意$\eta(t)$成立当且仅当：
 
 $$
--\frac{d}{dt}\left(\frac{\partial L(\bar{q},\dot{\bar{q}})}{\partial \dot{q}}\right) + \frac{\partial L(\bar{q},\dot{\bar{q}})}{\partial q} = 0.
+-\frac{d}{\mathrm{d}t}\left(\frac{\partial \mathcal{L}(\bar{q},\dot{\bar{q}})}{\partial \dot{q}}\right) + \frac{\partial \mathcal{L}(\bar{q},\dot{\bar{q}})}{\partial q} = 0.
 \tag{A.2.4}
 $$
 
 这就是拉格朗日运动方程。为了将此运动方程写成更熟悉的形式，我们引入与广义坐标$q$关联的广义动量$p$：
 
 $$
-p \equiv \frac{\partial L(q,\dot{q})}{\partial \dot{q}}.
+p \equiv \frac{\partial \mathcal{L}(q,\dot{q})}{\partial \dot{q}}.
 \tag{A.2.5}
 $$
 
 将此表达式代入式(A.2.4) 得到：
 
 $$
-\dot{p} = \frac{\partial L(q,\dot{q})}{\partial q}.
+\dot{p} = \frac{\partial \mathcal{L}(q,\dot{q})}{\partial q}.
 \tag{A.2.6}
 $$
 
@@ -185,14 +185,14 @@ $$
 使用拉格朗日量，我们得到以$q$和$\dot{q}$表示的运动方程。通常，以$q$及其共轭动量$p$表示运动方程更为方便。为此，我们可以进行勒让德变换[^2]：
 
 $$
-H(q,p) \equiv p\dot{q} - L(q,\dot{q},t).
+\mathcal{H}(q,p) \equiv p\dot{q} - \mathcal{L}(q,\dot{q},t).
 \tag{A.3.1}
 $$
 
 该方程定义了系统的哈密顿量$H$。由于$H$是$q$、$p$的函数，通常也是$t$的函数，显然我们可以将$H$的微小变化写为：
 
 $$
-dH(q,p) = \frac{\partial H}{\partial p}dp + \frac{\partial H}{\partial q}dq + \frac{\partial H}{\partial t}dt.
+d\mathcal{H}(q,p) = \frac{\partial \mathcal{H}}{\partial p}\mathrm{d}p + \frac{\partial \mathcal{H}}{\partial q}\mathrm{d}q + \frac{\partial \mathcal{H}}{\partial t}\mathrm{d}t.
 \tag{A.3.2}
 $$
 
@@ -200,10 +200,10 @@ $$
 
 $$
 \begin{aligned}
-dH(q,p) &= d(p\dot{q}) - dL(q,\dot{q}) \\
-&= p\,d\dot{q} + \dot{q}\,dp - \left[\frac{\partial L}{\partial q}dq + \frac{\partial L}{\partial \dot{q}}d\dot{q} + \frac{\partial L}{\partial t}dt\right] \\
-&= p\,d\dot{q} + \dot{q}\,dp - \dot{p}\,dq - p\,d\dot{q} - \frac{\partial L}{\partial t}dt \\
-&= \dot{q}\,dp - \dot{p}\,dq - \frac{\partial L}{\partial t}dt,
+\mathrm{d}H(q,p) &= d(p\dot{q}) - \mathrm{d}L(q,\dot{q}) \\
+&= p\,\mathrm{d}\dot{q} + \dot{q}\,\mathrm{d}p - \left[\frac{\partial L}{\partial q}\mathrm{d}q + \frac{\partial L}{\partial \dot{q}}\mathrm{d}\dot{q} + \frac{\partial L}{\partial t}\mathrm{d}t\right] \\
+&= p\,\mathrm{d}\dot{q} + \dot{q}\,\mathrm{d}p - \dot{p}\,\mathrm{d}q - p\,\mathrm{d}\dot{q} - \frac{\partial L}{\partial t}\mathrm{d}t \\
+&= \dot{q}\,\mathrm{d}p - \dot{p}\,\mathrm{d}q - \frac{\partial L}{\partial t}\mathrm{d}t,
 \end{aligned}
 $$
 
@@ -211,8 +211,8 @@ $$
 
 $$
 \begin{align}
-\frac{\partial H}{\partial p} &= \dot{q} \tag{A.3.3}\\
-\frac{\partial H}{\partial q} &= -\dot{p}.
+\frac{\partial \mathcal{H}}{\partial p} &= \dot{q} \tag{A.3.3}\\
+\frac{\partial \mathcal{H}}{\partial q} &= -\dot{p}.
 \tag{A.3.4}
 \end{align}
 $$
@@ -220,7 +220,7 @@ $$
 这就是以$q$、$p$表示的所期望的运动方程。对于我们本书中考虑的大多数系统，拉格朗日量不显含时间。在这些情况下，哈密顿量是守恒的。这可以从运动方程直接得出：
 
 $$
-\frac{dH(q,p)}{dt} = \frac{\partial H}{\partial p}\dot{p} + \frac{\partial H}{\partial q}\dot{q} = -\frac{\partial H}{\partial p}\frac{\partial H}{\partial q} + \frac{\partial H}{\partial q}\frac{\partial H}{\partial p} = 0.
+\frac{\mathrm{d}H(q,p)}{\mathrm{d}t} = \frac{\partial H}{\partial p}\dot{p} + \frac{\partial H}{\partial q}\dot{q} = -\frac{\partial H}{\partial p}\frac{\partial H}{\partial q} + \frac{\partial H}{\partial q}\frac{\partial H}{\partial p} = 0.
 $$
 
 这个守恒定律表达了在封闭系统中总能量守恒的事实。在笛卡尔坐标中，哈密顿量可以写为：
@@ -277,7 +277,7 @@ $$
     $$
     \begin{aligned}
     \dot{\theta} &= \frac{\partial H}{\partial p_\theta} = \frac{P_\theta}{ml^2} \\
-    \dot{p}_\theta &= -\frac{\partial H}{\partial \theta} = -\frac{dU(\theta)}{d\theta},
+    \dot{p}_\theta &= -\frac{\partial H}{\partial \theta} = -\frac{dU(\theta)}{\mathrm{d}\theta},
     \end{aligned}
     $$
 
@@ -312,7 +312,7 @@ $$
 显然，相空间坐标的任何函数的值不受坐标变换的影响。对于哈密顿量，这意味着：
 
 $$
-H(q,p) \equiv H[Q(p,q),P(q,p)] \equiv H'(Q,P).
+\mathcal{H}(q,p) \equiv \mathcal{H}[Q(p,q),P(q,p)] \equiv \mathcal{H}'(Q,P).
 \tag{A.4.3}
 $$
 
@@ -320,8 +320,8 @@ $$
 
 $$
 \begin{align}
-\dot{Q} &= \left(\frac{\partial H'(Q,P)}{\partial P}\right) \tag{A.4.4}\\
-\dot{P} &= -\left(\frac{\partial H'(Q,P)}{\partial Q}\right).
+\dot{Q} &= \left(\frac{\partial \mathcal{H}'(Q,P)}{\partial P}\right) \tag{A.4.4}\\
+\dot{P} &= -\left(\frac{\partial \mathcal{H}'(Q,P)}{\partial Q}\right).
 \tag{A.4.5}
 \end{align}
 $$
@@ -362,10 +362,10 @@ $$
 
 ### 辛条件
 
-我们可以通过使用矩阵记号将上述正则变换的条件表达为单个方程。设$\boldsymbol{\xi}$为包含$N$个粒子在$d$维中的广义坐标$q_i$和动量$p_i$的$2dN$维向量（见第 2.5.1 节）。哈密顿运动方程(A.3.3) 和(A.3.4) 可以写为：
+我们可以通过使用矩阵记号将上述正则变换的条件表达为单个方程。设$\boldsymbol{\xi}$为包含$N$个粒子在$d$维中的广义坐标$q_i$和动量$p_i$的$2\mathrm{d}N$维向量（见第 2.5.1 节）。哈密顿运动方程(A.3.3) 和(A.3.4) 可以写为：
 
 $$
-\dot{\boldsymbol{\xi}} = \boldsymbol{\omega}\frac{\partial H}{\partial \boldsymbol{\xi}},
+\dot{\boldsymbol{\xi}} = \boldsymbol{\omega}\frac{\partial \mathcal{H}}{\partial \boldsymbol{\xi}},
 \tag{A.4.8}
 $$
 
@@ -397,7 +397,7 @@ $$
 利用式(A.4.8)，我们可以写$\boldsymbol{\xi}$的时间导数为：
 
 $$
-\dot{\boldsymbol{\xi}} = \mathbf{M}\boldsymbol{\omega}\frac{\partial H}{\partial \boldsymbol{\zeta}}.
+\dot{\boldsymbol{\xi}} = \mathbf{M}\boldsymbol{\omega}\frac{\partial \mathcal{H}}{\partial \boldsymbol{\zeta}}.
 \tag{A.4.10}
 $$
 
@@ -410,7 +410,7 @@ $$
 由于$H(\mathbf{p},\mathbf{q}) = H(\mathbf{P},\mathbf{Q})$，我们可以写：
 
 $$
-\frac{\partial H(\boldsymbol{\zeta})}{\partial \zeta_i} = \sum_j \frac{\partial H(\boldsymbol{\xi})}{\partial \xi_j}\frac{\partial \xi_j}{\partial \zeta_i}.
+\frac{\partial \mathcal{H}(\boldsymbol{\zeta})}{\partial \zeta_i} = \sum_j \frac{\partial \mathcal{H}(\boldsymbol{\xi})}{\partial \xi_j}\frac{\partial \xi_j}{\partial \zeta_i}.
 \tag{A.4.11}
 $$
 
@@ -423,7 +423,7 @@ $$
 这使我们可以将式(A.4.11) 用矩阵记号重写为：
 
 $$
-\frac{\partial H(\boldsymbol{\zeta})}{\partial \boldsymbol{\zeta}} = \tilde{\mathbf{M}}\frac{\partial H(\boldsymbol{\xi})}{\partial \boldsymbol{\xi}}.
+\frac{\partial \mathcal{H}(\boldsymbol{\zeta})}{\partial \boldsymbol{\zeta}} = \tilde{\mathbf{M}}\frac{\partial \mathcal{H}(\boldsymbol{\xi})}{\partial \boldsymbol{\xi}}.
 \tag{A.4.12}
 $$
 
@@ -453,33 +453,33 @@ $$
 使用正则变换的辛记号，我们考虑其对统计力学的意义。在微正则系综中，三维原子系统的经典配分函数$\Omega$定义为：
 
 $$
-\Omega_{N,V,E} = \frac{1}{h^{3N}N!}\int \mathrm{d}p^N \mathrm{d}q^N\,\delta(H(\mathbf{p},\mathbf{q}) - E),
+\Omega_{N,V,E} = \frac{1}{h^{3N}N!}\int \mathrm{d}p^N \mathrm{d}q^N\,\delta(\mathcal{H}(\mathbf{p},\mathbf{q}) - E),
 \tag{A.4.14}
 $$
 
 其中$h$是普朗克常数，$\delta$函数将积分限制在由$H(\mathbf{p},\mathbf{q}) = E$定义的相空间超曲面上。我们可以用其他相空间坐标重新表达这个积分，但此时必须考虑两种坐标集中的体积元不一定相同。与$\boldsymbol{\zeta}$关联的体积元为：
 
 $$
-d\boldsymbol{\zeta} = dq_1... dq_N\,dp_1... dp_N
+\mathrm{d}\boldsymbol{\zeta} = \mathrm{d}q_1... \mathrm{d}q_N\,\mathrm{d}p_1... \mathrm{d}p_N
 $$
 
 与$\boldsymbol{\xi}$关联的为：
 
 $$
-d\boldsymbol{\xi} = dQ_1... dQ_N\,dP_1... dP_N.
+\mathrm{d}\boldsymbol{\xi} = \mathrm{d}Q_1... \mathrm{d}Q_N\,\mathrm{d}P_1... \mathrm{d}P_N.
 $$
 
 这两个体积元通过变换矩阵的雅可比矩阵相关联：
 
 $$
-d\boldsymbol{\zeta} = |\mathrm{Det}(\mathbf{M})|\,d\boldsymbol{\xi}.
+\mathrm{d}\boldsymbol{\zeta} = |\mathrm{Det}(\mathbf{M})|\,\mathrm{d}\boldsymbol{\xi}.
 \tag{A.4.15}
 $$
 
 该方程表明，通常坐标变换将导致配分函数中出现雅可比行列式：
 
 $$
-\Omega_{N,V,E} = \frac{1}{h^{3N}N!}\int \mathrm{d}P^N \mathrm{d}Q^N\,|\mathrm{Det}(\mathbf{M})|\,\delta\left[H'(\mathbf{P},\mathbf{Q}) - E\right].
+\Omega_{N,V,E} = \frac{1}{h^{3N}N!}\int \mathrm{d}P^N \mathrm{d}Q^N\,|\mathrm{Det}(\mathbf{M})|\,\delta\left[\mathcal{H}'(\mathbf{P},\mathbf{Q}) - E\right].
 \tag{A.4.16}
 $$
 
@@ -541,7 +541,7 @@ $$
 可以将哈密顿量视为作用于相空间所有点的正则变换的生成元。由于正则变换的雅可比行列式等于 1，相空间中体积元的大小在哈密顿系统的自然时间演化过程中不变。此外，相空间中任意点周围的密度$f(\mathbf{q}(t),\mathbf{p}(t))$在时间演化过程中也保持不变。要理解这一点，考虑相空间中由曲面$S$包围的体积$V$。在时间演化过程中，曲面移动，曲面内的所有点也随之移动。然而，点不能穿过曲面。原因很简单：如果相空间中的两条轨迹相交，将意味着两条轨迹从同一相空间点出发。但这是不可能的，因为这将意味着从该点出发的轨迹不由其初始条件唯一确定。因此，任意体积内的相空间点数不随时间变化。由于体积本身也是恒定的，这意味着相空间密度（即单位体积的点数）是恒定的。换言之：哈密顿系统的相空间密度表现得像不可压缩流体：
 
 $$
-\frac{df}{dt} = 0.
+\frac{df}{\mathrm{d}t} = 0.
 \tag{A.4.17}
 $$
 
@@ -553,7 +553,7 @@ $$
 [^2]: 在热力学中，勒让德变换用于推导各种热力学势。例如，能量$E$是熵$S$和体积$V$的自然函数：$E = E(S,V)$，即在这些变量中，$E$是热力学势。在大多数实际应用中，以温度$T$而非熵$S$作为独立变量更为方便。由于温度是与熵共轭的变量（$\partial E/\partial S = T$），我们可以进行勒让德变换来消除$S$的依赖性：
 $A \equiv E - TS$，
 得到：
-$dA = dE - d(TS) = -SdT - pdV$。
+$\mathrm{d}A = \mathrm{d}E - d(TS) = -S\mathrm{d}T - p\mathrm{d}V$。
 由于历史原因，将拉格朗日量与哈密顿量联系起来的勒让德变换具有相反的符号。
 [^3]: 由于我们假设时间在这些方程中不显式出现，我们定义的是所谓的受限正则变换。
 [^4]: 给定矩阵$\mathbf{A}$的转置矩阵可以通过交换行和列得到，即$\tilde{a}_{ij} = a_{ji}$。

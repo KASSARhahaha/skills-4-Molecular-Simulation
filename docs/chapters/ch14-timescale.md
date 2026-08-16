@@ -55,7 +55,7 @@ $$
 或
 
 $$
-m_i \ddot{q}_i = -\frac{\partial U}{\partial q_i} - \sum_{\alpha} \lambda_{\alpha} \frac{\partial \sigma_{\alpha}}{\partial q_i} \equiv F_i + \sum_{\alpha} G_i(\alpha).
+m_i \ddot{q}_i = -\frac{\partial \mathcal{U}}{\partial q_i} - \sum_{\alpha} \lambda_{\alpha} \frac{\partial \sigma_{\alpha}}{\partial q_i} \equiv F_i + \sum_{\alpha} G_i(\alpha).
 \tag{14.1.3}
 $$
 
@@ -76,7 +76,7 @@ $$
 &= \sum_{i} \frac{1}{m_i} F_i \nabla_i \sigma_{\alpha}
    - \sum_{i} \frac{1}{m_i} \sum_{\beta} \lambda_{\beta} \nabla_i \sigma_{\beta} \nabla_i \sigma_{\alpha}
    + \sum_{i,j} \dot{q}_i \dot{q}_j \nabla_i \nabla_j \sigma_{\alpha} \\
-&\equiv F_{\alpha} - \sum_{\beta} M_{\alpha\beta} + T_{\alpha} = 0.
+&\equiv F_{\alpha} - \sum_{\beta} M_{\alpha\beta} + \mathcal{T}_{\alpha} = 0.
 \end{aligned}
 \tag{14.1.5}
 $$
@@ -279,9 +279,9 @@ $$
 现在让我们用这些广义坐标来表示拉格朗日量：
 
 $$
-\mathcal{L} = \sum_{i=1}^{N} \frac{1}{2} m_i \dot{\mathbf{r}}_i^2 - U
-= \sum_{i=1}^{N} \frac{1}{2} m_i \dot{q}_{\alpha} \frac{\partial \mathbf{r}_i}{\partial q_{\alpha}} \cdot \frac{\partial \mathbf{r}_i}{\partial q_{\beta}} \dot{q}_{\beta} - U
-\equiv \frac{1}{2} \dot{\mathbf{q}} \cdot \mathbf{G} \cdot \dot{\mathbf{q}} - U,
+\mathcal{L} = \sum_{i=1}^{N} \frac{1}{2} m_i \dot{\mathbf{r}}_i^2 - \mathcal{U}
+= \sum_{i=1}^{N} \frac{1}{2} m_i \dot{q}_{\alpha} \frac{\partial \mathbf{r}_i}{\partial q_{\alpha}} \cdot \frac{\partial \mathbf{r}_i}{\partial q_{\beta}} \dot{q}_{\beta} - \mathcal{U}
+\equiv \frac{1}{2} \dot{\mathbf{q}} \cdot \mathbf{G} \cdot \dot{\mathbf{q}} - \mathcal{U},
 \tag{14.1.18}
 $$
 
@@ -301,14 +301,14 @@ $$
 一旦我们有了哈密顿量，就可以写出决定所有热力学平均的平衡相空间密度表达式。虽然可以在微正则系综（恒定 $N$、$V$、$E$）中写出所有平均的表达式，但这实际上不太方便。因此，我们将考虑正则系综平均（恒定 $N$、$V$、$T$）。用广义坐标和动量来表示正则分布函数是很直接的：
 
 $$
-\rho(\mathbf{p}, \mathbf{q}) = \frac{\exp[-\beta H(\mathbf{p}, \mathbf{q})]}{Q_{NVT}}
+\rho(\mathbf{p}, \mathbf{q}) = \frac{\exp[-\beta \mathcal{H}(\mathbf{p}, \mathbf{q})]}{Q_{NVT}}
 \tag{14.1.20}
 $$
 
 其中
 
 $$
-Q_{NVT} = \int \mathrm{d}\mathbf{p}\, \mathrm{d}\mathbf{q}\, \exp[-\beta H(\mathbf{p}, \mathbf{q})].
+Q_{NVT} = \int \mathrm{d}\mathbf{p}\, \mathrm{d}\mathbf{q}\, \exp[-\beta \mathcal{H}(\mathbf{p}, \mathbf{q})].
 \tag{14.1.21}
 $$
 
@@ -317,8 +317,8 @@ $$
 现在让我们来看仅作为 $q$ 的函数的正则概率分布函数：
 
 $$
-\rho(\mathbf{q}) = c \int \mathrm{d}\mathbf{p}\, \exp\{-\beta[\mathbf{p} \cdot \mathbf{G}^{-1} \cdot \mathbf{p}/2 + U(\mathbf{q})]\}
-= c' \exp[-\beta U(\mathbf{q})] \sqrt{|\mathbf{G}|},
+\rho(\mathbf{q}) = c \int \mathrm{d}\mathbf{p}\, \exp\{-\beta[\mathbf{p} \cdot \mathbf{G}^{-1} \cdot \mathbf{p}/2 + \mathcal{U}(\mathbf{q})]\}
+= c' \exp[-\beta \mathcal{U}(\mathbf{q})] \sqrt{|\mathbf{G}|},
 \tag{14.1.22}
 $$
 
@@ -327,9 +327,9 @@ $$
 到目前为止，我们还没有提到约束。我们只是将正则分布函数从一组相空间坐标变换到另一组。显然，结果不会依赖于我们对这些坐标的选择。但现在我们引入约束。也就是说，在我们的拉格朗日量 (14.1.18) 中，我们去除由硬坐标动力学贡献的动能部分；即，我们设 $\dot{q}_H = 0$，并在势能函数中用参数 $\sigma$ 替换坐标 $q_H$。带约束系统的拉格朗日量为
 
 $$
-\mathcal{L}_H = \sum_{i=1}^{N} \frac{1}{2} m_i \dot{\mathbf{r}}_i^2 - U
-= \sum_{i=1}^{N} \frac{1}{2} m_i \dot{q}_{\alpha}^S \frac{\partial \mathbf{r}_i}{\partial q_{\alpha}^S} \cdot \frac{\partial \mathbf{r}_i}{\partial q_{\beta}^S} \dot{q}_{\beta}^S - U(q_S, \boldsymbol{\sigma})
-\equiv \frac{1}{2} \dot{\mathbf{q}}_S \cdot \mathbf{G}_S \cdot \dot{\mathbf{q}}_S - U(q_S, \boldsymbol{\sigma}).
+\mathcal{L}_H = \sum_{i=1}^{N} \frac{1}{2} m_i \dot{\mathbf{r}}_i^2 - \mathcal{U}
+= \sum_{i=1}^{N} \frac{1}{2} m_i \dot{q}_{\alpha}^S \frac{\partial \mathbf{r}_i}{\partial q_{\alpha}^S} \cdot \frac{\partial \mathbf{r}_i}{\partial q_{\beta}^S} \dot{q}_{\beta}^S - \mathcal{U}(q_S, \boldsymbol{\sigma})
+\equiv \frac{1}{2} \dot{\mathbf{q}}_S \cdot \mathbf{G}_S \cdot \dot{\mathbf{q}}_S - \mathcal{U}(q_S, \boldsymbol{\sigma}).
 \tag{14.1.23}
 $$
 
@@ -367,7 +367,7 @@ $$
 其中 $a$ 和 $a'$ 是归一化常数。现在将此表达式与如果使用非常刚性弹簧来施加约束时将得到的结果进行比较。在这种情况下，我们需要使用式 (14.1.22)。对于 $q_H = \sigma$，式 (14.1.22) 预测
 
 $$
-\rho(\mathbf{q}_S) = c' \exp[-\beta U(\mathbf{q}_S, \boldsymbol{\sigma})] \sqrt{|\mathbf{G}|},
+\rho(\mathbf{q}_S) = c' \exp[-\beta \mathcal{U}(\mathbf{q}_S, \boldsymbol{\sigma})] \sqrt{|\mathbf{G}|},
 \tag{14.1.27}
 $$
 
@@ -558,7 +558,7 @@ $$
 现在让我们考虑 Car-Parrinello 方法对这个优化问题的处理。将这种扩展拉格朗日方法应用于极化分子是由 Rahman 及其合作者[[618]](references.md#ref-618) 和 Sprik 与 Klein [[619]](references.md#ref-619) 提出的。Wilson 和 807 [[620]](references.md#ref-620) 随后倡导了一种密切相关的方法。基本思想是将感应偶极子的大小作为拉格朗日量中的额外动力学变量：
 
 $$
-\mathcal{L}(\mathbf{r}, \boldsymbol{\mu}) = \sum_{i=1}^{N} \frac{1}{2} m \dot{\mathbf{r}}_i^2 + \sum_{i=1}^{N} \frac{1}{2} M \dot{\boldsymbol{\mu}}_i^2 - U,
+\mathcal{L}(\mathbf{r}, \boldsymbol{\mu}) = \sum_{i=1}^{N} \frac{1}{2} m \dot{\mathbf{r}}_i^2 + \sum_{i=1}^{N} \frac{1}{2} M \dot{\boldsymbol{\mu}}_i^2 - \mathcal{U},
 \tag{14.2.2}
 $$
 
