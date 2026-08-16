@@ -95,6 +95,10 @@ def process_labels(text):
     """
     text = re.sub(r"\\sidx\{[^{}]*\}\{[^{}]*\}", "", text)
     text = re.sub(r"\\aidx\{[^{}]*\}", "", text)
+    # \markboth{左}{右} 与 \markright{右} 只管纸质版的书眉，
+    # 在线版没有书眉，直接丢掉，否则裸宏会漏进 Markdown。
+    text = re.sub(r"\\markboth\{[^{}]*\}\{[^{}]*\}", "", text)
+    text = re.sub(r"\\markright\{[^{}]*\}", "", text)
     # \figkey{...} 是题注末尾的「图内英文标注」中译，纸质版排成
     # 「（图内标注：…）」，在线版同样要出，不能留下裸宏。
     text = re.sub(r"\\figkey\{([^{}]*)\}", r"（图内标注：\1）", text)
