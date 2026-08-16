@@ -809,7 +809,7 @@ $$
 
 ---
 
-[^1]: 译注：原书此处作「见第 5.1.8 节」，但原书并无第 5.1.8 节；按上下文（由动能涨落定 $C_V$，即 Lebowitz 等人[[106]](references.md#ref-106) 的结果）应为第 5.1.4 节「热容」。
+[^1]: 译注：原书此处作“见第 5.1.8 节”，但原书并无第 5.1.8 节；按上下文（由动能涨落定 $C_V$，即 Lebowitz 等人[[106]](references.md#ref-106) 的结果）应为第 5.1.4 节“热容”。
 [^2]: 越来越多的 MD 模拟使用非对可加的相互作用。即使势能函数形式原则上已知，计算力也可能变得很困难。在这种情况下，自动微分（Automatic Differentiation，见例如[[108]](references.md#ref-108)）可能是一个有吸引力的选择。
 [^3]: 大多数系统，但不是所有：几乎谐和的系统（例如低温固体）通常不是或几乎不是混沌的。
 [^4]: 让我们用$\dot{\boldsymbol{\Gamma}}$表示系统在相空间中的速度。现在考虑相空间中一个由（超）曲面$S$包围的小体积元，并考虑其体积$\delta V$的变化率：$\dot{\delta V} = \int \dot{\boldsymbol{\Gamma}} \cdot \mathrm{d}\mathbf{S}$。利用高斯定理，我们可以将其写为$\int \nabla \cdot \dot{\boldsymbol{\Gamma}}$。利用哈密顿运动方程$\partial H/\partial q_\alpha = -\dot{p}_\alpha$和$\partial H/\partial p_\alpha = \dot{q}_\alpha$，可得$\nabla \cdot \dot{\boldsymbol{\Gamma}} = 0$，因此体积$\delta V$守恒。
