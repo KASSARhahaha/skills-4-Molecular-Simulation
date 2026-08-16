@@ -795,7 +795,7 @@ $$
 
 $$
 \displaystyle
-\frac{d \ln f_{\text{tot}(\lambda)}{\mathrm{d}\lambda} = \sum_{\alpha=1}^n \left(\frac{\partial \ln f_{\text{tot}}(\lambda)}{\partial \xi_\alpha}\right)_{P,T,\{\xi_{\beta \neq \alpha}\}} \frac{\mathrm{d}\xi_\alpha}{\mathrm{d}\lambda} = -\sum_{\alpha=1}^n \frac{\langle N_\alpha \rangle / N}{\xi_\alpha} \frac{\mathrm{d}\xi_\alpha}{\mathrm{d}\lambda} = -\sum_{\alpha=1}^n \frac{\langle x_\alpha \rangle}{\xi_\alpha} \frac{\mathrm{d}\xi_\alpha}{\mathrm{d}\lambda},
+\frac{\mathrm{d \ln f_{\text{tot}}(\lambda)}{\mathrm{d}\lambda} = \sum_{\alpha=1}^n \left(\frac{\partial \ln f_{\text{tot}}(\lambda)}{\partial \xi_\alpha}\right)_{P,T,\{\xi_{\beta \neq \alpha}\}} \frac{\mathrm{d}\xi_\alpha}{\mathrm{d}\lambda} = -\sum_{\alpha=1}^n \frac{\langle N_\alpha \rangle / N}{\xi_\alpha} \frac{\mathrm{d}\xi_\alpha}{\mathrm{d}\lambda} = -\sum_{\alpha=1}^n \frac{\langle x_\alpha \rangle}{\xi_\alpha} \frac{\mathrm{d}\xi_\alpha}{\mathrm{d}\lambda},
 }
 \tag{6.5.31}
 $$
@@ -945,7 +945,7 @@ $$
 
     ![图 6.11](../images/fig_6_11.png)
 
-    *图 6.11　流体相与固相在体积分数-多分散度平面上的共存。*
+    *图 6.11　流体相与固相在体积分数-多分散度平面上的共存。（图内标注：SOLID = 固相；FLUID = 流体相）*
 
     图 6.11 给出了多分散硬球的固-流共存曲线，横轴为模拟测得的多分散度 $s$，其定义为
 
@@ -1169,7 +1169,7 @@ end program
 
     ![图 6.14](../images/fig_6_14.png)
 
-    *图 6.14　对 Lennard-Jones 粒子体系，吉布斯系综两个盒子中的粒子数密度随 Monte Carlo 循环数的变化；粒子数 $N = 256$，温度 $T = 1.2$。*
+    *图 6.14　对 Lennard-Jones 粒子体系，吉布斯系综两个盒子中的粒子数密度随 Monte Carlo 循环数的变化；粒子数 $N = 256$，温度 $T = 1.2$。（图内标注：box 1 / box 2 = 盒子 1 / 盒子 2）*
 
     在图 6.14 中，两个盒内流体的密度被画成 Monte Carlo 循环数（按算法 15 中的定义）的函数。模拟从两盒密度相等的状态出发。在最初的 1000 个 Monte Carlo 循环中，体系尚未“决定”哪个盒将演化到液相密度、哪个将演化到气相密度。在 5000 个 Monte Carlo 循环之后，体系似乎已经达到平衡，此时便可以确定共存性质。
 
@@ -1177,7 +1177,7 @@ end program
 
     ![图 6.15](../images/fig_6_15.png)
 
-    *图 6.15　Lennard-Jones 流体的相图：在 $2.5\sigma$ 截断之外采用尾部修正以模拟完整的 Lennard-Jones 势，图中给出由吉布斯系综技术算得的结果（方块）与 Johnson 等人的状态方程（实线）。实心圆点标出所估计的临界点。*
+    *图 6.15　Lennard-Jones 流体的相图：在 $2.5\sigma$ 截断之外采用尾部修正以模拟完整的 Lennard-Jones 势，图中给出由吉布斯系综技术算得的结果（方块）与 Johnson 等人的状态方程（实线）。实心圆点标出所估计的临界点。（图内标注：critical point = 临界点；equation of state = 状态方程；simulations = 模拟结果）*
 
     生成本例的 Fortran 代码可在在线补充材料的案例研究 10 中找到。
 

@@ -95,6 +95,9 @@ def process_labels(text):
     """
     text = re.sub(r"\\sidx\{[^{}]*\}\{[^{}]*\}", "", text)
     text = re.sub(r"\\aidx\{[^{}]*\}", "", text)
+    # \figkey{...} 是题注末尾的「图内英文标注」中译，纸质版排成
+    # 「（图内标注：…）」，在线版同样要出，不能留下裸宏。
+    text = re.sub(r"\\figkey\{([^{}]*)\}", r"（图内标注：\1）", text)
     return re.sub(r"\\label\{[^}]*\}", "", text)
 
 

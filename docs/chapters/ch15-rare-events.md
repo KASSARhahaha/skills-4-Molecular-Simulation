@@ -187,7 +187,7 @@ $$
 \tag{15.2.2}
 $$
 
-其中我们利用了$\dot{q} > 0$时$\theta(q(0^+) - q^*) = 1$，否则为 0 的事实。换言之，$\theta(q(0^+) - q^*) = \theta(\dot{q})$。式 (15.2.2) 最后一行的表达式就是经典过渡态理论对速率常数的预测，即$k_{A \to B}^{TST}$。
+其中我们利用了$\dot{q} > 0$时$\theta(q(0^+) - q^*) = 1$，否则为 0 的事实。换言之，$\theta(q(0^+) - q^*) = \theta(\dot{q})$。式 (15.2.2) 最后一行的表达式就是经典过渡态理论对速率常数的预测，即$k_{A \to B}^{\mathrm{TST}}$。
 
 将式 (15.2.1) 改写为以下形式是有用的：
 
@@ -297,7 +297,7 @@ $$
     为了说明计算穿越速率的“Bennett-Chandler”方法，我们考虑在外场中运动的理想气体粒子。该粒子被约束在图 15.2 所示的一维势能面上运动。这个例子在物理上不太现实，因为运动的粒子无法耗散其能量。因此，粒子的运动是纯弹道式的。我们假设在远离势垒两侧的地方，粒子可以与热库交换能量。过渡态理论预测的穿越速率由式 (15.2.2) 给出：
 
     $$
-    k_{A \to B}^{TST} = \frac{\frac{1}{2}|\dot{q}| \exp[-\beta u(q^*)]}{\int_{-\infty}^{q^*} \mathrm{d}q \exp[-\beta u(q)]} = \frac{\sqrt{\frac{k_B T}{2\pi m}} \exp[-\beta u(q^*)]}{\int_{-\infty}^{q^*} \mathrm{d}q \exp[-\beta u(q)]}.
+    k_{A \to B}^{\mathrm{TST}} = \frac{\frac{1}{2}|\dot{q}| \exp[-\beta u(q^*)]}{\int_{-\infty}^{q^*} \mathrm{d}q \exp[-\beta u(q)]} = \frac{\sqrt{\frac{k_B T}{2\pi m}} \exp[-\beta u(q^*)]}{\int_{-\infty}^{q^*} \mathrm{d}q \exp[-\beta u(q)]}.
     \tag{15.2.11}
     $$
 
@@ -316,14 +316,14 @@ $$
     如果分界面不在势垒顶部，则在$q_1$处找到粒子的概率将高于在$q^*$处的概率，但实际穿越势垒的粒子数比例将低于过渡态理论的预测。引入含时透射系数$\kappa(t)$是方便的，定义为以下比率
 
     $$
-    \kappa(t) \equiv \frac{k_{A \to B}(t)}{k_{A \to B}^{TST}} = \frac{\langle \dot{q}(0) \delta(q(0) - q_1) \theta(q(t) - q_1) \rangle}{0.5 \langle |\dot{q}(0)| \rangle}.
+    \kappa(t) \equiv \frac{k_{A \to B}(t)}{k_{A \to B}^{\mathrm{TST}}} = \frac{\langle \dot{q}(0) \delta(q(0) - q_1) \theta(q(t) - q_1) \rangle}{0.5 \langle |\dot{q}(0)| \rangle}.
     $$
 
     $\kappa(t)$的行为如图 15.3 所示，对应于$q_1$的几种不同选择。该图显示，当$t \to 0$时$\kappa(t) = 1$，并且对于不同的$q_1$值，我们得到不同的平台值。$\kappa(t)$从其初始值衰减的原因是，动能太小的粒子无法穿越势垒并再穿过分界面（$q_1$）。$\kappa(t)$的平台值为我们提供了必须应用于过渡态理论预测的穿越速率的修正。因此，我们看到随着$q_1$的改变，在$q_1$处找到粒子的概率增加，透射系数下降。但是，从图 15.3 可以看出，实际的穿越速率（与这两项的乘积成正比）与$q_1$无关，这是合理的。
 
     ![图 15.3](../images/fig_15_3.png)
 
-    *图 15.3　势垒再穿越：左图给出了不同$q_1$值下透射系数随时间的变化。右图在单一图中展示了在$q = q_1$处找到体系的概率密度（实心方块）、透射系数$\kappa$（空心方块）和总穿越速率（空心圆），全部作为分界面位置的函数绘制。注意总穿越速率与分界面选择无关。*
+    *图 15.3　势垒再穿越：左图给出了不同$q_1$值下透射系数随时间的变化。右图在单一图中展示了在$q = q_1$处找到体系的概率密度（实心方块）、透射系数$\kappa$（空心方块）和总穿越速率（空心圆），全部作为分界面位置的函数绘制。注意总穿越速率与分界面选择无关。（图内标注：$\kappa$ = 穿越系数；transmission rate = 总穿越速率）*
 
     现在考虑$q_1 > q^*$的情况。在这种情况下，所有以正$\dot{q}$出发的粒子都将继续到达产物一侧。但现在也有一部分以负$\dot{q}$出发的粒子将到达产物一侧。这些事件将对$\kappa$产生负贡献。最终结果是透射系数再次低于过渡态理论的预测。因此，重要的不是轨迹最终是否到达产物一侧，而是它是否从反应物一侧出发并到达产物一侧。在模拟中，因此方便地总是成对计算轨迹：对于每条从给定初始构型以速度$\dot{q}$出发的轨迹，我们也计算时间反演轨迹，即从相同构型以速度$-\dot{q}$出发的轨迹。如果两条轨迹最终都位于势垒的同一侧，则它们对透射系数的总贡献显然为零。只有当前向和时间反演轨迹最终位于势垒的两侧时，我们才对$\kappa$有贡献。在当前（弹道式）情况下，这个贡献总是正的。但一般而言，这个贡献也可能是负的（即如果势垒顶部处的初始速度方向与粒子最终到达的方向不一致）。
 
@@ -358,7 +358,7 @@ $$
     在上一节中，我们描述了活化过程速率的 Bennett-Chandler 表达式。该表达式在数值模拟中被广泛使用。然而，尽管该表达式对于任意势垒穿越都是正确的（只要势垒远大于$k_BT$），但它并不总是计算效率高的。为理解这一点，考虑透射系数$\kappa$的表达式
 
     $$
-    \kappa(t) \equiv \frac{k_{A \to B}(t)}{k_{A \to B}^{TST}} = \frac{\langle \dot{q}(0) \delta(q(0) - q^*) \theta(q(t) - q^*) \rangle}{0.5 \langle |\dot{q}(0)| \rangle}.
+    \kappa(t) \equiv \frac{k_{A \to B}(t)}{k_{A \to B}^{\mathrm{TST}}} = \frac{\langle \dot{q}(0) \delta(q(0) - q^*) \theta(q(t) - q^*) \rangle}{0.5 \langle |\dot{q}(0)| \rangle}.
     \tag{15.3.1}
     $$
 
@@ -368,7 +368,7 @@ $$
 
     显然，如果$\kappa \to 1$，我们可以使用过渡态理论（TST）来计算穿越速率——只要我们知道势垒高度。因此，式 (15.3.1) 唯一有价值的区间是对 TST 有明显修正的情况，即$\kappa \ll 1$。然而，恰好在这一区间，使用式 (15.3.1) 对$\kappa$进行数值计算会面临缓慢的瞬态行为和大的统计误差。
 
-    为了说明这一点，让我们考虑一个简单的例子：一个高度为$U$、宽度为$\omega$的方形势垒，分隔两个（亚）稳态 A 和 B（见图 15.4）。为简单起见，我们假设在平衡态，两个状态具有相同的概率$P_{eq} \approx 0.5$（势垒区域的粒子数可忽略不计）。此外，我们假设势垒区域中的运动是扩散性的。对于这种简单的几何形状，很容易写出扩散方程。该方程由连续性方程推导：
+    为了说明这一点，让我们考虑一个简单的例子：一个高度为$U$、宽度为$\omega$的方形势垒，分隔两个（亚）稳态 A 和 B（见图 15.4）。为简单起见，我们假设在平衡态，两个状态具有相同的概率$P_{\mathrm{eq}} \approx 0.5$（势垒区域的粒子数可忽略不计）。此外，我们假设势垒区域中的运动是扩散性的。对于这种简单的几何形状，很容易写出扩散方程。该方程由连续性方程推导：
 
     $$
     \frac{\partial \rho(q,t)}{\partial t} = -\frac{\partial}{\partial q} J(q,t),
@@ -394,21 +394,21 @@ $$
     现在我们利用假设了平坦势垒这一事实，即在$-\omega/2 < q < \omega/2$区间内$\partial U/\partial q = 0$。我们还将假设$D$与$q$无关。由式 (15.3.3) 可得，势垒顶部的概率分布必须是反应坐标$q$的线性函数：
 
     $$
-    \rho_{st}(q) = aq + b \quad \text{对于 } -\omega/2 < q < \omega/2.
+    \rho_{\mathrm{st}}(q) = aq + b \quad \text{对于 } -\omega/2 < q < \omega/2.
     \tag{15.3.5}
     $$
 
-    常数$a$和$b$由边界条件确定。在平衡态，$a = 0$且$b = \rho_{eq} \exp(-\beta U)$，其中$\rho_{eq}$是状态 A 和 B 中的密度。假设我们将状态 A 中的概率密度从其平衡值增加$\rho_{eq}\delta/2$，并将状态 B 的概率密度减少相同的量，则体系不再处于平衡态。如果势垒足够高，由此产生的通量将非常小，状态 A 和 B 的概率几乎不随时间变化。在这种情况下，势垒顶部的稳态概率分布为
+    常数$a$和$b$由边界条件确定。在平衡态，$a = 0$且$b = \rho_{\mathrm{eq}} \exp(-\beta U)$，其中$\rho_{\mathrm{eq}}$是状态 A 和 B 中的密度。假设我们将状态 A 中的概率密度从其平衡值增加$\rho_{\mathrm{eq}}\delta/2$，并将状态 B 的概率密度减少相同的量，则体系不再处于平衡态。如果势垒足够高，由此产生的通量将非常小，状态 A 和 B 的概率几乎不随时间变化。在这种情况下，势垒顶部的稳态概率分布为
 
     $$
-    \rho_{st}(q) = e^{-\beta U} \rho_{eq} \left(1 - \frac{q}{\omega} \delta\right),
+    \rho_{\mathrm{st}}(q) = e^{-\beta U} \rho_{\mathrm{eq}} \left(1 - \frac{q}{\omega} \delta\right),
     \tag{15.3.6}
     $$
 
     通量为
 
     $$
-    J_{st} = D \frac{\rho_{eq} \delta}{\omega} e^{-\beta U}.
+    J_{\mathrm{st}} = D \frac{\rho_{\mathrm{eq}} \delta}{\omega} e^{-\beta U}.
     \tag{15.3.7}
     $$
 
@@ -431,28 +431,28 @@ $$
     其解为
 
     $$
-    J(q,t) \approx \epsilon D e^{-\beta U} \rho_{eq} \frac{1}{\sqrt{2\pi D t}} \exp\left(-\frac{(q - q^*)^2}{2Dt}\right).
+    J(q,t) \approx \epsilon D e^{-\beta U} \rho_{\mathrm{eq}} \frac{1}{\sqrt{2\pi D t}} \exp\left(-\frac{(q - q^*)^2}{2Dt}\right).
     \tag{15.3.10}
     $$
 
     然后我们发现对于$t \ll \omega^2/D$的时间，$J(q^*,t)$以$1/\sqrt{t}$衰减。这意味着趋向稳态的过程非常缓慢。但更重要的是，在扩散势垒穿越的情况下，透射系数$\kappa$通常非常小。下面我们将给出$\kappa$的估计，但在现阶段我们只指出，使用式 (15.3.8) 无法准确确定小的$\kappa$值。为理解这一点，考虑透射系数的表达式：
 
     $$
-    \kappa = \frac{2}{\langle |\dot{q}| \rangle_{eq}} \langle \dot{q}(0) \theta(q(t) - q^*) \rangle_{q(0)=q^*}.
+    \kappa = \frac{2}{\langle |\dot{q}| \rangle_{\mathrm{eq}}} \langle \dot{q}(0) \theta(q(t) - q^*) \rangle_{q(0)=q^*}.
     \tag{15.3.11}
     $$
 
     在计算机模拟中，我们首先将体系置于$q^*$并让其演化。然后对于足够长的时间（使式 (15.3.8) 达到平台值）计算$\theta(q(t) - q^*)$。对$n$条独立轨迹重复此过程，然后估计$\kappa$为
 
     $$
-    \kappa_{est} = \frac{2}{n \langle |\dot{q}| \rangle} \sum_{i=1}^{n} [\dot{q}(0) \theta(q(t) - q^*)]_i.
+    \kappa_{\mathrm{est}} = \frac{2}{n \langle |\dot{q}| \rangle} \sum_{i=1}^{n} [\dot{q}(0) \theta(q(t) - q^*)]_i.
     \tag{15.3.12}
     $$
 
-    $\kappa_{est}$的统计误差为
+    $\kappa_{\mathrm{est}}$的统计误差为
 
     $$
-    \sigma_\kappa^2 = \langle (\kappa_{est} - \langle \kappa \rangle)^2 \rangle.
+    \sigma_\kappa^2 = \langle (\kappa_{\mathrm{est}} - \langle \kappa \rangle)^2 \rangle.
     \tag{15.3.13}
     $$
 
@@ -500,7 +500,7 @@ $$
     由此扰动引起的平衡浓度分布变化为
 
     $$
-    \delta \rho(q) = -e^{-\beta U} \rho_{eq} \frac{q \beta \epsilon}{\omega}.
+    \delta \rho(q) = -e^{-\beta U} \rho_{\mathrm{eq}} \frac{q \beta \epsilon}{\omega}.
     \tag{15.3.18}
     $$
 
@@ -527,13 +527,13 @@ $$
     其中星号表示$q(0)$和$q(t)$都应在势垒区域内的条件。如果速度关联衰减的时间尺度远短于扩散穿越势垒所需的时间，则我们可以写出
 
     $$
-    \langle \dot{q}(0) \dot{q}(t) \rangle_* \approx \langle \dot{q}(0) \dot{q}(t) \rangle_\omega \exp(-\beta U) \rho_{eq}.
+    \langle \dot{q}(0) \dot{q}(t) \rangle_* \approx \langle \dot{q}(0) \dot{q}(t) \rangle_\omega \exp(-\beta U) \rho_{\mathrm{eq}}.
     $$
 
     过渡态理论对$k_{A \to B}$的表达式为
 
     $$
-    k_{A \to B}^{TST} = \frac{0.5 \langle |\dot{q}| \rangle \exp(-\beta U) \rho_{eq}}{\langle c_A \rangle}.
+    k_{A \to B}^{\mathrm{TST}} = \frac{0.5 \langle |\dot{q}| \rangle \exp(-\beta U) \rho_{\mathrm{eq}}}{\langle c_A \rangle}.
     $$
 
     然后我们得到透射系数$\kappa$的以下表达式：
@@ -566,46 +566,46 @@ $$
     接下来，我们考虑$\kappa$的新估计的统计精度
 
     $$
-    \kappa_{est} = \frac{2}{\omega \langle |\dot{q}| \rangle n} \sum_{i=1}^{n} \int_0^t \mathrm{d}t' [\dot{q}(0) \dot{q}(t')]_i,
+    \kappa_{\mathrm{est}} = \frac{2}{\omega \langle |\dot{q}| \rangle n} \sum_{i=1}^{n} \int_0^t \mathrm{d}t' [\dot{q}(0) \dot{q}(t')]_i,
     \tag{15.3.20}
     $$
 
     其中我们必须记住，在所考虑的所有$n$条轨迹中，体系最初都位于势垒顶部。遵循基本上与导出式 (15.3.14) 相同的推理，我们得到
 
     $$
-    \langle (\delta \kappa_{est})^2 \rangle = \frac{4}{\omega^2 \langle |\dot{q}| \rangle^2 n} \left[\int_0^t \mathrm{d}t' \int_0^t \mathrm{d}t'' \langle \dot{q}(0) \dot{q}(t') \dot{q}(0) \dot{q}(t'') \rangle - \left(\int_0^t \mathrm{d}t' \langle \dot{q}(0) \dot{q}(t') \rangle\right)^2\right].
+    \langle (\delta \kappa_{\mathrm{est}})^2 \rangle = \frac{4}{\omega^2 \langle |\dot{q}| \rangle^2 n} \left[\int_0^t \mathrm{d}t' \int_0^t \mathrm{d}t'' \langle \dot{q}(0) \dot{q}(t') \dot{q}(0) \dot{q}(t'') \rangle - \left(\int_0^t \mathrm{d}t' \langle \dot{q}(0) \dot{q}(t') \rangle\right)^2\right].
     $$
 
     如果我们像以前一样假设$\dot{q}$表现为高斯变量，则
 
     $$
-    \langle (\delta \kappa_{est})^2 \rangle = \frac{4}{\omega^2 \langle |\dot{q}| \rangle^2 n} \left[\langle \dot{q}^2 \rangle t \int_0^t \mathrm{d}t' \langle \dot{q}(0) \dot{q}(t') \rangle + D^2\right].
+    \langle (\delta \kappa_{\mathrm{est}})^2 \rangle = \frac{4}{\omega^2 \langle |\dot{q}| \rangle^2 n} \left[\langle \dot{q}^2 \rangle t \int_0^t \mathrm{d}t' \langle \dot{q}(0) \dot{q}(t') \rangle + D^2\right].
     \tag{15.3.21}
     $$
 
     我们考虑$t \to \infty$的极限。在该极限下$D \ll \langle \dot{q}^2 \rangle t$，因此
 
     $$
-    \langle (\delta \kappa_{est})^2 \rangle \sim \frac{4}{\omega^2 \langle |\dot{q}| \rangle^2 n} \langle \dot{q}^2 \rangle D t.
+    \langle (\delta \kappa_{\mathrm{est}})^2 \rangle \sim \frac{4}{\omega^2 \langle |\dot{q}| \rangle^2 n} \langle \dot{q}^2 \rangle D t.
     \tag{15.3.22}
     $$
 
     现在透射系数计算的相对误差为
 
     $$
-    \frac{\langle (\delta \kappa_{est})^2 \rangle^{1/2}}{\kappa} \sim \sqrt{\frac{\langle \dot{q}^2 \rangle t}{D n}}.
+    \frac{\langle (\delta \kappa_{\mathrm{est}})^2 \rangle^{1/2}}{\kappa} \sim \sqrt{\frac{\langle \dot{q}^2 \rangle t}{D n}}.
     $$
 
     由 Green-Kubo 关系式 (15.3.19) 我们看到扩散系数$D$等于$\langle \dot{q}^2 \rangle \tau_c$，其中$\tau_c$是速度涨落的衰减时间。因此，
 
     $$
-    \frac{\langle (\delta \kappa_{est})^2 \rangle^{1/2}}{\kappa} \sim \sqrt{\frac{t}{n \tau_c}}.
+    \frac{\langle (\delta \kappa_{\mathrm{est}})^2 \rangle^{1/2}}{\kappa} \sim \sqrt{\frac{t}{n \tau_c}}.
     $$
 
     通常，对于远大于$\tau_c$的时间计算关联函数$\langle \dot{q}(0) \dot{q}(t) \rangle$没有太大意义。因此，$\kappa$的相对误差简单地是$1/\sqrt{n}$。如果我们将此统计精度表达式与 Bennett-Chandler 方案中式 (15.3.17) 得到的表达式
 
     $$
-    \left[\frac{\langle (\delta \kappa_{est})^2 \rangle^{1/2}}{\kappa}\right]_{\text{Bennett-Chandler}} = \frac{1}{\kappa \sqrt{n}}
+    \left[\frac{\langle (\delta \kappa_{\mathrm{est}})^2 \rangle^{1/2}}{\kappa}\right]_{\text{Bennett-Chandler}} = \frac{1}{\kappa \sqrt{n}}
     \tag{15.3.23}
     $$
 
@@ -614,7 +614,7 @@ $$
     抑制瞬态带来的额外增益的量级为
 
     $$
-    \frac{\tau_{diff}}{\tau_c} = \frac{\omega^2}{D \tau_c} = \left(\frac{\omega}{\lambda}\right)^2 \approx \frac{1}{\kappa^2}.
+    \frac{\tau_{\mathrm{diff}}}{\tau_c} = \frac{\omega^2}{D \tau_c} = \left(\frac{\omega}{\lambda}\right)^2 \approx \frac{1}{\kappa^2}.
     \tag{15.3.24}
     $$
 
@@ -654,14 +654,14 @@ $$
 
     注意函数$h_{A,B}$不是反应坐标：它们只是允许我们指定体系是否处于转变的初态（末态）。
 
-    如前所述，我们假设从 A 到 B 的转变是稀有事件，即$\tau_R \gg \tau_{micro}$，其中$\tau_{micro}$是从 A 到 B 成功穿越的典型持续时间。与式 (15.1.6) 一样，速率常数由时间导数得到
+    如前所述，我们假设从 A 到 B 的转变是稀有事件，即$\tau_R \gg \tau_{\mathrm{micro}}$，其中$\tau_{\mathrm{micro}}$是从 A 到 B 成功穿越的典型持续时间。与式 (15.1.6) 一样，速率常数由时间导数得到
 
     $$
     k(t) = \dot{C}(t),
     \tag{15.4.3}
     $$
 
-    对于$\tau_{micro} \ll t \ll \tau_R$的时间，它达到平台值。式 (15.4.1) 中定义的关联函数$C(t)$与式 (15.2.1) 中引入的量略有不同，但两个表达式给出相同的$k(t)$值。
+    对于$\tau_{\mathrm{micro}} \ll t \ll \tau_R$的时间，它达到平台值。式 (15.4.1) 中定义的关联函数$C(t)$与式 (15.2.1) 中引入的量略有不同，但两个表达式给出相同的$k(t)$值。
 
     #### 路径系综
 
@@ -726,7 +726,7 @@ $$
     \tag{15.4.8}
     $$
 
-    对于$\tau_{micro} \ll t \ll \tau_R$，$k(t)$达到平台值，这定义了反应速率。因此，要计算速率，我们必须评估$\dot{C}(t)$。
+    对于$\tau_{\mathrm{micro}} \ll t \ll \tau_R$，$k(t)$达到平台值，这定义了反应速率。因此，要计算速率，我们必须评估$\dot{C}(t)$。
 
     原则上，我们可以从大量“普通”MD 模拟中计算$C(t)$，从而生成从 A 出发、长度为$t$的路径系综，然后计算在时间$t$恰好处于 B 中的比例。然而，由于我们考虑的是从 A 到 B 的转变很少的情况，最终到达 B 的所有路径的比例非常小，暴力方法将极其昂贵。因此，我们需要不会将大部分时间浪费在不从 A 到 B 的轨迹上的计算方法。
 

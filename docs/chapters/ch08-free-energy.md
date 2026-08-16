@@ -641,7 +641,7 @@ $\mu^{\mathrm{ex}} = -k_BT\ln P_{\mathrm{n.o.}}$。
 
     ![图 8.2](../images/fig_8_2.png)
 
-    *图 8.2　Lennard-Jones 流体的超额化学势（$T = 2.0$），分别由状态方程、巨正则 Monte Carlo 和试探粒子插入法计算得到。*
+    *图 8.2　Lennard-Jones 流体的超额化学势（$T = 2.0$），分别由状态方程、巨正则 Monte Carlo 和试探粒子插入法计算得到。（图内标注：equation of state = 状态方程；Grand canonical = 巨正则 Monte Carlo；Test particle = 试探粒子插入法）*
 
     生成此例的 Fortran 代码可在在线补充材料（online-SI）中的案例研究 15 中找到。
 

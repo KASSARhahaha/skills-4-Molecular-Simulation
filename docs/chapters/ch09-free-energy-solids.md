@@ -288,7 +288,7 @@ skip
 
     ![图 9.2](../images/fig_9_2.png)
 
-    *图 9.2　压力 $P$（左）和化学势 $\mu$（右）作为密度 $\rho$ 的函数。实线曲线表示从 Speedy 状态方程[[421]](references.md#ref-421) 获得的液相压力和化学势。虚线给出了由文献[[320]](references.md#ref-320) 的状态方程计算的固相压力。空心和实心符号分别是液相[[171,422,423]](references.md#ref-171) 和固相[[422]](references.md#ref-422) 的计算机模拟结果。共存密度以水平线标示。*
+    *图 9.2　压力 $P$（左）和化学势 $\mu$（右）作为密度 $\rho$ 的函数。实线曲线表示从 Speedy 状态方程[[421]](references.md#ref-421) 获得的液相压力和化学势。虚线给出了由文献[[320]](references.md#ref-320) 的状态方程计算的固相压力。空心和实心符号分别是液相[[171,422,423]](references.md#ref-171) 和固相[[422]](references.md#ref-422) 的计算机模拟结果。共存密度以水平线标示。（图内标注：eos: solid / eos: liquid = 状态方程：固相 / 液相；coexistence = 共存；NPT: liquid / NPT: solid = $NPT$ 模拟：液相 / 固相；Adams、Alder et al.、Smit and Frenkel 为文献出处）*
 
     理想气体每粒子自由能由下式给出：
 
@@ -353,7 +353,7 @@ skip
 
 ![图 9.3](../images/fig_9_3.png)
 
-*图 9.3　硬球（FCC）固体（54 个粒子，在密度 $\rho = 1.04$ 处，6 层 $3 \times 3$ 密排原子）的均方位移 $\langle \mathbf{r}^2 \rangle_{\lambda}$ 随耦合参数 $\lambda$ 的变化。左图显示低 $\lambda$ 值的模拟结果，右图为高 $\lambda$ 值的结果。实线考虑了最近邻相互作用 (9.2.12)；虚线假设非相互作用爱因斯坦晶体 (9.2.11)。空心符号为模拟结果。*
+*图 9.3　硬球（FCC）固体（54 个粒子，在密度 $\rho = 1.04$ 处，6 层 $3 \times 3$ 密排原子）的均方位移 $\langle \mathbf{r}^2 \rangle_{\lambda}$ 随耦合参数 $\lambda$ 的变化。左图显示低 $\lambda$ 值的模拟结果，右图为高 $\lambda$ 值的结果。实线考虑了最近邻相互作用 (9.2.12)；虚线假设非相互作用爱因斯坦晶体 (9.2.11)。空心符号为模拟结果。（图内标注：interacting = 计入近邻相互作用；non interacting = 无相互作用的爱因斯坦晶体；simulations = 模拟结果）*
 
 我们现在需要对下式进行积分：
 

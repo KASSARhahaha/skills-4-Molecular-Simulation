@@ -356,7 +356,7 @@ $$
 
     ![图 10.3](../images/fig_10_3.png)
 
-    *图 10.3　回转半径 $R_G$ 的概率分布。圆圈表示玻尔兹曼分布，方块表示 Rosenbluth 分布。结果为 FCC 晶格上 120 步行走（数据取自文献[[450]](references.md#ref-450)）。*
+    *图 10.3　回转半径 $R_G$ 的概率分布。圆圈表示玻尔兹曼分布，方块表示 Rosenbluth 分布。结果为 FCC 晶格上 120 步行走（数据取自文献[[450]](references.md#ref-450)）。（图内标注：Rosenbluth distribution = Rosenbluth 分布；Boltzmann distribution = 玻尔兹曼分布）*
 
 ### 递归采样
 
