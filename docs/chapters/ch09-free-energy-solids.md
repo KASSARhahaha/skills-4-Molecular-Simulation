@@ -187,8 +187,10 @@ $$
 计算所有粒子与其格点之间的谐相互作用能量变化相当简单。假设我们尝试将粒子 $i$ 从其格点 $\mathbf{r}_{0,i}$ 的距离 $\boldsymbol{\delta}\mathbf{r}_i$ 处移动一段距离 $\boldsymbol{\epsilon}_i$。这会导致质心发生 $\boldsymbol{\epsilon}_i/N$ 的位移。谐势能的变化为
 
 $$
-\delta U_{\mathrm{Harm}}(\lambda) = \lambda \sum_{j \neq i} \left[ \left(\boldsymbol{\delta}\mathbf{r}_j - \frac{\boldsymbol{\epsilon}_i}{N}\right)^2 - \boldsymbol{\delta}\mathbf{r}_j^2 \right] + \lambda \left[ \left(\boldsymbol{\delta}\mathbf{r}_i + \left(1-\frac{1}{N}\right)\boldsymbol{\epsilon}_i\right)^2 - \boldsymbol{\delta}\mathbf{r}_i^2 \right]
+\displaystyle
+\delta U_{\mathrm{Harm}(\lambda) = \lambda \sum_{j \neq i} \left[ \left(\boldsymbol{\delta}\mathbf{r}_j - \frac{\boldsymbol{\epsilon}_i}{N}\right)^2 - \boldsymbol{\delta}\mathbf{r}_j^2 \right] + \lambda \left[ \left(\boldsymbol{\delta}\mathbf{r}_i + \left(1-\frac{1}{N}\right)\boldsymbol{\epsilon}_i\right)^2 - \boldsymbol{\delta}\mathbf{r}_i^2 \right]
 = \lambda \left( 2\boldsymbol{\delta}\mathbf{r}_i \cdot \boldsymbol{\epsilon}_i + \frac{N-1}{N}\boldsymbol{\epsilon}_i^2 \right) ,
+}
 \tag{9.2.8}
 $$
 
@@ -325,16 +327,20 @@ skip
     在文献[[314]](references.md#ref-314) 中，推导了相互作用 Einstein 晶体情形的解析表达式，该式为：
 
     $$
-    \langle \mathbf{r}^2 \rangle_{\lambda} = \langle \mathbf{r}^2 \rangle_{\mathrm{Ein},\lambda} - \frac{\beta n}{2} \frac{1}{2a(2\pi\beta\lambda)^{1/2}} \left(1 - P^{\mathrm{nn}}_{\mathrm{overlap}}(\lambda)\right)
+    \displaystyle
+    \langle \mathbf{r^2 \rangle_{\lambda} = \langle \mathbf{r}^2 \rangle_{\mathrm{Ein},\lambda} - \frac{\beta n}{2} \frac{1}{2a(2\pi\beta\lambda)^{1/2}} \left(1 - P^{\mathrm{nn}}_{\mathrm{overlap}}(\lambda)\right)
     \times \left[ (\sigma a - \sigma^2 - 1/(\beta\lambda))\exp(-\beta\lambda(a-\sigma)^2/2) + (\sigma a + \sigma^2 - 1/(\beta\lambda))\exp(-\beta\lambda(a+\sigma)^2/2) \right] ,
+    }
     \tag{9.2.12}
     $$
 
     其中 $a$ 是两个最近邻粒子 $i$ 和 $j$ 的间距，$a = |\mathbf{r}_{0,i} - \mathbf{r}_{0,j}|$，$\sigma$ 是硬核直径，$n$ 是最近邻数（例如，对于 fcc（面心立方）和 hcp（六方密堆积）固体 $n = 12$，对于 bcc（体心立方） $n = 8$）；$P^{\mathrm{nn}}_{\mathrm{overlap}}(\lambda)$ 是两个最近邻重叠的概率。该概率由下式给出：
 
     $$
-    P^{\mathrm{nn}}_{\mathrm{overlap}}(\lambda) = \frac{\mathrm{erf}((\beta\lambda/2)^{1/2}(\sigma+a)) + \mathrm{erf}((\beta\lambda/2)^{1/2}(\sigma-a))}{2}
+    \displaystyle
+    P^{\mathrm{nn}_{\mathrm{overlap}}(\lambda) = \frac{\mathrm{erf}((\beta\lambda/2)^{1/2}(\sigma+a)) + \mathrm{erf}((\beta\lambda/2)^{1/2}(\sigma-a))}{2}
     - \frac{\exp[-\beta\lambda(\sigma-a)^2/2] - \exp[-\beta\lambda(\sigma+a)^2/2]}{(2\pi\beta\lambda)^{1/2}a} .
+    }
     \tag{9.2.13}
     $$
 
@@ -442,9 +448,11 @@ $$
 和
 
 $$
-P_{\mathrm{Ein}}^{\mathrm{CM}} = \int \mathrm{d}\mathbf{p}^{dN} \prod_{i=1}^{N} \exp\left(-\frac{\beta}{2m_i}\mathbf{p}_i^2\right) \delta\left(\sum_{i=1}^{N}\mathbf{p}_i\right)
+\displaystyle
+P_{\mathrm{Ein}^{\mathrm{CM}} = \int \mathrm{d}\mathbf{p}^{dN} \prod_{i=1}^{N} \exp\left(-\frac{\beta}{2m_i}\mathbf{p}_i^2\right) \delta\left(\sum_{i=1}^{N}\mathbf{p}_i\right)
 = \left(\frac{\beta}{2\pi M}\right)^{d/2} \prod_{i=1}^{N}\left(\frac{2\pi m_i}{\beta}\right)^{d/2}
 = \left(\frac{\beta}{2\pi M}\right)^{d/2} P_{\mathrm{Ein}} ,
+}
 \tag{9.2.20}
 $$
 

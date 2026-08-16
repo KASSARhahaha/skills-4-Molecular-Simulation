@@ -119,14 +119,18 @@ $$
 在公式 (6.3.3) 中，我们写成 $U(\mathbf{s}^N; L)$ 以表示 $U$ 依赖于粒子之间的真实距离而非标度距离。系统的 Helmholtz 自由能表达式为
 
 $$
-F(N, V, T) = -k_B T \ln Q = -k_B T \ln \left[\frac{V^N}{\Lambda^{3N} N!}\right] - k_B T \ln \left[\int \mathrm{d}\mathbf{s}^N \exp[-\beta U(\mathbf{s}^N; L)]\right] = F^{\text{id}}(N, V, T) + F^{\text{ex}}(N, V, T).
+\displaystyle
+F(N, V, T) = -k_B T \ln Q = -k_B T \ln \left[\frac{V^N{\Lambda^{3N} N!}\right] - k_B T \ln \left[\int \mathrm{d}\mathbf{s}^N \exp[-\beta U(\mathbf{s}^N; L)]\right] = F^{\text{id}}(N, V, T) + F^{\text{ex}}(N, V, T).
+}
 \tag{6.3.4}
 $$
 
 在上式的最后一行中，我们将 Helmholtz 自由能的两个贡献分别标识为理想气体表达式和超额部分。现在我们考虑系统由两个体积分别为 $V$ 和 $V_0 - V$ 的非相互作用子系统组成的情况，其中 $V_0 \gg V$，$V_0$ 固定。为了形象化，我们在图 6.2 中将这两个系统展示为被活塞隔开的两个有界系统，尽管实际上子系统应被视为完全独立的并受到周期性边界条件的约束。我们将体积 $V_0 - V$ 中的系统称为储库。我们用 $M$ 表示组合系统中的粒子总数。其中 $M - N$ 个在体积 $V_0 - V$ 中，$N$ 个在体积 $V$ 中。组合系统的配分函数简单地是两个（非相互作用）子系统配分函数的乘积：
 
 $$
-Q(N, M, V, V_0, T) = Q(M, V_0 - V, T) \frac{V^N}{\Lambda^{3M} N!} \int \mathrm{d}\mathbf{s}^N e^{-\beta U(\mathbf{s}^N; L)} = e^{-\beta F_R(M, V_0 - V, T)} \frac{V^N}{\Lambda^{3M} N!} \int \mathrm{d}\mathbf{s}^N e^{-\beta U(\mathbf{s}^N; L)},
+\displaystyle
+Q(N, M, V, V_0, T) = Q(M, V_0 - V, T) \frac{V^N{\Lambda^{3M} N!} \int \mathrm{d}\mathbf{s}^N e^{-\beta U(\mathbf{s}^N; L)} = e^{-\beta F_R(M, V_0 - V, T)} \frac{V^N}{\Lambda^{3M} N!} \int \mathrm{d}\mathbf{s}^N e^{-\beta U(\mathbf{s}^N; L)},
+}
 \tag{6.3.5}
 $$
 
@@ -198,7 +202,9 @@ $$
 此分布可以用以下接受规则进行采样：
 
 $$
-\text{acc}(o \to n) = \min\left(1, \exp\{-\beta[U(\mathbf{s}^N, V') - U(\mathbf{s}^N, V) + P(V' - V) - (N+1)\beta^{-1} \ln(V'/V)]\}\right).
+\displaystyle
+\text{acc(o \to n) = \min\left(1, \exp\{-\beta[U(\mathbf{s}^N, V') - U(\mathbf{s}^N, V) + P(V' - V) - (N+1)\beta^{-1} \ln(V'/V)]\}\right).
+}
 \tag{6.3.15}
 $$
 
@@ -308,7 +314,9 @@ $$
 维里压力的平均值为
 
 $$
-\langle P_v \rangle = -\frac{\beta P}{Q(NPT)} \int \mathrm{d}V (\partial F(V)/\partial V) \exp[-\beta(F(V) + PV)] = \frac{\beta P}{Q(NPT)} \int \mathrm{d}V \beta^{-1} (\partial \exp[-\beta F(V)]/\partial V) \exp(-\beta PV) = \frac{P}{Q(NPT)} \int \mathrm{d}V \, P \exp[-\beta(F(V) + PV)] = P,
+\displaystyle
+\langle P_v \rangle = -\frac{\beta P{Q(NPT)} \int \mathrm{d}V (\partial F(V)/\partial V) \exp[-\beta(F(V) + PV)] = \frac{\beta P}{Q(NPT)} \int \mathrm{d}V \beta^{-1} (\partial \exp[-\beta F(V)]/\partial V) \exp(-\beta PV) = \frac{P}{Q(NPT)} \int \mathrm{d}V \, P \exp[-\beta(F(V) + PV)] = P,
+}
 \tag{6.3.22}
 $$
 
@@ -613,7 +621,9 @@ $$
 其中下标“gen”表示 $\alpha$ 测量的是生成此试探移动的概率。将此式连同公式 (6.5.10) 代入细致平衡条件，得到
 
 $$
-\frac{\text{acc}(N \to N + 1)}{\text{acc}(N + 1 \to N)} = \frac{(f V)^{N+1} \exp[-\beta U(\mathbf{s}^{N+1}); L]}{(N + 1)!} \times \frac{N! \exp[\beta U(\mathbf{s}^N)]}{(f V)^N} = \frac{f V}{N + 1} \exp\{-\beta[U(\mathbf{s}^{N+1}; L) - U(\mathbf{s}^N); L]\}.
+\displaystyle
+\frac{\text{acc(N \to N + 1)}{\text{acc}(N + 1 \to N)} = \frac{(f V)^{N+1} \exp[-\beta U(\mathbf{s}^{N+1}); L]}{(N + 1)!} \times \frac{N! \exp[\beta U(\mathbf{s}^N)]}{(f V)^N} = \frac{f V}{N + 1} \exp\{-\beta[U(\mathbf{s}^{N+1}; L) - U(\mathbf{s}^N); L]\}.
+}
 $$
 
 可以直接证明接受规则 (6.5.13) 和 (6.5.14) 满足此条件。
@@ -753,7 +763,9 @@ $$
 现在让我们将这个例子转回公式 (6.5.27) 中对粒子的求和。我们将对物种 $\alpha$ 粒子数的求和替换为对所有粒子所有可能身份的求和。但随后我们必须除以 $N!/\prod N_\alpha!$ 来修正过度计数。然后，公式 (6.5.27) 变为
 
 $$
-\Xi(f_{\text{tot}}, \{\xi_\alpha\}, V, T) = \sum_{N=0}^{\infty} \frac{f_{\text{tot}}^N}{N!} \sum_{\text{identities}} \prod_{\alpha=1}^n (V \xi_\alpha)^{N_\alpha} \int \mathrm{d}\mathbf{s}^N \exp[-\beta U(\mathbf{s}^N)] \equiv \sum_{N=0}^{\infty} f_{\text{tot}}^N Y(N, \{\xi_\alpha\}, V, T),
+\displaystyle
+\Xi(f_{\text{tot}, \{\xi_\alpha\}, V, T) = \sum_{N=0}^{\infty} \frac{f_{\text{tot}}^N}{N!} \sum_{\text{identities}} \prod_{\alpha=1}^n (V \xi_\alpha)^{N_\alpha} \int \mathrm{d}\mathbf{s}^N \exp[-\beta U(\mathbf{s}^N)] \equiv \sum_{N=0}^{\infty} f_{\text{tot}}^N Y(N, \{\xi_\alpha\}, V, T),
+}
 \tag{6.5.28}
 $$
 
@@ -762,7 +774,9 @@ $$
 注意 $Y(N, \{\xi_\alpha\}, V, T)$ 是具有恒定 $N$、$V$、$T$ 和 $\{\xi_\alpha\}$ 的系统的配分函数。利用 $k_B T \ln \Xi = PV$（公式 (2.3.21)）以及第 2.3.3 节中提到的最大项方法，可以得出 $k_B T \ln Y = PV - N k_B T \ln f_{\text{tot}}$。$Y(N, \{\xi_\alpha\}, V, T)$ 可以看作是恒定 $N$、$\{\xi_\alpha\}$、$V$ 和 $T$ 下的半巨正则配分函数。在恒定压力下考虑半巨正则配分函数通常更方便，即更便于与实验比较：
 
 $$
-Y'(N, \{\xi_\alpha\}, P, T) \equiv \beta P \int_0^{\infty} \mathrm{d}V \exp(-\beta PV) Y(N, \{\xi_\alpha\}, V, T) = \beta P \int_0^{\infty} \mathrm{d}V \exp(-\beta PV) \times \sum_{\text{identities}} \prod_{\alpha=1}^n (V \xi_\alpha)^{N_\alpha} \int \mathrm{d}\mathbf{s}^N \exp[-\beta U(\mathbf{s}^N)].
+\displaystyle
+Y'(N, \{\xi_\alpha\, P, T) \equiv \beta P \int_0^{\infty} \mathrm{d}V \exp(-\beta PV) Y(N, \{\xi_\alpha\}, V, T) = \beta P \int_0^{\infty} \mathrm{d}V \exp(-\beta PV) \times \sum_{\text{identities}} \prod_{\alpha=1}^n (V \xi_\alpha)^{N_\alpha} \int \mathrm{d}\mathbf{s}^N \exp[-\beta U(\mathbf{s}^N)].
+}
 \tag{6.5.29}
 $$
 
@@ -780,7 +794,9 @@ $$
 如果两相共存，它们必须处于相同的温度、压力和逸度。在 SGMC 模拟中，我们施加控制参数 $P$、$T$ 和 $n - 1$ 个独立的 $\{\xi_\alpha\}$。为了确保具有相同 $P$、$T$ 和 $\{\xi_\alpha\}$ 值的两相（I 和 II）处于平衡，我们必须找到满足 $f_{\text{tot}}^{\text{I}} = f_{\text{tot}}^{\text{II}}$ 的控制参数集。通常，我们使用热力学积分来找到这个点。在恒定 $\{\xi_\alpha\}$ 下研究 $f_{\text{tot}}$ 随 $P$ 的变化是最简单的，但这种方法最多只对一个相有效——可能对一个相也不行。新的热力学积分需要在 $\xi$ 空间中从所研究的混合物到纯化合物的路径，同时避免相变。我们假设使用第 8 章中讨论的技术，我们可以计算混合物中某一组分（比如 1）纯相的 Gibbs 自由能，从而计算其逸度。在纯相中，$f_{\text{tot}} = f_1(P, T)$。现在我们应该研究当我们把逸度比从 $\xi_1 = 1, \xi_{\alpha \neq 1} = 0$ 变为目标 $\{\xi_\alpha\}$ 时 $f_{\text{tot}}$ 的变化。为此，我们在 $\xi$ 空间中定义一条参数化路径，其中每个 $\xi_\alpha(\lambda)$ 是参数 $\lambda$ 的函数，使得 $\lambda = 0$ 时 $\xi_1 = 1$，目标 $\{\xi_\alpha\}$ 对应 $\lambda = 1$。路径的选择使得对所有 $\lambda$ 值，$\sum \xi_\alpha(\lambda) = 1$。然后我们可以写出：
 
 $$
-\frac{d \ln f_{\text{tot}}(\lambda)}{d\lambda} = \sum_{\alpha=1}^n \left(\frac{\partial \ln f_{\text{tot}}(\lambda)}{\partial \xi_\alpha}\right)_{P,T,\{\xi_{\beta \neq \alpha}\}} \frac{d\xi_\alpha}{d\lambda} = -\sum_{\alpha=1}^n \frac{\langle N_\alpha \rangle / N}{\xi_\alpha} \frac{d\xi_\alpha}{d\lambda} = -\sum_{\alpha=1}^n \frac{\langle x_\alpha \rangle}{\xi_\alpha} \frac{d\xi_\alpha}{d\lambda},
+\displaystyle
+\frac{d \ln f_{\text{tot}(\lambda)}{d\lambda} = \sum_{\alpha=1}^n \left(\frac{\partial \ln f_{\text{tot}}(\lambda)}{\partial \xi_\alpha}\right)_{P,T,\{\xi_{\beta \neq \alpha}\}} \frac{d\xi_\alpha}{d\lambda} = -\sum_{\alpha=1}^n \frac{\langle N_\alpha \rangle / N}{\xi_\alpha} \frac{d\xi_\alpha}{d\lambda} = -\sum_{\alpha=1}^n \frac{\langle x_\alpha \rangle}{\xi_\alpha} \frac{d\xi_\alpha}{d\lambda},
+}
 \tag{6.5.31}
 $$
 
@@ -1052,7 +1068,9 @@ $$
 施加细致平衡条件，得到这一体积变化的接受规则
 
 $$
-\text{acc}(o \to n) = \min\left(1, \frac{(V_1^n)^{n_1}(V - V_1^n)^{N-n_1}}{(V_1^o)^{n_1}(V - V_1^o)^{N-n_1}}\exp\{-\beta[U(\mathbf{s}_n^N) - U(\mathbf{s}_o^N)]\}\right).
+\displaystyle
+\text{acc(o \to n) = \min\left(1, \frac{(V_1^n)^{n_1}(V - V_1^n)^{N-n_1}}{(V_1^o)^{n_1}(V - V_1^o)^{N-n_1}}\exp\{-\beta[U(\mathbf{s}_n^N) - U(\mathbf{s}_o^N)]\}\right).
+}
 \tag{6.6.8}
 $$
 
@@ -1061,9 +1079,11 @@ $$
 如果我们在 $\ln[V_1/(V-V_1)]$ 中做随机游走，就很自然地把公式 (6.6.1) 改写为
 
 $$
-Q_{N,V,T} = \frac{1}{\Lambda^{3N}N!}\sum_{n_1=0}^{N}\binom{N}{n_1}
+\displaystyle
+Q_{N,V,T = \frac{1}{\Lambda^{3N}N!}\sum_{n_1=0}^{N}\binom{N}{n_1}
 \int_{-\infty}^{\infty} \mathrm{d}\ln\left(\frac{V_1}{V-V_1}\right)\frac{V_1(V-V_1)}{V}\,V_1^{n_1}(V-V_1)^{N-n_1}
 \int \mathrm{d}\mathbf{s}_1^{n_1}\exp[-\beta U(\mathbf{s}_1^{n_1})]\int \mathrm{d}\mathbf{s}_2^{N-n_1}\exp[-\beta U(\mathbf{s}_2^{N-n_1})].
+}
 $$
 
 此时体积为 $V_1$ 的构型 $n$ 的统计权重正比于
@@ -1076,7 +1096,9 @@ $$
 对这一移动施加细致平衡，导出接受规则
 
 $$
-\text{acc}(o \to n) = \min\left(1, \left(\frac{V_1^n}{V_1^o}\right)^{n_1+1}\left(\frac{V - V_1^n}{V - V_1^o}\right)^{N-n_1+1}\exp\{-\beta[U(\mathbf{s}_n^N) - U(\mathbf{s}_o^N)]\}\right).
+\displaystyle
+\text{acc(o \to n) = \min\left(1, \left(\frac{V_1^n}{V_1^o}\right)^{n_1+1}\left(\frac{V - V_1^n}{V - V_1^o}\right)^{N-n_1+1}\exp\{-\beta[U(\mathbf{s}_n^N) - U(\mathbf{s}_o^N)]\}\right).
+}
 \tag{6.6.10}
 $$
 
@@ -1087,7 +1109,9 @@ $$
 假设我们从构型 $o$（盒 1 中有 $n_1$ 个粒子）出发，通过从盒 1 移除一个粒子并把它插入盒 2，来生成构型 $n$。两个构型的统计权重之比为
 
 $$
-\frac{\mathcal{N}(n)}{\mathcal{N}(o)} = \frac{n_1!(N-n_1)!\,V_1^{n_1-1}(V-V_1)^{N-(n_1-1)}}{(n_1-1)!\,[N-(n_1-1)]!\,V_1^{n_1}(V-V_1)^{N-n_1}}\exp\{-\beta[U(\mathbf{s}_n^N) - U(\mathbf{s}_o^N)]\}.
+\displaystyle
+\frac{\mathcal{N(n)}{\mathcal{N}(o)} = \frac{n_1!(N-n_1)!\,V_1^{n_1-1}(V-V_1)^{N-(n_1-1)}}{(n_1-1)!\,[N-(n_1-1)]!\,V_1^{n_1}(V-V_1)^{N-n_1}}\exp\{-\beta[U(\mathbf{s}_n^N) - U(\mathbf{s}_o^N)]\}.
+}
 $$
 
 对这一移动施加细致平衡，导出如下接受规则：

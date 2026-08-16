@@ -923,10 +923,12 @@ $$
 我们可以写出以下恒等式：
 
 $$
-\frac{Z_0}{Z_1} = \frac{Z_0 \int \mathrm{d}X\, w(X)\exp[-\beta(U_0(X) + U_1(X))]}{\int \mathrm{d}X\, w(X)\exp[-\beta(U_0(X) + U_1(X))]}
+\displaystyle
+\frac{Z_0{Z_1} = \frac{Z_0 \int \mathrm{d}X\, w(X)\exp[-\beta(U_0(X) + U_1(X))]}{\int \mathrm{d}X\, w(X)\exp[-\beta(U_0(X) + U_1(X))]}
 = \frac{\int \mathrm{d}X\, w(X)\exp[-\beta(U_0(X) + U_1(X))]}{Z_1}
 \times \frac{Z_0}{\int \mathrm{d}X\, w(X)\exp[-\beta(U_0(X) + U_1(X))]}
 = \frac{\langle w \exp(-\beta U_0)\rangle_1}{\langle w \exp(-\beta U_1)\rangle_0}.
+}
 \tag{8.6.12}
 $$
 
@@ -994,14 +996,16 @@ $$
 $$
 
 $$
+\displaystyle
 =
-\frac{\displaystyle\int \mathrm{d}X
+\frac{\displaystyle\int \mathrm{dX
 \left[
 \frac{Z_0}{n_0}\exp(-\beta U_1(X)) + \frac{Z_1}{n_1}\exp(-\beta U_0(X))
 \right]
 \times w^2 \exp[-\beta(U_0(X) + U_1(X))]}{
 \left[\displaystyle\int \mathrm{d}X\, w \exp[-\beta(U_0(X) + U_1(X))]\right]^2}
 - \frac{1}{n_0} - \frac{1}{n_1}.
+}
 \tag{8.6.14}
 $$
 
@@ -1201,8 +1205,10 @@ $$
 其中因子$a$的值决定了偏倚的强度。在这种偏倚下，发现系统具有特定势能值$U_0$的（未归一化）偏倚概率$P_B$由下式给出：
 
 $$
-P_B(U) \sim \int \mathrm{d}X\, \delta(U(X) - U)\exp[-\beta a\, U(X)]\exp[-\beta U(X)]
+\displaystyle
+P_B(U) \sim \int \mathrm{dX\, \delta(U(X) - U)\exp[-\beta a\, U(X)]\exp[-\beta U(X)]
 = \int \mathrm{d}X\, \delta(U(X) - U)\exp[-\beta(1 + a)U(X)],
+}
 \tag{8.6.32}
 $$
 
@@ -1213,8 +1219,10 @@ $$
 如果我们考虑无偏势能分布$P_0(U)$：
 
 $$
-P_0(U) \sim \int \mathrm{d}X\, \delta(U(X) - U)\exp[-\beta U(X)]
+\displaystyle
+P_0(U) \sim \int \mathrm{dX\, \delta(U(X) - U)\exp[-\beta U(X)]
 = \exp[-\beta U] \int \mathrm{d}X\, \delta(U(X) - U) \equiv \exp[-\beta U]\, \Omega(U),
+}
 \tag{8.6.33}
 $$
 

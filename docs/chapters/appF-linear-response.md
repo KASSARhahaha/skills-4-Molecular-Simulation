@@ -63,7 +63,9 @@ $$
 对于周期场，我们有
 
 $$
-\int_{-\infty}^{\infty} \mathrm{d}t' \, \chi_{AA}(t - t') f(t') = \frac{f_{\omega} e^{i\omega t}}{2} \int_{-\infty}^{\infty} \mathrm{d}t' \, \chi_{AA}(t - t') e^{i\omega(t' - t)} + \frac{f_{\omega}^* e^{-i\omega t}}{2} \int_{-\infty}^{\infty} \mathrm{d}t' \, \chi_{AA}(t - t') e^{-i\omega(t' - t)},
+\displaystyle
+\int_{-\infty^{\infty} \mathrm{d}t' \, \chi_{AA}(t - t') f(t') = \frac{f_{\omega} e^{i\omega t}}{2} \int_{-\infty}^{\infty} \mathrm{d}t' \, \chi_{AA}(t - t') e^{i\omega(t' - t)} + \frac{f_{\omega}^* e^{-i\omega t}}{2} \int_{-\infty}^{\infty} \mathrm{d}t' \, \chi_{AA}(t - t') e^{-i\omega(t' - t)},
+}
 $$
 
 其中
@@ -75,7 +77,9 @@ $$
 为了计算能量变化速率$\dot{E}$，我们必须将$\langle \partial H / \partial t \rangle$在一个周期$T$（$= 2\pi/\omega$）内取平均：
 
 $$
-\dot{E} = -\frac{\pi}{2T} \int_0^T \mathrm{d}t \left[ i\omega \left( f_{\omega} e^{i\omega t} - f_{\omega}^* e^{-i\omega t} \right) \times \left( f_{\omega} e^{i\omega t} \chi_{AA}(\omega) + f_{\omega}^* e^{-i\omega t} \chi_{AA}(-\omega) \right) \right] = -\pi \omega |f_{\omega}|^2 \frac{\chi_{AA}(\omega) - \chi_{AA}(-\omega)}{2i} = -\pi \omega |f_{\omega}|^2 \, \mathrm{Im}[\chi_{AA}(\omega)].
+\displaystyle
+\dot{E = -\frac{\pi}{2T} \int_0^T \mathrm{d}t \left[ i\omega \left( f_{\omega} e^{i\omega t} - f_{\omega}^* e^{-i\omega t} \right) \times \left( f_{\omega} e^{i\omega t} \chi_{AA}(\omega) + f_{\omega}^* e^{-i\omega t} \chi_{AA}(-\omega) \right) \right] = -\pi \omega |f_{\omega}|^2 \frac{\chi_{AA}(\omega) - \chi_{AA}(-\omega)}{2i} = -\pi \omega |f_{\omega}|^2 \, \mathrm{Im}[\chi_{AA}(\omega)].
+}
 \tag{F.1.4}
 $$
 
@@ -293,7 +297,9 @@ $$
 现在我们将单位（未变形）体积$(V)$的 Helmholtz 自由能$(F)$按拉格朗日应变参数$\boldsymbol{\eta}$的幂次展开：
 
 $$
-F(\boldsymbol{\eta})/V = V^{-1} \left[ F(0) + \frac{\partial F}{\partial \eta_{\alpha\beta}} \eta_{\alpha\beta} + \frac{1}{2} \frac{\partial^2 F}{\partial \eta_{\alpha\beta} \partial \eta_{\gamma\delta}} \eta_{\alpha\beta} \eta_{\gamma\delta} + \cdots \right] = V^{-1} F(0) + C^{(1)}_{\alpha\beta} \eta_{\alpha\beta} + \frac{1}{2} C^{(2)}_{\alpha\beta\gamma\delta} \eta_{\alpha\beta} \eta_{\gamma\delta} + \cdots.
+\displaystyle
+F(\boldsymbol{\eta)/V = V^{-1} \left[ F(0) + \frac{\partial F}{\partial \eta_{\alpha\beta}} \eta_{\alpha\beta} + \frac{1}{2} \frac{\partial^2 F}{\partial \eta_{\alpha\beta} \partial \eta_{\gamma\delta}} \eta_{\alpha\beta} \eta_{\gamma\delta} + \cdots \right] = V^{-1} F(0) + C^{(1)}_{\alpha\beta} \eta_{\alpha\beta} + \frac{1}{2} C^{(2)}_{\alpha\beta\gamma\delta} \eta_{\alpha\beta} \eta_{\gamma\delta} + \cdots.
+}
 \tag{F.4.5}
 $$
 
@@ -348,21 +354,27 @@ $$
 $\{\mathbf{p}^N, \mathbf{r}^N\}$与$\{\mathbf{p}_0^N, \mathbf{r}_0^N\}$之间变换的雅可比行列式等于 1。因此，我们可以写
 
 $$
-Q(\boldsymbol{\eta}) = \int \mathrm{d}\mathbf{p}^N \mathrm{d}\mathbf{r}^N \exp\left[ -\beta H\left( \mathbf{p}^N, \mathbf{r}^N \right) \right] = \int \mathrm{d}\mathbf{p}_0^N \mathrm{d}\mathbf{r}_0^N \exp\left[ -\beta \left\{ \sum \frac{1}{2m_i} \mathbf{p}_{0,i} \cdot (\mathbf{1} + 2\boldsymbol{\eta})^{-1} \cdot \mathbf{p}_{0,i} + U\left( \mathbf{r}_0^N; \boldsymbol{\eta} \right) \right\} \right].
+\displaystyle
+Q(\boldsymbol{\eta) = \int \mathrm{d}\mathbf{p}^N \mathrm{d}\mathbf{r}^N \exp\left[ -\beta H\left( \mathbf{p}^N, \mathbf{r}^N \right) \right] = \int \mathrm{d}\mathbf{p}_0^N \mathrm{d}\mathbf{r}_0^N \exp\left[ -\beta \left\{ \sum \frac{1}{2m_i} \mathbf{p}_{0,i} \cdot (\mathbf{1} + 2\boldsymbol{\eta})^{-1} \cdot \mathbf{p}_{0,i} + U\left( \mathbf{r}_0^N; \boldsymbol{\eta} \right) \right\} \right].
+}
 \tag{F.4.12}
 $$
 
 现在$Q(\boldsymbol{\eta})$对$\boldsymbol{\eta}$的依赖仅包含在哈密顿量中。我们现在可以显式地完成对$\boldsymbol{\eta}$的微分。利用
 
 $$
-\left( \frac{\partial U}{\partial \eta_{\alpha\beta}} \right) = \sum_{i<j} \left( \frac{\partial U}{\partial r_{ij}^2} \right) \left( \frac{\partial r_{ij}^2}{\partial \eta_{\alpha\beta}} \right) = \sum_{i<j} \left( \frac{\partial U}{\partial r_{ij}} \right) \frac{r_{0,ij}^{\alpha} r_{0,ij}^{\beta}}{r_{ij}} = \left( \mathbf{h}^{-1} \sum_{i<j} \frac{\partial U}{\partial r_{ij}} \frac{\mathbf{r}_{ij} \mathbf{r}_{ij}}{r_{ij}} (\mathbf{h}^T)^{-1} \right)_{\alpha\beta}
+\displaystyle
+\left( \frac{\partial U{\partial \eta_{\alpha\beta}} \right) = \sum_{i<j} \left( \frac{\partial U}{\partial r_{ij}^2} \right) \left( \frac{\partial r_{ij}^2}{\partial \eta_{\alpha\beta}} \right) = \sum_{i<j} \left( \frac{\partial U}{\partial r_{ij}} \right) \frac{r_{0,ij}^{\alpha} r_{0,ij}^{\beta}}{r_{ij}} = \left( \mathbf{h}^{-1} \sum_{i<j} \frac{\partial U}{\partial r_{ij}} \frac{\mathbf{r}_{ij} \mathbf{r}_{ij}}{r_{ij}} (\mathbf{h}^T)^{-1} \right)_{\alpha\beta}
+}
 \tag{F.4.13}
 $$
 
 和
 
 $$
-\sum \frac{1}{2m_i} \mathbf{p}_{0,i} \cdot \left( \frac{\partial \mathbf{G}^{-1}}{\partial \eta_{\alpha\beta}} \right) \cdot \mathbf{p}_{0,i} = -\sum \frac{1}{m_i} \left( \mathbf{p}_{0,i} \cdot \mathbf{G}^{-1} \right)_{\alpha} \left( \mathbf{G}^{-1} \cdot \mathbf{p}_{0,i} \right)_{\beta} = -\left( \mathbf{h}^{-1} \sum \frac{1}{m_i} \mathbf{p} \mathbf{p} (\mathbf{h}^T)^{-1} \right)_{\alpha\beta},
+\displaystyle
+\sum \frac{1{2m_i} \mathbf{p}_{0,i} \cdot \left( \frac{\partial \mathbf{G}^{-1}}{\partial \eta_{\alpha\beta}} \right) \cdot \mathbf{p}_{0,i} = -\sum \frac{1}{m_i} \left( \mathbf{p}_{0,i} \cdot \mathbf{G}^{-1} \right)_{\alpha} \left( \mathbf{G}^{-1} \cdot \mathbf{p}_{0,i} \right)_{\beta} = -\left( \mathbf{h}^{-1} \sum \frac{1}{m_i} \mathbf{p} \mathbf{p} (\mathbf{h}^T)^{-1} \right)_{\alpha\beta},
+}
 \tag{F.4.14}
 $$
 
@@ -376,7 +388,9 @@ $$
 由此立即可得
 
 $$
-C^{(1)}_{\alpha\beta} \equiv \left( \frac{\partial F}{\partial \eta_{\alpha\beta}} \right) = \frac{V'}{V} \left[ (\mathbf{1} + \boldsymbol{\epsilon})^{-1} \boldsymbol{\sigma} (\mathbf{1} + \boldsymbol{\epsilon}^T)^{-1} \right]_{\alpha\beta} = \sqrt{\det(\mathbf{1} + 2\boldsymbol{\eta})} \left[ (\mathbf{1} + \boldsymbol{\epsilon})^{-1} \boldsymbol{\sigma} (\mathbf{1} + \boldsymbol{\epsilon}^T)^{-1} \right]_{\alpha\beta},
+\displaystyle
+C^{(1)_{\alpha\beta} \equiv \left( \frac{\partial F}{\partial \eta_{\alpha\beta}} \right) = \frac{V'}{V} \left[ (\mathbf{1} + \boldsymbol{\epsilon})^{-1} \boldsymbol{\sigma} (\mathbf{1} + \boldsymbol{\epsilon}^T)^{-1} \right]_{\alpha\beta} = \sqrt{\det(\mathbf{1} + 2\boldsymbol{\eta})} \left[ (\mathbf{1} + \boldsymbol{\epsilon})^{-1} \boldsymbol{\sigma} (\mathbf{1} + \boldsymbol{\epsilon}^T)^{-1} \right]_{\alpha\beta},
+}
 \tag{F.4.16}
 $$
 
@@ -390,14 +404,18 @@ $$
 表示变形系统中的微观应力。注意$\boldsymbol{\sigma}$可以在模拟中测量，而$\boldsymbol{\epsilon}$由所加应变固定。对于未变形的系统，$C^{(1)}$简单等于$-P$，其中$P$是静水压力。由式（F.4.16）还可得应力$\sigma_{ij}$与线性应变$\epsilon_{rs}$之间的比例常数为
 
 $$
-\left( \frac{\partial \sigma_{\alpha\beta}}{\partial \epsilon_{\gamma\delta}} \right) = (\sigma_{\alpha\delta} \delta_{\beta\gamma} + \sigma_{\beta\delta} \delta_{\alpha\gamma} - \sigma_{\alpha\beta} \delta_{\gamma\delta}) + C^{(2)}_{\alpha\beta\gamma\delta}.
+\displaystyle
+\left( \frac{\partial \sigma_{\alpha\beta}{\partial \epsilon_{\gamma\delta}} \right) = (\sigma_{\alpha\delta} \delta_{\beta\gamma} + \sigma_{\beta\delta} \delta_{\alpha\gamma} - \sigma_{\alpha\beta} \delta_{\gamma\delta}) + C^{(2)}_{\alpha\beta\gamma\delta}.
+}
 \tag{F.4.18}
 $$
 
 为了确定二阶弹性常数$C^{(2)}_{\alpha\beta\gamma\delta}$，我们必须确定$C^{(1)}_{\alpha\beta}$对$\eta_{\gamma\delta}$的初始线性依赖。这种测量弹性常数的技术简单且相当精确（参见例如文献[[721]](references.md#ref-721)）。然而，需要多次计算来测量不同的弹性常数。晶体对称性越低，需要的计算次数越多。这可以通过直接考虑$C^{(2)}_{\alpha\beta\gamma\delta}$的微观表达式来避免。这样的表达式由 Squire 等人[[721]](references.md#ref-721)推导：
 
 $$
-C^{(2)}_{\alpha\beta\gamma\delta} = -\frac{1}{V k_B T} \langle \sigma_{\alpha\beta} \sigma_{\gamma\delta} \rangle + 2\rho k_B T (\delta_{\alpha\gamma} \delta_{\beta\delta} + \delta_{\alpha\delta} \delta_{\beta\gamma}) + 4 \sum_{i<j, k<l} \left( \frac{\partial^2 U}{\partial r_{ij}^2 \partial r_{kl}^2} \right) r_{ij}^{\alpha} r_{ij}^{\beta} r_{kl}^{\gamma} r_{kl}^{\delta}.
+\displaystyle
+C^{(2)_{\alpha\beta\gamma\delta} = -\frac{1}{V k_B T} \langle \sigma_{\alpha\beta} \sigma_{\gamma\delta} \rangle + 2\rho k_B T (\delta_{\alpha\gamma} \delta_{\beta\delta} + \delta_{\alpha\delta} \delta_{\beta\gamma}) + 4 \sum_{i<j, k<l} \left( \frac{\partial^2 U}{\partial r_{ij}^2 \partial r_{kl}^2} \right) r_{ij}^{\alpha} r_{ij}^{\beta} r_{kl}^{\gamma} r_{kl}^{\delta}.
+}
 \tag{F.4.19}
 $$
 
