@@ -58,3 +58,22 @@
 ## 参考文献
 
 [参考文献总表](chapters/references.md)（786 条，编号与英文原版一致，正文引用可直接跳转）
+
+---
+
+## 版权与授权状态
+
+本书译自 Daan Frenkel and Berend Smit, *Understanding Molecular Simulation:
+From Algorithms to Applications*, Third Edition, Academic Press（Elsevier
+旗下品牌）, 2023, ISBN 978-0-323-90292-2。
+
+Original English language edition copyright © 2023 Elsevier Inc.
+All rights reserved. 原著版权 © 2023 Elsevier Inc.，保留所有权利。
+中文译文版权 © 2026 杨凯。
+
+**本译本尚未取得 Elsevier 的中文翻译出版授权。** 本站为译稿的在线阅读版本，
+仅供学习与审校参考，不作商业用途；正式出版须由中文出版社完成版权引进。
+若权利人认为本站内容不当，请联系译者，将立即下线。
+
+**翻译范围**：对应原著纸质版第 1–16 章与附录 A–J。原著附录 K–P 为出版商
+在线补充材料（页码带 e 前缀），不在本译本范围内。

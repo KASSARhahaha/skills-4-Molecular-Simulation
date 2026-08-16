@@ -1,5 +1,8 @@
 site_name: 理解分子模拟：从算法到应用（第三版）
 site_description: Frenkel & Smit《Understanding Molecular Simulation》中文翻译在线版
+copyright: >
+  译自 Frenkel &amp; Smit, <i>Understanding Molecular Simulation</i>, 3rd ed.,
+  © 2023 Elsevier Inc. 中文译文 © 2026 杨凯 · 尚未取得翻译出版授权，仅供学习审校
 site_author: Berend Smit, Daan Frenkel（译者：杨凯）
 site_url: https://kassarhahaha.github.io/skills-4-Molecular-Simulation/
 repo_url: https://github.com/KASSARhahaha/skills-4-Molecular-Simulation
