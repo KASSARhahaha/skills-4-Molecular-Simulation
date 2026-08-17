@@ -327,9 +327,11 @@ $$
 到目前为止，我们还没有提到约束。我们只是将正则分布函数从一组相空间坐标变换到另一组。显然，结果不会依赖于我们对这些坐标的选择。但现在我们引入约束。也就是说，在我们的拉格朗日量 (14.1.18) 中，我们去除由硬坐标动力学贡献的动能部分；即，我们设 $\dot{q}_H = 0$，并在势能函数中用参数 $\sigma$ 替换坐标 $q_H$。带约束系统的拉格朗日量为
 
 $$
-\mathcal{L}_H = \sum_{i=1}^{N} \frac{1}{2} m_i \dot{\mathbf{r}}_i^2 - \mathcal{U}
-= \sum_{i=1}^{N} \frac{1}{2} m_i \dot{q}_{\alpha}^S \frac{\partial \mathbf{r}_i}{\partial q_{\alpha}^S} \cdot \frac{\partial \mathbf{r}_i}{\partial q_{\beta}^S} \dot{q}_{\beta}^S - \mathcal{U}(q_S, \boldsymbol{\sigma})
-\equiv \frac{1}{2} \dot{\mathbf{q}}_S \cdot \mathbf{G}_S \cdot \dot{\mathbf{q}}_S - \mathcal{U}(q_S, \boldsymbol{\sigma}).
+\begin{aligned}
+\mathcal{L}_H &= \sum_{i=1}^{N} \frac{1}{2} m_i \dot{\mathbf{r}}_i^2 - \mathcal{U}\\
+&= \sum_{i=1}^{N} \frac{1}{2} m_i \dot{q}_{\alpha}^S \frac{\partial \mathbf{r}_i}{\partial q_{\alpha}^S} \cdot \frac{\partial \mathbf{r}_i}{\partial q_{\beta}^S} \dot{q}_{\beta}^S - \mathcal{U}(q_S, \boldsymbol{\sigma})\\
+&\equiv \frac{1}{2} \dot{\mathbf{q}}_S \cdot \mathbf{G}_S \cdot \dot{\mathbf{q}}_S - \mathcal{U}(q_S, \boldsymbol{\sigma}).
+\end{aligned}
 \tag{14.1.23}
 $$
 
@@ -355,8 +357,10 @@ $$
 现在让我们写出坐标空间中的概率密度：
 
 $$
-\rho(\mathbf{q}_S) = a \int \mathrm{d}\mathbf{p}_S\, \exp\{-\beta[\mathbf{p}_S \cdot \mathbf{G}_S \cdot \mathbf{p}_S/2 + U(\mathbf{q}_S, \boldsymbol{\sigma})]\}
-= a' \exp[-\beta U(\mathbf{q}_S, \boldsymbol{\sigma})] \sqrt{|\mathbf{G}_S|},
+\begin{aligned}
+\rho(\mathbf{q}_S) &= a \int \mathrm{d}\mathbf{p}_S\, \exp\{-\beta[\mathbf{p}_S \cdot \mathbf{G}_S \cdot \mathbf{p}_S/2 + U(\mathbf{q}_S, \boldsymbol{\sigma})]\}\\
+&= a' \exp[-\beta U(\mathbf{q}_S, \boldsymbol{\sigma})] \sqrt{|\mathbf{G}_S|},
+\end{aligned}
 \tag{14.1.25}
 $$
 

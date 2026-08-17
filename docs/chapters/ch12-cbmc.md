@@ -36,7 +36,6 @@ $$
 
 $$
 \mathrm{acc}(o \to n) = \min\left\{1, \frac{f[\mathcal{U}(o)]}{f[\mathcal{U}(n)]} \exp\{-\beta[\mathcal{U}(n) - \mathcal{U}(o)]\}\right\}.
-
 \tag{12.1.1}
 $$
 
@@ -144,7 +143,6 @@ $$
 
 $$
 K(o \to n) = \mathcal{N}(o) \times \alpha(o \to n) \times \mathrm{acc}(o \to n).
-
 \tag{12.1.6}
 $$
 
@@ -161,7 +159,6 @@ $$
 \frac{\mathrm{acc}(o \to n)}{\mathrm{acc}(n \to o)}
 &= \frac{\exp[-\beta U(n)]}{\exp[-\beta U(o)]} \times \frac{\exp[-\beta u_\mathrm{or}(o)]}{W(o)} \times \frac{W(n)}{\exp[-\beta u_\mathrm{or}(n)]} \notag \\
 &= \frac{W(n)}{W(o)} \exp\{-\beta[u_\mathrm{pos}(n) - u_\mathrm{pos}(o)]\}.
-
 \tag{12.1.7}
 \end{align}
 $$
@@ -192,7 +189,6 @@ $\mathcal{B}_n$的每个元素可以写成$(\mathbf{b}_n, \mathbf{b}^*)$，其�
 
 $$
 K(o \to n) = \mathcal{N}(o) \sum_{i \in \mathcal{B}_n} \alpha(o \to n, i) \times \mathrm{acc}(o \to n, i),
-
 \tag{12.1.8}
 $$
 
@@ -208,7 +204,6 @@ $$
 
 $$
 K(n \to o) = \mathcal{N}(n) \sum_{j \in \mathcal{B}_o} \alpha(n \to o, j) \times \mathrm{acc}(n \to o, j).
-
 \tag{12.1.9}
 $$
 
@@ -223,8 +218,10 @@ $$
 $$
 \begin{align}
 K(o \to n, \mathbf{b}^*, \mathbf{b}'^*) &= K(n \to o, \mathbf{b}'^*, \mathbf{b}^*), \notag \\
-\mathcal{N}(o)\, \alpha(o \to n, \mathbf{b}^*, \mathbf{b}'^*)\, \mathrm{acc}(o \to n, \mathbf{b}^*, \mathbf{b}'^*) &= \mathcal{N}(n)\, \alpha(n \to o, \mathbf{b}'^*, \mathbf{b}^*)\, \mathrm{acc}(n \to o, \mathbf{b}'^*, \mathbf{b}^*),
-
+\begin{split}
+\mathcal{N}(o)\, &\alpha(o \to n, \mathbf{b}^*, \mathbf{b}'^*)\, \mathrm{acc}(o \to n, \mathbf{b}^*, \mathbf{b}'^*)\\
+&= \mathcal{N}(n)\, \alpha(n \to o, \mathbf{b}'^*, \mathbf{b}^*)\, \mathrm{acc}(n \to o, \mathbf{b}'^*, \mathbf{b}^*),
+\end{split}
 \tag{12.1.10}
 \end{align}
 $$
@@ -236,7 +233,6 @@ $$
 \frac{\mathrm{acc}(o \to n, \mathbf{b}^*, \mathbf{b}'^*)}{\mathrm{acc}(n \to o, \mathbf{b}'^*, \mathbf{b}^*)}
 &= \frac{\exp[-\beta U(n)]}{\exp[-\beta U(o)]} \frac{\exp[-\beta u_\mathrm{or}(o)]}{W(\mathbf{b}_o, \mathbf{b}'^*)} \frac{W(\mathbf{b}_n, \mathbf{b}^*)}{\exp[-\beta u_\mathrm{or}(n)]} \notag \\
 &= \frac{W(\mathbf{b}_n, \mathbf{b}^*)}{W(\mathbf{b}_o, \mathbf{b}'^*)} \exp\{-\beta[u_\mathrm{pos}(n) - u_\mathrm{pos}(o)]\}.
-
 \tag{12.1.11}
 \end{align}
 $$
@@ -336,7 +332,6 @@ $$
 
 $$
 \mathrm{acc}(o \to n) = \min[1, W(n)/W(o)]
-
 \tag{12.2.6}
 $$
 
@@ -408,7 +403,6 @@ end function
 
 $$
 \alpha(o \to n) = \prod_{i=1}^{\ell} \frac{\exp[-\beta u_i(n)]}{w_i(n)} = \frac{\exp[-\beta \mathcal{U}(n)]}{W(n)}.
-
 \tag{12.2.7}
 $$
 
@@ -416,7 +410,6 @@ $$
 
 $$
 \alpha(n \to o) = \frac{\exp[-\beta \mathcal{U}(o)]}{W(o)}.
-
 \tag{12.2.8}
 $$
 
@@ -424,7 +417,6 @@ $$
 
 $$
 \frac{\mathrm{acc}(o \to n)}{\mathrm{acc}(n \to o)} = \frac{W(n)}{W(o)}.
-
 \tag{12.2.9}
 $$
 
@@ -504,7 +496,6 @@ $$
 
 $$
 \mathrm{acc}(o \to n) = \min[1, W^{\mathrm{ext}}(n)/W^{\mathrm{ext}}(o)]
-
 \tag{12.2.18}
 $$
 
@@ -518,7 +509,6 @@ $$
 
 $$
 \alpha(o \to n) = \prod_{i=1}^{\ell} p_i(o \to n) = \prod_{i=1}^{\ell} p_{i}^{\mathrm{bond}}(n)\, p_{i}^{\mathrm{ext}}(n).
-
 \tag{12.2.19}
 $$
 
@@ -535,7 +525,6 @@ $$
 K(o \to n, \mathbf{b}^*, \mathbf{b}'^*) &= \mathcal{N}(o) \times \alpha(o \to n, \mathbf{b}^*, \mathbf{b}'^*) \times \mathrm{acc}(o \to n, \mathbf{b}^*, \mathbf{b}'^*) \notag \\
 &= \exp[-\beta u(o)] \times C \exp[-\beta u^{\mathrm{bond}}(n)] \times \frac{\exp[-\beta u^{\mathrm{ext}}(n)]}{w^{\mathrm{ext}}(\mathbf{b}_n, \mathbf{b}^*)} \notag \\
 &\quad \times \mathrm{acc}(o \to n, \mathbf{b}^*, \mathbf{b}'^*)\, \mathcal{P}^{\mathrm{bond}}(\mathbf{b}^*, \mathbf{b}'^*).
-
 \tag{12.2.20}
 \end{align}
 $$
@@ -547,7 +536,6 @@ $$
 K(n \to o, \mathbf{b}'^*, \mathbf{b}^*) &= \mathcal{N}(n) \times \alpha(n \to o, \mathbf{b}'^*, \mathbf{b}^*) \times \mathrm{acc}(n \to o, \mathbf{b}'^*, \mathbf{b}^*) \notag \\
 &= \exp[-\beta u(n)] \times C \exp[-\beta u^{\mathrm{bond}}(o)] \times \frac{\exp[-\beta u^{\mathrm{ext}}(o)]}{w^{\mathrm{ext}}(\mathbf{b}_o, \mathbf{b}'^*)} \notag \\
 &\quad \times \mathrm{acc}(n \to o, \mathbf{b}'^*, \mathbf{b}^*)\, \mathcal{P}^{\mathrm{bond}}(\mathbf{b}^*, \mathbf{b}'^*).
-
 \tag{12.2.21}
 \end{align}
 $$
@@ -562,7 +550,6 @@ $$
 
 $$
 \frac{\mathrm{acc}(o \to n, \mathbf{b}^*, \mathbf{b}'^*)}{\mathrm{acc}(n \to o, \mathbf{b}'^*, \mathbf{b}^*)} = \frac{w^{\mathrm{ext}}(\mathbf{b}_n, \mathbf{b}^*)}{w^{\mathrm{ext}}(\mathbf{b}_o, \mathbf{b}'^*)}.
-
 \tag{12.2.22}
 $$
 
@@ -570,7 +557,6 @@ $$
 
 $$
 \frac{\mathrm{acc}[o \to n, (\mathbf{b}_1^*, \cdots, \mathbf{b}_\ell^*)]}{\mathrm{acc}[n \to o, (\mathbf{b}_1'^*, \cdots, \mathbf{b}_\ell'^*)]} = \frac{\prod_{i=1}^{\ell} w_{i}^{\mathrm{ext}}(\mathbf{b}_n, \mathbf{b}^*)}{\prod_{i=1}^{\ell} w_{i}^{\mathrm{ext}}(\mathbf{b}_o, \mathbf{b}'^*)} = \frac{W[n, (\mathbf{b}_1^*, \cdots, \mathbf{b}_\ell^*)]}{W[o, (\mathbf{b}_1'^*, \cdots, \mathbf{b}_\ell'^*)]}.
-
 \tag{12.2.23}
 $$
 
@@ -615,7 +601,6 @@ $$
 
 $$
 P(\mathbf{b})\, \mathrm{d}\mathbf{b} = C \exp[-\beta u^{\mathrm{bond}}(\mathbf{b})]\, \mathrm{d}\mathbf{b}.
-
 \tag{12.3.1}
 $$
 
@@ -623,7 +608,6 @@ $$
 
 $$
 \mathrm{d}\mathbf{b} = r^2\, \mathrm{d}r\, \mathrm{d}\cos\theta\, \mathrm{d}\varphi.
-
 \tag{12.3.2}
 $$
 
@@ -631,7 +615,6 @@ $$
 
 $$
 u^{\mathrm{bond}}(r, \theta, \varphi) = u_\mathrm{vib}(r) + u_\mathrm{bend}(\theta) + u_\mathrm{tors}(\varphi).
-
 \tag{12.3.3}
 $$
 
@@ -642,7 +625,6 @@ $$
 P(\mathbf{b})\, \mathrm{d}\mathbf{b} &= P(r, \theta, \varphi)\, r^2\, \mathrm{d}r\, \mathrm{d}\cos\theta\, \mathrm{d}\varphi \notag \\
 &= C \exp[-\beta u_\mathrm{vib}(r)]\, r^2\, \mathrm{d}r \times \exp[-\beta u_\mathrm{bend}(\theta)]\, \mathrm{d}\cos\theta \notag \\
 &\quad \times \exp[-\beta u_\mathrm{tors}(\varphi)]\, \mathrm{d}\varphi.
-
 \tag{12.3.4}
 \end{align}
 $$
@@ -657,7 +639,6 @@ $$
 
 $$
 P_2(\mathbf{b})\, \mathrm{d}\mathbf{b} \propto \mathrm{d}\cos\theta\, \mathrm{d}\varphi.
-
 \tag{12.3.5}
 $$
 
@@ -667,7 +648,6 @@ $$
 
 $$
 P_3(\mathbf{b})\, \mathrm{d}\mathbf{b} \propto \exp[-\beta u_\mathrm{bend}(\theta)]\, \mathrm{d}\cos\theta\, \mathrm{d}\varphi.
-
 \tag{12.3.6}
 $$
 
@@ -679,7 +659,6 @@ $$
 
 $$
 p_l^{\mathrm{bond}}(\mathbf{b})\, \mathrm{d}\mathbf{b} \propto \exp[-\beta u_\mathrm{bend}(\theta)]\, \exp[-\beta u_\mathrm{tors}(\varphi)]\, \mathrm{d}\cos\theta\, \mathrm{d}\varphi.
-
 \tag{12.3.7}
 $$
 
@@ -930,7 +909,6 @@ $$
 
 $$
 P(j) = \frac{\exp[-\beta u^{\mathrm{ext}}(j)]\, \Omega(\mathbf{r}_1 + \Delta\mathbf{r}(j), \mathbf{r}_2; n-1)}{\sum_{j'=1}^{k} \exp[-\beta u^{\mathrm{ext}}(j')]\, \Omega(\mathbf{r}_1 + \Delta\mathbf{r}(j'), \mathbf{r}_2; n-1)}.
-
 \tag{12.4.1}
 $$
 
@@ -940,7 +918,6 @@ $$
 \begin{align}
 w_i &\equiv \frac{\sum_{j'=1}^{k} \exp[-\beta u^{\mathrm{ext}}(j')]\, \Omega[\mathbf{r}_i + \Delta\mathbf{r}(j'), \mathbf{r}_2; n-i]}{\sum_{j'=1}^{k} \Omega[\mathbf{r}_i + \Delta\mathbf{r}(j'), \mathbf{r}_2; n-i]} \notag \\
 &= \frac{\sum_{j'=1}^{k} \exp[-\beta u^{\mathrm{ext}}(j')]\, \Omega[\mathbf{r}_i + \Delta\mathbf{r}(j'), \mathbf{r}_2; n-i]}{\Omega[\mathbf{r}_i, \mathbf{r}_2; n-i+1]}.
-
 \tag{12.4.2}
 \end{align}
 $$
@@ -952,7 +929,6 @@ $$
 P_\mathrm{gen}(\Gamma) \times W(\Gamma) &= \prod_{i=1}^{n} \left\{ \frac{\exp[-\beta u^{\mathrm{ext}}(j)]\, \Omega[\mathbf{r}_i + \Delta\mathbf{r}(j), \mathbf{r}_2; n-i]}{\sum_{j'=1}^{k} \exp[-\beta u^{\mathrm{ext}}(j')]\, \Omega[\mathbf{r}_i + \Delta\mathbf{r}(j'), \mathbf{r}_2; n-i]} \right. \notag \\
 &\quad \times \left. \frac{\sum_{j'=1}^{k} \exp[-\beta u^{\mathrm{ext}}(j')]\, \Omega[\mathbf{r}_i + \Delta\mathbf{r}(j'), \mathbf{r}_2; n-i]}{\Omega[\mathbf{r}_i, \mathbf{r}_2; n-i+1]} \right\} \notag \\
 &= \prod_{i=1}^{n} \left\{ \frac{\exp[-\beta u^{\mathrm{ext}}(j)]\, \Omega[\mathbf{r}_i + \Delta\mathbf{r}(j), \mathbf{r}_2; n-i]}{\Omega[\mathbf{r}_i, \mathbf{r}_2; n-i+1]} \right\}.
-
 \tag{12.4.3}
 \end{align}
 $$
@@ -961,7 +937,6 @@ $$
 
 $$
 P_\mathrm{gen}(\Gamma) \times W(\Gamma) = \frac{\prod_{i=1}^{n} \exp[-\beta u^{\mathrm{ext}}(i)]}{\Omega(\mathbf{r}_1, \mathbf{r}_2; n)} = \frac{\exp[-\beta \mathcal{U}^{\mathrm{ext}}(\Gamma)]}{\Omega(\mathbf{r}_1, \mathbf{r}_2; n)}.
-
 \tag{12.4.4}
 $$
 
@@ -969,7 +944,6 @@ $$
 
 $$
 \mathrm{acc}(o \to n) = \min\left[1, W(n)/W(o)\right].
-
 \tag{12.4.5}
 $$
 
@@ -981,7 +955,6 @@ $$
 
 $$
 P(\mathbf{r}_{12}; n+1) = \int \mathrm{d}\boldsymbol{\Delta}\, P(\mathbf{r}_{12} - \boldsymbol{\Delta}; n)\, p_1(\boldsymbol{\Delta}).
-
 \tag{12.4.6}
 $$
 
@@ -989,7 +962,6 @@ $$
 
 $$
 P(\mathbf{r}_{12}; n) = \int \mathrm{d}\boldsymbol{\Delta}\, P(\mathbf{r}_{12} + \boldsymbol{\Delta}; n+1).
-
 \tag{12.4.7}
 $$
 
@@ -997,7 +969,6 @@ $$
 
 $$
 P(\mathbf{r}_{12}; n) = \frac{\sum_{k=0}^{k \leq (n - r_{12}/a)/2} (-1)^k \binom{n}{k} \left(n - 2k - r_{12}/a\right)^{n-2}}{2^{n+1}(n-2)!\,\pi a^2 r_{12}},
-
 \tag{12.4.8}
 $$
 
@@ -1009,7 +980,6 @@ $$
 \begin{align}
 p_{\mathrm{bond}}(\boldsymbol{\Gamma}) &= \frac{p_1(\boldsymbol{\Gamma})\, P(\mathbf{r} + \boldsymbol{\Gamma} - \mathbf{r}_2; \ell - i)}{\int \mathrm{d}\boldsymbol{\Gamma}'\, p_1(\boldsymbol{\Gamma}')\, P(\mathbf{r} + \boldsymbol{\Gamma}' - \mathbf{r}_2; \ell - i)} \nonumber\\
 &= \frac{p_1(\boldsymbol{\Gamma})\, P(\mathbf{r} + \boldsymbol{\Gamma} - \mathbf{r}_2; \ell - i)}{P(\mathbf{r} - \mathbf{r}_2; \ell - i + 1)}.
-
 \tag{12.4.9}
 \end{align}
 $$
@@ -1034,7 +1004,6 @@ $$
 &= \prod_{i=1}^{\ell} \left(\frac{p_1(\mathbf{r}_i - \mathbf{r}_{i-1})\, P(\mathbf{r}_i - \mathbf{r}_2; \ell - i)}{P(\mathbf{r}_{i-1} - \mathbf{r}_2; \ell - i + 1)}\right) \left(\frac{\exp\{-\beta u^{\mathrm{ext}}[\boldsymbol{\Gamma}_j(i)]\}}{\sum_{j'=1}^{k} \exp\{-\beta u^{\mathrm{ext}}[\boldsymbol{\Gamma}_{j'}(i)]\}}\right) \nonumber\\
 &\qquad \times \left(\frac{\sum_{j'=1}^{k} \exp\{-\beta u^{\mathrm{ext}}[\boldsymbol{\Gamma}_{j'}(i)]\}}{k}\right) \nonumber\\
 &= \frac{\exp[-\beta \mathcal{U}^{\mathrm{ext}}(\boldsymbol{\Gamma}_{\mathrm{total}})] \prod_{i=1}^{\ell} p_1(\mathbf{r}_i - \mathbf{r}_{i-1})}{k^{\ell}\, P(\mathbf{r}_{12}; \ell)}.
-
 \tag{12.4.10}
 \end{align}
 $$
@@ -1180,7 +1149,6 @@ $$
 
 $$
 \beta\mu_B \equiv \beta\mu_\mathrm{id.chain} = \beta\mu_\mathrm{nonid.chain} + \ln\langle \mathcal{W}_\mathrm{nonbonded}\rangle,
-
 \tag{12.6.8}
 $$
 
@@ -1234,7 +1202,6 @@ $$
 
 $$
 p_j^\mathrm{open}(b) = \min(1, \exp[-\beta u_j(b)]).
-
 \tag{12.7.1}
 $$
 
@@ -1278,7 +1245,6 @@ $$
 
 $$
 \mathrm{acc}(o \to n) = \min\left(1, \frac{\exp[-\beta U(n)] W(n)}{\exp[-\beta U(o)] W(o)}\right),
-
 \tag{12.7.3}
 $$
 

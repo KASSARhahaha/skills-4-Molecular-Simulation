@@ -147,15 +147,15 @@ $$
 
 ```
 function bonda(xn,i)
+
   ready=.false.
   while ready == .false. do
-    b = ranor                  % 以键弯曲势给定的玻尔兹曼概率
+    b = ranor                  % 单位球上的单位向量
+    dx1x2=xn(i-1)-xn(i-2)      % 向量 r21 = r_{i-1} - r_{i-2}
+    u12=dx1x2/|dx1x2|          % 归一化向量
+    theta=acos(b*dx1x2)        % 弯曲角 theta
 
-    dx1x2=xn(i-1)-xn(i-2)     % 单位球上的单位向量
-    u12=dx1x2/|dx1x2|          % 向量 r21 = r_{i-1} - r_{i-2}
-    theta=acos(b*dx1x2)        % 归一化向量
-    bu = ubb(theta)            % 弯曲角 theta = arccos(u12_hat . b_hat)
-
+    bu = ubb(theta)            % 键弯曲能量
     if R < exp(-beta*bu) then  % 拒绝检验
       ready=.true.
     endif
@@ -181,16 +181,17 @@ function tors_bonda(xn,i)
     dx1x2=dx1x2/|dx1x2|       % 归一化 r12: u12_hat = r12/|r12|
     dx2x3=xn(i-2)-xn(i-3)     % 向量 r23 = r_{i-2} - r_{i-3}
     dx2x3=dx2x3/|dx2x3|       % 归一化 r23: u23_hat = r23/|r23|
-    theta=acos(b*dx1x2)        % 弯曲角 theta = arccos(u12_hat . b_hat)
+    theta=acos(b*dx1x2)        % 弯曲角 theta
+
     ubb=ubb(theta)             % 键弯曲能量
     xx1=b x dx1x2              % 叉积: xx1 = b_hat x u12_hat
     xx2=dx1x2 x dx2x3          % 叉积: xx2 = u12_hat x u23_hat
     [... 归一化 xx1 和 xx2 ...]
-    phi=acos(xx1*xx2)          % 扭转角 phi = arccos(xx1_hat . xx2_hat)
-    utors=utors(phi)           % 确定扭转能量
-    usum=ubb+utors             % 拒绝检验
+    phi=acos(xx1*xx2)          % 扭转角 phi
 
-    if R < exp(-beta*usum) then
+    utors=utors(phi)           % 确定扭转能量
+    usum=ubb+utors
+    if R < exp(-beta*usum) then  % 拒绝检验
       ready=.true.
     endif
   enddo

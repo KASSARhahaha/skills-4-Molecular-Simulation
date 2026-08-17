@@ -16,7 +16,6 @@ $$
 
 $$
 \frac{\mathrm{d}J(\boldsymbol{\Gamma}_t ; \boldsymbol{\Gamma}_0)}{\mathrm{d}t} = \kappa(\boldsymbol{\Gamma}_t, t)\,J(\boldsymbol{\Gamma}_t ; \boldsymbol{\Gamma}_0),
-
 \tag{B.0.1}
 $$
 
@@ -24,7 +23,6 @@ $$
 
 $$
 \kappa(\boldsymbol{\Gamma}_t, t) \equiv \nabla_{\boldsymbol{\Gamma}} \cdot \dot{\boldsymbol{\Gamma}}.
-
 \tag{B.0.2}
 $$
 
@@ -56,7 +54,6 @@ $$
 
 $$
 \frac{\partial \left(f\sqrt{g}\right)}{\partial t} + \nabla \cdot \left(f\sqrt{g}\,\dot{\boldsymbol{\Gamma}}\right) = 0.
-
 \tag{B.0.3}
 $$
 
@@ -64,7 +61,6 @@ $$
 
 $$
 \langle A \rangle = \frac{\int \mathrm{d}\boldsymbol{\Gamma}\,\sqrt{g(\boldsymbol{\Gamma})}\,A(\boldsymbol{\Gamma})\,f(\boldsymbol{\Gamma})}{\int \mathrm{d}\boldsymbol{\Gamma}\,\sqrt{g(\boldsymbol{\Gamma})}\,f(\boldsymbol{\Gamma})}.
-
 \tag{B.0.4}
 $$
 
@@ -72,7 +68,6 @@ $$
 
 $$
 \Xi(C_1, ..., C_{n_c}) = \int \mathrm{d}\boldsymbol{\Gamma}'\,\sqrt{g(\boldsymbol{\Gamma}')}\;\prod_{k=1}^{n_c}\delta\!\left[\Phi_k(\boldsymbol{\Gamma}') - C_k\right].
-
 \tag{B.0.5}
 $$
 

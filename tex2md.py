@@ -286,6 +286,28 @@ def process_sections(text):
     return text
 
 
+def tighten_math(inner):
+    r"""收紧数学块内部的空行。
+
+    \label{...} 被剥掉后原地留下一个空行。Markdown 在空行处断段，$$ 块被
+    拆成两个 <p>，arithmatex 匹配不到，公式就以 `$$ ... \tag{} $$` 的字面量
+    印在页面上。全站 142 个显示式栽在这上面。
+    """
+    return re.sub(r"\n[ \t]*\n+", "\n", inner).strip()
+
+
+def split_to_aligned(inner):
+    r"""裸 split 换成 aligned。
+
+    equation / \[ \] 的外壳在转换时被剥掉，split 就没有外层环境了。LaTeX 与
+    MathJax 都要求 split 嵌在 equation/align 之类里面，独立使用会报
+    "Erroneous nesting of equation structures"。aligned 是它的独立版，
+    对齐点与换行行为一致。align 分支不需要这个：那里 split 仍是嵌套的。
+    """
+    return inner.replace("\\begin{split}", "\\begin{aligned}") \
+                .replace("\\end{split}", "\\end{aligned}")
+
+
 def process_display_equations(text):
     """Convert display equations, preserving LaTeX math for MathJax."""
     # \begin{equation}...\end{equation} -> $$...$$
@@ -293,7 +315,8 @@ def process_display_equations(text):
         inner = m.group(1)
         inner = process_labels(inner)
         inner = strip_resizebox(inner)
-        return f"\n$$\n{inner.strip()}\n$$\n"
+        inner = split_to_aligned(inner)
+        return f"\n$$\n{tighten_math(inner)}\n$$\n"
 
     text = re.sub(
         r"\\begin\{equation\*?\}(.*?)\\end\{equation\*?\}",
@@ -311,7 +334,7 @@ def process_display_equations(text):
         env = "align" if "\\tag{" in inner else "aligned"
         if env == "aligned":
             inner = re.sub(r"\\nonumber|\\notag", "", inner)
-        return f"\n$$\n\\begin{{{env}}}\n{inner.strip()}\n\\end{{{env}}}\n$$\n"
+        return f"\n$$\n\\begin{{{env}}}\n{tighten_math(inner)}\n\\end{{{env}}}\n$$\n"
 
     text = re.sub(
         r"\\begin\{align\*?\}(.*?)\\end\{align\*?\}",
@@ -323,7 +346,7 @@ def process_display_equations(text):
     # \begin{multline}...\end{multline} -> $$...$$（\tag 原样保留）
     text = re.sub(
         r"\\begin\{multline\*?\}(.*?)\\end\{multline\*?\}",
-        lambda m: "\n$$\n" + process_labels(m.group(1)).strip() + "\n$$\n",
+        lambda m: "\n$$\n" + tighten_math(process_labels(m.group(1))) + "\n$$\n",
         text,
         flags=re.DOTALL,
     )
@@ -333,7 +356,7 @@ def process_display_equations(text):
         inner = m.group(1)
         inner = process_labels(inner)
         inner = re.sub(r"\\nonumber", "", inner)
-        return f"\n$$\n\\begin{{gathered}}\n{inner.strip()}\n\\end{{gathered}}\n$$\n"
+        return f"\n$$\n\\begin{{gathered}}\n{tighten_math(inner)}\n\\end{{gathered}}\n$$\n"
 
     text = re.sub(
         r"\\begin\{gather\*?\}(.*?)\\end\{gather\*?\}",
@@ -346,7 +369,8 @@ def process_display_equations(text):
     def display_replace(m):
         inner = m.group(1)
         inner = strip_resizebox(inner)
-        return f"\n$$\n{inner.strip()}\n$$\n"
+        inner = split_to_aligned(inner)
+        return f"\n$$\n{tighten_math(inner)}\n$$\n"
 
     text = re.sub(r"\\\[(.*?)\\\]", display_replace, text, flags=re.DOTALL)
 

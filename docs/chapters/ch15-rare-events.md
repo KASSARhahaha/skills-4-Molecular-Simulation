@@ -39,7 +39,6 @@ $$
 
 $$
 K \equiv \frac{\langle c_A \rangle}{\langle c_B \rangle} = \frac{k_{B \to A}}{k_{A \to B}},
-
 \tag{15.1.4}
 $$
 
@@ -110,7 +109,10 @@ $$
 接下来，考虑如果在时间$t = 0$突然关闭扰动会发生什么。物种 A 的浓度将弛豫到其平衡值，如式 (2.5.8) 所述，我们发现精确到$\epsilon$的一阶，
 
 $$
-\delta c_A(t) = \beta \epsilon \frac{\int \mathrm{d}\Gamma \exp(-\beta \mathcal{H}_0)(g_A(0) - \langle g_A \rangle) \exp(iL_0 t)(g_A(0) - \langle g_A \rangle)}{\int \mathrm{d}\Gamma \exp(-\beta \mathcal{H}_0)} = \beta \epsilon \langle \Delta g_A(0) \Delta g_A(t) \rangle.
+\begin{aligned}
+\delta c_A(t) &= \beta \epsilon \frac{\int \mathrm{d}\Gamma \exp(-\beta \mathcal{H}_0)(g_A(0) - \langle g_A \rangle) \exp(iL_0 t)(g_A(0) - \langle g_A \rangle)}{\int \mathrm{d}\Gamma \exp(-\beta \mathcal{H}_0)}\\
+&= \beta \epsilon \langle \Delta g_A(0) \Delta g_A(t) \rangle.
+\end{aligned}
 \tag{15.1.9}
 $$
 
@@ -773,7 +775,6 @@ $$
 
     $$
     \langle h_B(x_t) \rangle_{A, H_B(\mathcal{T})} = \frac{\int \mathrm{d}x_0 \mathcal{N}(x_0) h_A(x_0) H_B(x_\mathcal{T}) h_B(x_t)}{\int \mathrm{d}x_0 \mathcal{N}(x_0) h_A(x_0) H_B(x_\mathcal{T})},
-
     \tag{15.4.12}
     $$
 
@@ -786,7 +787,6 @@ $$
     C(t) &= \frac{\langle h_A(x_0) h_B(x_t) H_B(x_T) \rangle}{\langle h_A(x_0) H_B(x_T) \rangle} \times \frac{\langle h_A(x_0) H_B(x_T) \rangle}{\int h_A(x_0) h_B(x'_t) H_B(x_T)} \times C(t') \\
     &= \frac{\langle h_B(x_t) \rangle_{A, H_B(\mathcal{T})}}{\langle h_B(x'_t) \rangle_{A, H_B(\mathcal{T})}} \times C(t').
     \end{aligned}
-
     \tag{15.4.13}
     $$
 
@@ -794,7 +794,6 @@ $$
 
     $$
     k(t) = \frac{\mathrm{d}C(t)}{\mathrm{d}t} = C(t') \frac{1}{\langle h_B(x'_t) \rangle_{A, H_B(\mathcal{T})}} \langle \dot{h}_B(x_t) \rangle_{A, H_B(\mathcal{T})} \equiv \eta(t, t') C(t').
-
     \tag{15.4.14}
     $$
 
@@ -812,7 +811,6 @@ $$
 
     $$
     V(x,y) = \frac{\left[4(1-x^2-y^2)^2 + 2(x^2-2)^2 + (x+y)^2-1\right]^2 + [(x-y)^2-1]^2 - 2}{6}.
-
     \tag{15.4.15}
     $$
 
@@ -834,7 +832,6 @@ $$
 
     $$
     \lambda = 1 - \frac{|\mathbf{r} - \mathbf{r}_B|}{|\mathbf{r}_A - \mathbf{r}_B|},
-
     \tag{15.4.16}
     $$
 
@@ -842,7 +839,6 @@ $$
 
     $$
     C(t) = \int_B \mathrm{d}\lambda \, P(\lambda, t).
-
     \tag{15.4.17}
     $$
 
@@ -850,7 +846,6 @@ $$
 
     $$
     k = \eta(t) C(t).
-
     \tag{15.4.18}
     $$
 
@@ -876,7 +871,6 @@ $$
 
 $$
 W_i(x_t) = \begin{cases} \infty & \lambda(x_t) < \lambda_\mathrm{min}[i] \\ 0 & \lambda_\mathrm{min}[i] < \lambda(x_t) < \lambda_\mathrm{max}[i] \\ \infty & \lambda(x_t) > \lambda_\mathrm{max}[i] \end{cases}.
-
 \tag{15.4.19}
 $$
 
@@ -890,7 +884,6 @@ $$
 
 $$
 \mathcal{N}(A,W) \propto N(x_0) h_A(x_0) \exp[-W(x_t)].
-
 \tag{15.4.20}
 $$
 
@@ -898,7 +891,6 @@ $$
 
 $$
 \mathcal{N}(A,H_B) \propto N(x_0) h_A(x_0) H_B(x_\mathcal{T}).
-
 \tag{15.4.21}
 $$
 
@@ -906,7 +898,6 @@ $$
 
 $$
 \frac{\mathrm{acc}(o \to n)}{\mathrm{acc}(n \to o)} = \frac{\mathcal{N}(n) \alpha(n \to o)}{\mathcal{N}(o) \alpha(o \to n)},
-
 \tag{15.4.22}
 $$
 
@@ -914,7 +905,6 @@ $$
 
 $$
 \frac{\mathrm{acc}(o \to n)}{\mathrm{acc}(n \to o)} = \frac{\mathcal{N}(n)}{\mathcal{N}(o)}.
-
 \tag{15.4.23}
 $$
 
@@ -1010,7 +1000,6 @@ FFS 和 TIS 的第一步涉及计算最初处于“反应物”状态 A 的系�
 
 $$
 k_{A \to 1} = \frac{L}{\sum_{i=1}^{L} t_i^{(A \to 1)}} \equiv \frac{1}{\tau_\mathrm{MFPT}^{(A \to 1)}},
-
 \tag{15.5.1}
 $$
 
@@ -1018,7 +1007,6 @@ $$
 
 $$
 \tau_\mathrm{MFPT}^{(A \to 1)} = \frac{\sum_{i=1}^{L} t_i^{(A \to 1)}}{L}
-
 \tag{15.5.2}
 $$
 
@@ -1028,7 +1016,6 @@ $$
 
 $$
 k_{A \to 2} = \frac{1}{\tau_\mathrm{MFPT}^{(A \to 2)}}.
-
 \tag{15.5.3}
 $$
 
@@ -1036,7 +1023,6 @@ $$
 
 $$
 k_{A \to B} = \frac{1}{\tau_\mathrm{MFPT}^{(A \to B)}}.
-
 \tag{15.5.4}
 $$
 
@@ -1048,7 +1034,6 @@ $$
 
 $$
 \tau_\mathrm{MFPT}^{(A \to B)} = \int_{q_A}^{q_B} \mathrm{d}q \frac{e^{\beta F(q)}}{D(q)} \int_{-\infty}^{q} \mathrm{d}q' e^{-\beta F(q')},
-
 \tag{15.5.5}
 $$
 
@@ -1058,7 +1043,6 @@ $$
 
 $$
 \frac{\partial \rho(q,t)}{\partial t} = \nabla D(q) \rho_\mathrm{eq}(q) \nabla \left(\frac{\rho(q,t)}{\rho_\mathrm{eq}(q)}\right) \equiv -\nabla J,
-
 \tag{15.5.6}
 $$
 
@@ -1066,7 +1050,6 @@ $$
 
 $$
 \rho_\mathrm{eq}(q) \approx \frac{e^{-\beta F(q)}}{\int_\mathrm{basin\ A} \mathrm{d}q \, e^{-\beta F(q)}}.
-
 \tag{15.5.7}
 $$
 
@@ -1074,7 +1057,6 @@ $$
 
 $$
 J = -D(q) \rho_\mathrm{eq} \nabla \left(\frac{\rho(q,t)}{\rho_\mathrm{eq}}\right),
-
 \tag{15.5.8}
 $$
 
@@ -1082,7 +1064,6 @@ $$
 
 $$
 \int_A^B \mathrm{d}q \frac{J}{D(q) \rho_\mathrm{eq}} = -\int \mathrm{d}q \nabla \left(\frac{\rho(q,t)}{\rho_\mathrm{eq}}\right) = 1,
-
 \tag{15.5.9}
 $$
 
@@ -1090,7 +1071,6 @@ $$
 
 $$
 \int_\mathrm{basin\ A} \mathrm{d}q \, e^{-\beta F(q)} \int_A^B \mathrm{d}q \frac{e^{\beta F(q)}}{D(q)} = J^{-1} = \tau_\mathrm{MFPT}^{(A \to B)},
-
 \tag{15.5.10}
 $$
 
@@ -1114,7 +1094,6 @@ $$
 
     $$
     u_\mathrm{rep}(r) = \begin{cases} 1 + 4(r^{-12} - r^{-6}) & r \leq r_\mathrm{rep} \\ 0 & r > r_\mathrm{rep} \end{cases},
-
     \tag{15.5.11}
     $$
 
@@ -1122,7 +1101,6 @@ $$
 
     $$
     u_\mathrm{dw}(r_{ij}) = h \left[1 - \frac{(r_{ij} - w - r_\mathrm{rep})^2}{w^2}\right]^2,
-
     \tag{15.5.12}
     $$
 

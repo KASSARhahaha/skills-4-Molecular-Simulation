@@ -545,8 +545,10 @@ $$
 我们得到
 
 $$
-\frac{\beta F^{\mathrm{ex}}}{N} = \frac{\beta\Delta F^{\mathrm{CM}}}{N} + \frac{\beta F_{\mathrm{Ein}}}{N} + \frac{\ln\rho}{N} - \frac{d}{2N}\ln\left(\frac{\beta\alpha m}{2\pi}\right)
-- \frac{d+1}{2}\frac{\ln N}{N} - \ln\rho + 1 - \frac{\ln 2\pi}{2N} ,
+\begin{aligned}
+\frac{\beta F^{\mathrm{ex}}}{N} ={}& \frac{\beta\Delta F^{\mathrm{CM}}}{N} + \frac{\beta F_{\mathrm{Ein}}}{N} + \frac{\ln\rho}{N} - \frac{d}{2N}\ln\left(\frac{\beta\alpha m}{2\pi}\right)\\
+&- \frac{d+1}{2}\frac{\ln N}{N} - \ln\rho + 1 - \frac{\ln 2\pi}{2N} ,
+\end{aligned}
 \tag{9.2.32}
 $$
 
@@ -606,8 +608,10 @@ $$
 现在让我们考虑空位对恒定压力和温度下 $N$ 粒子系统吉布斯自由能的影响。首先，我们定义 $g_{\mathrm{vac}}$ 为在特定晶格位置引入单个空位引起的 $M$ 粒子晶体吉布斯自由能的变化：
 
 $$
-g_{\mathrm{vac}} \equiv G_{M+1,1}(N,P,T) - G_{M,0}(N,P,T)
-= F_{M+1,1}(V_{M+1,1}) - F_{M,0}(V_{M,0}) + P(V_{M+1,1} - V_{M,0}) .
+\begin{aligned}
+g_{\mathrm{vac}} &\equiv G_{M+1,1}(N,P,T) - G_{M,0}(N,P,T)\\
+&= F_{M+1,1}(V_{M+1,1}) - F_{M,0}(V_{M,0}) + P(V_{M+1,1} - V_{M,0}) .
+\end{aligned}
 \tag{9.3.2}
 $$
 

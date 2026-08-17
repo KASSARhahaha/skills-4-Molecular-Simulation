@@ -760,10 +760,12 @@ $$
 知道了能量分布，我们可以计算给定温度$T$下系统的平均能量$\langle E \rangle$：
 
 $$
-\langle E \rangle = \sum_i E_i P_i
-= \frac{\sum_i E_i \exp(-E_i/k_B T)}{\sum_j \exp(-E_j/k_B T)}
-= -\frac{\partial \ln \sum_i \exp(-E_i/k_B T)}{\partial 1/k_B T}
+\begin{aligned}
+\langle E \rangle &= \sum_i E_i P_i
+= \frac{\sum_i E_i \exp(-E_i/k_B T)}{\sum_j \exp(-E_j/k_B T)}\\
+&= -\frac{\partial \ln \sum_i \exp(-E_i/k_B T)}{\partial 1/k_B T}
 = -\frac{\partial \ln Q}{\partial 1/k_B T},
+\end{aligned}
 \tag{2.2.13}
 $$
 
@@ -873,9 +875,11 @@ $$
 最终结果为：
 
 $$
+\begin{aligned}
 \text{Tr}\exp(-\beta \mathcal{H})
-\approx \frac{1}{h^{dN} N!} \int \mathrm{d}\mathbf{p}^N \mathrm{d}\mathbf{r}^N \exp\left[-\beta\left(\sum_i p_i^2/(2m_i) + \mathcal{U}(\mathbf{r}^N)\right)\right]
-\equiv Q_{\text{classical}},
+&\approx \frac{1}{h^{dN} N!} \int \mathrm{d}\mathbf{p}^N \mathrm{d}\mathbf{r}^N \exp\left[-\beta\left(\sum_i p_i^2/(2m_i) + \mathcal{U}(\mathbf{r}^N)\right)\right]\\
+&\equiv Q_{\text{classical}},
+\end{aligned}
 \tag{2.2.19}
 $$
 
@@ -1083,10 +1087,12 @@ $$
 其中我们使用了公式 (2.1.15) 将熵对粒子数的导数与化学势联系起来。由此可得系统 1 具有能量$E_1$和粒子数$N_1$的概率为：
 
 $$
-\mathcal{P}(E - E_1, V_2, N - N_1) =
+\begin{aligned}
+\mathcal{P}(E - E_1, V_2, N - N_1) &=
 \frac{\Omega(E - E_1, V_2, N - N_1)}
-{\sum_M \sum_j \Omega(E - E_j, V_2, N - M)}
-\propto \exp\left(-\frac{E_1}{k_B T} + \frac{\mu N_1}{k_B T}\right).
+{\sum_M \sum_j \Omega(E - E_j, V_2, N - M)}\\
+&\propto \exp\left(-\frac{E_1}{k_B T} + \frac{\mu N_1}{k_B T}\right).
+\end{aligned}
 \tag{2.3.18}
 $$
 
@@ -1097,9 +1103,11 @@ $$
 经典配分函数现在涉及对系统 1 中所有粒子的求和。由于储库比系统 1 大得多，我们可以将求和上限替换为$\infty$：
 
 $$
-\Xi(\mu, V, T) \equiv \sum_{N=0}^{\infty} \exp(\beta\mu N)
-\frac{1}{\Lambda^{3N} N!} \int \mathrm{d}\mathbf{r}^N \exp\left[-\beta U(\mathbf{r}^N)\right]
-= \sum_{N=0}^{\infty} \exp(\beta\mu N) e^{-\beta F(N, V, T)},
+\begin{aligned}
+\Xi(\mu, V, T) &\equiv \sum_{N=0}^{\infty} \exp(\beta\mu N)
+\frac{1}{\Lambda^{3N} N!} \int \mathrm{d}\mathbf{r}^N \exp\left[-\beta U(\mathbf{r}^N)\right]\\
+&= \sum_{N=0}^{\infty} \exp(\beta\mu N) e^{-\beta F(N, V, T)},
+\end{aligned}
 \tag{2.3.19}
 $$
 

@@ -144,7 +144,10 @@ $$
 现在我们考虑储库尺寸趋于无穷的极限（$V_0 \to \infty$，$M \to \infty$，$(M - N)/V_0 \to \rho$）。在这个极限下，小系统的体积变化不改变储库的压力 $P_R$。换言之，大系统充当小系统的恒压器。在这种情况下，我们可以简化公式 (6.3.5) 和 (6.3.6)。注意在 $V/V_0 \to 0$ 的极限下，我们可以写出
 
 $$
-F_R(M, V_0 - V, T) = F_R(M, V_0, T) + V \left(\frac{\partial F_R(M, V_0 - V, T)}{\partial V}\right)_{V=0} = F_R(M, V_0, T) + P_R V.
+\begin{aligned}
+F_R(M, V_0 - V, T) &= F_R(M, V_0, T) + V \left(\frac{\partial F_R(M, V_0 - V, T)}{\partial V}\right)_{V=0}\\
+&= F_R(M, V_0, T) + P_R V.
+\end{aligned}
 \tag{6.3.7}
 $$
 
@@ -172,7 +175,10 @@ $$
 公式 (6.3.9) 是恒定-$NPT$ Monte Carlo 模拟的出发点。其核心思想是，找到小系统具有体积 $V$ 且 $N$ 个原子处于特定构型（由 $\mathbf{s}^N$ 指定）的概率密度为
 
 $$
-\mathcal{N}(V; \mathbf{s}^N) \propto V^N \exp(-\beta PV) \exp[-\beta \mathcal{U}(\mathbf{s}^N; L)] = \exp\{-\beta[\mathcal{U}(\mathbf{s}^N, V) + PV - N\beta^{-1} \ln V]\}.
+\begin{aligned}
+\mathcal{N}(V; \mathbf{s}^N) &\propto V^N \exp(-\beta PV) \exp[-\beta \mathcal{U}(\mathbf{s}^N; L)]\\
+&= \exp\{-\beta[\mathcal{U}(\mathbf{s}^N, V) + PV - N\beta^{-1} \ln V]\}.
+\end{aligned}
 \tag{6.3.11}
 $$
 
@@ -181,7 +187,10 @@ $$
 在恒定-$NPT$ Monte Carlo 方法中，$V$ 被简单地视为一个额外的坐标，$V$ 中的试探移动必须满足与 $\mathbf{s}$ 中的试探移动相同的规则；特别是，我们应当保持底层马尔可夫链的微观可逆性。假设我们的试探移动由从体积 $V$ 变为 $V' = V + \Delta V$ 的尝试组成，其中 $\Delta V$ 是在区间 $[-\Delta V_{\max}, +\Delta V_{\max}]$ 上均匀分布的随机数。在 Metropolis 方案中，这样一个随机的体积变化移动将以如下概率被接受
 
 $$
-\text{acc}(o \to n) = \min\left(1, \exp\{-\beta[\mathcal{U}(\mathbf{s}^N, V') - \mathcal{U}(\mathbf{s}^N, V) + P(V' - V) - N\beta^{-1} \ln(V'/V)]\}\right).
+\begin{aligned}
+\text{acc}(o \to n) = \min\Bigl(1, \exp\bigl\{-\beta\bigl[&\mathcal{U}(\mathbf{s}^N, V') - \mathcal{U}(\mathbf{s}^N, V)\\
+&+ P(V' - V) - N\beta^{-1} \ln(V'/V)\bigr]\bigr\}\Bigr).
+\end{aligned}
 \tag{6.3.12}
 $$
 
@@ -434,7 +443,10 @@ $$
 我们将允许系统和储库交换粒子（参见图 6.7）。在 $V_0 \to \infty$、$M \to \infty$、$(M - N)/V_0 \to \rho$ 的极限下，我们可以写出
 
 $$
-F_R(M - N, V_0, T) = F_R(M, V_0, T) + N \left(\frac{\partial F_R(M - N, V_0, T)}{\partial N}\right)_{N=0} = F_R(M, V_0, T) - \mu N.
+\begin{aligned}
+F_R(M - N, V_0, T) &= F_R(M, V_0, T) + N \left(\frac{\partial F_R(M - N, V_0, T)}{\partial N}\right)_{N=0}\\
+&= F_R(M, V_0, T) - \mu N.
+\end{aligned}
 \tag{6.5.3}
 $$
 
@@ -651,14 +663,22 @@ $$
 为了讨论具有影响分子间相互作用的内自由度的分子体系的巨正则 MC，将处于同一内部状态 $i$ 的所有分子视为具有分子内能 $\epsilon_i$ 的独立物种是有用的。由于假设包含 $M$ 个分子的理想气体储库处于热平衡，状态 $i$ 的副本数为 $N_i^0 = M e^{-\beta\epsilon_i}/q(T)$，其中 $q(T) \equiv \sum_i e^{-\beta\epsilon_i}$ 表示分子内配分函数。我们可以将组合系统的配分函数写为
 
 $$
-Q(M, V_0, V, T) = \frac{(V_0 q(T))^M}{\Lambda^{3M} \prod_i N_i^0!} \times \sum_{\{N_i\}=0}^{\infty} \prod_i \frac{V^{N_i} N_i^0!}{V_0^{N_i} (N_i^0 - N_i)! N_i!} \int \mathrm{d}\mathbf{s}^N \exp[-\beta \mathcal{U}(\mathbf{s}^N; L)].
+\begin{aligned}
+Q(M, V_0, V, T) = \frac{(V_0 q(T))^M}{\Lambda^{3M} \prod_i N_i^0!} \times{}
+&\sum_{\{N_i\}=0}^{\infty} \prod_i \frac{V^{N_i} N_i^0!}{V_0^{N_i} (N_i^0 - N_i)! N_i!}\\
+&\times \int \mathrm{d}\mathbf{s}^N \exp[-\beta \mathcal{U}(\mathbf{s}^N; L)].
+\end{aligned}
 \tag{6.5.18}
 $$
 
 在公式 (6.5.18) 中，我们省略了一个因子 $\exp[-\beta \sum_i N_i^0 \epsilon_i]$，因为它不依赖于分子是在储库中还是系统中。现在我们利用当 $M \to \infty$ 时 $N_i^0 \gg N_i$ 这一事实，因此
 
 $$
-Q(M, V_0, V, T) = \frac{(V_0 q(T))^M}{\Lambda^{3M} \prod_i N_i^0!} \times \sum_{\{N_i\}=0}^{\infty} \prod_i \frac{V^{N_i} (N_i^0/V_0)^{N_i}}{N_i!} \int \mathrm{d}\mathbf{s}^N \exp[-\beta \mathcal{U}(\mathbf{s}^N; L)].
+\begin{aligned}
+Q(M, V_0, V, T) = \frac{(V_0 q(T))^M}{\Lambda^{3M} \prod_i N_i^0!} \times{}
+&\sum_{\{N_i\}=0}^{\infty} \prod_i \frac{V^{N_i} (N_i^0/V_0)^{N_i}}{N_i!}\\
+&\times \int \mathrm{d}\mathbf{s}^N \exp[-\beta \mathcal{U}(\mathbf{s}^N; L)].
+\end{aligned}
 \tag{6.5.19}
 $$
 

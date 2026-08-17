@@ -10,7 +10,6 @@
 
 $$
 \mathrm{d}S^I = \frac{1}{T^I}\mathrm{d}U^I - \sum_i \frac{\mu_i^I}{T^I}\mathrm{d}N_i^I .
-
 \tag{D.1.1}
 $$
 
@@ -18,7 +17,6 @@ $$
 
 $$
 \mathrm{d}S_{\mathrm{total}} = \mathrm{d}S^I + \mathrm{d}S^{II} = \left(\frac{1}{T^I} - \frac{1}{T^{II}}\right)\mathrm{d}U^I - \sum_i \left(\frac{\mu_i^I}{T^I} - \frac{\mu_i^{II}}{T^{II}}\right)\mathrm{d}N_i^I .
-
 \tag{D.1.2}
 $$
 
@@ -30,7 +28,6 @@ $$
 
 $$
 \dot{S} = \left[\frac{\partial 1/T(x)}{\partial x}j_q - \sum_i \frac{\partial \mu_i(x)/T(x)}{\partial x}j_i\right]\mathrm{d}x \, A ,
-
 \tag{D.1.3}
 $$
 
@@ -38,7 +35,6 @@ $$
 
 $$
 \sigma = \frac{\partial 1/T(x)}{\partial x}j_q - \sum_i \frac{\partial \mu_i(x)/T(x)}{\partial x}j_i .
-
 \tag{D.1.4}
 $$
 
@@ -46,7 +42,6 @@ $$
 
 $$
 \sigma = \mathbf{J}_q \cdot \nabla \frac{1}{T} - \frac{1}{T}\sum_i \mathbf{J}_i \cdot \nabla \frac{\mu_i}{T} - \mathbf{F}_i .
-
 \tag{D.1.5}
 $$
 
@@ -54,7 +49,6 @@ $$
 
 $$
 \left.\frac{\partial \beta \mu_i}{\partial \beta}\right|_{P,\{N_j\}} = h_i ,
-
 \tag{D.1.6}
 $$
 
@@ -62,7 +56,6 @@ $$
 
 $$
 \sigma = \left(\mathbf{J}_q - \sum_i \mathbf{J}_i h_i\right) \cdot \nabla \frac{1}{T} - \frac{1}{T}\sum_i \mathbf{J}_i \cdot \left(\nabla \mu_i\right)_T - \mathbf{F}_i ,
-
 \tag{D.1.7}
 $$
 
@@ -70,7 +63,6 @@ $$
 
 $$
 \mathbf{J}'_q \equiv \mathbf{J}_q - \sum_i \mathbf{J}_i h_i .
-
 \tag{D.1.8}
 $$
 
@@ -78,7 +70,6 @@ $$
 
 $$
 \mathbf{J}_h \equiv \sum_i \mathbf{J}_i h_i .
-
 \tag{D.1.9}
 $$
 
@@ -98,7 +89,6 @@ $$
 
 $$
 \sigma = \mathbf{J}'_q \cdot \nabla \frac{1}{T} - \frac{1}{T}\sum_i \mathbf{J}_i \cdot \left[\left(\nabla \mu_i\right)_T - \mathbf{F}_i\right] ,
-
 \tag{D.1.10}
 $$
 
@@ -110,7 +100,6 @@ $$
 
 $$
 S = k_B \ln \Omega .
-
 \tag{D.2.1}
 $$
 
@@ -118,7 +107,6 @@ $$
 
 $$
 \left.\frac{\partial S_t}{\partial A_i}\right|_{\mathrm{eq}} = 0 ,
-
 \tag{D.2.2}
 $$
 
@@ -126,7 +114,6 @@ $$
 
 $$
 \left.\frac{\partial S_t}{\partial A_i^{(2)}}\right|_{\mathrm{eq}} = \left.\frac{\partial S^{(2)}}{\partial A_i^{(2)}}\right|_{\mathrm{eq}} - \left.\frac{\partial S^{(1)}}{\partial A_i^{(1)}}\right|_{\mathrm{eq}} = 0 ,
-
 \tag{D.2.3}
 $$
 
@@ -134,7 +121,6 @@ $$
 
 $$
 S = S_0 + \frac{1}{2}\sum_{i,j} \left.\frac{\partial^2 S_t}{\partial A_i \partial A_j}\right|_{\mathrm{eq}} \alpha_i \alpha_j ,
-
 \tag{D.2.4}
 $$
 
@@ -142,7 +128,6 @@ $$
 
 $$
 g_{ij} \equiv -\left.\frac{\partial^2 S_t}{\partial A_i \partial A_j}\right|_{\mathrm{eq}} .
-
 \tag{D.2.5}
 $$
 
@@ -150,7 +135,6 @@ $$
 
 $$
 P(\{\alpha_1, \alpha_2, \cdots, \alpha_k\}) \propto \exp\!\left(-\frac{1}{2k_B}\sum_{i,j} g_{ij}\alpha_i \alpha_j\right) .
-
 \tag{D.2.6}
 $$
 
@@ -158,7 +142,6 @@ $$
 
 $$
 X_i = -\left.\frac{\partial}{\partial \alpha_i}\frac{1}{2}\sum_{j} g_{ij}\alpha_i \alpha_j \right|_{\mathrm{eq}} = -\sum_j g_{ij}\alpha_j .
-
 \tag{D.2.7}
 $$
 
@@ -166,7 +149,6 @@ $$
 
 $$
 J_i = \sum_j L_{ij} X_j .
-
 \tag{D.2.8}
 $$
 
@@ -176,7 +158,6 @@ $$
 
 $$
 \dot{S} = -\sum_{i,j} g_{ij}\dot{\alpha}_i \alpha_j = \sum_i X_i \cdot \dot{\alpha}_i = \sum_{i,j} L_{ij} X_i X_j .
-
 \tag{D.2.9}
 $$
 
@@ -186,7 +167,6 @@ $$
 
 $$
 \langle \alpha_i X_j \rangle = -k_B \delta_{ij} ,
-
 \tag{D.3.1}
 $$
 
@@ -201,7 +181,6 @@ $$
 
 $$
 \langle \alpha_j(t) J_i(t) \rangle = -k_B L_{ij} .
-
 \tag{D.3.3}
 $$
 
@@ -209,7 +188,6 @@ $$
 
 $$
 \int_0^\infty \mathrm{d}t\, \langle \alpha_j(0) \dot{J}_i(t) \rangle = -k_B L_{ij} ,
-
 \tag{D.3.4}
 $$
 
@@ -217,7 +195,6 @@ $$
 
 $$
 \int_0^\infty \mathrm{d}t\, \langle \dot{\alpha}_j(0) J_i(t) \rangle = +k_B L_{ij} ,
-
 \tag{D.3.5}
 $$
 
@@ -225,7 +202,6 @@ $$
 
 $$
 \int_0^\infty \mathrm{d}t\, \langle J_j(0) J_i(t) \rangle = k_B L_{ij} .
-
 \tag{D.3.6}
 $$
 
@@ -239,7 +215,6 @@ $$
 
 $$
 L_{ij} = L_{ji} .
-
 \tag{D.3.7}
 $$
 

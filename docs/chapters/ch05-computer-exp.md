@@ -173,7 +173,10 @@ $$
 接下来，我们注意到势能$U$依赖于系统的体积，因为真实位置（$\mathbf{r}_i = \mathbf{s}_i L$）随$L$缩放。但在某些情况下，势能可能还有一部分依赖于$V$但不依赖于粒子坐标的贡献[[130]](references.md#ref-130)。这种情况发生在例如势能包含一个依赖于密度但不依赖于周期盒内粒子坐标、而依赖于不同周期盒中心之间距离的项时。利用链式法则，我们可以写出
 
 $$
-P_{\mathrm{exc}} = -\left\langle \sum_{i=1}^{N} \frac{\partial U}{\partial \mathbf{r}_i} \frac{\partial \mathbf{r}_i}{\partial V} + \left( \frac{\partial U}{\partial V} \right)_{\mathbf{r}_i} \right\rangle_{N,T} = \frac{1}{\mathrm{d}V} \left\langle \sum_{i=1}^{N} \mathbf{F}_i \cdot \mathbf{r}_i \right\rangle_{N,T} - \left\langle \left( \frac{\partial U}{\partial V} \right)_{\mathbf{r}_i} \right\rangle_{N,T},
+\begin{aligned}
+P_{\mathrm{exc}} &= -\left\langle \sum_{i=1}^{N} \frac{\partial U}{\partial \mathbf{r}_i} \frac{\partial \mathbf{r}_i}{\partial V} + \left( \frac{\partial U}{\partial V} \right)_{\mathbf{r}_i} \right\rangle_{N,T}\\
+&= \frac{1}{\mathrm{d}V} \left\langle \sum_{i=1}^{N} \mathbf{F}_i \cdot \mathbf{r}_i \right\rangle_{N,T} - \left\langle \left( \frac{\partial U}{\partial V} \right)_{\mathbf{r}_i} \right\rangle_{N,T},
+\end{aligned}
 \tag{5.1.16}
 $$
 
@@ -336,7 +339,11 @@ $$
 现在我们关注连续的两两可加势能。[^4] 对于连续势能，我们可以写出
 
 $$
-\left( \frac{\partial U(\mathbf{s}^N; \lambda W, H/\lambda)}{\partial \lambda} \right)_{\lambda=1} = \sum_{i=1}^{N} \left[ \frac{\partial U(\mathbf{r}^N)}{\partial x_i} x_i - \frac{\partial U(\mathbf{r}^N)}{\partial z_i} z_i \right] = -\sum_{i=1}^{N} \left( f_{i;x} x_i - f_{i;z} z_i \right),
+\begin{aligned}
+\left( \frac{\partial U(\mathbf{s}^N; \lambda W, H/\lambda)}{\partial \lambda} \right)_{\lambda=1}
+&= \sum_{i=1}^{N} \left[ \frac{\partial U(\mathbf{r}^N)}{\partial x_i} x_i - \frac{\partial U(\mathbf{r}^N)}{\partial z_i} z_i \right]\\
+&= -\sum_{i=1}^{N} \left( f_{i;x} x_i - f_{i;z} z_i \right),
+\end{aligned}
 \tag{5.1.32}
 $$
 
@@ -1363,7 +1370,8 @@ $$
 \begin{align}
 \left\langle \overline{C_A(\tau)}^2\right\rangle - \left\langle \overline{C_A(\tau)}\right\rangle^2
 &= \frac{1}{\tau_0^2}\int_0^{\tau_0}\!\!\int_0^{\tau_0}\mathrm{d}t'\mathrm{d}t''\left\langle A(t'-t'')A(0)\right\rangle^2 \nonumber\\
-&\quad + \frac{1}{\tau_0^2}\int_0^{\tau_0}\!\!\int_0^{\tau_0}\mathrm{d}t'\mathrm{d}t''\left\langle A(t'-t''-\tau)A(0)\right\rangle\left\langle A(t'-t''+\tau)A(0)\right\rangle .
+&\quad + \frac{1}{\tau_0^2}\int_0^{\tau_0}\!\!\int_0^{\tau_0}\mathrm{d}t'\mathrm{d}t''\nonumber\\
+&\qquad\quad \left\langle A(t'-t''-\tau)A(0)\right\rangle\left\langle A(t'-t''+\tau)A(0)\right\rangle .
 \tag{5.3.12}
 \end{align}
 $$
@@ -1371,7 +1379,10 @@ $$
 由于我们考虑的是模拟长度 $\tau_0$ 远大于 $A$ 涨落特征衰减时间的情形，可以写成
 
 $$
-\left\langle \overline{C_A(\tau)}^2\right\rangle - \left\langle \overline{C_A(\tau)}\right\rangle^2 = \frac{1}{\tau_0}\int_{-\infty}^{\infty}\mathrm{d}x\left[\langle A(x)A(0)\rangle^2 + \langle A(x-\tau)A(0)\rangle\langle A(x+\tau)A(0)\rangle\right],
+\begin{aligned}
+\left\langle \overline{C_A(\tau)}^2\right\rangle - \left\langle \overline{C_A(\tau)}\right\rangle^2 &= \frac{1}{\tau_0}\int_{-\infty}^{\infty}\mathrm{d}x\left[\langle A(x)A(0)\rangle^2\right.\\
+&\qquad\quad \left. + \langle A(x-\tau)A(0)\rangle\langle A(x+\tau)A(0)\rangle\right],
+\end{aligned}
 \tag{5.3.13}
 $$
 

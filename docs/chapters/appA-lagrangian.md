@@ -329,7 +329,10 @@ $$
 从式 (A.4.1) 和坐标$q$、$p$的哈密顿运动方程可得：
 
 $$
-\dot{Q} = \left(\frac{\partial Q(q,p)}{\partial q}\right)\dot{q} + \left(\frac{\partial Q(q,p)}{\partial p}\right)\dot{p} = \left(\frac{\partial Q(q,p)}{\partial q}\right)\left(\frac{\partial H(q,p)}{\partial p}\right) - \left(\frac{\partial Q(q,p)}{\partial p}\right)\left(\frac{\partial H(q,p)}{\partial q}\right).
+\begin{aligned}
+\dot{Q} &= \left(\frac{\partial Q(q,p)}{\partial q}\right)\dot{q} + \left(\frac{\partial Q(q,p)}{\partial p}\right)\dot{p}\\
+&= \left(\frac{\partial Q(q,p)}{\partial q}\right)\left(\frac{\partial H(q,p)}{\partial p}\right) - \left(\frac{\partial Q(q,p)}{\partial p}\right)\left(\frac{\partial H(q,p)}{\partial q}\right).
+\end{aligned}
 $$
 
 利用式 (A.4.3)，我们可以写：

@@ -159,7 +159,11 @@ $$
 我们可以用标准方法计算由此产生的电流。注意到我们可以将式 (F.2.1) 中的$H'$写为
 
 $$
-\mathcal{H}' = \mathcal{H}_0 - \sum_{i=1}^{N} \frac{e_i}{c m_i} \mathbf{p}_i \cdot \mathbf{A} + \mathcal{O}(A^2) = \mathcal{H}_0 - \frac{\mathbf{A}}{c} \int \mathrm{d}\mathbf{r} \sum_{i=1}^{N} \frac{e_i}{m_i} \mathbf{p}_i \, \delta(\mathbf{r}_i - \mathbf{r}) = \mathcal{H}_0 - \frac{\mathbf{A}}{c} \int \mathrm{d}\mathbf{r} \, \mathbf{j}(\mathbf{r}),
+\begin{aligned}
+\mathcal{H}' &= \mathcal{H}_0 - \sum_{i=1}^{N} \frac{e_i}{c m_i} \mathbf{p}_i \cdot \mathbf{A} + \mathcal{O}(A^2)\\
+&= \mathcal{H}_0 - \frac{\mathbf{A}}{c} \int \mathrm{d}\mathbf{r} \sum_{i=1}^{N} \frac{e_i}{m_i} \mathbf{p}_i \, \delta(\mathbf{r}_i - \mathbf{r})\\
+&= \mathcal{H}_0 - \frac{\mathbf{A}}{c} \int \mathrm{d}\mathbf{r} \, \mathbf{j}(\mathbf{r}),
+\end{aligned}
 \tag{F.2.4}
 $$
 

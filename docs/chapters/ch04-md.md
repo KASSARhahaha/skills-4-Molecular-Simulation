@@ -702,7 +702,10 @@ $$
 接下来，我们将$\exp(iL_r \Delta t)$应用于上一步的结果：
 
 $$
-e^{iL_r \Delta t}f\left[\mathbf{p}(0)+\frac{\Delta t}{2}N\dot{\mathbf{p}}(0), \mathbf{r}^N(0)\right] = f\left[\mathbf{p}(0)+\frac{\Delta t}{2}N\dot{\mathbf{p}}(0), [\mathbf{r}(0)+\Delta t\dot{\mathbf{r}}(\Delta t/2)]^N\right],
+\begin{aligned}
+e^{iL_r \Delta t}f\left[\mathbf{p}(0)+\frac{\Delta t}{2}N\dot{\mathbf{p}}(0), \mathbf{r}^N(0)\right]\\
+\qquad = f\left[\mathbf{p}(0)+\frac{\Delta t}{2}N\dot{\mathbf{p}}(0), [\mathbf{r}(0)+\Delta t\dot{\mathbf{r}}(\Delta t/2)]^N\right],
+\end{aligned}
 $$
 
 最后，我们再次应用$\exp(iL_p \Delta t/2)$，得到[^7]

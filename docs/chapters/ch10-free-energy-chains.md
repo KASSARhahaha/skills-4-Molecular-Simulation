@@ -53,8 +53,10 @@ $$
 这些限制不是本质性的，但它们简化了记号（尽管不影响计算效率）。因此，对于我们考虑的简单模型，$\Omega^{\mathrm{id}} = k^{\ell-1}$。使用这个理想链作为我们的参考系统，超额化学势的表达式变为
 
 $$
-\beta \mu_{\mathrm{ex}} = -\ln \frac{Q_{\mathrm{chain}}(N+1, V, T)}{Q(N, V, T) Q^{\mathrm{ideal}}(1, V, T)}
-= -\ln \left\langle \exp[-\beta \Delta \mathcal{U}(\mathbf{q}^N, \Gamma^N; \mathbf{q}^{N+1}, \Gamma^{N+1})] \right\rangle ,
+\begin{aligned}
+\beta \mu_{\mathrm{ex}} &= -\ln \frac{Q_{\mathrm{chain}}(N+1, V, T)}{Q(N, V, T) Q^{\mathrm{ideal}}(1, V, T)}\\
+&= -\ln \left\langle \exp[-\beta \Delta \mathcal{U}(\mathbf{q}^N, \Gamma^N; \mathbf{q}^{N+1}, \Gamma^{N+1})] \right\rangle ,
+\end{aligned}
 \tag{10.2.2}
 $$
 

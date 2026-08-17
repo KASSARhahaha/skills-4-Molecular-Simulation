@@ -680,7 +680,10 @@ $$
 接下来，我们考虑恒定 $N, P, T$ 下的粒子插入法（参见[[334,335]](references.md#ref-334)）。我们从吉布斯自由能的表达式出发：
 
 $$
-G(N, P, T) = -k_BT \ln \left[ \int \mathrm{d}V\, V^N \exp(-\beta PV) \frac{1}{\Lambda^{dN} N!} \int \mathrm{d}\mathbf{s}^N \exp\left(-\beta U(\mathbf{s}^N; V)\right) \right].
+\begin{aligned}
+G(N, P, T) = -k_BT \ln \Biggl[ &\int \mathrm{d}V\, V^N \exp(-\beta PV) \frac{1}{\Lambda^{dN} N!}\\
+&\times \int \mathrm{d}\mathbf{s}^N \exp\left(-\beta U(\mathbf{s}^N; V)\right) \Biggr].
+\end{aligned}
 $$
 
 则 $\mu = G(N+1, P, T) - G(N, P, T)$ 为
@@ -987,12 +990,14 @@ $$
 最后，我们对所有$k$求和，并对与系统 0 相关的项做同样的处理。然后我们得到：
 
 $$
-\sigma^2_{\beta\Delta F} =
+\begin{aligned}
+\sigma^2_{\beta\Delta F} ={}&
 \frac{\langle [w \exp(-\beta U_1)]^2\rangle_0 - \langle w \exp(-\beta U_1)\rangle_0^2}
-{n_0 \langle w \exp(-\beta U_1)\rangle_0^2}
-+
+{n_0 \langle w \exp(-\beta U_1)\rangle_0^2}\\
+&+
 \frac{\langle [w \exp(-\beta U_0)]^2\rangle_1 - \langle w \exp(-\beta U_0)\rangle_1^2}
 {n_1 \langle w \exp(-\beta U_0)\rangle_1^2}
+\end{aligned}
 $$
 
 $$
@@ -1019,9 +1024,11 @@ $$
 接下来，我们在约束 (8.6.15) 下对$w$最小化$\beta\Delta F$的统计误差。使用拉格朗日乘子法最为方便：
 
 $$
-0 = \left[\frac{Z_0}{n_0}\exp(-\beta \mathcal{U}_1) + \frac{Z_1}{n_1}\exp(-\beta \mathcal{U}_0)\right]
-\exp[-\beta(\mathcal{U}_0 + \mathcal{U}_1)]\, w\, \delta w
-- \lambda \exp[-\beta(\mathcal{U}_0 + \mathcal{U}_1)]\, \delta w
+\begin{aligned}
+0 ={}& \left[\frac{Z_0}{n_0}\exp(-\beta \mathcal{U}_1) + \frac{Z_1}{n_1}\exp(-\beta \mathcal{U}_0)\right]
+\exp[-\beta(\mathcal{U}_0 + \mathcal{U}_1)]\, w\, \delta w\\
+&- \lambda \exp[-\beta(\mathcal{U}_0 + \mathcal{U}_1)]\, \delta w
+\end{aligned}
 \tag{8.6.16}
 $$
 

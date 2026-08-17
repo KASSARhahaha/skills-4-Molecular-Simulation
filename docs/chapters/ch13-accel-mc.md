@@ -34,7 +34,6 @@
 
 $$
 P\left(\{\mathbf{r}^N\}_1, \{\mathbf{r}^N\}_2, \cdots, \{\mathbf{r}^N\}_n\right) = \frac{\prod_{i=1}^{n} e^{-\beta_i U\left(\{\mathbf{r}^N\}_i\right)}}{\prod_{i=1}^{n} Z(N, V, T_i)}.
-
 \tag{13.1.1}
 $$
 
@@ -58,7 +57,6 @@ $$
 &\frac{\mathrm{acc}[(\mathbf{i}, \beta_i), (\mathbf{j}, \beta_j) \to (\mathbf{j}, \beta_i), (\mathbf{i}, \beta_j)]}{\mathrm{acc}[(\mathbf{i}, \beta_j), (\mathbf{j}, \beta_i) \to (\mathbf{i}, \beta_i), (\mathbf{j}, \beta_j)]} \notag \\
 &\quad = \frac{\exp\left[-\beta_i U(\mathbf{j}) - \beta_j U(\mathbf{i})\right]}{\exp\left[-\beta_i U(\mathbf{i}) - \beta_j U(\mathbf{j})\right]} \notag \\
 &\quad = \exp\left[(\beta_i - \beta_j)(U(\mathbf{i}) - U(\mathbf{j}))\right],
-
 \tag{13.1.2}
 \end{align}
 $$
@@ -85,7 +83,6 @@ $$
     5 \times (1 + \sin(2\pi x)) & 1.75 \le x \le 2 \\
     \infty & x > 2
     \end{cases}
-
     \tag{13.1.3}
     $$
 
@@ -126,7 +123,6 @@ $$
 
 $$
 \sqrt{k_B T^2 C_V} \approx C_V \Delta T
-
 \tag{13.1.6}
 $$
 
@@ -134,7 +130,6 @@ $$
 
 $$
 \frac{\Delta T}{T} \approx \sqrt{k_B / C_V}.
-
 \tag{13.1.7}
 $$
 
@@ -144,7 +139,6 @@ $$
 
 $$
 \frac{\mathrm{acc}[(\mathbf{i}, \lambda_i), (\mathbf{j}, \lambda_j) \to (\mathbf{j}, \lambda_i), (\mathbf{i}, \lambda_j)]}{\mathrm{acc}[(\mathbf{i}, \lambda_j), (\mathbf{j}, \lambda_i) \to (\mathbf{i}, \lambda_i), (\mathbf{j}, \lambda_j)]} = \frac{w(\mathbf{i}; \lambda_j) w(\mathbf{j}; \lambda_i)}{w(\mathbf{i}; \lambda_i) w(\mathbf{j}; \lambda_j)}.
-
 \tag{13.1.8}
 $$
 
@@ -218,7 +212,6 @@ $$
 
 $$
 P\left(\mathbf{r}^N\right) = \frac{e^{-\beta U\left(\mathbf{r}^N\right)}}{Z(N, V, T)}.
-
 \tag{13.1.9}
 $$
 
@@ -226,7 +219,6 @@ $$
 
 $$
 Z(N, V, \{T\}) \equiv \sum_{i=1}^{n} e^{\eta_i} Z(N, V, T_i).
-
 \tag{13.1.10}
 $$
 
@@ -234,7 +226,6 @@ $$
 
 $$
 P\left(\mathbf{r}^N; T_i\right) = \frac{e^{\eta_i} e^{-\beta_i U\left(\mathbf{r}^N\right)}}{\sum_{j=1}^{n} e^{\eta_j} Z(N, V, T_j)}.
-
 \tag{13.1.11}
 $$
 
@@ -244,7 +235,6 @@ $$
 
 $$
 \frac{\mathrm{acc}(i \to j)}{\mathrm{acc}(j \to i)} = \exp\left(\eta_j - \eta_i\right) \exp\left[-(\beta_j - \beta_i) U\left(\mathbf{r}^N\right)\right]
-
 \tag{13.1.12}
 $$
 
@@ -258,7 +248,6 @@ $$
 
 $$
 P(T_i) = \frac{e^{\eta_i} Z(N, V, T_i)}{\sum_{j=1}^{n} e^{\eta_j} Z(N, V, T_j)} = \frac{e^{\eta_i - \beta_i F(N, V, T_i)}}{\sum_{j=1}^{n} e^{\eta_j - \beta_j F(N, V, T)}}.
-
 \tag{13.1.13}
 $$
 
@@ -268,7 +257,6 @@ $$
 
 $$
 \left(\frac{\partial \beta F(N, V, T)}{\partial \beta}\right)_{N, V} = E(N, V, T),
-
 \tag{13.1.14}
 $$
 
@@ -276,7 +264,6 @@ $$
 
 $$
 \frac{P(T_i)}{P(T_j)} = e^{(\eta_i - \eta_j)} e^{-\beta_i F(N, V, T_i) + \beta_j F(N, V, T_j)}.
-
 \tag{13.1.15}
 $$
 
@@ -292,7 +279,6 @@ Escobedo 及其合作者比较了扩展系综中优化采样的不同策略，�
 
 $$
 \mathrm{acc}(o \to n) = \min(1, \exp[-\beta \Delta U]).
-
 \tag{13.2.1}
 $$
 
@@ -300,7 +286,6 @@ $$
 
 $$
 \mathrm{acc}'(o \to n) = \int \mathrm{d}\delta \, P(\delta) \, \mathrm{acc}(\delta; o \to n).
-
 \tag{13.2.2}
 $$
 
@@ -308,7 +293,6 @@ $$
 
 $$
 \frac{\mathrm{acc}'(o \to n)}{\mathrm{acc}'(n \to o)} = \exp[-\beta \Delta U],
-
 \tag{13.2.3}
 $$
 
@@ -316,7 +300,6 @@ $$
 
 $$
 \int \mathrm{d}\delta \, P(\delta) \, \mathrm{acc}(\delta; o \to n) = \exp[-\beta \Delta U] \int \mathrm{d}\delta \, P(\delta) \, \mathrm{acc}(-\delta; n \to o).
-
 \tag{13.2.4}
 $$
 
@@ -324,7 +307,6 @@ $$
 
 $$
 \mathrm{acc}(\delta; o \to n) = \min\left\{1, \exp\left[-\beta\delta - (\beta\sigma)^2/2\right]\right\}
-
 \tag{13.2.5}
 $$
 
@@ -346,7 +328,6 @@ $$
 
 $$
 e^{-\beta U(\{i\})} P\left(\mathbf{p}^N(0)\right) \mathrm{acc}(i \to f) = e^{-\beta U(\{f\})} P\left(-\mathbf{p}^N(t)\right) \mathrm{acc}(f \to i).
-
 \tag{13.3.1}
 $$
 
@@ -354,7 +335,6 @@ $$
 
 $$
 \frac{\mathrm{acc}(i \to f)}{\mathrm{acc}(f \to i)} = e^{-\beta[U(\{f\}) - U(\{i\})]} \frac{P\left(\mathbf{p}^N(t)\right)}{P\left(\mathbf{p}^N(0)\right)}.
-
 \tag{13.3.2}
 $$
 
@@ -362,7 +342,6 @@ $$
 
 $$
 \frac{\mathrm{acc}(i \to f)}{\mathrm{acc}(f \to i)} = \frac{e^{+\beta K(\{f\})} P\left(\mathbf{p}^N(t)\right)}{e^{+\beta K(\{i\})} P\left(\mathbf{p}^N(0)\right)}
-
 \tag{13.3.3}
 $$
 
@@ -378,7 +357,6 @@ $$
 
 $$
 p_1(t) = R \exp(-Rt).
-
 \tag{13.3.4}
 $$
 
@@ -386,7 +364,6 @@ $$
 
 $$
 t_1 = -(1/R) \ln x,
-
 \tag{13.3.5}
 $$
 
@@ -398,7 +375,6 @@ $$
 
 $$
 \bar{E} = \tau^{-1} \sum_i E_i t_i.
-
 \tag{13.3.6}
 $$
 
@@ -416,7 +392,6 @@ Gillespie [[569]](references.md#ref-569)提出的 KMC 算法被广泛用于建�
 
 $$
 \sum_m \mathcal{N}(m) \pi_{mn} = \mathcal{N}(n).
-
 \tag{13.3.7}
 $$
 
@@ -424,7 +399,6 @@ $$
 
 $$
 \langle A \rangle = \frac{\sum_n \mathcal{N}(n) a_n}{\sum_n \mathcal{N}(n)}.
-
 \tag{13.3.8}
 $$
 
@@ -432,7 +406,6 @@ $$
 
 $$
 \langle A \rangle = \frac{\sum_n \sum_m \mathcal{N}(m) \pi_{mn} a_n}{\sum_n \sum_m \mathcal{N}(m) \pi_{mn}} = \frac{\sum_m \mathcal{N}(m) \sum_n \pi_{mn} a_n}{\sum_m \mathcal{N}(m)},
-
 \tag{13.3.9}
 $$
 
@@ -440,7 +413,6 @@ $$
 
 $$
 \langle A \rangle = \lim_{M \to \infty} \frac{1}{M} \sum_{n=1}^{M} \left[\sum_m \pi_{nm} a_m\right],
-
 \tag{13.3.10}
 $$
 
@@ -448,7 +420,6 @@ $$
 
 $$
 \pi_{nm} = \alpha_{nm} \times \mathrm{acc}(n \to m).
-
 \tag{13.3.11}
 $$
 
@@ -456,7 +427,6 @@ $$
 
 $$
 \langle A \rangle = \lim_{M \to \infty} \frac{1}{M} \sum_{n=1}^{M} \left[\sum_m \alpha_{nm} \times \mathrm{acc}(n \to m) a_m\right].
-
 \tag{13.3.12}
 $$
 
@@ -464,7 +434,6 @@ $$
 
 $$
 \langle a \rangle_n \equiv \sum_m \alpha_{nm} \, \mathrm{acc}(n \to m) \, a_m.
-
 \tag{13.3.13}
 $$
 
@@ -472,7 +441,6 @@ $$
 
 $$
 \langle a \rangle_n = \langle \mathrm{acc}(n \to m) a_m \rangle_{\alpha_{nm}}.
-
 \tag{13.3.14}
 $$
 
@@ -480,7 +448,6 @@ $$
 
 $$
 \langle A \rangle = \lim_{M \to \infty} \frac{1}{M} \sum_{n=1}^{M} \left[\sum_{m'} \mathrm{acc}(n \to m') a'_{m}\right]
-
 \tag{13.3.15}
 $$
 
@@ -488,7 +455,6 @@ $$
 
 $$
 \langle A \rangle = \frac{\sum_n \left[(1 - \mathrm{acc}(n \to m')) a_n + \mathrm{acc}(n \to m') a'_{m}\right]}{\sum_n}.
-
 \tag{13.3.16}
 $$
 
@@ -496,7 +462,6 @@ $$
 
 $$
 \pi_{mn} = \alpha_{mn} \frac{\mathcal{N}(n)}{\mathcal{N}(n) + \mathcal{N}(m)}
-
 \tag{13.3.17}
 $$
 

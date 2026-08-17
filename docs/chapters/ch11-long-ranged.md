@@ -40,7 +40,6 @@ $$
 
 $$
 \phi(r) = \frac{q_1 q_2}{r},
-
 \tag{11.1.1}
 $$
 
@@ -77,7 +76,6 @@ Ewald 求和所需的计算量不是以$N^2$标度的，但仍随粒子数的增
 
 $$
 \mathcal{U}_{\text{Coul}} = \frac{1}{2}\sum_{i=1}^{N} q_i \phi(\mathbf{r}_i),
-
 \tag{11.2.1}
 $$
 
@@ -85,7 +83,6 @@ $$
 
 $$
 \phi(\mathbf{r}_i) = \sum'_{j,\mathbf{n}} \frac{q_j}{|\mathbf{r}_{ij}+\mathbf{n}L|},
-
 \tag{11.2.2}
 $$
 
@@ -119,7 +116,6 @@ $\alpha$的选择将在后面由计算效率的考虑来决定。我们将首先
 
 $$
 \phi(\mathbf{r}) = \frac{z}{|\mathbf{r}|}.
-
 \tag{11.2.3}
 $$
 
@@ -133,7 +129,6 @@ $$
 
 $$
 \rho_P(\mathbf{r}) = \sum_{i=1}^{N} q_i \delta(\mathbf{r}-\mathbf{r}_i),
-
 \tag{11.2.4}
 $$
 
@@ -143,7 +138,6 @@ $$
 
 $$
 -\nabla^2 \phi(\mathbf{r}) = 4\pi \rho_P(\mathbf{r}),
-
 \tag{11.2.5}
 $$
 
@@ -153,7 +147,6 @@ $$
 
 $$
 f(\mathbf{r}) = \frac{1}{V}\sum_{\mathbf{l}=-\infty}^{\infty} \tilde{f}(\mathbf{k}) e^{i\mathbf{k}\cdot\mathbf{r}},
-
 \tag{11.2.6}
 $$
 
@@ -161,7 +154,6 @@ $$
 
 $$
 \tilde{f}(\mathbf{k}) = \int_V \mathrm{d}\mathbf{r}\, f(\mathbf{r}) e^{-i\mathbf{k}\cdot\mathbf{r}}.
-
 \tag{11.2.7}
 $$
 
@@ -172,7 +164,6 @@ $$
 -\nabla^2 \phi(\mathbf{r}) &= -\nabla^2 \left[\frac{1}{V}\sum_{\mathbf{k}} \tilde{\phi}(\mathbf{k}) e^{i\mathbf{r}\cdot\mathbf{k}}\right] \nonumber\\
 &= \frac{1}{V}\sum_{\mathbf{k}} k^2 \tilde{\phi}(\mathbf{k}) e^{i\mathbf{r}\cdot\mathbf{k}} \nonumber\\
 &= \frac{4\pi}{V}\sum_{\mathbf{k}} \tilde{\rho}(\mathbf{k}) e^{i\mathbf{r}\cdot\mathbf{k}},
-
 \tag{11.2.8}
 \end{align}
 $$
@@ -181,7 +172,6 @@ $$
 
 $$
 k^2 \tilde{\phi}(\mathbf{k}) = 4\pi \tilde{\rho}(\mathbf{k}).
-
 \tag{11.2.9}
 $$
 
@@ -201,7 +191,6 @@ $$
 
 $$
 \tilde{g}(\mathbf{k}) = \frac{4\pi}{k^2}.
-
 \tag{11.2.10}
 $$
 
@@ -216,7 +205,6 @@ $$
 $$
 \tilde{\rho}(\mathbf{k}) = \int_V \mathrm{d}\mathbf{r}\, \sum_{i=1}^{N} q_i \delta(\mathbf{r}-\mathbf{r}_i) e^{-i\mathbf{k}\cdot\mathbf{r}}
 = \sum_{i=1}^{N} q_i e^{-i\mathbf{k}\cdot\mathbf{r}_i}.
-
 \tag{11.2.11}
 $$
 
@@ -238,7 +226,6 @@ $$
 
 $$
 \rho(\mathbf{r}) = \sum_i q_i \gamma(\mathbf{r}-\mathbf{r}_i) = \int \mathrm{d}\mathbf{r}'\, \gamma(\mathbf{r}') \rho_p(\mathbf{r}-\mathbf{r}'),
-
 \tag{11.2.12}
 $$
 
@@ -272,7 +259,6 @@ $$
 &= \int_V \mathrm{d}\mathbf{r}\, \exp(-i\mathbf{k}\cdot\mathbf{r}) \sum_{j=1}^{N} \sum_{\mathbf{n}} q_j \left(\frac{\alpha}{\pi}\right)^{3/2} \exp\left[-\alpha|\mathbf{r}-(\mathbf{r}_j+\mathbf{n}L)|^2\right] \nonumber\\
 &= \int_{\text{全空间}} \mathrm{d}\mathbf{r}\, \exp(-i\mathbf{k}\cdot\mathbf{r}) \sum_{j=1}^{N} q_j \left(\frac{\alpha}{\pi}\right)^{3/2} \exp\left[-\alpha|\mathbf{r}-\mathbf{r}_j|^2\right] \nonumber\\
 &= \sum_{j=1}^{N} q_j \exp(-i\mathbf{k}\cdot\mathbf{r}_j) \exp\left(-k^2/4\alpha\right).
-
 \tag{11.2.13}
 \end{align}
 $$
@@ -281,7 +267,6 @@ $$
 
 $$
 \tilde{\phi}_S(\mathbf{k}) = \frac{4\pi}{k^2} \sum_{j=1}^{N} q_j \exp(-i\mathbf{k}\cdot\mathbf{r}_j) \exp\left(-k^2/4\alpha\right).
-
 \tag{11.2.14}
 $$
 
@@ -306,7 +291,6 @@ $$
 U_S &\equiv \frac{1}{2}\sum_i q_i \phi_S(\mathbf{r}_i) \nonumber\\
 &= \frac{1}{2}\sum_{\mathbf{k}\neq 0} \sum_{i,j=1}^{N} \frac{4\pi q_i q_j}{Vk^2} \exp[i\mathbf{k}\cdot(\mathbf{r}_i-\mathbf{r}_j)] \exp\left(-k^2/4\alpha\right) \nonumber\\
 &= \frac{1}{2V}\sum_{\mathbf{k}\neq 0} \frac{4\pi}{k^2} |\tilde{\rho}(\mathbf{k})|^2 \exp\left(-k^2/4\alpha\right),
-
 \tag{11.2.16}
 \end{align}
 $$
@@ -315,7 +299,6 @@ $$
 
 $$
 \tilde{\rho}(\mathbf{k}) \equiv \sum_{i=1}^{N} q_i \exp(i\mathbf{k}\cdot\mathbf{r}_i).
-
 \tag{11.2.17}
 $$
 
@@ -349,7 +332,6 @@ $$
 &= \int_r^{\infty} \mathrm{d}r\, 4\pi r \rho_{\text{Gauss}}(r) \nonumber\\
 &= 2\pi q_i \left(\frac{\alpha}{\pi}\right)^{3/2} \int_r^{\infty} \mathrm{d}r\, 2r \exp\left(-\alpha r^2\right) \nonumber\\
 &= 2q_i \left(\frac{\alpha}{\pi}\right)^{1/2} \exp\left(-\alpha r^2\right).
-
 \tag{11.2.18}
 \end{align}
 $$
@@ -359,7 +341,6 @@ $$
 $$
 r\phi_{\text{Gauss}}(r) = -2q_i \left(\frac{\alpha}{\pi}\right)^{1/2} \int_0^r \mathrm{d}r\, \exp\left(-\alpha r^2\right)
 = -q_i \operatorname{erf}\left(\sqrt{\alpha}r\right),
-
 \tag{11.2.19}
 $$
 
@@ -367,7 +348,6 @@ $$
 
 $$
 \phi_{\text{Gauss}}(r) = -\frac{q_i}{r}\operatorname{erf}\left(\sqrt{\alpha}r\right).
-
 \tag{11.2.20}
 $$
 
@@ -383,7 +363,6 @@ $$
 \begin{align}
 U_{\text{self}} &= -\frac{1}{2}\sum_{i=1}^{N} q_i \phi_{\text{self}}(\mathbf{r}_i) \nonumber\\
 &= -\left(\frac{\alpha}{\pi}\right)^{1/2} \sum_{i=1}^{N} q_i^2.
-
 \tag{11.2.21}
 \end{align}
 $$
@@ -397,7 +376,6 @@ $$
 $$
 \phi_{\text{short-range}}(r) = \frac{q_i}{r} - \frac{q_i}{r}\operatorname{erf}\left(\sqrt{\alpha}r\right)
 = \frac{q_i}{r}\operatorname{erfc}\left(\sqrt{\alpha}r\right),
-
 \tag{11.2.22}
 $$
 
@@ -405,7 +383,6 @@ $$
 
 $$
 \mathcal{U}_{\text{short-range}} = \frac{1}{2}\sum_{i\neq j} q_i q_j \operatorname{erfc}\left(\sqrt{\alpha}r_{ij}\right)/r_{ij}.
-
 \tag{11.2.23}
 $$
 
@@ -415,7 +392,6 @@ $$
 \mathcal{U}_{\text{Coul}} = \frac{1}{2V}\sum_{\mathbf{k}\neq 0} \frac{4\pi}{k^2} |\tilde{\rho}(\mathbf{k})|^2 \exp\left(-k^2/4\alpha\right)
 - \left(\frac{\alpha}{\pi}\right)^{1/2} \sum_{i=1}^{N} q_i^2
 + \frac{1}{2}\sum_{i\neq j} \frac{q_i q_j \operatorname{erfc}\left(\sqrt{\alpha}r_{ij}\right)}{r_{ij}}.
-
 \tag{11.2.24}
 $$
 
@@ -429,7 +405,6 @@ $$
 - \frac{2\pi}{3}\left(\frac{\alpha}{\pi}\right)^{3/2} \sum_{i=1}^{N} \mu_i^2
 + \frac{1}{2}\sum_{i\neq j} \left[(\boldsymbol{\mu}_i \cdot \boldsymbol{\mu}_j) B(r_{ij}) - (\boldsymbol{\mu}_i \cdot \mathbf{r}_{ij})(\boldsymbol{\mu}_j \cdot \mathbf{r}_{ij}) C(r_{ij})\right],
 }
-
 \tag{11.2.25}
 $$
 
