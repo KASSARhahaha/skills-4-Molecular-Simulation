@@ -20,7 +20,7 @@ $$
 其中状态方程表示为密度 $(\rho)$ 的函数 $P(\rho)$，$F^{\mathrm{id}}(\rho)$ 是密度为 $\rho$ 的理想气体的自由能。一个重要条件是式 (9.1.1) 中的积分路径必须是可逆的。如果积分路径穿越强一级相变，则可能出现滞后现象，式 (9.1.1) 便不再适用。对于液相，可以通过分两步进行积分来避免此问题。首先在远高于临界温度的温度下开始模拟，沿等温线压缩至所需密度，确定状态方程。第二步，在恒定密度下将系统冷却至目标温度。此步骤中的自由能变化由下式给出：
 
 $$
-\frac{F(T = T_{II})}{k_BT_{II}} - \frac{F(T = T_I)}{k_BT_I} = \int_{T_I}^{T_{II}} d(1/T)\, U(T, N, V) .
+\frac{F(T = T_{II})}{k_BT_{II}} - \frac{F(T = T_I)}{k_BT_I} = \int_{T_I}^{T_{II}} \mathrm{d}(1/T)\, U(T, N, V) .
 \tag{9.1.2}
 $$
 
@@ -338,7 +338,7 @@ skip
 
     $$
     \begin{aligned}
-    P^{\mathrm{nn}}_{\mathrm{overlap}}(\lambda) = {}&\frac{\mathrm{erf}((\beta\lambda/2)^{1/2}(\sigma+a)) + \mathrm{erf}((\beta\lambda/2)^{1/2}(\sigma-a))}{2}\\
+    P^{\mathrm{nn}}_{\mathrm{overlap}}(\lambda) = {}&\frac{\operatorname{erf}((\beta\lambda/2)^{1/2}(\sigma+a)) + \operatorname{erf}((\beta\lambda/2)^{1/2}(\sigma-a))}{2}\\
     &- \frac{\exp[-\beta\lambda(\sigma-a)^2/2] - \exp[-\beta\lambda(\sigma+a)^2/2]}{(2\pi\beta\lambda)^{1/2}a} .
     \end{aligned}
     \tag{9.2.13}

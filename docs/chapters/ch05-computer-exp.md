@@ -175,7 +175,7 @@ $$
 $$
 \begin{aligned}
 P_{\mathrm{exc}} &= -\left\langle \sum_{i=1}^{N} \frac{\partial U}{\partial \mathbf{r}_i} \frac{\partial \mathbf{r}_i}{\partial V} + \left( \frac{\partial U}{\partial V} \right)_{\mathbf{r}_i} \right\rangle_{N,T}\\
-&= \frac{1}{\mathrm{d}V} \left\langle \sum_{i=1}^{N} \mathbf{F}_i \cdot \mathbf{r}_i \right\rangle_{N,T} - \left\langle \left( \frac{\partial U}{\partial V} \right)_{\mathbf{r}_i} \right\rangle_{N,T},
+&= \frac{1}{dV} \left\langle \sum_{i=1}^{N} \mathbf{F}_i \cdot \mathbf{r}_i \right\rangle_{N,T} - \left\langle \left( \frac{\partial U}{\partial V} \right)_{\mathbf{r}_i} \right\rangle_{N,T},
 \end{aligned}
 \tag{5.1.16}
 $$
@@ -183,21 +183,21 @@ $$
 其中$d$是空间维数，并且我们利用了
 
 $$
-\left( \frac{\partial \mathbf{r}_i}{\partial V} \right)_{\mathbf{s}_i} = \frac{\mathbf{r}_i}{\mathrm{d}V}.
+\left( \frac{\partial \mathbf{r}_i}{\partial V} \right)_{\mathbf{s}_i} = \frac{\mathbf{r}_i}{dV}.
 \tag{5.1.17}
 $$
 
 式 (5.1.16) 通常写为
 
 $$
-P_{\mathrm{exc}} = \frac{1}{\mathrm{d}V} \langle W \rangle,
+P_{\mathrm{exc}} = \frac{1}{dV} \langle W \rangle,
 \tag{5.1.18}
 $$
 
 这定义了维里$W$：
 
 $$
-W \equiv \sum_{i=1}^{N} \mathbf{F}_i \cdot \mathbf{r}_i - \mathrm{d}V \left\langle \left( \frac{\partial U}{\partial V} \right)_{\mathbf{s}_i} \right\rangle_{N,T}.
+W \equiv \sum_{i=1}^{N} \mathbf{F}_i \cdot \mathbf{r}_i - dV \left\langle \left( \frac{\partial U}{\partial V} \right)_{\mathbf{s}_i} \right\rangle_{N,T}.
 \tag{5.1.19}
 $$
 
@@ -213,7 +213,7 @@ $$
 在这种情况下，我们可以写出：
 
 $$
-P_{\mathrm{exc}} = -\frac{1}{\mathrm{d}V} \left\langle \sum_{i=1}^{N} \sum_{j \neq i} \frac{\partial u(r_{ij})}{\partial \mathbf{r}_i} \cdot \mathbf{r}_i \right\rangle_{N,T} = \frac{1}{\mathrm{d}V} \left\langle \sum_{i=1}^{N} \sum_{j \neq i} \mathbf{f}(r_{ij}) \cdot \mathbf{r}_i \right\rangle_{N,T}.
+P_{\mathrm{exc}} = -\frac{1}{dV} \left\langle \sum_{i=1}^{N} \sum_{j \neq i} \frac{\partial u(r_{ij})}{\partial \mathbf{r}_i} \cdot \mathbf{r}_i \right\rangle_{N,T} = \frac{1}{dV} \left\langle \sum_{i=1}^{N} \sum_{j \neq i} \mathbf{f}(r_{ij}) \cdot \mathbf{r}_i \right\rangle_{N,T}.
 \tag{5.1.21}
 $$
 
@@ -221,8 +221,8 @@ $$
 
 $$
 \begin{aligned}
-P &= \rho k_B T + \frac{1}{2\mathrm{d}V} \left\langle \sum_{i=1}^{N} \sum_{j \neq i} \mathbf{f}(r_{ij}) \cdot \mathbf{r}_i + \sum_{j=1}^{N} \sum_{i \neq j} \mathbf{f}(r_{ji}) \cdot \mathbf{r}_j \right\rangle_{N,T}\\
-&= \rho k_B T + \frac{1}{2\mathrm{d}V} \left\langle \sum_{i=1}^{N} \sum_{j \neq i} \mathbf{f}(r_{ij}) \cdot \mathbf{r}_{ij} \right\rangle_{N,T}
+P &= \rho k_B T + \frac{1}{2dV} \left\langle \sum_{i=1}^{N} \sum_{j \neq i} \mathbf{f}(r_{ij}) \cdot \mathbf{r}_i + \sum_{j=1}^{N} \sum_{i \neq j} \mathbf{f}(r_{ji}) \cdot \mathbf{r}_j \right\rangle_{N,T}\\
+&= \rho k_B T + \frac{1}{2dV} \left\langle \sum_{i=1}^{N} \sum_{j \neq i} \mathbf{f}(r_{ij}) \cdot \mathbf{r}_{ij} \right\rangle_{N,T}
 \end{aligned}
 $$
 
@@ -239,7 +239,7 @@ $$
 在某些情况下，式 (5.1.14) 不能使用，例如对于格点模型，体积不是连续变量。在这种情况下，我们可以使用热力学关系来计算流体的压力：
 
 $$
-d(PV)_{V,T} = N \mathrm{d}\mu.
+\mathrm{d}(PV)_{V,T} = N \mathrm{d}\mu.
 \tag{5.1.22}
 $$
 

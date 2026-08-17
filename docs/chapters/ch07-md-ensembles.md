@@ -60,7 +60,7 @@ $$
 \begin{aligned}
 \frac{\sigma_{T_k}^2}{\langle T_k \rangle_{NVT}^2} &\equiv \frac{\langle T_k^2 \rangle_{NVT} - \langle T_k \rangle_{NVT}^2}{\langle T_k \rangle_{NVT}^2}\\
 &= \frac{N\langle p^4 \rangle + N(N-1)\langle p^2 \rangle\langle p^2 \rangle - N^2 \langle p^2 \rangle^2}{N^2 \langle p^2 \rangle^2}\\
-&= \frac{1}{N}\frac{\langle p^4 \rangle - \langle p^2 \rangle^2}{\langle p^2 \rangle^2} = \frac{2}{\mathrm{d}N}.
+&= \frac{1}{N}\frac{\langle p^4 \rangle - \langle p^2 \rangle^2}{\langle p^2 \rangle^2} = \frac{2}{dN}.
 \end{aligned}
 $$
 
@@ -265,7 +265,7 @@ MD 模拟中最早的恒温器通过对所有粒子速度进行瞬时或渐进�
 
 #### 扩展拉格朗日方法
 
-牛顿运动方程守恒能量。因此，要在恒定温度下执行 MD，我们必须修改运动方程。构造新运动方程最稳健的方法是从力学的拉格朗日表述出发。遵循这条路线的优势在于，一旦拉格朗日被修改，修改后的哈密顿量随之而来，并且关键的是，它是一个运动常数。这一观察已经表明，对于 NVT-MD，哈密顿量的值不能等于$N$体系统的能量$E$。技巧在于找到一个合适的拉格朗日形式，使其产生的动力学的时间平均等于恒定$NVT$的$N$体系统的时间平均。扩展拉格朗日方法由 Andersen [[180]](references.md#ref-180)开创，用于构造恒压动力学算法。Andersen 也使用了一个恒温器，但那是随机的，正如我们在第 7.1.1.1 节中看到的。我们在第 7.2 节简要讨论 Andersen 的恒压方法。然而，我们从 Nos\'{e}的恒温 MD 的拉格朗日方法开始。[^3]
+牛顿运动方程守恒能量。因此，要在恒定温度下执行 MD，我们必须修改运动方程。构造新运动方程最稳健的方法是从力学的拉格朗日表述出发。遵循这条路线的优势在于，一旦拉格朗日被修改，修改后的哈密顿量随之而来，并且关键的是，它是一个运动常数。这一观察已经表明，对于$NVT$-MD，哈密顿量的值不能等于$N$体系统的能量$E$。技巧在于找到一个合适的拉格朗日形式，使其产生的动力学的时间平均等于恒定$NVT$的$N$体系统的时间平均。扩展拉格朗日方法由 Andersen [[180]](references.md#ref-180)开创，用于构造恒压动力学算法。Andersen 也使用了一个恒温器，但那是随机的，正如我们在第 7.1.1.1 节中看到的。我们在第 7.2 节简要讨论 Andersen 的恒压方法。然而，我们从 Nos\'{e}的恒温 MD 的拉格朗日方法开始。[^3]
 
 为了构造等温分子动力学，Nos\'{e}提出在经典$N$体系统的拉格朗日量中引入一个额外的坐标$s$：
 
@@ -295,7 +295,7 @@ $$
 \tag{7.1.13}
 $$
 
-我们考虑一个包含$N$个原子的系统。由于$\mathcal{H}_{\mathrm{Nose}}$守恒，由该哈密顿量产生的动力学采样一个微正则系综，但处于具有$2\mathrm{d}N + 2$个坐标和动量的扩展系统中。[^4] 该系综的配分函数为：
+我们考虑一个包含$N$个原子的系统。由于$\mathcal{H}_{\mathrm{Nose}}$守恒，由该哈密顿量产生的动力学采样一个微正则系综，但处于具有$2dN + 2$个坐标和动量的扩展系统中。[^4] 该系综的配分函数为：
 
 $$
 Q_{\mathrm{Nose}} = \frac{1}{N!}\int \mathrm{d}\mathbf{p}_s\, \mathrm{d}s\, \mathrm{d}\mathbf{p}^N\, \mathrm{d}\mathbf{r}^N\, \delta(E - \mathcal{H}_{\mathrm{Nose}}),
@@ -316,7 +316,7 @@ Q_{\mathrm{Nose}} = C\int \mathrm{d}\mathbf{p}'^N\, \mathrm{d}\mathbf{r}^N\, \ex
 \tag{7.1.16}
 $$
 
-因此，我们看到 Nos\'{e}巧妙地选择额外变量确保动力学在$\{\mathbf{p}', \mathbf{r}\}$空间中生成一个正比于$\exp\left[-\beta[(\mathrm{d}N + 1)/L] H(\mathbf{p}',\mathbf{r})\right]$的概率密度。因此，如果选择$L = \mathrm{d}N + 1$，$\{\mathbf{p}', \mathbf{r}\}$空间中的概率密度等于$\exp\left[-\beta H(\mathbf{p}',\mathbf{r})\right]$！动力学变量$A$的系综平均可以写为：
+因此，我们看到 Nos\'{e}巧妙地选择额外变量确保动力学在$\{\mathbf{p}', \mathbf{r}\}$空间中生成一个正比于$\exp\left[-\beta[(dN + 1)/L] H(\mathbf{p}',\mathbf{r})\right]$的概率密度。因此，如果选择$L = dN + 1$，$\{\mathbf{p}', \mathbf{r}\}$空间中的概率密度等于$\exp\left[-\beta H(\mathbf{p}',\mathbf{r})\right]$！动力学变量$A$的系综平均可以写为：
 
 $$
 \langle A(\mathbf{p}/s, \mathbf{r})\rangle_{\mathrm{Nose}} = \frac{(1/N!)\int \mathrm{d}\mathbf{p}'^N\, \mathrm{d}\mathbf{r}^N\, A(\mathbf{p}',\mathbf{r})\,\exp\left[-\beta \mathcal{H}(\mathbf{p}',\mathbf{r})\right]}{Q(NVT)} = \langle A(\mathbf{p}',\mathbf{r})\rangle_{NVT}.
@@ -382,13 +382,13 @@ $$
 \langle A(\mathbf{p}/s, \mathbf{r})\rangle_{NVT}.
 $$
 
-注意在这种情况下，如果我们选择$L = \mathrm{d}N$，则恢复正则平均。因此，如果使用基于实际时间中等时间步长的采样方案，我们必须使用不同的$L$值。在示例 7 中，我们讨论了一个正确选择自由度数至关重要的系统。
+注意在这种情况下，如果我们选择$L = dN$，则恢复正则平均。因此，如果使用基于实际时间中等时间步长的采样方案，我们必须使用不同的$L$值。在示例 7 中，我们讨论了一个正确选择自由度数至关重要的系统。
 
 ???+ example "例证 7（受限气体的扩散系数）"
 
     经典$N$体系统的总平动动能等于$\sum_{i=1}^{N}\sum_{\alpha=1}^{d}p_{i,\alpha}^2/(2m_i)$。经典统计力学的能量均分定律指出，该求和中每一项相关的平均热能等于$(1/2)k_BT$。如果每个动量分量都是一个独立的自由度，这个表达式将是正确的。
 
-    对于宏观系统，朴素的均分定律是合理的，因为动能中的自由度数近似等于$\mathrm{d}N$。然而，如果我们在小系统上执行分子动力学模拟，我们必须更加小心。在块体系统的模拟中，我们经常使用周期性边界条件并固定系统的总动量。对总动量的这种约束固定了$L$个自由度。在三维中，动能中的实际自由度数是$3N - 3$。
+    对于宏观系统，朴素的均分定律是合理的，因为动能中的自由度数近似等于$dN$。然而，如果我们在小系统上执行分子动力学模拟，我们必须更加小心。在块体系统的模拟中，我们经常使用周期性边界条件并固定系统的总动量。对总动量的这种约束固定了$L$个自由度。在三维中，动能中的实际自由度数是$3N - 3$。
 
     然而，自由度数会改变，如果我们模拟一个受限系统，例如吸附在孔隙中的气体。大多数孔隙被建模为刚性系统；因此，对于孔隙内的气体分子，与孔隙原子的相互作用代表一个外场。由于这种外场，$N$个原子的质心动量不是固定的，这些气体分子的自由度是$3N$。我们需要模拟中正确的自由度数来计算温度，并且在某些算法中，作为恒温模拟的输入（例如 Nos\'{e}-Hoover）。如果我们模拟大于 1,000 个粒子的系统，$N$和$N - 3$之间的差异通常太小而不会产生任何可见影响（尽管这不是错误执行模拟的借口）。
 
@@ -593,7 +593,7 @@ $$
 $$
 
 $$
-M\frac{d^2V}{\mathrm{d}t^2} = -P + \left(\frac{1}{\mathrm{d}V}\right)\left[\sum_{i=1}^{N}\frac{\mathbf{p}_i\cdot\mathbf{p}_i}{m_i} - \sum_{i<j}r_{ij}u'(r_{ij})\right],
+M\frac{\mathrm{d}^2V}{\mathrm{d}t^2} = -P + \left(\frac{1}{dV}\right)\left[\sum_{i=1}^{N}\frac{\mathbf{p}_i\cdot\mathbf{p}_i}{m_i} - \sum_{i<j}r_{ij}u'(r_{ij})\right],
 $$
 
 其中我们假设分子间相互作用是成对可加的。

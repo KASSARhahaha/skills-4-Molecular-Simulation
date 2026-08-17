@@ -200,7 +200,7 @@ $$
 与其尝试对体积本身进行随机变化，不如构造对盒长 $L$ [[168]](references.md#ref-168) 或体积对数[[133]](references.md#ref-133) 的试探移动。这样的试探移动同样合法，只要底层马尔可夫链的微观可逆性得到保持即可。然而，这些替代方案会导致公式 (6.3.12) 的形式略有不同。配分函数 (6.3.8) 可以重写为
 
 $$
-Q(N, P, T) = \frac{\beta P}{\Lambda^{3N} N!} \int d(\ln V) \, V^{N+1} \exp(-\beta PV) \int \mathrm{d}\mathbf{s}^N \exp[-\beta \mathcal{U}(\mathbf{s}^N; L)].
+Q(N, P, T) = \frac{\beta P}{\Lambda^{3N} N!} \int \mathrm{d}(\ln V) \, V^{N+1} \exp(-\beta PV) \int \mathrm{d}\mathbf{s}^N \exp[-\beta \mathcal{U}(\mathbf{s}^N; L)].
 \tag{6.3.13}
 $$
 

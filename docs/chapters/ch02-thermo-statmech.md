@@ -276,7 +276,7 @@ $$
 现在考虑$E$的一个微小变化：
 
 $$
-\mathrm{d}E = \mathrm{d}TS - \mathrm{d}PV + \mathrm{d}\mu N = T\mathrm{d}S + S\mathrm{d}T - P\mathrm{d}V - V\mathrm{d}P + \mu \mathrm{d}N + Nd\mu.
+\mathrm{d}E = \mathrm{d}TS - \mathrm{d}PV + \mathrm{d}\mu N = T\mathrm{d}S + S\mathrm{d}T - P\mathrm{d}V - V\mathrm{d}P + \mu \mathrm{d}N + N\mathrm{d}\mu.
 $$
 
 如果我们将其与热力学第一定律结合，可得：
@@ -339,7 +339,7 @@ $$
 最后，我们可以引入巨热力学势（Grand Potential）$\Omega$，定义为$\Omega \equiv F - \mu N$，满足：
 
 $$
-\mathrm{d}\Omega = -S\mathrm{d}T - P\mathrm{d}V - Nd\mu.
+\mathrm{d}\Omega = -S\mathrm{d}T - P\mathrm{d}V - N\mathrm{d}\mu.
 \tag{2.1.21}
 $$
 
@@ -483,7 +483,7 @@ $$
 \mathrm{d}S &= \frac{1}{T}\mathrm{d}E + \frac{P}{T}\mathrm{d}V - \frac{\mu}{T}\mathrm{d}N \nonumber \\
 \mathrm{d}F &= -S\mathrm{d}T - P\mathrm{d}V + \mu \mathrm{d}N \nonumber \\
 \mathrm{d}G &= -S\mathrm{d}T + V\mathrm{d}P + \mu \mathrm{d}N \nonumber \\
-\mathrm{d}\Omega &= -S\mathrm{d}T - P\mathrm{d}V - Nd\mu.
+\mathrm{d}\Omega &= -S\mathrm{d}T - P\mathrm{d}V - N\mathrm{d}\mu.
 \tag{2.1.32}
 \end{align}
 $$
@@ -907,7 +907,7 @@ $$
 不同组的控制参数对应不同的系综。
 这些系综的历史名称（“微正则”、“正则”、“巨正则”等）并不特别具有启发性。
 下面，我们将在描述最常用的系综时列出这些名称。
-然而，在下文中，我们将经常用保持恒定的控制变量来表示系综，例如“恒定 NVE 系综”或“恒定$\mu$VT 系综”。
+然而，在下文中，我们将经常用保持恒定的控制变量来表示系综，例如“恒定$NVE$系综”或“恒定$\mu VT$系综”。
 在以下各节中，为方便起见，我们假设系统由没有内部自由度的粒子组成（即没有转动、振动或电子激发）。
 这一假设简化了符号表示，但对于分子系统，我们当然必须考虑内部自由度。
 
@@ -1001,7 +1001,7 @@ $$
 
 ### 等温等压（恒定 NPT）系综
 
-正则系综描述的是恒定温度和体积下的系统。在实验中，固定压力$P$比固定体积$V$更为常见。与恒定 NVT 系综一样，我们可以通过考虑一个由我们所关注的系统（系统 1）与一个储库（系统 2）组成的封闭系统来推导恒定 NPT 系综的概率分布函数，其中储库同时充当恒温器和恒压器（见图 2.2）。两个子系统可以交换能量并改变各自的体积，使得总体积保持恒定。
+正则系综描述的是恒定温度和体积下的系统。在实验中，固定压力$P$比固定体积$V$更为常见。与恒定$NVT$系综一样，我们可以通过考虑一个由我们所关注的系统（系统 1）与一个储库（系统 2）组成的封闭系统来推导恒定$NPT$系综的概率分布函数，其中储库同时充当恒温器和恒压器（见图 2.2）。两个子系统可以交换能量并改变各自的体积，使得总体积保持恒定。
 
 为简单起见，我们从系统总熵的量子表达式（公式 (2.2.6)）出发：
 
@@ -1039,7 +1039,7 @@ $$
 \tag{2.3.13}
 $$
 
-取经典极限，我们得到 NPT 配分函数$Q \equiv Q(N, P, T)$的表达式，它是粒子坐标和体积$V$的积分：
+取经典极限，我们得到$NPT$配分函数$Q \equiv Q(N, P, T)$的表达式，它是粒子坐标和体积$V$的积分：
 
 $$
 Q(N, P, T) \equiv \int \mathrm{d}V \exp(-\beta P V)
@@ -1159,7 +1159,7 @@ $$
 \tag{2.4.3}
 $$
 
-其中$f$表示初始条件$\mathbf{r}^N(0), \mathbf{p}^N(0)$的任意函数，而$\Omega(N, V, E) = \int_E \mathrm{d}\mathbf{r}^N \mathrm{d}\mathbf{p}^N$（我们忽略了一个常数因子）。注意，公式 (2.4.3) 中的第二行实际上就是$f$的微正则（恒定 NVE）平均。在以下内容中，我们用$\langle \cdots \rangle$表示系综平均，以区别于用横线表示的时间平均。如果我们交换时间平均和对初始条件取平均的顺序，得到
+其中$f$表示初始条件$\mathbf{r}^N(0), \mathbf{p}^N(0)$的任意函数，而$\Omega(N, V, E) = \int_E \mathrm{d}\mathbf{r}^N \mathrm{d}\mathbf{p}^N$（我们忽略了一个常数因子）。注意，公式 (2.4.3) 中的第二行实际上就是$f$的微正则（恒定$NVE$）平均。在以下内容中，我们用$\langle \cdots \rangle$表示系综平均，以区别于用横线表示的时间平均。如果我们交换时间平均和对初始条件取平均的顺序，得到
 
 $$
 \bar{\rho}_i(\mathbf{r}) = \lim_{t\to\infty} \frac{1}{t} \int_0^t \mathrm{d}t'

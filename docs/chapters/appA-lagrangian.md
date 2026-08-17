@@ -59,7 +59,7 @@ $$
 其中最后一步通过分部积分得到。由于根据定义，$\eta(t)$在边界处为零，等式右边的第二项消失。如果上述方程最后一行中的被积函数对任意$\eta(t)$都为零，则作用量取极值。这个条件当且仅当以下关系成立时才能满足：
 
 $$
-m\frac{d^2\bar{x}(t)}{\mathrm{d}t^2} = -\frac{\partial U(\bar{x})}{\partial x},
+m\frac{\mathrm{d}^2\bar{x}(t)}{\mathrm{d}t^2} = -\frac{\partial U(\bar{x})}{\partial x},
 \tag{A.1.2}
 $$
 
@@ -200,7 +200,7 @@ $$
 
 $$
 \begin{aligned}
-\mathrm{d}H(q,p) &= d(p\dot{q}) - \mathrm{d}L(q,\dot{q}) \\
+\mathrm{d}H(q,p) &= \mathrm{d}(p\dot{q}) - \mathrm{d}L(q,\dot{q}) \\
 &= p\,\mathrm{d}\dot{q} + \dot{q}\,\mathrm{d}p - \left[\frac{\partial L}{\partial q}\mathrm{d}q + \frac{\partial L}{\partial \dot{q}}\mathrm{d}\dot{q} + \frac{\partial L}{\partial t}\mathrm{d}t\right] \\
 &= p\,\mathrm{d}\dot{q} + \dot{q}\,\mathrm{d}p - \dot{p}\,\mathrm{d}q - p\,\mathrm{d}\dot{q} - \frac{\partial L}{\partial t}\mathrm{d}t \\
 &= \dot{q}\,\mathrm{d}p - \dot{p}\,\mathrm{d}q - \frac{\partial L}{\partial t}\mathrm{d}t,
@@ -365,7 +365,7 @@ $$
 
 ### 辛条件
 
-我们可以通过使用矩阵记号将上述正则变换的条件表达为单个方程。设$\boldsymbol{\xi}$为包含$N$个粒子在$d$维中的广义坐标$q_i$和动量$p_i$的$2\mathrm{d}N$维向量（见第 2.5.1 节）。哈密顿运动方程 (A.3.3) 和 (A.3.4) 可以写为：
+我们可以通过使用矩阵记号将上述正则变换的条件表达为单个方程。设$\boldsymbol{\xi}$为包含$N$个粒子在$d$维中的广义坐标$q_i$和动量$p_i$的$2dN$维向量（见第 2.5.1 节）。哈密顿运动方程 (A.3.3) 和 (A.3.4) 可以写为：
 
 $$
 \dot{\boldsymbol{\xi}} = \boldsymbol{\omega}\frac{\partial \mathcal{H}}{\partial \boldsymbol{\xi}},
@@ -556,7 +556,7 @@ $$
 [^2]: 在热力学中，勒让德变换用于推导各种热力学势。例如，能量$E$是熵$S$和体积$V$的自然函数：$E = E(S,V)$，即在这些变量中，$E$是热力学势。在大多数实际应用中，以温度$T$而非熵$S$作为独立变量更为方便。由于温度是与熵共轭的变量（$\partial E/\partial S = T$），我们可以进行勒让德变换来消除$S$的依赖性：
 $A \equiv E - TS$，
 得到：
-$\mathrm{d}A = \mathrm{d}E - d(TS) = -S\mathrm{d}T - p\mathrm{d}V$。
+$\mathrm{d}A = \mathrm{d}E - \mathrm{d}(TS) = -S\mathrm{d}T - p\mathrm{d}V$。
 由于历史原因，将拉格朗日量与哈密顿量联系起来的勒让德变换具有相反的符号。
 [^3]: 由于我们假设时间在这些方程中不显式出现，我们定义的是所谓的受限正则变换。
 [^4]: 给定矩阵$\mathbf{A}$的转置矩阵可以通过交换行和列得到，即$\tilde{a}_{ij} = a_{ji}$。
