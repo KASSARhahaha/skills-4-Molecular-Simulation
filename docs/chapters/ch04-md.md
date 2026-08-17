@@ -609,14 +609,14 @@ f(t) &= f(0) + iL_r t f(0) + \frac{(iL_r t)^2}{2!}f(0) + \cdots \nonumber \\
 \end{align}
 $$
 
-因此，$\exp(iL_r t)$的效果是坐标的简单平移。类似地，$\exp(iL_p t)$的效果（其中$iL_p$定义为
+因此，$\exp(iL_r t)$的效果是坐标的简单平移。类似地，$\exp(iL_p t)$的效果是动量的简单平移，其中$iL_p$定义为
 
 $$
-iL_p \equiv \dot{\mathbf{p}}(0)\frac{\partial}{\partial \mathbf{p}},
+iL_p \equiv \dot{\mathbf{p}}(0)\frac{\partial}{\partial \mathbf{p}}.
 \tag{4.3.16}
 $$
 
-是动量的简单平移。总刘维尔算子$iL$等于$iL_r + iL_p$。不幸的是，我们不能用$\exp(iL_r t) \times \exp(iL_p t)$代替$\exp(iLt)$，因为$iL_r$和$iL_p$是不可交换的算子。对于不可交换的算子$A$和$B$，我们有
+总刘维尔算子$iL$等于$iL_r + iL_p$。不幸的是，我们不能用$\exp(iL_r t) \times \exp(iL_p t)$代替$\exp(iLt)$，因为$iL_r$和$iL_p$是不可交换的算子。对于不可交换的算子$A$和$B$，我们有
 
 $$
 \exp(A+B) \neq \exp(A)\exp(B).
