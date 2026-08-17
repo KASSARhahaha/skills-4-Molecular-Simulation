@@ -1198,6 +1198,9 @@ def cleanup(text):
     text = re.sub(r"\\cjkfont\{[^}]*\}", "", text)
     # Remove \newpage, \clearpage, \pagebreak
     text = re.sub(r"\\(?:newpage|clearpage|pagebreak)", "", text)
+    # \looseness=-1 是给 TeX 断行用的（把段落挤短一行，收掉段末孤字），
+    # 没有任何可见输出。带着后面的数字一起吃掉，别在网页上印出「=-1」。
+    text = re.sub(r"\\looseness\s*=?\s*-?\d+", "", text)
     # \footnotemark 的脚注号已由 \footnote 处理流程给出，这里去掉命令残留
     text = re.sub(r"\\footnotemark\b", "", text)
     # 重音/特殊字母
