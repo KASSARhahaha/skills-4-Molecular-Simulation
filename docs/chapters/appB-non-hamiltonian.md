@@ -26,7 +26,7 @@ $$
 \tag{B.0.2}
 $$
 
-方程 (B.0.1) 的解为
+式 (B.0.1) 的解为
 
 $$
 J(\boldsymbol{\Gamma}_t ; \boldsymbol{\Gamma}_0) = \exp\!\left[\int_0^t \kappa(\boldsymbol{\Gamma}_s, s)\,\mathrm{d}s\right].
