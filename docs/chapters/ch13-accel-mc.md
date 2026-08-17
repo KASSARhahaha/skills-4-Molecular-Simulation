@@ -99,7 +99,7 @@ $$
        $$
     1. 温度交换。试探移动包括尝试交换两个随机选择的相邻温度（$T_i$和$T_j$）。此试探移动以式 (13.1.2) 给出的概率被接受
        $$
-       \mathrm{acc}(o \to n) = \min\left\{1, \exp\left[(\beta_i - \beta_j) \times (U_j - U_i)\right]\right\}.
+       \mathrm{acc}(o \to n) = \min\left(1, \exp\left[(\beta_i - \beta_j) \times (U_j - U_i)\right]\right).
        \tag{13.1.5}
        $$
 
@@ -164,7 +164,7 @@ $$
     在平行回火移动中，我们交换两个系统的逸度和温度，而不改变任一系统的构型。系统$i$的新构型由$(U_i, N_i, \beta_j, \ln f_j)$表征，而系统$j$的为$(U_j, N_j, \beta_i, \ln f_i)$。此试探移动以如下概率被接受
 
     $$
-    \mathrm{acc}(o \to n) = \min\left\{1, \exp\left[(\ln f_j - \ln f_i)(N_i - N_j) - (\beta_j - \beta_i)(U_i - U_j)\right]\right\}.
+    \mathrm{acc}(o \to n) = \min\left(1, \exp\left[(\ln f_j - \ln f_i)(N_i - N_j) - (\beta_j - \beta_i)(U_i - U_j)\right]\right).
     $$
 
     由于这些平行回火模拟连接了临界点液侧和汽侧的平衡状态点，平衡不再是问题，可以得到密度分布，在接近共存处同时包含液峰和汽峰。
@@ -183,7 +183,7 @@ $$
     类似地，我们使用系统$i$的分子间势能计算系统$j$的能量，$U_j^{(i)}$。此移动的接受规则为
 
     $$
-    \mathrm{acc}(o \to n) = \min\left\{1, \exp\left[-\beta(U_i^{(j)} - U_i^{(i)}) + (U_j^{(i)} + U_j^{(j)})\right]\right\}.
+    \mathrm{acc}(o \to n) = \min\left(1, \exp\left[-\beta(U_i^{(j)} - U_i^{(i)}) + (U_j^{(i)} + U_j^{(j)})\right]\right).
     $$
 
     这种类型的平行回火移动可以与涉及温度、压力或化学势的其他移动组合使用。
@@ -306,7 +306,7 @@ $$
 一般来说，我们不知道真实的$\Delta U$，也不知道$P(\delta)$，因此我们无法确定$\mathrm{acc}(\delta; n \to o)$。然而，Ceperley 和 Dewing 证明，如果我们假设$P(\delta)$围绕$\Delta U$呈正态分布，方差为$\sigma^2$，那么事情会大大简化。我们唯一需要的额外信息是$\sigma^2$的一个良好估计，它可以直接采样。在这些条件下，选择
 
 $$
-\mathrm{acc}(\delta; o \to n) = \min\left\{1, \exp\left[-\beta\delta - (\beta\sigma)^2/2\right]\right\}
+\mathrm{acc}(\delta; o \to n) = \min\left(1, \exp\left[-\beta\delta - (\beta\sigma)^2/2\right]\right)
 \tag{13.2.5}
 $$
 

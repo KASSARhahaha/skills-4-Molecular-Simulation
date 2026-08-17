@@ -549,12 +549,12 @@ $$
    $$
 1. 粒子的插入和移除。在随机位置插入一个粒子或移除随机选择的粒子。由公式 (6.5.11) 可得，粒子插入的有效（Metropolis 风格）接受规则为
    $$
-   \text{acc}(N \to N + 1) = \min\left(1, \frac{f V}{(N + 1)} \exp\{-\beta[\mathcal{U}(N + 1) - \mathcal{U}(N)]\}\right)
+   \text{acc}(N \to N + 1) = \min\left[1, \frac{f V}{(N + 1)} \exp\{-\beta[\mathcal{U}(N + 1) - \mathcal{U}(N)]\}\right]
    \tag{6.5.13}
    $$
    粒子移除以如下概率被接受
    $$
-   \text{acc}(N \to N - 1) = \min\left(1, \frac{N}{f V} \exp\{-\beta[\mathcal{U}(N - 1) - \mathcal{U}(N)]\}\right).
+   \text{acc}(N \to N - 1) = \min\left[1, \frac{N}{f V} \exp\{-\beta[\mathcal{U}(N - 1) - \mathcal{U}(N)]\}\right].
    \tag{6.5.14}
    $$
 
@@ -868,7 +868,7 @@ $$
 我们还没有具体说明我们执行什么试探移动来改变粒子的身份。有许多可能的选择。最简单的一种是以概率 $\xi_{\alpha'}$ 选择 $\alpha'$，这与我们在巨正则系综中处理分子内状态的方式类似。在这种情况下，
 
 $$
-\text{acc}(\xi_\alpha \to \xi_{\alpha'}) = \min\left(1, \exp\left[-\beta \Delta \mathcal{U}(\mathbf{s}^N)\right]\right).
+\text{acc}(\xi_\alpha \to \xi_{\alpha'}) = \min\left\{1, \exp\left[-\beta \Delta \mathcal{U}(\mathbf{s}^N)\right]\right\}.
 \tag{6.5.35}
 $$
 
@@ -1094,7 +1094,7 @@ $$
 把该比值代入细致平衡条件 (6.1.1)，得到接受规则
 
 $$
-\text{acc}(o \to n) = \min\left(1, \exp\{-\beta[\mathcal{U}(\mathbf{s}_n^{n_1}) - \mathcal{U}(\mathbf{s}_o^{n_1})]\}\right).
+\text{acc}(o \to n) = \min\left\{1, \exp\{-\beta[\mathcal{U}(\mathbf{s}_n^{n_1}) - \mathcal{U}(\mathbf{s}_o^{n_1})]\}\right\}.
 \tag{6.6.6}
 $$
 
@@ -1142,8 +1142,8 @@ $$
 
 $$
 \begin{aligned}
-\text{acc}(o \to n) = \min\Biggl( & 1, \left(\frac{V_1^n}{V_1^o}\right)^{n_1+1}\left(\frac{V - V_1^n}{V - V_1^o}\right)^{N-n_1+1}\\
-& \times \exp\{-\beta[\mathcal{U}(\mathbf{s}_n^N) - \mathcal{U}(\mathbf{s}_o^N)]\}\Biggr).
+\text{acc}(o \to n) = \min\Biggl\{ & 1, \left(\frac{V_1^n}{V_1^o}\right)^{n_1+1}\left(\frac{V - V_1^n}{V - V_1^o}\right)^{N-n_1+1}\\
+& \times \exp\{-\beta[\mathcal{U}(\mathbf{s}_n^N) - \mathcal{U}(\mathbf{s}_o^N)]\}\Biggr\}.
 \end{aligned}
 \tag{6.6.10}
 $$
@@ -1164,7 +1164,7 @@ $$
 对这一移动施加细致平衡，导出如下接受规则：
 
 $$
-\text{acc}(o \to n) = \min\left(1, \frac{n_1(V - V_1)}{(N - n_1 + 1)V_1}\exp\{-\beta[\mathcal{U}(\mathbf{s}_n^N) - \mathcal{U}(\mathbf{s}_o^N)]\}\right).
+\text{acc}(o \to n) = \min\left\{1, \frac{n_1(V - V_1)}{(N - n_1 + 1)V_1}\exp\{-\beta[\mathcal{U}(\mathbf{s}_n^N) - \mathcal{U}(\mathbf{s}_o^N)]\}\right\}.
 \tag{6.6.11}
 $$
 

@@ -188,7 +188,7 @@ MC 移动不需要满足的唯一标准是生成物理上合理的轨迹。在�
 1. 给粒子一个随机位移 $\mathbf{r}' = \mathbf{r} + \Delta$，并计算其新的势能 $U(\mathbf{r}'^N)$。
 1. 以如下概率接受从 $\mathbf{r}^N$ 到 $\mathbf{r}'^N$ 的移动：
    $$
-   \text{acc}(o \to n) = \min\{1, \exp\{-\beta[\mathcal{U}(\mathbf{r}'^N) - \mathcal{U}(\mathbf{r}^N)]\}\}.
+   \text{acc}(o \to n) = \min\left(1, \exp\{-\beta[\mathcal{U}(\mathbf{r}'^N) - \mathcal{U}(\mathbf{r}^N)]\}\right).
    \tag{3.3.1}
    $$
 

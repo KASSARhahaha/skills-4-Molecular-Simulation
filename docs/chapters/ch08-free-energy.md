@@ -1355,7 +1355,7 @@ $$
 自此以后，我们执行满足微观可逆性的普通 Monte Carlo 试探移动，即尝试某个移动与尝试其逆移动的概率相同。我们按照类 Metropolis 的接受判据来接受或拒绝这些试探移动。例如，接受从构型 $o$ 到 $n$ 的试探移动的概率为
 
 $$
-\mathrm{acc}(o \to n) = \min\left[1, \frac{g(U_o)}{g(U_n)}\right].
+\mathrm{acc}(o \to n) = \min\left(1, \frac{g(U_o)}{g(U_n)}\right).
 $$
 
 注意这一接受规则偏好朝 $g(U)$ 取值较低的构型移动。显然，只要 $g(U)$ 是平的，所有移动都会被接受；而若移动是随机的，我们多半会移向 $N(U)$ 更大的构型——毕竟对于平坦的 $g(U)$，WL 采样不过是无穷高温下的 Metropolis 采样。为了保证也能采样到 $N(U)$ 较小的构型，我们必须对“移向（或停留在）$N(U)$ 最大的构型”施加惩罚。
@@ -1382,7 +1382,7 @@ $$
 让我们考虑这样一次模拟结束、$g(U)$ 已经收敛时会发生什么。此时我们可以继续做 Wang-Landau 采样，但不再更新 $g(U)$。于是细致平衡得以恢复，我们可以写出
 
 $$
-\frac{N[U(o)]}{N[U(n)]} = \min\left[1,\frac{g(U_o)}{g(U_n)}\right],
+\frac{N[U(o)]}{N[U(n)]} = \min\left(1,\frac{g(U_o)}{g(U_n)}\right),
 $$
 
 显然，只要
@@ -1414,7 +1414,7 @@ $$
 普通的 Metropolis 采样只会探测 $P(Q)$ 极大值附近的区域。为了在所需的序参数范围上采样该分布，我们采用 Wang-Landau 的技巧：借助一个动态调整的函数 $g(Q)$ 来偏倚从状态 $o$ 到状态 $n$ 的试探移动的接受概率：
 
 $$
-\mathrm{acc}(o \to n) = \min\left[1, \frac{\exp(-\beta U_n)g(Q_o)}{\exp(-\beta U_o)g(Q_n)}\right],
+\mathrm{acc}(o \to n) = \min\left(1, \frac{\exp(-\beta U_n)g(Q_o)}{\exp(-\beta U_o)g(Q_n)}\right),
 $$
 
 并且与前面一样，对该移动之后所得的序参数值，我们把 $\ln g$ 增加 $\ln f$（定义同前）。此外，我们通过给直方图 $H(Q)$ 的相应箱加 1 来记录不同 $Q$ 值被访问的频次。后续步骤同样与 Wang-Landau 相同：在直方图中填入指定数目的点之后，我们把所有 $H(Q)$ 重置为零并减小 $\ln f$。这一过程重复进行，直到 $H(Q)$ 达到所需的平坦程度。

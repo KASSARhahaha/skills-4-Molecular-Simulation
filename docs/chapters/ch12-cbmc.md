@@ -35,7 +35,7 @@ $$
 满足此条件的一个可能的接受规则为
 
 $$
-\mathrm{acc}(o \to n) = \min\left\{1, \frac{f[\mathcal{U}(o)]}{f[\mathcal{U}(n)]} \exp\{-\beta[\mathcal{U}(n) - \mathcal{U}(o)]\}\right\}.
+\mathrm{acc}(o \to n) = \min\left(1, \frac{f[\mathcal{U}(o)]}{f[\mathcal{U}(n)]} \exp\{-\beta[\mathcal{U}(n) - \mathcal{U}(o)]\}\right).
 \tag{12.1.1}
 $$
 
@@ -71,7 +71,7 @@ $$
    $$
 1. 移动以概率
    $$
-   \mathrm{acc}(o \to n) = \min\left\{1, \frac{W(n)}{W(o)} \exp\{-\beta[u_\mathrm{pos}(n) - u_\mathrm{pos}(o)]\}\right\}
+   \mathrm{acc}(o \to n) = \min\left(1, \frac{W(n)}{W(o)} \exp\{-\beta[u_\mathrm{pos}(n) - u_\mathrm{pos}(o)]\}\right)
    \tag{12.1.5}
    $$
    被接受。
