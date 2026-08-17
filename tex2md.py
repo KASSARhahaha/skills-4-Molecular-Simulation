@@ -151,7 +151,7 @@ def process_boxed_figures(text):
                 cm = re.search(r"\\captionof\{table\}", inner)
                 if cm:
                     cap, _ = brace_arg(inner, cm.end())
-                    cap = (cap or "").strip()
+                    cap = numbered_table_caption((cap or "").strip(), inner)
                 body = process_tables(
                     "\\begin{table}" + re.sub(r"\\captionof\{table\}", "", inner)
                     + "\\end{table}"
@@ -432,13 +432,30 @@ def process_figures(text):
     return text
 
 
+def numbered_table_caption(caption, block):
+    r"""给表题补上表号。
+
+    正文里写的是「表 1.1 中的实验结果」，题注却只有一句话，读者对不上号。
+    图那边早就补了（图 12.2　…），表这边一直漏着。表号从 \label{tab:C.N}
+    或 \label{tab:C_N} 取——全书 4 张表都带 label。
+    """
+    lab = re.search(r"\\label\{tab:([0-9A-Z]+)[._]([0-9]+)\}", block)
+    if caption and lab:
+        return f"表 {lab.group(1)}.{lab.group(2)}　{caption}"
+    return caption
+
+
 def process_tables(text):
     """Convert simple tabular environments to Markdown tables."""
     def table_replace(m):
         inner = m.group(0)
         # Extract caption
-        caption_match = re.search(r"\\caption\{([^}]*)\}", inner)
-        caption = caption_match.group(1) if caption_match else ""
+        # 用 brace_arg 取配对括号：表 3.1 与 6.1 的题注里有 $\epsilon/k_B$、
+        # $P_{\text{int}}$，正则 [^}]* 会在第一个 } 处截断，出来是半句话加
+        # 一段坏掉的数学。
+        cm = re.search(r"\\caption\{", inner)
+        caption = (brace_arg(inner, cm.end() - 1)[0] or "").strip() if cm else ""
+        caption = numbered_table_caption(caption, inner)
         # Extract tabular content
         tab_match = re.search(
             r"\\begin\{tabular\}\{[^}]*\}(.*?)\\end\{tabular\}", inner, re.DOTALL
@@ -452,8 +469,9 @@ def process_tables(text):
             row = row.strip()
             if not row:
                 continue
-            # Remove \hline
-            row = row.replace("\\hline", "").strip()
+            # 去掉表格横线宏。纸质版的 4 张表已改成 booktabs 的三线表，
+            # 只删 \hline 的话 \toprule 之流会当成单元格内容漏进 Markdown。
+            row = re.sub(r"\\(?:hline|toprule|midrule|bottomrule)\b", "", row).strip()
             if not row:
                 continue
             cells = [c.strip() for c in row.split("&")]
@@ -487,8 +505,8 @@ def process_algorithms(text):
     def algo_replace(m):
         inner = m.group(1)
         # Extract caption
-        caption_match = re.search(r"\\caption\{([^}]*)\}", inner)
-        caption = caption_match.group(1) if caption_match else ""
+        cm = re.search(r"\\caption\{", inner)
+        caption = (brace_arg(inner, cm.end() - 1)[0] or "").strip() if cm else ""
         # 算法号由 \setcounter{algorithm}{N-1} 钉死（全书连续编号 1--41）
         num_match = re.search(r"\\setcounter\{algorithm\}\{(\d+)\}", inner)
         if num_match:

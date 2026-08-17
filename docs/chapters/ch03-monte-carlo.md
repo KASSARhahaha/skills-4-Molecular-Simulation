@@ -446,7 +446,7 @@ $$
 u^*_{\text{WF}}(r^*) = \left[\left(\frac{1}{r^*}\right)^{2} - 1\right]\left[\left(\frac{2}{r^*}\right)^{2} - 1\right]^{2}.
 $$
 
-**Lennard-Jones 氩的约化单位到实际单位的换算（$\epsilon/k_B = 119.8$ K，$\sigma = 3.405\times10^{-10**
+**表 3.1　Lennard-Jones 氩的约化单位到实际单位的换算（$\epsilon/k_B = 119.8$ K，$\sigma = 3.405\times10^{-10}$ m，$M = 0.03994$ kg/mol）。**
 
 | 物理量 | 约化单位 |  | 实际单位 |
 | --- | --- | --- | --- |
