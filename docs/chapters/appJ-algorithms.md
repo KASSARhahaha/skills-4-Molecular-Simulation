@@ -102,31 +102,31 @@
 在这些条件下，分子的长度分布为
 
 $$
-P(l) \sim l^2 \exp[-0.5\beta\kappa(l - l_0)^2] = \exp[-0.5\beta\kappa(l - l_0)^2 + 2\ln l] \tag{J.4.1}
+P(l) \sim l^2 \exp[-0.5\beta\kappa(l - l_0)^2] = \exp[-0.5\beta\kappa(l - l_0)^2 + 2\ln l]. \tag{J.4.1}
 $$
 
 下文中，归一化并不重要。我们无法直接对这个分布进行采样。然而，我们可以使用拒绝法。首先，我们确定 $\ln P(l)$ 的极大值位置 $l_M$。于是我们得到：
 
 $$
-\beta\kappa(l_M - l_0) - 2/l_M = 0 \tag{J.4.2}
+\beta\kappa(l_M - l_0) - 2/l_M = 0. \tag{J.4.2}
 $$
 
 将 $\beta\kappa$ 记为 $\alpha$，我们得到
 
 $$
-l_M^2 - l_M l_0 - 2/\alpha = 0 \tag{J.4.3}
+l_M^2 - l_M l_0 - 2/\alpha = 0, \tag{J.4.3}
 $$
 
 即
 
 $$
-l_M = 0.5(l_0 + \sqrt{l_0^2 + 8/\alpha}) \tag{J.4.4}
+l_M = 0.5(l_0 + \sqrt{l_0^2 + 8/\alpha}). \tag{J.4.4}
 $$
 
 我们可以用在 $l_0$ 附近的高斯分布来近似公式 (J.4.1)：
 
 $$
-P'(l) \sim \exp[-0.5\alpha(l - l_M)^2] \tag{J.4.5}
+P'(l) \sim \exp[-0.5\alpha(l - l_M)^2]. \tag{J.4.5}
 $$
 
 $P'(l)$ 与 $P(l)$ 的关系为

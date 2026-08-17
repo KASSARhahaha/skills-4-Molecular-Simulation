@@ -607,7 +607,7 @@ $$
 通常，对于远大于$\tau_c$的时间计算关联函数$\langle \dot{q}(0) \dot{q}(t) \rangle$没有太大意义。因此，$\kappa$的相对误差简单地是$1/\sqrt{n}$。如果我们将此统计精度表达式与 Bennett-Chandler 方案中式 (15.3.17) 得到的表达式
 
 $$
-\left[\frac{\langle (\Delta \kappa_{\mathrm{est}})^2 \rangle^{1/2}}{\kappa}\right]_{\text{Bennett-Chandler}} = \frac{1}{\kappa \sqrt{n}}
+\left[\frac{\langle (\Delta \kappa_{\mathrm{est}})^2 \rangle^{1/2}}{\kappa}\right]_{\text{Bennett-Chandler}} = \frac{1}{\kappa \sqrt{n}}.
 \tag{15.3.23}
 $$
 
@@ -650,7 +650,7 @@ $$
 其中$x_t$表示$N$个粒子在时间$t$的相空间坐标$\{p^N, r^N\}$，$h_A$和$h_B$是“预言”函数，当体系处于状态 A（B）时返回值 1，否则返回 0：
 
 $$
-h_{A,B}(x) = \begin{cases} 1 & \text{如果 } x \text{ 在 } A, B \text{ 中} \\ 0 & \text{其他} \end{cases}
+h_{A,B}(x) = \begin{cases} 1 & \text{如果 } x \text{ 在 } A, B \text{ 中} \\ 0 & \text{其他}. \end{cases}
 \tag{15.4.2}
 $$
 

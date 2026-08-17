@@ -612,7 +612,7 @@ $$
 因此，$\exp(iL_r t)$的效果是坐标的简单平移。类似地，$\exp(iL_p t)$的效果（其中$iL_p$定义为
 
 $$
-iL_p \equiv \dot{\mathbf{p}}(0)\frac{\partial}{\partial \mathbf{p}}
+iL_p \equiv \dot{\mathbf{p}}(0)\frac{\partial}{\partial \mathbf{p}},
 \tag{4.3.16}
 $$
 

@@ -759,7 +759,7 @@ $$
 式 (5.2.12) 允许我们用粒子速度表示扩散系数。我们从关系式
 
 $$
-2D = \lim_{t \to \infty} \frac{\partial \langle x^2(t) \rangle}{\partial t}
+2D = \lim_{t \to \infty} \frac{\partial \langle x^2(t) \rangle}{\partial t},
 \tag{5.2.13}
 $$
 

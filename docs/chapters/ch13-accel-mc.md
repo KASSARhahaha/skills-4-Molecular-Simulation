@@ -662,7 +662,7 @@ $$
 现在考虑执行反向移动的概率。为此，我们应当生成相同的团簇结构，但此时的出发点是有 $N_p + \Delta$ 对平行自旋、$N_a - \Delta$ 对反平行自旋的构型。与前面一样，反平行自旋对之间的键被认为是断开的（这与相同的团簇结构相容）。我们也知道新的相连键数 $n_c'$ 必定等于 $n_c$，因为生成相同的团簇结构需要相同数目的相连键。差别出现在新构型中平行自旋之间应有多少键被断开（$n_b'$）。由
 
 $$
-N_p(n) = n_c' + n_b' = n_c + n_b' = N_p(o) + \Delta = n_c + n_b + \Delta
+N_p(n) = n_c' + n_b' = n_c + n_b' = N_p(o) + \Delta = n_c + n_b + \Delta,
 \tag{13.4.16}
 $$
 
@@ -717,7 +717,7 @@ Swendsen-Wang 算法的大部分计算开销都花在把体系分解为 $M$ 个�
 为看清这一做法的原理，考虑把粒子 $i$ 试探位移到一个新位置。我们现在以概率
 
 $$
-p_{\text{bond}}(i,j) = \max\left[0,\,1-\exp(-\beta\Delta u_{i,j})\right]
+p_{\text{bond}}(i,j) = \max\left[0,\,1-\exp(-\beta\Delta u_{i,j})\right],
 \tag{13.4.20}
 $$
 
@@ -836,7 +836,7 @@ $$
 把式 (13.3.5) 稍作推广，我们就可以按给出正确拒绝概率的分布来生成 $s_{ij}^*$ 的取值：抽取一个随机数 $0 < R \leq 1$，并求解使
 
 $$
-\beta\int_0^{s_{ij}^*}\mathrm{d}s\left(\frac{\partial u(\mathbf{r}_j - \mathbf{r}_i - s\hat{e})}{\partial s}\right)^{+} = -\ln R
+\beta\int_0^{s_{ij}^*}\mathrm{d}s\left(\frac{\partial u(\mathbf{r}_j - \mathbf{r}_i - s\hat{e})}{\partial s}\right)^{+} = -\ln R.
 \tag{13.4.30}
 $$
 

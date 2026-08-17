@@ -60,7 +60,7 @@ $$
    $$
    从这$k$个取向中，我们以概率
    $$
-   p(\mathbf{b}_n) = \frac{\exp[-\beta u_\mathrm{or}(\mathbf{b}_n)]}{\sum_{j=1}^{k} \exp[-\beta u_\mathrm{or}(\mathbf{b}_j)]}
+   p(\mathbf{b}_n) = \frac{\exp[-\beta u_\mathrm{or}(\mathbf{b}_n)]}{\sum_{j=1}^{k} \exp[-\beta u_\mathrm{or}(\mathbf{b}_j)]}.
    \tag{12.1.3}
    $$
    选择一个，记为$n$。
@@ -283,7 +283,7 @@ $$
 1. “回溯”旧构象（见图 12.3，右图）并确定其 Rosenbluth 因子。
 1. 以概率
    $$
-   \mathrm{acc}(o \to n) = \min[1, W(n)/W(o)]
+   \mathrm{acc}(o \to n) = \min[1, W(n)/W(o)].
    \tag{12.2.1}
    $$
    接受试探移动。

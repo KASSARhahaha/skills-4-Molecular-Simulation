@@ -1584,7 +1584,7 @@ $$
 同样，我们采用简写：$Z_k \equiv \int \mathrm{d}X\exp\{-\beta[U(X)+V_k(Q(X))]\}$，$\beta F_k \equiv -\ln Z_k$。由偏倚分布 $P_k(Q)$，我们可以用
 
 $$
-\mathcal{P}(\mathcal{Q}) = \exp[+\beta V_k(\mathcal{Q})]\mathcal{P}_k(\mathcal{Q})\times \frac{Z_k}{Z}
+\mathcal{P}(\mathcal{Q}) = \exp[+\beta V_k(\mathcal{Q})]\mathcal{P}_k(\mathcal{Q})\times \frac{Z_k}{Z},
 \tag{8.6.48}
 $$
 
@@ -1639,7 +1639,7 @@ $$
 $$
 \begin{align}
 \ln L &= \text{常数} + \sum_{k=1}^{K}\sum_{n=1}^{N_k}\left[\ln p_{k,n} - \ln Z_k\right] \nonumber\\
-&= \text{常数} + \sum_{k=1}^{K}\sum_{n=1}^{N_k}\ln p_{k,n} - \sum_{k=1}^{K}N_k\ln \mathcal{Z}_k
+&= \text{常数} + \sum_{k=1}^{K}\sum_{n=1}^{N_k}\ln p_{k,n} - \sum_{k=1}^{K}N_k\ln \mathcal{Z}_k.
 \tag{8.6.55}
 \end{align}
 $$
