@@ -178,7 +178,7 @@ $$
 理想链的构象配分函数等于
 
 $$
-Q_{\mathrm{id}} = c \int \mathrm{d}\theta_1 \cdots \mathrm{d}\theta_{\ell} \prod_{i=1}^{\ell} \exp[-\beta u_{\mathrm{bond}}(\theta_i)] ,
+Q_{\mathrm{id}} = c \int \cdots \int \mathrm{d}\mathbf{\Gamma}_1 \cdots \mathrm{d}\mathbf{\Gamma}_{\ell} \prod_{i=1}^{\ell} \exp[-\beta u_{\mathrm{bond}}(\theta_i)] ,
 \tag{10.2.15}
 $$
 
@@ -200,7 +200,7 @@ $$
 P(\theta_i) = \frac{\exp[-\beta u(\theta_i)]}{\int \mathrm{d}\theta_i \exp[-\beta u(\theta_i)]} .
 $$
 
-这种采样可以使用拒绝方法相当容易地完成（参见例如文献[[21]](references.md#ref-21)）。在下文中，我们使用符号 $\mathbf{e}_i$ 表示指定链分子第 $i$ 段方向的单位向量。对于这样生成的每个构象，我们计算玻尔兹曼因子 $\exp(-\beta U_{\mathrm{ext}})$。该玻尔兹曼权重的平均值等于
+这种采样可以使用拒绝方法相当容易地完成（参见例如文献[[21]](references.md#ref-21)）。在下文中，我们使用符号 $\mathbf{\Gamma}_i$ 表示指定链分子第 $i$ 段方向的单位向量。对于这样生成的每个构象，我们计算玻尔兹曼因子 $\exp(-\beta U_{\mathrm{ext}})$。该玻尔兹曼权重的平均值等于
 
 $$
 \langle \exp(-\beta \mathcal{U}_{\mathrm{ext}}) \rangle = \frac{\int \mathrm{d}\Gamma \exp[-\beta(\mathcal{U}_{\mathrm{bond}} + \mathcal{U}_{\mathrm{ext}})]}{\int \mathrm{d}\Gamma \exp(-\beta \mathcal{U}_{\mathrm{bond}})} = Q/Q_{\mathrm{id}} .
@@ -237,24 +237,24 @@ Q/Q_{\mathrm{id}} = \langle \mathcal{W}^{\mathrm{ext}} \rangle .
 \tag{10.2.18}
 $$
 
-为了证明式 (10.2.18) 是正确的，让我们考虑生成给定链构象的概率。这个概率是若干因子的乘积。让我们先考虑一个片段的这些因子，然后将结果推广到完整链。生成具有方向 $\mathbf{e}_1$ 到 $\mathbf{e}_k$ 的一组 $k$ 个试探片段的概率为
+为了证明式 (10.2.18) 是正确的，让我们考虑生成给定链构象的概率。这个概率是若干因子的乘积。让我们先考虑一个片段的这些因子，然后将结果推广到完整链。生成具有方向 $\mathbf{\Gamma}_1$ 到 $\mathbf{\Gamma}_k$ 的一组 $k$ 个试探片段的概率为
 
 $$
-P_{\mathrm{id}}(\mathbf{e}_1) P_{\mathrm{id}}(\mathbf{e}_2) \cdots P_{\mathrm{id}}(\mathbf{e}_k) \mathrm{d}\mathbf{e}_1 \cdots \mathrm{d}\mathbf{e}_k .
+P_{\mathrm{id}}(\mathbf{\Gamma}_1) P_{\mathrm{id}}(\mathbf{\Gamma}_2) \cdots P_{\mathrm{id}}(\mathbf{\Gamma}_k) \mathrm{d}\mathbf{\Gamma}_1 \cdots \mathrm{d}\mathbf{\Gamma}_k .
 \tag{10.2.19}
 $$
 
 从这些试探片段中选择任何一个的概率由式 (10.2.17) 给出：
 
 $$
-p^{(i)}(j) = \frac{\exp[-\beta u_{\mathrm{ext}}^{(i)}(\mathbf{e}_j)]}{w_{i}^{\mathrm{ext}}(\mathbf{e}_1, \cdots, \mathbf{e}_k)} ,
+p^{(i)}(j) = \frac{\exp[-\beta u_{\mathrm{ext}}^{(i)}(\mathbf{\Gamma}_j)]}{w_{i}^{\mathrm{ext}}(\mathbf{\Gamma}_1, \cdots, \mathbf{\Gamma}_k)} ,
 \tag{10.2.20}
 $$
 
-其中 $j = 2, 3, \cdots, \ell$。我们希望计算所有可能的试探片段集合和所有可能的片段选择的 $w_i^{\mathrm{ext}}$ 的平均值。为此，我们必须对所有 $j$ 求和并对所有方向 $\prod_{j=1}^{k} \mathrm{d}\mathbf{e}_j$ 积分（即我们对片段 $i+1$ 方向的归一化概率分布进行平均）：
+其中 $j = 2, 3, \cdots, \ell$。我们希望计算所有可能的试探片段集合和所有可能的片段选择的 $w_i^{\mathrm{ext}}$ 的平均值。为此，我们必须对所有 $j$ 求和并对所有方向 $\prod_{j=1}^{k} \mathrm{d}\mathbf{\Gamma}_j$ 积分（即我们对片段 $i+1$ 方向的归一化概率分布进行平均）：
 
 $$
-\left\langle \frac{1}{w_i^{\mathrm{ext}}} \right\rangle = \int \prod_{j=1}^{k} \mathrm{d}\mathbf{e}_j P_{\mathrm{id}}(\mathbf{e}_j) \sum_{j=1}^{k} \frac{\exp[-\beta u_{\mathrm{ext}}^{(i)}(j')]}{w_i^{\mathrm{ext}}(\mathbf{e}_1, \cdots, \mathbf{e}_k)} \frac{w_i^{\mathrm{ext}}(\mathbf{e}_1, \cdots, \mathbf{e}_k)}{\sum_{j'=1}^{k} \exp[-\beta u_{\mathrm{ext}}^{(i)}(j')]} \frac{1}{k} .
+\left\langle \frac{1}{w_i^{\mathrm{ext}}} \right\rangle = \int \prod_{j=1}^{k} \mathrm{d}\mathbf{\Gamma}_j P_{\mathrm{id}}(\mathbf{\Gamma}_j) \sum_{j=1}^{k} \frac{\exp[-\beta u_{\mathrm{ext}}^{(i)}(j')]}{w_i^{\mathrm{ext}}(\mathbf{\Gamma}_1, \cdots, \mathbf{\Gamma}_k)} \frac{w_i^{\mathrm{ext}}(\mathbf{\Gamma}_1, \cdots, \mathbf{\Gamma}_k)}{\sum_{j'=1}^{k} \exp[-\beta u_{\mathrm{ext}}^{(i)}(j')]} \frac{1}{k} .
 \tag{10.2.21}
 $$
 
@@ -262,8 +262,8 @@ $$
 
 $$
 \begin{align}
-\left\langle \frac{1}{w_i^{\mathrm{ext}}} \right\rangle &= \int \mathrm{d}\mathbf{e} \, P_{\mathrm{id}}(\mathbf{e}) \exp[-\beta u_{\mathrm{ext}}(\mathbf{e})] \nonumber \\
-&= \frac{\int \mathrm{d}\mathbf{e} \exp\{-\beta[u_{\mathrm{bond}}(\mathbf{e}) + u_{\mathrm{ext}}(\mathbf{e})]\}}{\int \mathrm{d}\mathbf{e} \exp[-\beta u_{\mathrm{bond}}(\mathbf{e})]} \nonumber \\
+\left\langle \frac{1}{w_i^{\mathrm{ext}}} \right\rangle &= \int \mathrm{d}\mathbf{\Gamma} \, P_{\mathrm{id}}(\mathbf{\Gamma}) \exp[-\beta u_{\mathrm{ext}}(\mathbf{\Gamma})] \nonumber \\
+&= \frac{\int \mathrm{d}\mathbf{\Gamma} \exp\{-\beta[u_{\mathrm{bond}}(\mathbf{\Gamma}) + u_{\mathrm{ext}}(\mathbf{\Gamma})]\}}{\int \mathrm{d}\mathbf{\Gamma} \exp[-\beta u_{\mathrm{bond}}(\mathbf{\Gamma})]} \nonumber \\
 &= \frac{Q^{(i)}}{Q_{\mathrm{id}}^{(i)}} ,
 \tag{10.2.22}
 \end{align}

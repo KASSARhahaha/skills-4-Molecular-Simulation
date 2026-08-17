@@ -277,11 +277,11 @@ skip
     对于硬球模型的固相，Speedy 提出了以下状态方程[[320]](references.md#ref-320)：
 
     $$
-    z_{\mathrm{solid}} = \frac{3}{1 - \zeta^* - 0.5921\zeta^{*2} - 0.7072\zeta^{*3}} - \frac{0.601\zeta^*}{1 - \zeta^* - 0.5921\zeta^{*2} - 0.7072\zeta^{*3}} ,
+    z_{\mathrm{solid}} = \frac{3}{1 - \rho^*} - 0.5921\frac{\rho^* - 0.7072}{\rho^* - 0.601} ,
     \tag{9.2.9}
     $$
 
-    其中 $\zeta^* = \sigma^3 \rho / \sqrt{2}$（译注：原书此处 $\zeta^*$ 的定义与公式中使用的符号形式不同，此处按原始公式结构翻译）。在图 9.2 中，我们将该液相和固相状态方程的预测与 Alder 和 Wainwright [[422]](references.md#ref-422) 以及 Adams [[171]](references.md#ref-171) 的计算机模拟结果进行了比较。可以看出，经验状态方程很好地再现了模拟数据。为了计算液相的化学势，我们从稀薄气体极限开始积分状态方程（参见式 (9.1.1)）。这给出了亥姆霍兹自由能作为密度的函数。化学势则由下式得出：
+    其中 $\rho^* = \sigma^3 \rho / \sqrt{2}$。在图 9.2 中，我们将该液相和固相状态方程的预测与 Alder 和 Wainwright [[422]](references.md#ref-422) 以及 Adams [[171]](references.md#ref-171) 的计算机模拟结果进行了比较。可以看出，经验状态方程很好地再现了模拟数据。为了计算液相的化学势，我们从稀薄气体极限开始积分状态方程（参见式 (9.1.1)）。这给出了亥姆霍兹自由能作为密度的函数。化学势则由下式得出：
 
     $$
     \beta\mu(\rho) = \frac{\beta G}{N} = \frac{\beta F}{N} + \frac{P}{\rho k_BT} .

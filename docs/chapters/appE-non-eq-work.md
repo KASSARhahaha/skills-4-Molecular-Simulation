@@ -2,9 +2,9 @@
 
 第 8.7 节中描述的自由能差与（非平衡）功之间的关系，对于所有满足马尔可夫性且每一步都满足细致平衡的方案或运动方程都成立。
 
-为了理解这意味着什么，考虑一个通过改变控制参数 $\lambda$ 来做功的过程。例如，$\lambda$ 可以是系统的体积，也可以是系统哈密顿量中的一个参数。我们将 $\lambda$ 的初始值/最终值记为 $\lambda_0 / \lambda_K$（我们使用下标 $K$ 以保持后续记号的一致性）。
+为了理解这意味着什么，考虑一个通过改变控制参数 $\Lambda$ 来做功的过程。例如，$\Lambda$ 可以是系统的体积，也可以是系统哈密顿量中的一个参数。我们将 $\Lambda$ 的初始值/最终值记为 $\lambda_0 / \lambda_K$（我们使用下标 $K$ 以保持后续记号的一致性）。
 
-将 $\lambda$ 从 $\lambda_0$ 改变到 $\lambda_K$ 的方案可以分解为两类基本步骤：在第一类步骤中，系统的所有相空间坐标（$\Gamma$）保持固定，$\lambda$ 改变了 $\Delta \lambda_i$，其中 $i$ 标记步骤编号；如果共有 $K$ 个这样的步骤，则 $i = \{1, 2, \cdots, K\}$。注意，仅改变 $\lambda$ 的步骤是确定性的。然而，方案中还有第二类步骤，即 $\lambda$ 保持不变，但系统通过其自然动力学进行演化，与恒温器交换能量。恒定 $\lambda$ 下演化的例子包括一系列一个或多个 Monte Carlo 移动，或恒定温度 MD 模拟中的一个或多个时间步长。[^1] 在 Crooks [[389]](references.md#ref-389) 的术语中，我们将与“热库”（即恒温器）交换的能量记为 $Q$：它可以被解释为热库传递给系统的热量。由于细致平衡，系统在恒定 $\lambda$（比如 $\lambda_i$）下从相空间坐标 $\Gamma$ 演化到 $\Gamma'$ 的概率与逆向移动概率之比由下式给出：
+将 $\Lambda$ 从 $\lambda_0$ 改变到 $\lambda_K$ 的方案可以分解为两类基本步骤：在第一类步骤中，系统的所有相空间坐标（$\Gamma$）保持固定，$\Lambda$ 改变了 $\Delta \lambda_i$，其中 $i$ 标记步骤编号；如果共有 $K$ 个这样的步骤，则 $i = \{1, 2, \cdots, K\}$。注意，仅改变 $\Lambda$ 的步骤是确定性的。然而，方案中还有第二类步骤，即 $\Lambda$ 保持不变，但系统通过其自然动力学进行演化，与恒温器交换能量。恒定 $\Lambda$ 下演化的例子包括一系列一个或多个 Monte Carlo 移动，或恒定温度 MD 模拟中的一个或多个时间步长。[^1] 在 Crooks [[389]](references.md#ref-389) 的术语中，我们将与“热库”（即恒温器）交换的能量记为 $Q$：它可以被解释为热库传递给系统的热量。由于细致平衡，系统在恒定 $\Lambda$（比如 $\lambda_i$）下从相空间坐标 $\Gamma$ 演化到 $\Gamma'$ 的概率与逆向移动概率之比由下式给出：
 
 $$
 \frac{P(\Gamma \to \Gamma'; \lambda_i)}{P(\Gamma' \to \Gamma; \lambda_i)} = e^{-\beta \Delta E(\lambda_i)},
@@ -13,7 +13,7 @@ $$
 
 其中 $\Delta E(\lambda_i) \equiv E(\Gamma'; \lambda_i) - E(\Gamma; \lambda_i)$。
 
-当我们在恒定 $\Gamma$ 下改变 $\lambda$ 时，我们对系统做功。我们将 $\Gamma$ 固定时 $\lambda$ 从 $\lambda_{i-1}$ 变到 $\lambda_i$ 对应的功记为 $w_i$。当 $\lambda$ 从 $\lambda_0$ 增加到 $\lambda_K$ 时，对系统所做的总功 $W$ 等于
+当我们在恒定 $\Gamma$ 下改变 $\Lambda$ 时，我们对系统做功。我们将 $\Gamma$ 固定时 $\Lambda$ 从 $\lambda_{i-1}$ 变到 $\lambda_i$ 对应的功记为 $w_i$。当 $\Lambda$ 从 $\lambda_0$ 增加到 $\lambda_K$ 时，对系统所做的总功 $W$ 等于
 
 $$
 W = \sum_{i=1}^{K} w_i.
@@ -25,7 +25,7 @@ $$
 \prod_{i=0}^{K-1} \left[ P(\Gamma_i \to \Gamma_{i+1}; \lambda_i) \times 1 \right].
 $$
 
-我们在每一步中包含了一个因子一，以表示在恒定 $\Gamma$ 下改变 $\lambda$ 是确定性的。在接下来的讨论中，我们省略这个平凡的因子。我们也可以写出系统沿相同路径从 $\lambda_K$ 处的 $\Gamma_K$ 逆向演化到 $\lambda_0$ 处的 $\Gamma_0$ 的概率：
+我们在每一步中包含了一个因子一，以表示在恒定 $\Gamma$ 下改变 $\Lambda$ 是确定性的。在接下来的讨论中，我们省略这个平凡的因子。我们也可以写出系统沿相同路径从 $\lambda_K$ 处的 $\Gamma_K$ 逆向演化到 $\lambda_0$ 处的 $\Gamma_0$ 的概率：
 
 $$
 \prod_{i=K-1}^{0} P(\Gamma_{i+1} \to \Gamma_i; \lambda_i).
@@ -55,7 +55,7 @@ $$
 其中 $P_B(\Gamma_0, \lambda_0) = \exp\left(-\beta [E(\Gamma_0; \lambda_0) - F(\lambda_0)]\right)$，而亥姆霍兹自由能 $F$ 如通常一样由下式给出：
 
 $$
-\beta F(\lambda) = -\ln \sum_{\Gamma} e^{-\beta E(\Gamma; \lambda)}.
+\beta F(\Lambda) = -\ln \sum_{\Gamma} e^{-\beta E(\Gamma; \Lambda)}.
 \tag{E.1.5}
 $$
 
