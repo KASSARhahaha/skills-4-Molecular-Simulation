@@ -697,6 +697,18 @@ def process_custom_envs(text):
         flags=re.DOTALL,
     )
 
+    # \begin{notebox}{标题} ... \end{notebox} -> 无编号注记框（全书仅第 3 章一个）
+    def notebox_replace(mm):
+        title, inner = mm.group(1), mm.group(2).strip()
+        return '\n\n???+ note "' + title + '"\n\n' + _indent_block(inner) + '\n\n'
+
+    text = re.sub(
+        r"\\begin\{notebox\}\{([^}]*)\}(.*?)\\end\{notebox\}",
+        notebox_replace,
+        text,
+        flags=re.DOTALL,
+    )
+
     # \begin{example}[title]...\end{example}
     def example_replace(m):
         title = m.group(1) or ""
