@@ -201,27 +201,29 @@ $$
 
 **算法 19　固定质心 MC：晶格束缚晶体的粒子移动**
 
-```
- **function** mcmove
-  尝试在保持质心固定的条件下移动粒子
-  setlat：设置参考晶格
-  $o = \text{int}(R \times n_{\text{part}}) + 1$ \COMMENT{随机选择粒子}
-  $\text{dis} = (R - 0.5) \times \text{delx}$ \COMMENT{给予粒子随机位移}
-  $x_n = x(o) + \text{dis}$
-  $\mathrm{d}x = x(o) - x_0(o) - \mathrm{d}x_{\mathrm{cm}}$ \COMMENT{计算 $\Delta\mathbf{r}_i$}
-  $\text{del} = \lambda \times (2 \times \mathrm{d}x \times \text{dis} + \text{dis} \times \text{dis} \times (n_{\text{part}}-1)/n_{\text{part}})$ \COMMENT{与晶格的能量差，式 (9.2.8)}
-  $\text{arg1} = -\beta \times \text{del}$
-if $R < \exp(\text{arg1)$}
-    $e_{\text{no}} = \text{ener}(x(o))$ \COMMENT{旧构型的能量}
-    $e_{\text{nn}} = \text{ener}(x_n)$ \COMMENT{新构型的能量}
-    $\text{arg2} = -\beta \times (e_{\text{nn}} - e_{\text{no}})$
-  if $R < \exp(\text{arg2)$}
-      $\mathrm{d}x_{\mathrm{cm}} = \mathrm{d}x_{\mathrm{cm}} + (x_n - x(o))/n_{\text{part}}$ \COMMENT{更新质心位移}
-      $x(o) = x_n$ \COMMENT{接受：用 $x_n$ 替换 $x(o)$}
-  end if
-end if
- **end function**
-```
+<table class="algbox" markdown="1">
+<tbody markdown="1">
+<tr markdown="1"><td class="algcode" markdown="span"><code>function&nbsp;mcmove</code></td><td class="algcom" markdown="span">在保持质心固定的前提下尝试移动一个粒子</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>setlat</code></td><td class="algcom" markdown="span">建立参考晶格</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>o=int(R*npart)+1</code></td><td class="algcom" markdown="span">随机选取粒子</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>dis=(R-0.5)*delx</code></td><td class="algcom" markdown="span">给粒子一个随机位移</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>xn=x(o)+dis</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>dx=x(o)-x0(o)-dxcm</code></td><td class="algcom" markdown="span">计算 $\Delta\mathbf{r}_i$</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>del=lambda*(2*dx*dis+</code></td><td class="algcom" markdown="span">与晶格的能量差</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>\hspace*{2em}dis*dis*(npart-1)/npart)</code></td><td class="algcom" markdown="span">式 (9.2.8)</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>arg1=-beta*del</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>if&nbsp;R&nbsp;</code>$<$<code>&nbsp;exp(arg1)&nbsp;then</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>eno&nbsp;=&nbsp;ener(x(o))</code></td><td class="algcom" markdown="span">旧构型的能量</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>enn&nbsp;=&nbsp;ener(xn)</code></td><td class="algcom" markdown="span">新构型的能量</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>arg2=-beta*(enn-eno)</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>if&nbsp;R&nbsp;</code>$<$<code>&nbsp;exp(arg2)&nbsp;then</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>dxcm=dxcm+(xn-x(o))/npart</code></td><td class="algcom" markdown="span">质心的新位移</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>x(o)=xn</code></td><td class="algcom" markdown="span">接受：用 xn 替换 x(o)</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>end&nbsp;function</code></td><td class="algcom" markdown="span"></td></tr>
+</tbody>
+</table>
 
 skip
 
@@ -234,27 +236,34 @@ skip
 
 **算法 20　生成 fcc 晶体**
 
-```
- **function** setlat$(n_x, n_y, n_z)$
-  生成三维 fcc 晶体，包含 $n_x \times n_y \times n_z$ 个单胞，每个单胞含 4 个粒子
-  $a_1 = (V/(n_x \times n_y \times n_z))^{1/3}$ \COMMENT{单胞直径}
-  $i = 0$；$x_{\mathrm{cm0}} = 0$
-for $1 \leq i_z \leq 2n_z$
-  for $1 \leq i_y \leq 2n_y$
-    for $1 \leq i_x \leq 2n_x$
-      if $(i_x + i_y + i_z) \bmod 2 == 0$
-          $i = i + 1$
-          $x_0(i) = a_0 \times i_x + 0.5 \times a_0 \times (i_y + i_z) \bmod 2$ \COMMENT{粒子 $i$ 的 $x$ 坐标}
-          $y_0(i) = a_0 \times i_y + 0.5 \times a_0 \times (i_x + i_z) \bmod 2$ \COMMENT{粒子 $i$ 的 $y$ 坐标}
-          $z_0(i) = a_0 \times i_z + 0.5 \times a_0 \times (i_x + i_y) \bmod 2$ \COMMENT{粒子 $i$ 的 $z$ 坐标}
-          $x_{\mathrm{cm0}} = x_{\mathrm{cm0}} + x_0(i)$；$y$、$z$ 类似
-      end if
-    end for
-  end for
-end for
-  $x_{\mathrm{cm0}} = x_{\mathrm{cm0}} / n_{\text{part}}$ \COMMENT{$x$ 方向质心；$y$、$z$ 类似}
- **end function**
-```
+<table class="algbox" markdown="1">
+<tbody markdown="1">
+<tr markdown="1"><td class="algcode" markdown="span"><code>function&nbsp;setlat(nx,ny,nz)</code></td><td class="algcom" markdown="span">生成三维 fcc 晶体</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"></td><td class="algcom" markdown="span">共 nx*ny*nz 个单胞</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"></td><td class="algcom" markdown="span">每个单胞含 4 个粒子</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>a1=(vol/(nx*ny*nz))**(1/3)</code></td><td class="algcom" markdown="span">a1：单胞直径</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>i=0</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>xcm0=0</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>for&nbsp;1&nbsp;</code>$\leq$<code>&nbsp;iz&nbsp;</code>$\leq$<code>&nbsp;2*nz&nbsp;do</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>for&nbsp;1&nbsp;</code>$\leq$<code>&nbsp;iy&nbsp;</code>$\leq$<code>&nbsp;2*ny&nbsp;do</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>for&nbsp;1&nbsp;</code>$\leq$<code>&nbsp;ix&nbsp;</code>$\leq$<code>&nbsp;2*nx&nbsp;do</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>if&nbsp;(ix+iy+iz)%2&nbsp;==&nbsp;0&nbsp;then</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>i=i+1</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>x0(i)=a0*ix+</code></td><td class="algcom" markdown="span">粒子 i 的 $x$ 坐标</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>\hspace*{2em}0.5*a0*(iy+iz)%2</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>y0(i)=a0*iy+</code></td><td class="algcom" markdown="span">粒子 i 的 $y$ 坐标</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>\hspace*{2em}0.5*a0*(ix+iz)%2</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>z0(i)=a0*iz+</code></td><td class="algcom" markdown="span">粒子 i 的 $z$ 坐标</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>\hspace*{2em}0.5*a0*(ix+iy)%2</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>xcm0=xcm0+x0(i)</code></td><td class="algcom" markdown="span">$y$、$z$ 同理</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>xcm0=xcm0/npart</code></td><td class="algcom" markdown="span">$x$ 方向质心；$y$、$z$ 同理</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>end&nbsp;function</code></td><td class="algcom" markdown="span"></td></tr>
+</tbody>
+</table>
 
 skip
 

@@ -58,24 +58,26 @@ $$
 
 **算法 29　在 MC 试探移动中使用 Verlet 列表**
 
-```
-function mcmove_verlet
-o=int(R*npart)+1         % 随机选择一个粒子
-if |x(o)-xv(o)| > (rv-rc)/2 then
-    new_vlist             % 检查是否需要更新列表
-endif
-eno = en_vlist(o,x(o))   % 旧构型能量
-xn=x(o)+(R-0.5)*delx     % 随机位移
-if |xn-xv(o)| > (rv-rc)/2 then
-    new_vlist             % 检查是否需要更新列表
-endif
-enn = en_vlist(o,xn)     % 新构型能量
-arg=exp(-beta*(enn-eno))
-if R < arg then
-    x(o)=xn               % 接受：用xn替换x(o)
-endif
-end function
-```
+<table class="algbox" markdown="1">
+<tbody markdown="1">
+<tr markdown="1"><td class="algcode" markdown="span"><code>function&nbsp;mcmove_verlet</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>o=int(R*npart)+1</code></td><td class="algcom" markdown="span">随机选择一个粒子</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>if&nbsp;|x(o)-xv(o)|&nbsp;&gt;&nbsp;(rv-rc)/2&nbsp;then</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>new_vlist</code></td><td class="algcom" markdown="span">检查是否需要更新列表</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>eno&nbsp;=&nbsp;en_vlist(o,x(o))</code></td><td class="algcom" markdown="span">旧构型能量</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>xn=x(o)+(R-0.5)*delx</code></td><td class="algcom" markdown="span">随机位移</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>if&nbsp;|xn-xv(o)|&nbsp;&gt;&nbsp;(rv-rc)/2&nbsp;then</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>new_vlist</code></td><td class="algcom" markdown="span">检查是否需要更新列表</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>enn&nbsp;=&nbsp;en_vlist(o,xn)</code></td><td class="algcom" markdown="span">新构型能量</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>arg=exp(-beta*(enn-eno))</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>if&nbsp;R&nbsp;&lt;&nbsp;arg&nbsp;then</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>x(o)=xn</code></td><td class="algcom" markdown="span">接受：用 xn 替换 x(o)</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>end&nbsp;function</code></td><td class="algcom" markdown="span"></td></tr>
+</tbody>
+</table>
 
 **具体说明**（一般说明见第 1 章「算法」）：
 
@@ -84,26 +86,28 @@ end function
 
 **算法 30　制作 Verlet 列表**
 
-```
-function new_vlist            % 制作一个新的 Verlet 列表
-for 1 <= i <= npart do        % 初始化列表
-    nlist(i)=0
-    xv(i)=x(i)                % 存储粒子位置
-enddo
-for 1 <= i <= npart-1 do
-    for i+1 <= j <= npart do
-        xr=x(i)-x(j)
-        xr=xr-box*round(xr/box)   % 最近映像
-        if |xr| < rv then         % 检验粒子 j 是否在
-            nlist(i)=nlist(i)+1   % Verlet 列表半径 rv 之内
-            nlist(j)=nlist(j)+1   % 若是，则加入两个列表
-            list(i,nlist(i))=j
-            list(j,nlist(j))=i
-        endif
-    enddo
-enddo
-end function
-```
+<table class="algbox" markdown="1">
+<tbody markdown="1">
+<tr markdown="1"><td class="algcode" markdown="span"><code>function&nbsp;new_vlist</code></td><td class="algcom" markdown="span">制作一个新的 Verlet 列表</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>for&nbsp;1&nbsp;&lt;=&nbsp;i&nbsp;&lt;=&nbsp;npart&nbsp;do</code></td><td class="algcom" markdown="span">初始化列表</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>nlist(i)=0</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>xv(i)=x(i)</code></td><td class="algcom" markdown="span">存储粒子位置</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>for&nbsp;1&nbsp;&lt;=&nbsp;i&nbsp;&lt;=&nbsp;npart-1&nbsp;do</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>for&nbsp;i+1&nbsp;&lt;=&nbsp;j&nbsp;&lt;=&nbsp;npart&nbsp;do</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>xr=x(i)-x(j)</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>xr=xr-box*round(xr/box)</code></td><td class="algcom" markdown="span">最近映像</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>if&nbsp;|xr|&nbsp;&lt;&nbsp;rv&nbsp;then</code></td><td class="algcom" markdown="span">检验粒子 j 是否在</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>nlist(i)=nlist(i)+1</code></td><td class="algcom" markdown="span">Verlet 列表半径 rv 之内</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>nlist(j)=nlist(j)+1</code></td><td class="algcom" markdown="span">若是，则加入两个列表</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>list(i,nlist(i))=j</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>list(j,nlist(j))=i</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>end&nbsp;function</code></td><td class="algcom" markdown="span"></td></tr>
+</tbody>
+</table>
 
 **具体说明**（一般说明见第 1 章「算法」）：
 
@@ -114,18 +118,20 @@ end function
 
 **算法 31　使用 Verlet 列表计算能量**
 
-```
-function en_vlist(i,xi)       % 用 Verlet 列表计算粒子 i 的
-
-en=0
-for 1 <= jj <= nlist(i) do    % 遍历列表中的粒子
-    j=list(i,jj)              % 列表中的下一个粒子
-    xij=xi-x(j)
-    xij=|(xij-box*round(xij/box))|   % 最近映像距离
-    en=en+enij(xij)           % enij 为粒子对 ij 的对势
-enddo
-end function
-```
+<table class="algbox" markdown="1">
+<tbody markdown="1">
+<tr markdown="1"><td class="algcode" markdown="span"><code>function&nbsp;en_vlist(i,xi)</code></td><td class="algcom" markdown="span">用 Verlet 列表计算粒子 i 的</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"></td><td class="algcom" markdown="span">相互作用能</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>en=0</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>for&nbsp;1&nbsp;&lt;=&nbsp;jj&nbsp;&lt;=&nbsp;nlist(i)&nbsp;do</code></td><td class="algcom" markdown="span">遍历列表中的粒子</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>j=list(i,jj)</code></td><td class="algcom" markdown="span">列表中的下一个粒子</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>xij=xi-x(j)</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>xij=|(xij-box*round(xij/box))|</code></td><td class="algcom" markdown="span">最近映像距离</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>en=en+enij(xij)</code></td><td class="algcom" markdown="span">enij 为粒子对 ij 的对势</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>end&nbsp;function</code></td><td class="algcom" markdown="span"></td></tr>
+</tbody>
+</table>
 
 **具体说明**（一般说明见第 1 章「算法」）：
 
@@ -141,19 +147,22 @@ end function
 
 **算法 32　制作格子列表**
 
-```
-function new_nlist(rc)
-rn=box/int(box/rc)       % 确定格子直径：rn >= rc
-for 0 <= icel <= ncel-1 do
-    hoc(icel)=0           % 将每个格子的链头设为0
-enddo
-for 1 <= i <= npart do
-    icel=int(x(i)%rn)     % 确定格子编号
-    ll(i)=hoc(icel)       % 将链头链接到当前粒子
-    hoc(icel)=i           % 将粒子i设为新的链头
-enddo
-end function
-```
+<table class="algbox" markdown="1">
+<tbody markdown="1">
+<tr markdown="1"><td class="algcode" markdown="span"><code>function&nbsp;new_nlist(rc)</code></td><td class="algcom" markdown="span">为截断距离为 rc 的对相互作用制作链接格子列表</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>rn=box/int(box/rc)</code></td><td class="algcom" markdown="span">确定格子直径：rn $\geq$ rc</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"></td><td class="algcom" markdown="span">box 为模拟盒直径</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>for&nbsp;0&nbsp;&lt;=&nbsp;icel&nbsp;&lt;=&nbsp;ncel-1&nbsp;do</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>hoc(icel)=0</code></td><td class="algcom" markdown="span">将每个格子的链头设为 0</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>for&nbsp;1&nbsp;&lt;=&nbsp;i&nbsp;&lt;=&nbsp;npart&nbsp;do</code></td><td class="algcom" markdown="span">遍历所有粒子</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>icel=int(x(i)%rn)</code></td><td class="algcom" markdown="span">确定格子编号</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>ll(i)=hoc(icel)</code></td><td class="algcom" markdown="span">把格子 icel 的链头接入链表</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>hoc(icel)=i</code></td><td class="algcom" markdown="span">将粒子 i 设为新的链头</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>end&nbsp;function</code></td><td class="algcom" markdown="span"></td></tr>
+</tbody>
+</table>
 
 **具体说明**（一般说明见第 1 章「算法」）：
 
@@ -162,24 +171,27 @@ end function
 
 **算法 33　使用格子列表计算能量**
 
-```
-function ennlist(i,xi,en)
-en=0
-icel=int(xi%rn)           % 确定粒子i的格子编号
-for -1 <= jn <= 1 do
-    jcel=(icel+jn)%ncel   % 循环遍历相邻格子
-    j=hoc(jcel)           % 相邻格子的链头
-    while j != 0 do
-        if i != j then
-            xij=xi-x(j)
-            rij=|(xij-box*round(xij/box)| % 最近镜像距离
-            en=en+enij(rij)   % enij是粒子对的势能
-        endif
-        j=ll(j)           % 列表中的下一个粒子
-    enddo
-enddo
-end function
-```
+<table class="algbox" markdown="1">
+<tbody markdown="1">
+<tr markdown="1"><td class="algcode" markdown="span"><code>function&nbsp;ennlist(i,xi,en)</code></td><td class="algcom" markdown="span">用链接格子列表计算能量</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>en=0</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>icel=int(xi%rn)</code></td><td class="algcom" markdown="span">确定格子编号</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>for&nbsp;-1&nbsp;&lt;=&nbsp;jn&nbsp;&lt;=&nbsp;1&nbsp;do</code></td><td class="algcom" markdown="span">遍历相邻格子（一维）</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"></td><td class="algcom" markdown="span">三维时为三重循环</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>jcel=(icel+jn)%ncel</code></td><td class="algcom" markdown="span">$0 \leq$ jcell $\leq$ ncel$-1$</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>j=hoc(jcel)</code></td><td class="algcom" markdown="span">格子 jcel 的链头</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>while&nbsp;j&nbsp;!=&nbsp;0&nbsp;do</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>if&nbsp;i&nbsp;!=&nbsp;j&nbsp;then</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>xij=xi-x(j)</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>rij=|(xij-box*round(xij/box)|</code></td><td class="algcom" markdown="span">最近映像距离</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>en=en+enij(rij)</code></td><td class="algcom" markdown="span">enij 为粒子对 ij 的对势</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>j=ll(j)</code></td><td class="algcom" markdown="span">列表中的下一个粒子</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>end&nbsp;function</code></td><td class="algcom" markdown="span"></td></tr>
+</tbody>
+</table>
 
 **具体说明**（一般说明见第 1 章「算法」）：
 
@@ -206,24 +218,26 @@ Verlet 方案在评估相互作用方面更高效的观察，促使 Auerbach 等
 
 **算法 34　Verlet 列表和格子列表的组合**
 
-```
-function mcmove_clist
-o=int(R*npart)+1         % 随机选择一个粒子
-if (x(o)-xv(o)) > rv-rc then
-    new_clist             % 需要制作新列表？
-endif
-eno = en_vlist(o,x(o))   % 旧构型能量
-xn=x(o)+(R-0.5)*delx     % 随机位移
-if (xn)-xv(o) > rv-rc then
-    new_clist             % 需要制作新列表？
-endif
-enn = en_vlist(o,xn)     % 新构型能量
-arg=exp(-beta*(enn-eno))
-if R < arg then
-    x(o)=xn               % 接受：用xn替换x(o)
-endif
-end function
-```
+<table class="algbox" markdown="1">
+<tbody markdown="1">
+<tr markdown="1"><td class="algcode" markdown="span"><code>function&nbsp;mcmove_clist</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>o=int(R*npart)+1</code></td><td class="algcom" markdown="span">随机选择一个粒子</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>if&nbsp;(x(o)-xv(o))&nbsp;&gt;&nbsp;rv-rc&nbsp;then</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>new_clist</code></td><td class="algcom" markdown="span">需要制作新列表？</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>eno&nbsp;=&nbsp;en_vlist(o,x(o))</code></td><td class="algcom" markdown="span">旧构型能量</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>xn=x(o)+(R-0.5)*delx</code></td><td class="algcom" markdown="span">随机位移</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>if&nbsp;(xn)-xv(o)&nbsp;&gt;&nbsp;rv-rc&nbsp;then</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>new_clist</code></td><td class="algcom" markdown="span">需要制作新列表？</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>enn&nbsp;=&nbsp;en_vlist(o,xn)</code></td><td class="algcom" markdown="span">新构型能量</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>arg=exp(-beta*(enn-eno))</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>if&nbsp;R&nbsp;&lt;&nbsp;arg&nbsp;then</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>x(o)=xn</code></td><td class="algcom" markdown="span">接受：用 xn 替换 x(o)</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>end&nbsp;function</code></td><td class="algcom" markdown="span"></td></tr>
+</tbody>
+</table>
 
 **具体说明**（一般说明见第 1 章「算法」）：
 
@@ -232,35 +246,37 @@ end function
 
 **算法 35　使用格子列表制作 Verlet 列表**
 
-```
-function new_clist
-new_nlist(rv)             % 首先制作格子列表
-for 1 <= i <= npart do
-    nlist(i)=0            % 初始化Verlet列表
-    xv(i)=x(i)            % 存储粒子位置
-enddo
-for 1 <= i <= npart do
-    icel=int(x(i)%rn)     % 确定格子编号
-    for -1 <= jn <= 1 do
-        jcel=(icel+jn)%ncel % 循环遍历相邻格子
-        j=hoc(jcel)       % 相邻格子的链头
-        while j!=0 do
-            if i!=j then
-                xr=x(i)-x(j)
-                xr=xr-box*round(xr/box) % 最近镜像距离
-                if |xr| < rv then
-                    nlist(i)=nlist(i)+1  % 添加到Verlet列表
-                    nlist(j)=nlist(j)+1
-                    list(i,nlist(i))=j
-                    list(j,nlist(j))=i
-                endif
-            endif
-            j=ll(j)       % 格子列表中的下一个粒子
-        enddo
-    enddo
-enddo
-end function
-```
+<table class="algbox" markdown="1">
+<tbody markdown="1">
+<tr markdown="1"><td class="algcode" markdown="span"><code>function&nbsp;new_clist</code></td><td class="algcom" markdown="span">用格子列表制作一个新的 Verlet 列表</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>new_nlist(rv)</code></td><td class="algcom" markdown="span">先制作格子列表</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>for&nbsp;1&nbsp;&lt;=&nbsp;i&nbsp;&lt;=&nbsp;npart&nbsp;do</code></td><td class="algcom" markdown="span">初始化 Verlet 列表</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>nlist(i)=0</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>xv(i)=x(i)</code></td><td class="algcom" markdown="span">存储粒子位置</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>for&nbsp;1&nbsp;&lt;=&nbsp;i&nbsp;&lt;=&nbsp;npart&nbsp;do</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>icel=int(x(i)%rn)</code></td><td class="algcom" markdown="span">确定格子编号</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>for&nbsp;-1&nbsp;&lt;=&nbsp;jn&nbsp;&lt;=&nbsp;1&nbsp;do</code></td><td class="algcom" markdown="span">遍历相邻格子（一维）</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>jcel=(icel+jn)%ncel</code></td><td class="algcom" markdown="span">$0 \leq$ jcell $\leq$ ncel$-1$</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>j=hoc(jcel)</code></td><td class="algcom" markdown="span">格子 jcel 的链头</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>while&nbsp;j!=0&nbsp;do</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>if&nbsp;i!=j&nbsp;then</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>xr=x(i)-x(j)</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>xr=xr-box*round(xr/box)</code></td><td class="algcom" markdown="span">最近映像距离</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>if&nbsp;|xr|&nbsp;&lt;&nbsp;rv&nbsp;then</code></td><td class="algcom" markdown="span">添加到 Verlet 列表</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>nlist(i)=nlist(i)+1</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>nlist(j)=nlist(j)+1</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>list(i,nlist(i))=j</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>list(j,nlist(j))=i</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>j=ll(j)</code></td><td class="algcom" markdown="span">格子列表中的下一个粒子</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>end&nbsp;function</code></td><td class="algcom" markdown="span"></td></tr>
+</tbody>
+</table>
 
 **具体说明**（一般说明见第 1 章「算法」）：
 

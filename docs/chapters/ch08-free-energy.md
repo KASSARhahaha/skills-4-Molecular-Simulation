@@ -548,14 +548,16 @@ $s_{N+1}$是第$N+1$个粒子的标度坐标。
 
 **算法 18　Widom 试探粒子插入**
 
-```
-\Function{Widom}{}
-// 通过试探粒子插入计算过量化学势
- $x_{\mathrm{test}} = \mathrm{box} \times R$ // 生成随机位置
- $en_{\mathrm{test}} = \mathrm{ener}(x_{\mathrm{test}}, \mathrm{npart}+1)$ // 确定能量
- $w_{\mathrm{test}} = w_{\mathrm{test}} + \exp(-\beta \times en_{\mathrm{test}})$ // 更新公式 (8.5.5)中的玻尔兹曼因子
-\EndFunction
-```
+<table class="algbox" markdown="1">
+<tbody markdown="1">
+<tr markdown="1"><td class="algcode" markdown="span"><code>function&nbsp;Widom</code></td><td class="algcom" markdown="span">通过试探粒子插入计算过量化学势</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>xtest=box*R</code></td><td class="algcom" markdown="span">生成随机位置</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>entest&nbsp;=&nbsp;ener(xtest,npart+1)</code></td><td class="algcom" markdown="span">确定能量</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>wtest=wtest</code></td><td class="algcom" markdown="span">更新式 (8.5.5) 中的玻尔兹曼因子</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>\hspace*{2em}+exp(-beta*entest)</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>end&nbsp;function</code></td><td class="algcom" markdown="span"></td></tr>
+</tbody>
+</table>
 
 **具体说明**（一般说明见第 1 章「算法」）：
 

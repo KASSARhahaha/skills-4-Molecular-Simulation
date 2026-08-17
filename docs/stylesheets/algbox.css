@@ -1,0 +1,41 @@
+/* 算法框：对应书稿的版式——细黑框，左栏代码（等宽）、右栏注释（正文字体），
+   循环体缩进，整框一个外框，栏内不画线。书稿里 41 个框都是这一个样子。 */
+table.algbox {
+  display: table;
+  width: 100%;
+  margin: 0.8em 0 1.2em;
+  border: 1px solid var(--md-default-fg-color--light);
+  border-collapse: collapse;
+  font-size: 0.76rem;
+}
+
+table.algbox td {
+  border: none;
+  padding: 0.05em 0.5em;
+  vertical-align: top;
+  line-height: 1.55;
+}
+
+/* 代码栏不折行：折了行缩进就对不上，读者分不清哪条在循环体里 */
+table.algbox td.algcode {
+  width: 56%;
+  white-space: nowrap;
+}
+
+table.algbox td.algcom {
+  width: 44%;
+}
+
+/* 代码是一格里的多个 <code>（数学段落夹在中间），逐个描边会很花 */
+table.algbox td.algcode code {
+  background: none;
+  box-shadow: none;
+  padding: 0;
+  font-size: inherit;
+  color: inherit;
+}
+
+@media screen and (max-width: 44.9375em) {
+  table.algbox { font-size: 0.68rem; }
+  table.algbox td.algcode { white-space: normal; }
+}

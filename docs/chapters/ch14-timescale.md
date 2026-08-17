@@ -745,22 +745,23 @@ $$
 
 **算法 28　多时间步分子动力学**
 
-```
- **input:**
- **function** multi(fl, fs)
- fl: long-range part of the force
- fs: short-range part of the force
- vx = vx + 0.5*delt*fl \hfill *velocity Verlet with time step $\Delta t/2$*
-for $1 \leq \mathrm{it \leq n$}
-   vx = vx + 0.5*(delt/n)*fs \hfill *velocity Verlet with short timestep $\Delta t/n$*
-   x = x + (delt/n)$^2$*vx
-   fs = force\_short \hfill *short-range forces*
-   vx = vx + 0.5*(delt/n)*fs
-end for
- fl = force\_long \hfill *all long-ranged forces*
- vx = vx + 0.5*delt*fl \hfill *velocity Verlet with time step $\Delta t/2$*
- **end function**
-```
+<table class="algbox" markdown="1">
+<tbody markdown="1">
+<tr markdown="1"><td class="algcode" markdown="span"><code>function&nbsp;multi(fl,fs)</code></td><td class="algcom" markdown="span">输入：</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"></td><td class="algcom" markdown="span">fl：力的长程部分</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"></td><td class="algcom" markdown="span">fs：力的短程部分</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>vx=vx+0.5*delt*fl</code></td><td class="algcom" markdown="span">以时间步 $\Delta t/2$ 作速度 Verlet</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>for&nbsp;1&nbsp;</code>$\leq$<code>&nbsp;it&nbsp;</code>$\leq$<code>&nbsp;n&nbsp;do</code></td><td class="algcom" markdown="span">短时间步循环</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>vx=vx+0.5*(delt/n)*fs</code></td><td class="algcom" markdown="span">以短时间步 $\Delta t/n$ 作速度 Verlet</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>x=x+(delt/n)2*vx</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>fs&nbsp;=&nbsp;force_short</code></td><td class="algcom" markdown="span">短程力</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>vx=vx+0.5*(delt/n)*fs</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>fl&nbsp;=&nbsp;force_long</code></td><td class="algcom" markdown="span">全部长程力</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>vx=vx+0.5*delt*fl</code></td><td class="algcom" markdown="span">以时间步 $\Delta t/2$ 作速度 Verlet</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>end&nbsp;function</code></td><td class="algcom" markdown="span"></td></tr>
+</tbody>
+</table>
 
 **具体说明**（一般说明见第 1 章「算法」）：
 

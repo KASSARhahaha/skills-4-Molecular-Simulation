@@ -6,12 +6,13 @@
 
 **算法 36　高斯分布**
 
-```
-如果 R1 和 R2 是在区间 {0, 1} 上均匀分布的两个随机数，
-则由下式给出的 Xg
-  Xg = Xavg + sigma * sqrt(-ln(R1)) * cos(2*pi*R2)
-服从均值为 Xavg、方差为 sigma^2 的高斯分布。
-```
+<table class="algbox" markdown="1">
+<tbody markdown="1">
+<tr markdown="1"><td class="algcode" markdown="span"><code>若&nbsp;</code>$R_1$<code>&nbsp;与&nbsp;</code>$R_2$<code>&nbsp;是区间&nbsp;</code>$\{0,1\}$<code>&nbsp;上均匀分布的两个随机数，则由</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span">$X_g = X_{\mathrm{avg}} + \sigma\sqrt{-\ln(R_1)}\,\cos(2\pi R_2)$</td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>给出的&nbsp;</code>$X_g$<code>&nbsp;服从均值为&nbsp;</code>$X_{\mathrm{avg}}$<code>、方差为&nbsp;</code>$\sigma^2$<code>&nbsp;的高斯分布。</code></td><td class="algcom" markdown="span"></td></tr>
+</tbody>
+</table>
 
 **注释** 上述算法只是其中一个示例。它简单，但不一定是最快的。
 
@@ -19,22 +20,21 @@
 
 **算法 37　试探取向的选择**
 
-```
-在构型偏倚Monte Carlo方法中，我们经常需要从一组 k 个
-试探方向中选择下一个键方向。下面，我们假设各个
-试探方向的（玻尔兹曼）权重 w(n) 已知。
+在构型偏倚 Monte Carlo 方法中，我们经常需要从一组 $k$ 个试探方向中选择下一个键方向。下面，我们假设各个试探方向的（玻尔兹曼）权重 $w(n)$ 已知。
 
-function select(w,sumw)
-
-  ws=R*sumw
-  cumw=w(1)
-  n=1
-  while cumw < ws do
-    n=n+1
-    cumw=cumw+w(n)
-  enddo
-end function
-```
+<table class="algbox" markdown="1">
+<tbody markdown="1">
+<tr markdown="1"><td class="algcode" markdown="span"><code>function&nbsp;select(w,sumw)</code></td><td class="algcom" markdown="span">以概率 $p(n) = w(n)/\sum_j w(j)$ 选择试探取向 $n$</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>ws=R*sumw</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>cumw=w(1)</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>n=1</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>while&nbsp;cumw&nbsp;&lt;&nbsp;ws&nbsp;do</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>n=n+1</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>cumw=cumw+w(n)</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>enddo</code></td><td class="algcom" markdown="span">函数返回 $n$，</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>end&nbsp;function</code></td><td class="algcom" markdown="span">即所选试探位置的索引</td></tr>
+</tbody>
+</table>
 
 **具体说明**（一般说明见第 1 章「算法」）：
 
@@ -44,22 +44,24 @@ end function
 
 **算法 38　单位球面上的随机向量**
 
-```
-function ranor
-
-  ransq=2.
-  do while (ransq.ge.1.0)
-    ran1=1.-2.*R      % 继续直到向量在单位球内
-    ran2=1.-2.*R
-    ran3=1.-2.*R
-    ransq=ran1*ran1+ran2*ran2+ran3*ran3
-  enddo
-  or = 1.0/sqrt(ransq)
-  bx=ran1*or
-  by=ran2*or
-  bz=ran3*or
-end function
-```
+<table class="algbox" markdown="1">
+<tbody markdown="1">
+<tr markdown="1"><td class="algcode" markdown="span"><code>function&nbsp;ranor</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"></td><td class="algcom" markdown="span">生成一个三维随机单位向量，分量为 bx, by, bz</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>ransq=2.</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>do&nbsp;while&nbsp;(ransq.ge.1.0)</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>ran1=1.-2.*R</code></td><td class="algcom" markdown="span">继续直到向量在单位球内</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>ran2=1.-2.*R</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>ran3=1.-2.*R</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>ransq=ran1*ran1+ran2*ran2+ran3*ran3</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>or&nbsp;=&nbsp;1.0/sqrt(ransq)</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>bx=ran1*or</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>by=ran2*or</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>bz=ran3*or</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>end&nbsp;function</code></td><td class="algcom" markdown="span"></td></tr>
+</tbody>
+</table>
 
 **具体说明**（一般说明见第 1 章「算法」）：
 
@@ -69,22 +71,22 @@ end function
 
 **算法 39　使用谐振弹簧生成键长（三维）**
 
-```
-function bondl
-
-  alpha = kv/(kB*T)
-  lM = (l0/2)*(1+sqrt(1+8/(alpha*l0^2)))
-
-  ready=.false.
-  while ready == .false. do
-    l = gauss(alpha,lM)         % 以高斯分布生成 l
-    aux = 2*(-(l/lM-1)+ln(l/lM))  % 辅助量
-    if R <= exp(aux) then       % 是否接受？
-      ready=.true.
-    endif
-  enddo                       % 拒绝步骤
-end function
-```
+<table class="algbox" markdown="1">
+<tbody markdown="1">
+<tr markdown="1"><td class="algcode" markdown="span"><code>function&nbsp;bondl</code></td><td class="algcom" markdown="span">返回键长 $\ell$；假设为谐振弹簧，弹簧常数 $k_v$。$\ell_0$：$T=0$ 时的键长</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span">$\alpha = k_v/(k_B T)$</td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span">$\ell_M = (\ell_0/2) * (1 + \sqrt{1 + 8/(\alpha \ell_0^2)})$</td><td class="algcom" markdown="span">$T$ 时的极大值位置</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>ready=.false.</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>while&nbsp;ready&nbsp;==&nbsp;.false.&nbsp;do</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code>$\ell$<code>&nbsp;=&nbsp;gauss(</code>$\alpha$<code>,</code>$\ell_M$<code>)</code></td><td class="algcom" markdown="span">以高斯分布生成 $\ell$</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>aux&nbsp;</code>$= 2 * [-(\ell/\ell_M - 1) + \ln(\ell/\ell_M)]$</td><td class="algcom" markdown="span">辅助量</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>if&nbsp;R&nbsp;</code>$\leq$<code>&nbsp;exp([aux])&nbsp;then</code></td><td class="algcom" markdown="span">是否接受？</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>ready=.true.</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>enddo</code></td><td class="algcom" markdown="span">拒绝步骤</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>end&nbsp;function</code></td><td class="algcom" markdown="span"></td></tr>
+</tbody>
+</table>
 
 **具体说明**（一般说明见第 1 章「算法」）：
 
@@ -145,58 +147,58 @@ $$
 
 **算法 40　生成键角**
 
-```
-function bonda(xn,i)
-
-  ready=.false.
-  while ready == .false. do
-    b = ranor                  % 单位球上的单位向量
-    dx1x2=xn(i-1)-xn(i-2)      % 向量 r21 = r_{i-1} - r_{i-2}
-    u12=dx1x2/|dx1x2|          % 归一化向量
-    theta=acos(b*dx1x2)        % 弯曲角 theta
-
-    bu = ubb(theta)            % 键弯曲能量
-    if R < exp(-beta*bu) then  % 拒绝检验
-      ready=.true.
-    endif
-  enddo
-end function
-```
+<table class="algbox" markdown="1">
+<tbody markdown="1">
+<tr markdown="1"><td class="algcode" markdown="span"><code>function&nbsp;bonda(xn,i)</code></td><td class="algcom" markdown="span">以键弯曲势给定的玻尔兹曼概率生成键取向向量 $\hat{\mathbf b}$</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>ready=.false.</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>while&nbsp;ready&nbsp;==&nbsp;.false.&nbsp;do</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>b&nbsp;=&nbsp;ranor</code></td><td class="algcom" markdown="span">单位球上的单位向量</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>dx1x2=xn(i-1)-xn(i-2)</code></td><td class="algcom" markdown="span">向量 $\mathbf r_{21} = \mathbf r_{i-1} - \mathbf r_{i-2}$</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>u12=dx1x2/|dx1x2|</code></td><td class="algcom" markdown="span">归一化向量</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>theta=acos(b*dx1x2)</code></td><td class="algcom" markdown="span">弯曲角 $\theta = \arccos(\hat{\mathbf u}_{12} \cdot \hat{\mathbf b})$</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>bu&nbsp;=&nbsp;ubb(theta)</code></td><td class="algcom" markdown="span">键弯曲能量</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>if&nbsp;R&nbsp;&lt;&nbsp;exp(-beta*bu)&nbsp;then</code></td><td class="algcom" markdown="span">拒绝检验</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>ready=.true.</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>end&nbsp;function</code></td><td class="algcom" markdown="span"></td></tr>
+</tbody>
+</table>
 
 **具体说明**（一般说明见第 1 章「算法」）：
 
-1. 本算法使用朴素的拒绝方案来生成取向 $\hat{b}$ 的玻尔兹曼分布。函数 `ranor` 在单位球上生成随机向量（算法 38）。函数 `ubb`（未具体说明）给出给定角度的键弯曲能量。
+1. 本算法使用朴素的拒绝方案来生成取向 $\hat{\mathbf b}$ 的玻尔兹曼分布。函数 `ranor` 在单位球上生成随机向量（算法 38）。函数 `ubb`（未具体说明）给出给定角度的键弯曲能量。
+1. 译注：原书此框末尾连写两个 `endif`，第二个用来收 `while` 循环，与全书体例（`while $...$ do` 以 `enddo` 收，参见算法 41）不合，应为 `enddo`；本书已改正。
 
 ## 生成键角和扭转角
 
 **算法 41　生成键角和扭转角**
 
-```
-function tors_bonda(xn,i)
-
-  ready=.false.
-  while ready == .false. do
-    b = ranor                  % 生成随机单位向量 b_hat
-    dx1x2=xn(i-1)-xn(i-2)     % 向量 r21 = r_{i-1} - r_{i-2}
-    dx1x2=dx1x2/|dx1x2|       % 归一化 r12: u12_hat = r12/|r12|
-    dx2x3=xn(i-2)-xn(i-3)     % 向量 r23 = r_{i-2} - r_{i-3}
-    dx2x3=dx2x3/|dx2x3|       % 归一化 r23: u23_hat = r23/|r23|
-    theta=acos(b*dx1x2)        % 弯曲角 theta
-
-    ubb=ubb(theta)             % 键弯曲能量
-    xx1=b x dx1x2              % 叉积: xx1 = b_hat x u12_hat
-    xx2=dx1x2 x dx2x3          % 叉积: xx2 = u12_hat x u23_hat
-    [... 归一化 xx1 和 xx2 ...]
-    phi=acos(xx1*xx2)          % 扭转角 phi
-
-    utors=utors(phi)           % 确定扭转能量
-    usum=ubb+utors
-    if R < exp(-beta*usum) then  % 拒绝检验
-      ready=.true.
-    endif
-  enddo
-end function
-```
+<table class="algbox" markdown="1">
+<tbody markdown="1">
+<tr markdown="1"><td class="algcode" markdown="span"><code>function&nbsp;tors_bonda(xn,i)</code></td><td class="algcom" markdown="span">生成一个具有由扭转势和键弯曲势决定的取向玻尔兹曼分布的单位向量</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>ready=.false.</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>while&nbsp;ready&nbsp;==&nbsp;.false.&nbsp;do</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>b&nbsp;=&nbsp;ranor</code></td><td class="algcom" markdown="span">生成随机单位向量 $\hat{\mathbf b}$</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>dx1x2=xn(i-1)-xn(i-2)</code></td><td class="algcom" markdown="span">向量 $\mathbf r_{21} = \mathbf r_{i-1} - \mathbf r_{i-2}$</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>dx1x2=dx1x2/|dx1x2|</code></td><td class="algcom" markdown="span">归一化 $\mathbf r_{12}$：$\hat{\mathbf u}_{12} \equiv \mathbf r_{12}/|\mathbf r_{12}|$</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>dx2x3=xn(i-2)-xn(i-3)</code></td><td class="algcom" markdown="span">向量 $\mathbf r_{23} = \mathbf r_{i-2} - \mathbf r_{i-3}$</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>dx2x3=dx2x3/|dx2x3|</code></td><td class="algcom" markdown="span">归一化 $\mathbf r_{23}$：$\hat{\mathbf u}_{23} \equiv \mathbf r_{23}/|\mathbf r_{23}|$</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>theta=acos(b&nbsp;*&nbsp;dx1x2)</code></td><td class="algcom" markdown="span">弯曲角 $\theta = \arccos(\hat{\mathbf u}_{12} \cdot \hat{\mathbf b})$</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>ubb=ubb(theta)</code></td><td class="algcom" markdown="span">键弯曲能量</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>xx1=b&nbsp;</code>$\times$<code>&nbsp;dx1x2</code></td><td class="algcom" markdown="span">叉积：$\mathbf{xx1} = \hat{\mathbf b} \times \hat{\mathbf u}_{12}$</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>xx2=dx1x2&nbsp;</code>$\times$<code>&nbsp;dx2x3</code></td><td class="algcom" markdown="span">叉积：$\mathbf{xx2} = \hat{\mathbf u}_{12} \times \hat{\mathbf u}_{23}$</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>[...&nbsp;归一化&nbsp;xx1&nbsp;和&nbsp;xx2&nbsp;...]</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>phi=acos(xx1&nbsp;*&nbsp;xx2)</code></td><td class="algcom" markdown="span">扭转角 $\phi = \arccos(\hat{\mathbf{xx1}} \cdot \hat{\mathbf{xx2}})$</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>utors=utors(phi)</code></td><td class="algcom" markdown="span">确定扭转能量</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>usum=ubb+utors</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>if&nbsp;R&nbsp;&lt;&nbsp;exp(-beta*usum)&nbsp;then</code></td><td class="algcom" markdown="span">拒绝检验</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>ready=.true.</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>end&nbsp;function</code></td><td class="algcom" markdown="span"></td></tr>
+</tbody>
+</table>
 
 **具体说明**（一般说明见第 1 章「算法」）：
 

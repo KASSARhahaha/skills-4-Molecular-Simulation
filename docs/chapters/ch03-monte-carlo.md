@@ -196,21 +196,18 @@ MC 移动不需要满足的唯一标准是生成物理上合理的轨迹。在�
 
 **算法 1　Metropolis MC 代码的核心**
 
-```
-program MC
-// 基本 Metropolis 算法
-for $1 \leq \text{itrial \leq \text{ntrial}$}
-// 执行 ntrial 次 MC 试探移动
- mcmove
-// 试探移动过程
-if (itrial \% nsamp) == 0
-// \% 表示取模运算
- sample
-// 采样过程
-end if
-end for
-end program
-```
+<table class="algbox" markdown="1">
+<tbody markdown="1">
+<tr markdown="1"><td class="algcode" markdown="span"><code>program&nbsp;MC</code></td><td class="algcom" markdown="span">基本 Metropolis 算法</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>for&nbsp;</code>$1 \leq \text{itrial} \leq \text{ntrial}$<code>&nbsp;do</code></td><td class="algcom" markdown="span">执行 ntrial 次 MC 试探移动</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>mcmove</code></td><td class="algcom" markdown="span">试探移动过程</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>if&nbsp;(itrial&nbsp;%&nbsp;nsamp)&nbsp;==&nbsp;0&nbsp;then</code></td><td class="algcom" markdown="span">\% 表示取模运算</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>sample</code></td><td class="algcom" markdown="span">采样过程</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>end&nbsp;program</code></td><td class="algcom" markdown="span"></td></tr>
+</tbody>
+</table>
 
 **具体说明**（一般说明见第 1 章「算法」）：
 
@@ -219,24 +216,19 @@ end program
 
 **算法 2　Monte Carlo 试探位移**
 
-```
-\function{mcmove}
-// Metropolis MC 试探移动
- i = int(R*npart) + 1
-// 随机选取一个粒子，$1 \leq i \leq$ npart
- eno = ener(x(i), i)
-// eno：粒子 i 在“旧”位置 x(i) 处的能量
- xn = x(i) + (R - 0.5)*delx
-// 粒子 i 的试探位置 xn
- enn = ener(xn, i)
-// enn：粒子 i 在 xn 处的能量
-if R < exp[-$\beta$*(enn - eno)]
-// Metropolis 判据，式 (3.3.1)
- x(i) = xn
-// 若接受，x(i) 变为 xn
-end if
-end function
-```
+<table class="algbox" markdown="1">
+<tbody markdown="1">
+<tr markdown="1"><td class="algcode" markdown="span"><code>function&nbsp;mcmove</code></td><td class="algcom" markdown="span">Metropolis MC 试探移动</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>i&nbsp;=&nbsp;int(R*npart)&nbsp;+&nbsp;1</code></td><td class="algcom" markdown="span">随机选取一个粒子，$1 \leq i \leq$ npart</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>eno&nbsp;=&nbsp;ener(x(i),&nbsp;i)</code></td><td class="algcom" markdown="span">eno：粒子 i 在“旧”位置 x(i) 处的能量</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>xn&nbsp;=&nbsp;x(i)&nbsp;+&nbsp;(R&nbsp;-&nbsp;0.5)*delx</code></td><td class="algcom" markdown="span">粒子 i 的试探位置 xn</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>enn&nbsp;=&nbsp;ener(xn,&nbsp;i)</code></td><td class="algcom" markdown="span">enn：粒子 i 在 xn 处的能量</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>if&nbsp;R&nbsp;&lt;&nbsp;exp[-</code>$\beta$<code>*(enn&nbsp;-&nbsp;eno)]&nbsp;then</code></td><td class="algcom" markdown="span">Metropolis 判据，式 (3.3.1)</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>x(i)&nbsp;=&nbsp;xn</code></td><td class="algcom" markdown="span">若接受，x(i) 变为 xn</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>end&nbsp;function</code></td><td class="algcom" markdown="span"></td></tr>
+</tbody>
+</table>
 
 **具体说明**（一般说明见第 1 章「算法」）：
 

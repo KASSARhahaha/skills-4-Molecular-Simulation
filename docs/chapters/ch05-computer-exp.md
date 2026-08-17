@@ -616,32 +616,34 @@ $$
 
 **算法 8　径向分布函数**
 
-```
-function grsample
-    delg = box/(2*nhis)              % delg 为箱宽
-    ngr = ngr + 1                    % 每调用一次 grsample，ngr 加 1
-    for 1 <= i <= npart-1 do
-        for i+1 <= j <= npart do     % 遍历所有粒子对
-            xr = x(i) - x(j)
-            xr = xr - box*round(xr/box)      % 只取最近映像
-            r = sqrt(xr**2 + yr**2 + yz**2)  % 三维：y、z 同理
-            if r < box/2 then                % 只考虑小于 box/2 的距离
-                ig = int(r/delg)
-                g(ig) = g(ig) + 2            % 对粒子对 ij 累加直方图
-            endif
-        enddo
-    enddo
-end function
-
-function grnormalize
-    gfac = (4/3)*pi*delg**3          % gfac 把箱换算为三维壳层
-    for 1 <= i <= nhis do
-        vb = gfac*((i+1)**3 - i**3)  % 第 i 个箱的三维体积
-        nid = vb*rho                 % vb 中理想气体粒子数
-        g(i) = g(i)/(ngr*npart*nid)  % 归一化 g(r)
-    enddo
-end function
-```
+<table class="algbox" markdown="1">
+<tbody markdown="1">
+<tr markdown="1"><td class="algcode" markdown="span"><code>function&nbsp;grsample</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>delg&nbsp;=&nbsp;box/(2*nhis)</code></td><td class="algcom" markdown="span">delg 为箱宽</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>ngr&nbsp;=&nbsp;ngr&nbsp;+&nbsp;1</code></td><td class="algcom" markdown="span">每调用一次 grsample，ngr 加 1</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>for&nbsp;1&nbsp;&lt;=&nbsp;i&nbsp;&lt;=&nbsp;npart-1&nbsp;do</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>for&nbsp;i+1&nbsp;&lt;=&nbsp;j&nbsp;&lt;=&nbsp;npart&nbsp;do</code></td><td class="algcom" markdown="span">遍历所有粒子对</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>xr&nbsp;=&nbsp;x(i)&nbsp;-&nbsp;x(j)</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>xr&nbsp;=&nbsp;xr&nbsp;-&nbsp;box*round(xr/box)</code></td><td class="algcom" markdown="span">只取最近映像</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>r&nbsp;=&nbsp;sqrt(xr**2&nbsp;+&nbsp;yr**2&nbsp;+&nbsp;yz**2)</code></td><td class="algcom" markdown="span">三维：y、z 同理</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>if&nbsp;r&nbsp;&lt;&nbsp;box/2&nbsp;then</code></td><td class="algcom" markdown="span">只考虑小于 box/2 的距离</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>ig&nbsp;=&nbsp;int(r/delg)</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>g(ig)&nbsp;=&nbsp;g(ig)&nbsp;+&nbsp;2</code></td><td class="algcom" markdown="span">对粒子对 ij 累加直方图</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>end&nbsp;function</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>function&nbsp;grnormalize</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>gfac&nbsp;=&nbsp;(4/3)*pi*delg**3</code></td><td class="algcom" markdown="span">gfac 把箱换算为三维壳层</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>for&nbsp;1&nbsp;&lt;=&nbsp;i&nbsp;&lt;=&nbsp;nhis&nbsp;do</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>vb&nbsp;=&nbsp;gfac*((i+1)**3&nbsp;-&nbsp;i**3)</code></td><td class="algcom" markdown="span">第 i 个箱的三维体积</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>nid&nbsp;=&nbsp;vb*rho</code></td><td class="algcom" markdown="span">vb 中理想气体粒子数</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>g(i)&nbsp;=&nbsp;g(i)/(ngr*npart*nid)</code></td><td class="algcom" markdown="span">归一化 $g(r)$</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>end&nbsp;function</code></td><td class="algcom" markdown="span"></td></tr>
+</tbody>
+</table>
 
 **具体说明**（一般说明见第 1 章「算法」）：
 
@@ -919,48 +921,50 @@ $$
 
 **算法 9　扩散**
 
-```
-function dif                          % 扩散；switch = 0 初始化，
-
-if switch == 0 then                   % 初始化
-    ntel=0                            % 时间计数器
-    dtime=dt*nsamp                    % 两次采样之间的时间
-    for 1 <= i <= tmax do             % tmax 为时间步总数
-        ntime(i)=0                    % 时刻 i 的样本数
-        vacf(i)=0
-        r2t(i)=0
-    enddo
-else if switch == 1 then              % 采样
-    ntel=ntel+1
-    if mod(ntel,it0) == 0 then        % 判断是否取新的 t = 0
-        t0 = t0 + 1                   % 更新 t = 0 的数目
-        tt0=mod(t0-1,t0max)+1         % 见注释 1
-        time0(tt0)=ntel               % 存储该 t = 0 的时刻
-        for 1 <= i <= npart do
-            x0(i,tt0)=x(i)            % 存储该 t = 0 的位置
-            vx0(i,tt0)=vx(i)          % 存储该 t = 0 的速度
-        enddo
-    endif
-    for 1 <= t <= min(t0,t0max) do    % 对每个 t = 0 更新 vacf 与 r2
-        delt=ntel-time0(t)+1          % 当前时刻减去 t = 0
-        if delt < tmax then
-            vacf(delt)=vacf(delt)+    % 更新 vx(0)vx(t)
-                       vx(i)*vx0(i,t)
-            r2t(delt)=r2t(delt)+      % 更新 (dx(t))^2
-                      (x(i)-x0(i,t))**2
-        enddo
-        endif
-    enddo
-else if switch == 2 then              % 计算结果
-    for 1 <= i <= tmax do
-        time=dtime*(i+0.5)            % 时间
-        vacf(i)=vacf(i)               % <vx(0)vx(t)>
-                /(npart*ntime(i))
-        r2t(i)=r2t(i)/(npart*ntime(i))% <(dx(t))^2>
-    enddo
-endif
-end function
-```
+<table class="algbox" markdown="1">
+<tbody markdown="1">
+<tr markdown="1"><td class="algcode" markdown="span"><code>function&nbsp;dif</code></td><td class="algcom" markdown="span">扩散；switch = 0 初始化，</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"></td><td class="algcom" markdown="span">= 1 采样，= 2 输出结果</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>if&nbsp;switch&nbsp;==&nbsp;0&nbsp;then</code></td><td class="algcom" markdown="span">初始化</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>ntel=0</code></td><td class="algcom" markdown="span">时间计数器</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>dtime=dt*nsamp</code></td><td class="algcom" markdown="span">两次采样之间的时间</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>for&nbsp;1&nbsp;&lt;=&nbsp;i&nbsp;&lt;=&nbsp;tmax&nbsp;do</code></td><td class="algcom" markdown="span">tmax 为时间步总数</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>ntime(i)=0</code></td><td class="algcom" markdown="span">时刻 i 的样本数</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>vacf(i)=0</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>r2t(i)=0</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>else&nbsp;if&nbsp;switch&nbsp;==&nbsp;1&nbsp;then</code></td><td class="algcom" markdown="span">采样</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>ntel=ntel+1</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>if&nbsp;mod(ntel,it0)&nbsp;==&nbsp;0&nbsp;then</code></td><td class="algcom" markdown="span">判断是否取新的 t = 0</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>t0&nbsp;=&nbsp;t0&nbsp;+&nbsp;1</code></td><td class="algcom" markdown="span">更新 t = 0 的数目</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>tt0=mod(t0-1,t0max)+1</code></td><td class="algcom" markdown="span">见注释 1</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>time0(tt0)=ntel</code></td><td class="algcom" markdown="span">存储该 t = 0 的时刻</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>for&nbsp;1&nbsp;&lt;=&nbsp;i&nbsp;&lt;=&nbsp;npart&nbsp;do</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>x0(i,tt0)=x(i)</code></td><td class="algcom" markdown="span">存储该 t = 0 的位置</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>vx0(i,tt0)=vx(i)</code></td><td class="algcom" markdown="span">存储该 t = 0 的速度</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>for&nbsp;1&nbsp;&lt;=&nbsp;t&nbsp;&lt;=&nbsp;min(t0,t0max)&nbsp;do</code></td><td class="algcom" markdown="span">对每个 t = 0 更新 vacf 与 r2</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>delt=ntel-time0(t)+1</code></td><td class="algcom" markdown="span">当前时刻减去 t = 0</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>if&nbsp;delt&nbsp;&lt;&nbsp;tmax&nbsp;then</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>vacf(delt)=vacf(delt)+</code></td><td class="algcom" markdown="span">更新 $v_x(0)v_x(t)$</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>vx(i)*vx0(i,t)</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>r2t(delt)=r2t(delt)+</code></td><td class="algcom" markdown="span">更新 $(\Delta x(t))^2$</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>(x(i)-x0(i,t))**2</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>else&nbsp;if&nbsp;switch&nbsp;==&nbsp;2&nbsp;then</code></td><td class="algcom" markdown="span">计算结果</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>for&nbsp;1&nbsp;&lt;=&nbsp;i&nbsp;&lt;=&nbsp;tmax&nbsp;do</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>time=dtime*(i+0.5)</code></td><td class="algcom" markdown="span">时间</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>vacf(i)=vacf(i)</code></td><td class="algcom" markdown="span">$\langle v_x(0)v_x(t)\rangle$</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>/(npart*ntime(i))</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>r2t(i)=r2t(i)/(npart*ntime(i))</code></td><td class="algcom" markdown="span">$\langle(\Delta x(t))^2\rangle$</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>end&nbsp;function</code></td><td class="algcom" markdown="span"></td></tr>
+</tbody>
+</table>
 
 **具体说明**（一般说明见第 1 章「算法」）：
 
@@ -1095,76 +1099,79 @@ $$
 
 **算法 10　扩散：order-$n$ 算法**
 
-```
-function dif                        % 每 nsample 个 MD 步采样一次
+<table class="algbox" markdown="1">
+<tbody markdown="1">
+<tr markdown="1"><td class="algcode" markdown="span"><code>function&nbsp;dif</code></td><td class="algcom" markdown="span">每 nsample 个 MD 步采样一次</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"></td><td class="algcom" markdown="span">switch = 0：初始化，</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"></td><td class="algcom" markdown="span">= 1：采样，= 2：输出结果</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>if&nbsp;switch&nbsp;==&nbsp;0&nbsp;then</code></td><td class="algcom" markdown="span">0：初始化</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>ntel=0</code></td><td class="algcom" markdown="span">本函数的时间计数器</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>dtime=dt*nsamp</code></td><td class="algcom" markdown="span">两次采样之间的时间</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>for&nbsp;1&nbsp;&lt;=&nbsp;ib&nbsp;&lt;=&nbsp;ibmax&nbsp;do</code></td><td class="algcom" markdown="span">ibmax 为最大块数</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>ibl(ib)=0</code></td><td class="algcom" markdown="span">当前块的长度</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>for&nbsp;1&nbsp;&lt;=&nbsp;j&nbsp;&lt;=&nbsp;n&nbsp;do</code></td><td class="algcom" markdown="span">n 为一个块中的步数</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>tel(ib,j)=0</code></td><td class="algcom" markdown="span">平均次数计数器</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>delr2(ib,j)=0</code></td><td class="algcom" markdown="span">均方位移的累计平均</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>for&nbsp;1&nbsp;&lt;=&nbsp;i&nbsp;&lt;=&nbsp;npart&nbsp;do</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>vxsum(ib,j,i)=0</code></td><td class="algcom" markdown="span">粒子 i 的块速度</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>else&nbsp;if&nbsp;switch&nbsp;==&nbsp;2&nbsp;then</code></td><td class="algcom" markdown="span">2：输出结果</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>ibm&nbsp;=&nbsp;max(ibmax,iblm)</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>for&nbsp;1&nbsp;&lt;=&nbsp;ib&nbsp;&lt;=&nbsp;ibm&nbsp;do</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>jbm&nbsp;=&nbsp;min(ibl(ib),n)</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>for&nbsp;2&nbsp;&lt;=&nbsp;j&nbsp;&lt;=&nbsp;jbm&nbsp;do</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>time=dtime*j*n**(ib-1)</code></td><td class="algcom" markdown="span">时间</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>r2=delr2(ib,j)*dtime**2</code></td><td class="algcom" markdown="span">均方位移</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>/tel(ib,j)</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>...(续)....</code></td><td class="algcom" markdown="span"></td></tr>
+</tbody>
+</table>
 
-if switch == 0 then                 % 0：初始化
-    ntel=0                          % 本函数的时间计数器
-    dtime=dt*nsamp                  % 两次采样之间的时间
-    for 1 <= ib <= ibmax do         % ibmax 为最大块数
-        ibl(ib)=0                   % 当前块的长度
-        for 1 <= j <= n do          % n 为一个块中的步数
-            tel(ib,j)=0             % 平均次数计数器
-            delr2(ib,j)=0           % 均方位移的累计平均
-            for 1 <= i <= npart do
-                vxsum(ib,j,i)=0     % 粒子 i 的块速度
-            enddo
-        enddo
-    enddo
-else if switch == 2 then            % 2：输出结果
-    ibm = max(ibmax,iblm)
-    for 1 <= ib <= ibm do
-        jbm = min(ibl(ib),n)
-        for 2 <= j <= jbm do
-            time=dtime*j*n**(ib-1)  % 时间
-            r2=delr2(ib,j)*dtime**2 % 均方位移
-               /tel(ib,j)
-        enddo
-    enddo
-    ...(续)....
-```
-
-[htbp]
-
-```
-...(接算法 10)....
-else if switch == 1 then            % 采样
-    ntel=ntel+1
-    iblm=MaxBlock(ntel,n)           % 可执行的分块操作的最大次数
-    for 1 <= ib <= iblm do
-        if ntel % n**(ib-1)==0 then % ntel 是否为 n^ib 的倍数？
-            ibl(ib)=ibl(ib)+1       % 增加当前块长
-            inm=max(ibl(ib),n)      % 把最大块长置为 n
-            for 1 <= i <= npart do
-                if ib == 1 then
-                    delx=vx(i)         % 第 0 级块：普通速度
-                else
-                    delx=vxsum(ib-1,1,i)  % 上一级块速度
-                endif
-                for 1 <= in <= inm do
-                    if inm /= n then   % 检验块长是否等于 n
-                        inp=in
-                    else
-                        inp=in+1
-                    endif
-                    if in < inm then
-                        vxsum(ib,in,i)=
-                        vxsum(ib,inp,i)+delx  % 式 (5.2.36) 或 (5.2.40)
-                    else
-                        vxsum(ib,in,i)=delx   % 式 (5.2.37) 或 (5.2.41)
-                    endif
-                enddo
-                for 1 <= in <= inm do
-                    tel(ib,in)=tel(ib,in)+1   % 更新次数计数器
-                    delr2(ib,in)=delr2(ib,in) % 更新式 (5.2.39)
-                        +vxsum(ib,inm-in+1,i)**2
-                enddo
-            endif
-        enddo
-    endif
-endif
-end function
-```
+<table class="algbox" markdown="1">
+<tbody markdown="1">
+<tr markdown="1"><td class="algcode" markdown="span"><code>...(接算法&nbsp;10)....</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>else&nbsp;if&nbsp;switch&nbsp;==&nbsp;1&nbsp;then</code></td><td class="algcom" markdown="span">采样</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>ntel=ntel+1</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>iblm=MaxBlock(ntel,n)</code></td><td class="algcom" markdown="span">可执行的分块操作的最大次数</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>for&nbsp;1&nbsp;&lt;=&nbsp;ib&nbsp;&lt;=&nbsp;iblm&nbsp;do</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>if&nbsp;ntel&nbsp;%&nbsp;n**(ib-1)==0&nbsp;then</code></td><td class="algcom" markdown="span">ntel 是否为 $n^{ib}$ 的倍数？</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>ibl(ib)=ibl(ib)+1</code></td><td class="algcom" markdown="span">增加当前块长</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>inm=max(ibl(ib),n)</code></td><td class="algcom" markdown="span">把最大块长置为 n</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>for&nbsp;1&nbsp;&lt;=&nbsp;i&nbsp;&lt;=&nbsp;npart&nbsp;do</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>if&nbsp;ib&nbsp;==&nbsp;1&nbsp;then</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>delx=vx(i)</code></td><td class="algcom" markdown="span">第 0 级块：普通速度</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>else</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>delx=vxsum(ib-1,1,i)</code></td><td class="algcom" markdown="span">上一级块速度</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>for&nbsp;1&nbsp;&lt;=&nbsp;in&nbsp;&lt;=&nbsp;inm&nbsp;do</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>if&nbsp;inm&nbsp;/=&nbsp;n&nbsp;then</code></td><td class="algcom" markdown="span">检验块长是否等于 n</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>inp=in</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>else</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>inp=in+1</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>if&nbsp;in&nbsp;&lt;&nbsp;inm&nbsp;then</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>vxsum(ib,in,i)=</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>vxsum(ib,inp,i)+delx</code></td><td class="algcom" markdown="span">式 (5.2.36) 或 (5.2.40)</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>else</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>vxsum(ib,in,i)=delx</code></td><td class="algcom" markdown="span">式 (5.2.37) 或 (5.2.41)</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>for&nbsp;1&nbsp;&lt;=&nbsp;in&nbsp;&lt;=&nbsp;inm&nbsp;do</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>tel(ib,in)=tel(ib,in)+1</code></td><td class="algcom" markdown="span">更新次数计数器</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>delr2(ib,in)=delr2(ib,in)</code></td><td class="algcom" markdown="span">更新式 (5.2.39)</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>+vxsum(ib,inm-in+1,i)**2</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>end&nbsp;function</code></td><td class="algcom" markdown="span"></td></tr>
+</tbody>
+</table>
 
 **具体说明**（一般说明见第 1 章「算法」）：
 

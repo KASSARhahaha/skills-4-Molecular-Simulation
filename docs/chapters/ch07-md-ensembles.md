@@ -95,22 +95,24 @@ $$
 
 **算法 16　分子动力学：Andersen 恒温器**
 
-```
-program md_Andersen               % 恒温 MD
-[初始化体系]                       % 同算法 3
-[计算力与能量]                     % 同算法 5
-t=0
-while t < tmax do                 % MD 主循环
-    switch = 1
-    integrate-A(switch,temp)      % 推进半个时间步（算法 17）
-    FandE                         % 算法 5
-    switch = 2
-    integrate-A(switch,temp)      % 推进后半个时间步
-    t=t+dt
-    sample                        % 采样可观测量
-end while
-end program
-```
+<table class="algbox" markdown="1">
+<tbody markdown="1">
+<tr markdown="1"><td class="algcode" markdown="span"><code>program&nbsp;md_Andersen</code></td><td class="algcom" markdown="span">恒温 MD</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>[初始化体系]</code></td><td class="algcom" markdown="span">同算法 3</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>[计算力与能量]</code></td><td class="algcom" markdown="span">同算法 5</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>t=0</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>while&nbsp;t&nbsp;&lt;&nbsp;tmax&nbsp;do</code></td><td class="algcom" markdown="span">MD 主循环</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>switch&nbsp;=&nbsp;1</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>integrate-A(switch,temp)</code></td><td class="algcom" markdown="span">推进半个时间步（算法 17）</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>FandE</code></td><td class="algcom" markdown="span">算法 5</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>switch&nbsp;=&nbsp;2</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>integrate-A(switch,temp)</code></td><td class="algcom" markdown="span">推进后半个时间步</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>t=t+dt</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>sample</code></td><td class="algcom" markdown="span">采样可观测量</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>end&nbsp;while</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>end&nbsp;program</code></td><td class="algcom" markdown="span"></td></tr>
+</tbody>
+</table>
 
 **具体说明**（一般说明见第 1 章「算法」）：
 
@@ -127,26 +129,28 @@ end program
 
 **算法 17　运动方程：Andersen 恒温器**
 
-```
-function integrate-A(switch,temp) % 带 Andersen 恒温器地积分运动方程
-if switch == 1 then               % 速度 Verlet 第一步
-    for 1 <= i <= npart do
-        x(i)=x(i)+dt*v(i)+        % 更新当前时刻的位置
-             dt*dt*f(i)/2
-        v(i)=v(i)+dt*f(i)/2       % 第一次更新速度
-    enddo
-else if switch == 2 then          % 速度 Verlet 第二步
-    for 1 <= i <= npart do
-        v(i)=v(i)+dt*f(i)/2       % 第二次更新速度
-    enddo
-    for 1 <= i <= npart do
-        if R < nu*dt then         % 检验是否与热浴碰撞
-            v(i)=gauss(0.,sqrt(temp))  % 从高斯分布抽取
-        endif                          % 新速度赋予该粒子
-    enddo
-endif
-end function
-```
+<table class="algbox" markdown="1">
+<tbody markdown="1">
+<tr markdown="1"><td class="algcode" markdown="span"><code>function&nbsp;integrate-A(switch,temp)</code></td><td class="algcom" markdown="span">带 Andersen 恒温器地积分运动方程</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>if&nbsp;switch&nbsp;==&nbsp;1&nbsp;then</code></td><td class="algcom" markdown="span">速度 Verlet 第一步</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>for&nbsp;1&nbsp;&lt;=&nbsp;i&nbsp;&lt;=&nbsp;npart&nbsp;do</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>x(i)=x(i)+dt*v(i)+</code></td><td class="algcom" markdown="span">更新当前时刻的位置</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>dt*dt*f(i)/2</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>v(i)=v(i)+dt*f(i)/2</code></td><td class="algcom" markdown="span">第一次更新速度</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>else&nbsp;if&nbsp;switch&nbsp;==&nbsp;2&nbsp;then</code></td><td class="algcom" markdown="span">速度 Verlet 第二步</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>for&nbsp;1&nbsp;&lt;=&nbsp;i&nbsp;&lt;=&nbsp;npart&nbsp;do</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>v(i)=v(i)+dt*f(i)/2</code></td><td class="algcom" markdown="span">第二次更新速度</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>for&nbsp;1&nbsp;&lt;=&nbsp;i&nbsp;&lt;=&nbsp;npart&nbsp;do</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>if&nbsp;R&nbsp;&lt;&nbsp;nu*dt&nbsp;then</code></td><td class="algcom" markdown="span">检验是否与热浴碰撞</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>v(i)=gauss(0.,sqrt(temp))</code></td><td class="algcom" markdown="span">从高斯分布抽取</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>endif</code></td><td class="algcom" markdown="span">新速度赋予该粒子</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>end&nbsp;function</code></td><td class="algcom" markdown="span"></td></tr>
+</tbody>
+</table>
 
 **具体说明**（一般说明见第 1 章「算法」）：
 

@@ -80,35 +80,37 @@ $$
 
 **算法 21　取向偏倚**
 
-```
-function orien_bias           % 改变分子 o 取向的构型偏倚 MC 试探移动
-o = int(R*npart)+1            % 随机选出一个粒子
-sumw = 0                      % k 为试探方向数，可任意取但需固定
-for 1 <= j <= k do
-    b(j) = ranor              % 生成随机试探方向
-    eno = enero(x(o),o,b(j))  % 计算试探取向的能量
-    w(j)= exp(-beta*eno)      % 计算 Rosenbluth 因子 (12.1.2)
-    sumw = sumw+w(j)
-enddo
-n = select(w,sumw)            % 选出其中一个取向
-bn = b(n)                     % n 为选中的取向
-wn = sumw                     % 新取向的 Rosenbluth 因子
-sumw = 0                      % 接下来考虑旧取向
-for 1 <= j <= k do            % 考虑 k 个试探取向
-    if j == 1 then
-        b(j)=bu(o)            % 使用粒子 o 的实际取向
-    else
-        b(j) = ranor          % 生成一个随机取向
-    endif
-    eno = enero(x(o),b(j))    % 计算试探取向 j 的能量
-    sumw=sumw+exp(-beta*eno)  % 计算 Rosenbluth 因子 (12.1.4)
-enddo
-wo = sumw                     % 旧构型的 Rosenbluth 因子
-if R < wn/wo then             % 接受判据 (12.1.5)
-    bu(o)= bn                 % 接受
-endif
-end function
-```
+<table class="algbox" markdown="1">
+<tbody markdown="1">
+<tr markdown="1"><td class="algcode" markdown="span"><code>function&nbsp;orien_bias</code></td><td class="algcom" markdown="span">改变分子 o 取向的构型偏倚 MC 试探移动</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>o&nbsp;=&nbsp;int(R*npart)+1</code></td><td class="algcom" markdown="span">随机选出一个粒子</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>sumw&nbsp;=&nbsp;0</code></td><td class="algcom" markdown="span">k 为试探方向数，可任意取但需固定</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>for&nbsp;1&nbsp;&lt;=&nbsp;j&nbsp;&lt;=&nbsp;k&nbsp;do</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>b(j)&nbsp;=&nbsp;ranor</code></td><td class="algcom" markdown="span">生成随机试探方向</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>eno&nbsp;=&nbsp;enero(x(o),o,b(j))</code></td><td class="algcom" markdown="span">计算试探取向的能量</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>w(j)=&nbsp;exp(-beta*eno)</code></td><td class="algcom" markdown="span">计算 Rosenbluth 因子 (12.1.2)</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>sumw&nbsp;=&nbsp;sumw+w(j)</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>n&nbsp;=&nbsp;select(w,sumw)</code></td><td class="algcom" markdown="span">选出其中一个取向</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>bn&nbsp;=&nbsp;b(n)</code></td><td class="algcom" markdown="span">n 为选中的取向</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>wn&nbsp;=&nbsp;sumw</code></td><td class="algcom" markdown="span">新取向的 Rosenbluth 因子</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>sumw&nbsp;=&nbsp;0</code></td><td class="algcom" markdown="span">接下来考虑旧取向</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>for&nbsp;1&nbsp;&lt;=&nbsp;j&nbsp;&lt;=&nbsp;k&nbsp;do</code></td><td class="algcom" markdown="span">考虑 k 个试探取向</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>if&nbsp;j&nbsp;==&nbsp;1&nbsp;then</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>b(j)=bu(o)</code></td><td class="algcom" markdown="span">使用粒子 o 的实际取向</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>else</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>b(j)&nbsp;=&nbsp;ranor</code></td><td class="algcom" markdown="span">生成一个随机取向</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>eno&nbsp;=&nbsp;enero(x(o),b(j))</code></td><td class="algcom" markdown="span">计算试探取向 j 的能量</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>sumw=sumw+exp(-beta*eno)</code></td><td class="algcom" markdown="span">计算 Rosenbluth 因子 (12.1.4)</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>wo&nbsp;=&nbsp;sumw</code></td><td class="algcom" markdown="span">旧构型的 Rosenbluth 因子</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>if&nbsp;R&nbsp;&lt;&nbsp;wn/wo&nbsp;then</code></td><td class="algcom" markdown="span">接受判据 (12.1.5)</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>bu(o)=&nbsp;bn</code></td><td class="algcom" markdown="span">接受</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>end&nbsp;function</code></td><td class="algcom" markdown="span"></td></tr>
+</tbody>
+</table>
 
 **具体说明**（一般说明见第 1 章「算法」）：
 
@@ -339,18 +341,20 @@ $$
 
 **算法 22　基本构型偏倚 Monte Carlo**
 
-```
-function CBMC                 % 执行一次 CBMC 试探移动
-new_conf=.false.              % 先回溯旧构型（的一部分）
-wo = grow(new_conf)           % 以计算其 Rosenbluth 因子
-new_conf=.true.               % 接下来考虑新构型
-wn = grow(new_conf)           % 生长链（的一部分）并计算
-
-if R < wn/wo then             % 接受判据 (12.2.6)
-    accept                    % 接受并做记账
-endif
-end function
-```
+<table class="algbox" markdown="1">
+<tbody markdown="1">
+<tr markdown="1"><td class="algcode" markdown="span"><code>function&nbsp;CBMC</code></td><td class="algcom" markdown="span">执行一次 CBMC 试探移动</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>new_conf=.false.</code></td><td class="algcom" markdown="span">先回溯旧构型（的一部分）</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>wo&nbsp;=&nbsp;grow(new_conf)</code></td><td class="algcom" markdown="span">以计算其 Rosenbluth 因子</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>new_conf=.true.</code></td><td class="algcom" markdown="span">接下来考虑新构型</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>wn&nbsp;=&nbsp;grow(new_conf)</code></td><td class="algcom" markdown="span">生长链（的一部分）并计算</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"></td><td class="algcom" markdown="span">新构型的 Rosenbluth 因子</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>if&nbsp;R&nbsp;&lt;&nbsp;wn/wo&nbsp;then</code></td><td class="algcom" markdown="span">接受判据 (12.2.6)</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>accept</code></td><td class="algcom" markdown="span">接受并做记账</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>end&nbsp;function</code></td><td class="algcom" markdown="span"></td></tr>
+</tbody>
+</table>
 
 **具体说明**（一般说明见第 1 章「算法」）：
 
@@ -359,35 +363,38 @@ end function
 
 **算法 23　在格点上生长一条链**
 
-```
-function grow(new_conf, w)    % 在配位数为 k 的格点上生长一条
-
-if new_conf then              % new_conf 为逻辑变量（见说明）
-    xn(1)=R*box               % 插入第一个单体
-else
-    o=R*npart+1               % 随机选出旧链
-    xn(1)=x(o,1)
-endif
-en = ener(xn(1),o)            % 计算第一个单体的能量
-w=k*exp(-beta*en)             % 第一个单体的 Rosenbluth 因子
-for 2 <= i <= ell do
-    sumw=0
-    for 1 <= j <= k do        % 考虑 k 个试探方向
-        xt(j)=xn(i-1)+b(j)    % 确定试探位置
-        en = ener(xt(j),o)    % 确定试探位置 j 的能量
-        w(j)=exp(-beta*en)
-        sumw=sumw+w(j)
-    enddo
-    if new_conf then
-        n = select(w,sumw)    % 选出其中一个试探位置
-        xn(i)=xt(n)           % 选中方向 n
-    else
-        xn(i)=x(o,i)
-    endif
-    w=w*sumw                  % 更新 Rosenbluth 因子
-enddo
-end function
-```
+<table class="algbox" markdown="1">
+<tbody markdown="1">
+<tr markdown="1"><td class="algcode" markdown="span"><code>function&nbsp;grow(new_conf,&nbsp;w)</code></td><td class="algcom" markdown="span">在配位数为 k 的格点上生长一条</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"></td><td class="algcom" markdown="span">含 $\ell$ 个珠子的聚合物；</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"></td><td class="algcom" markdown="span">函数返回 Rosenbluth 因子 w</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>if&nbsp;new_conf&nbsp;then</code></td><td class="algcom" markdown="span">new\_conf 为逻辑变量（见说明）</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>xn(1)=R*box</code></td><td class="algcom" markdown="span">插入第一个单体</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>else</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>o=R*npart+1</code></td><td class="algcom" markdown="span">随机选出旧链</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>xn(1)=x(o,1)</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>en&nbsp;=&nbsp;ener(xn(1),o)</code></td><td class="algcom" markdown="span">计算第一个单体的能量</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>w=k*exp(-beta*en)</code></td><td class="algcom" markdown="span">第一个单体的 Rosenbluth 因子</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>for&nbsp;2&nbsp;&lt;=&nbsp;i&nbsp;&lt;=&nbsp;ell&nbsp;do</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>sumw=0</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>for&nbsp;1&nbsp;&lt;=&nbsp;j&nbsp;&lt;=&nbsp;k&nbsp;do</code></td><td class="algcom" markdown="span">考虑 k 个试探方向</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>xt(j)=xn(i-1)+b(j)</code></td><td class="algcom" markdown="span">确定试探位置</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>en&nbsp;=&nbsp;ener(xt(j),o)</code></td><td class="algcom" markdown="span">确定试探位置 j 的能量</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>w(j)=exp(-beta*en)</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>sumw=sumw+w(j)</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>if&nbsp;new_conf&nbsp;then</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>n&nbsp;=&nbsp;select(w,sumw)</code></td><td class="algcom" markdown="span">选出其中一个试探位置</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>xn(i)=xt(n)</code></td><td class="algcom" markdown="span">选中方向 n</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>else</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>xn(i)=x(o,i)</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>w=w*sumw</code></td><td class="algcom" markdown="span">更新 Rosenbluth 因子</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>end&nbsp;function</code></td><td class="algcom" markdown="span"></td></tr>
+</tbody>
+</table>
 
 **具体说明**（一般说明见第 1 章「算法」）：
 
@@ -670,53 +677,55 @@ $$
 
 **算法 24　生长一条“烷烃”**
 
-```
-function grow(new_conf,w)     % 生长或回溯一条“烷烃”并
-
-if new_conf == .true. then    % new_conf = .true.：新构型
-    ib=int(R*ell)+1           % 从位置 ib <= l 开始生长
-    ibnewconf=ib              % 存储起始位置
-else                          % new_conf = .false.：旧构型
-    ib=ibnewconf              % 用与新构型相同的起始位置
-endif                         % 重新生长
-for 1 <= i <= b-1 do
-    xn(i)=x(i)                % 存储不被重新生长的位置
-enddo
-w=1
-for ib <= i <= ell do
-    if ib == 1 then           % 第一个原子
-        if new_conf == .true. then
-            xt(1)=R*box       % 生成随机位置
-        else
-            xt(1)=xn(1)       % 使用旧位置
-        endif
-        eni = enerex(xt(1))   % 计算（外部）能量
-        w=k*exp(-beta*eni)    % 以及 Rosenbluth 因子
-    else                      % 第二个及更高的原子
-        sumw=0
-        for 1 <= j <= k do
-            if new_conf == .false.
-               & j == 1) then
-                xt(1)=x(i)    % 以实际位置作为试探取向
-            else
-                xt(j) = next_ci(xn,i)  % 生成试探位置
-            endif
-            eni= enerex(xt(j))         % 该位置的（外部）能量
-            wt(j)= exp(-beta*eni)
-            sumw=sumw+wt(j)
-        enddo
-        w=w*sumw              % 更新 Rosenbluth 因子
-        if new_conf == .true. then
-            n = select(wt,sumw)   % 选出其中一个试探取向
-            xn(i)=xt(n)
-            xstore(i)=xt(n)       % 存储选中的构型以便记账
-        else
-            xn(i)=x(i)
-        endif
-    endif
-enddo
-end function
-```
+<table class="algbox" markdown="1">
+<tbody markdown="1">
+<tr markdown="1"><td class="algcode" markdown="span"><code>function&nbsp;grow(new_conf,w)</code></td><td class="algcom" markdown="span">生长或回溯一条“烷烃”并</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"></td><td class="algcom" markdown="span">计算其 Rosenbluth 因子 w</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>if&nbsp;new_conf&nbsp;==&nbsp;.true.&nbsp;then</code></td><td class="algcom" markdown="span">new\_conf = .true.：新构型</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>ib=int(R*ell)+1</code></td><td class="algcom" markdown="span">从位置 $ib \leq \ell$ 开始生长</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>ibnewconf=ib</code></td><td class="algcom" markdown="span">存储起始位置</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>else</code></td><td class="algcom" markdown="span">new\_conf = .false.：旧构型</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>ib=ibnewconf</code></td><td class="algcom" markdown="span">用与新构型相同的起始位置</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>endif</code></td><td class="algcom" markdown="span">重新生长</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>for&nbsp;1&nbsp;&lt;=&nbsp;i&nbsp;&lt;=&nbsp;b-1&nbsp;do</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>xn(i)=x(i)</code></td><td class="algcom" markdown="span">存储不被重新生长的位置</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>w=1</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>for&nbsp;ib&nbsp;&lt;=&nbsp;i&nbsp;&lt;=&nbsp;ell&nbsp;do</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>if&nbsp;ib&nbsp;==&nbsp;1&nbsp;then</code></td><td class="algcom" markdown="span">第一个原子</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>if&nbsp;new_conf&nbsp;==&nbsp;.true.&nbsp;then</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>xt(1)=R*box</code></td><td class="algcom" markdown="span">生成随机位置</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>else</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>xt(1)=xn(1)</code></td><td class="algcom" markdown="span">使用旧位置</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>eni&nbsp;=&nbsp;enerex(xt(1))</code></td><td class="algcom" markdown="span">计算（外部）能量</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>w=k*exp(-beta*eni)</code></td><td class="algcom" markdown="span">以及 Rosenbluth 因子</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>else</code></td><td class="algcom" markdown="span">第二个及更高的原子</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>sumw=0</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>for&nbsp;1&nbsp;&lt;=&nbsp;j&nbsp;&lt;=&nbsp;k&nbsp;do</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>if&nbsp;new_conf&nbsp;==&nbsp;.false.</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>&amp;&nbsp;j&nbsp;==&nbsp;1)&nbsp;then</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>xt(1)=x(i)</code></td><td class="algcom" markdown="span">以实际位置作为试探取向</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>else</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>xt(j)&nbsp;=&nbsp;next_ci(xn,i)</code></td><td class="algcom" markdown="span">生成试探位置</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>eni=&nbsp;enerex(xt(j))</code></td><td class="algcom" markdown="span">该位置的（外部）能量</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>wt(j)=&nbsp;exp(-beta*eni)</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>sumw=sumw+wt(j)</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>w=w*sumw</code></td><td class="algcom" markdown="span">更新 Rosenbluth 因子</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>if&nbsp;new_conf&nbsp;==&nbsp;.true.&nbsp;then</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>n&nbsp;=&nbsp;select(wt,sumw)</code></td><td class="algcom" markdown="span">选出其中一个试探取向</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>xn(i)=xt(n)</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>xstore(i)=xt(n)</code></td><td class="algcom" markdown="span">存储选中的构型以便记账</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>else</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>xn(i)=x(i)</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>end&nbsp;function</code></td><td class="algcom" markdown="span"></td></tr>
+</tbody>
+</table>
 
 **具体说明**（一般说明见第 1 章「算法」）：
 
@@ -726,14 +735,16 @@ end function
 
 **算法 25　添加一根随机取向的键**
 
-```
-function next_c2(xn,i)        % 从上一个位置 xn(i-1) 出发
-
-l = bondl                     % 生成键长
-b = ranor                     % 生成一个随机取向的单位矢量
-xt(i)=xn(i-1)+l*b
-end function
-```
+<table class="algbox" markdown="1">
+<tbody markdown="1">
+<tr markdown="1"><td class="algcode" markdown="span"><code>function&nbsp;next_c2(xn,i)</code></td><td class="algcom" markdown="span">从上一个位置 xn(i-1) 出发</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"></td><td class="algcom" markdown="span">生成一根随机取向的试探键</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>l&nbsp;=&nbsp;bondl</code></td><td class="algcom" markdown="span">生成键长</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>b&nbsp;=&nbsp;ranor</code></td><td class="algcom" markdown="span">生成一个随机取向的单位矢量</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>xt(i)=xn(i-1)+l*b</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>end&nbsp;function</code></td><td class="algcom" markdown="span"></td></tr>
+</tbody>
+</table>
 
 **具体说明**（一般说明见第 1 章「算法」）：
 
@@ -741,18 +752,20 @@ end function
 
 **算法 26　三聚体的试探构象**
 
-```
-function next_c3(xn,i)        % 为第 i 个原子生成试探位置
-
-l=bondl                       % 生成键长
-if i == 2 then                % 链中的第二个原子
-    xt = next_c2(xn,i)        % 使用算法 25
-else if i == 3 then           % 第三个原子
-    b= bonda(xn,i)            % 生成具有所需键角的
-    xt=xn(2)+l*b              % 新位置的取向
-endif
-end function
-```
+<table class="algbox" markdown="1">
+<tbody markdown="1">
+<tr markdown="1"><td class="algcode" markdown="span"><code>function&nbsp;next_c3(xn,i)</code></td><td class="algcom" markdown="span">为第 i 个原子生成试探位置</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"></td><td class="algcom" markdown="span">xn(i-1) 为第 (i-1) 个原子的位置</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>l=bondl</code></td><td class="algcom" markdown="span">生成键长</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>if&nbsp;i&nbsp;==&nbsp;2&nbsp;then</code></td><td class="algcom" markdown="span">链中的第二个原子</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>xt&nbsp;=&nbsp;next_c2(xn,i)</code></td><td class="algcom" markdown="span">使用算法 25</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>else&nbsp;if&nbsp;i&nbsp;==&nbsp;3&nbsp;then</code></td><td class="algcom" markdown="span">第三个原子</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>b=&nbsp;bonda(xn,i)</code></td><td class="algcom" markdown="span">生成具有所需键角的</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>xt=xn(2)+l*b</code></td><td class="algcom" markdown="span">新位置的取向</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>end&nbsp;function</code></td><td class="algcom" markdown="span"></td></tr>
+</tbody>
+</table>
 
 **具体说明**（一般说明见第 1 章「算法」）：
 
@@ -761,20 +774,22 @@ end function
 
 **算法 27　生成带扭转势的链的构象**
 
-```
-function next_cn(xn,i)        % 为第 i 个原子生成试探位置
-
-l = bondl                     % 生成键长
-if i == 2 then                % 第二个原子
-    xt = next_c2(xn,i)        % 使用算法 25
-else if i == 3 then           % 第三个原子
-    xt = next_c3(xn,i)        % 使用算法 26
-else if i >= 4 then           % 第四个及更高的原子
-    b = tors_bonda(xn,i)      % 生成具有规定键角与
-    xt=xn(i-1)+l*b            % 扭转角的矢量
-endif
-end function
-```
+<table class="algbox" markdown="1">
+<tbody markdown="1">
+<tr markdown="1"><td class="algcode" markdown="span"><code>function&nbsp;next_cn(xn,i)</code></td><td class="algcom" markdown="span">为第 i 个原子生成试探位置</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"></td><td class="algcom" markdown="span">第 (i-1) 个原子的位置已知</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>l&nbsp;=&nbsp;bondl</code></td><td class="algcom" markdown="span">生成键长</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>if&nbsp;i&nbsp;==&nbsp;2&nbsp;then</code></td><td class="algcom" markdown="span">第二个原子</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>xt&nbsp;=&nbsp;next_c2(xn,i)</code></td><td class="algcom" markdown="span">使用算法 25</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>else&nbsp;if&nbsp;i&nbsp;==&nbsp;3&nbsp;then</code></td><td class="algcom" markdown="span">第三个原子</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>xt&nbsp;=&nbsp;next_c3(xn,i)</code></td><td class="algcom" markdown="span">使用算法 26</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>else&nbsp;if&nbsp;i&nbsp;&gt;=&nbsp;4&nbsp;then</code></td><td class="algcom" markdown="span">第四个及更高的原子</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>b&nbsp;=&nbsp;tors_bonda(xn,i)</code></td><td class="algcom" markdown="span">生成具有规定键角与</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>xt=xn(i-1)+l*b</code></td><td class="algcom" markdown="span">扭转角的矢量</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>end&nbsp;function</code></td><td class="algcom" markdown="span"></td></tr>
+</tbody>
+</table>
 
 **具体说明**（一般说明见第 1 章「算法」）：
 

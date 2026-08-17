@@ -500,11 +500,136 @@ def process_tables(text):
     return text
 
 
+def _alg_split_comment(s):
+    r"""从一行里摘出 \comment{...}，返回 (代码部分, 注释或 None)。
+
+    不能用 \\comment\{([^}]*)\}：注释里现在有公式，$\mathbf r_{21} = ...$
+    会在第一个 } 上截断，排出来是「$\mathbf r_{21 = ...$}」。要数括号。
+    """
+    cm = re.search(r"\\(?:comment|Comment|COMMENT)\s*\{", s)
+    if not cm:
+        return s.strip(), None
+    arg, end = brace_arg(s, cm.end() - 1)
+    return (s[:cm.start()] + s[end:]).strip(), (arg or "").strip()
+
+
+# 关键词 -> (排出来的样子, 本行前退几级, 本行后进几级)
+_ALG_ARG = [
+    (r"\\(?:FOR|For)", lambda a: "for %s do" % a, 0, 1),
+    (r"\\(?:WHILE|While)", lambda a: "while %s do" % a, 0, 1),
+    (r"\\(?:IF|If)", lambda a: "if %s then" % a, 0, 1),
+    (r"\\(?:ELSEIF|ElseIf)", lambda a: "else if %s then" % a, 1, 1),
+    (r"\\program", lambda a: "program %s" % a, 0, 0),
+    (r"\\(?:Function|FUNCTION)", lambda a: "function %s" % a, 0, 0),
+    (r"\\function", lambda a: "function %s" % a, 0, 0),
+]
+_ALG_BARE = [
+    (r"\\(?:ENDFOR|EndFor)\b", "enddo", 1, 0),
+    (r"\\(?:ENDWHILE|EndWhile)\b", "enddo", 1, 0),
+    (r"\\(?:ENDIF|EndIf)\b", "endif", 1, 0),
+    (r"\\(?:ELSE|Else)\b", "else", 1, 1),
+    (r"\\endprogram\b", "end program", 0, 0),
+    (r"\\(?:EndFunction|ENDFUNCTION)\b", "end function", 0, 0),
+    (r"\\endfunction\b", "end function", 0, 0),
+    (r"\\(?:RETURN|Return)\b", "return", 0, 0),
+    (r"\\REQUIRE\b", "Input:", 0, 0),
+    (r"\\ENSURE\b", "Output:", 0, 0),
+]
+
+
+def _alg_code_line(s):
+    """一行伪代码 -> (文本, 前退, 后进)"""
+    for pat, fmt, before, after in _ALG_ARG:
+        m = re.match(pat + r"\s*\{", s)
+        if m:
+            arg, end = brace_arg(s, m.end() - 1)
+            return fmt((arg or "").strip()) + s[end:].rstrip(), before, after
+    for pat, out, before, after in _ALG_BARE:
+        if re.match(pat, s):
+            return out + re.sub(pat, "", s, count=1).rstrip(), before, after
+    s = re.sub(r"^\\(?:STATE|State)\b", "", s).strip()
+    return s, 0, 0
+
+
+def _alg_rows(body):
+    r"""algorithmic 正文 -> [(缩进级, 代码, 注释)]
+
+    \comment 自成一行时挂在上一条代码上（书稿里就是这么写的：一行代码、
+    一行 \comment，排版时 \parbox 把它顶到右栏同一行）。
+    """
+    rows, lvl = [], 0
+    for raw in body.split("\n"):
+        s = raw.strip()
+        if not s or s.startswith("%"):
+            continue
+        code, com = _alg_split_comment(s)
+        if not code and com is not None and rows and rows[-1][2] is None:
+            rows[-1] = (rows[-1][0], rows[-1][1], com)     # 挂到上一行
+            continue
+        txt, before, after = _alg_code_line(code) if code else ("", 0, 0)
+        lvl = max(0, lvl - before)
+        rows.append((lvl, txt, com))
+        lvl += after
+    return rows
+
+
+# 代码栏里的 LaTeX 转义要还原：书稿里写 tors\_bonda 是因为 _ 在 LaTeX 里
+# 是下标，网页上该显示成 tors_bonda。
+_UNESC = [(r"\\textbackslash\{\}", "\\\\"), (r"\\textasciicircum\{\}", "^"),
+          (r"\\textasciitilde\{\}", "~"), (r"\\([_%&#{}$])", r"\1")]
+
+
+def _esc_code(s):
+    for pat, rep in _UNESC:
+        s = re.sub(pat, rep, s)
+    return (s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+            .replace(" ", "&nbsp;"))
+
+
+def _alg_cell(code, lvl):
+    r"""代码栏：等宽的部分包 <code>，$...$ 的部分留给 MathJax。
+
+    整格包 <code>，算法 39 的 $\alpha = k_v/(k_B T)$ 就以源码示人——原书
+    这一栏本来就是排成公式的。整格走 markdown 又不行：dtime*j*n**(ib-1)
+    的 * 会被当成强调、new_conf 的 _ 会被当成斜体。按 $ 分段，两边各取所需。
+    """
+    # 缩进单独成一段：挂在「第一个代码段」上的话，以数学开头的行
+    # （算法 39 的 $\ell$ = gauss(...)）就顶到左边界去了。
+    out = ["<code>%s</code>" % ("&nbsp;" * (4 * lvl))] if lvl else []
+    for i, part in enumerate(re.split(r"(\$[^$]*\$)", code)):
+        if not part:
+            continue
+        out.append(part if i % 2                    # 数学，原样交给 MathJax
+                   else "<code>%s</code>" % _esc_code(part))
+    return "".join(out)
+
+
+def _alg_table(rows):
+    """两栏表格：左代码右注释，对应书稿版式。两栏都走 markdown，公式才会渲染。"""
+    # markdown= 要挂在每一层祖先上：只写在 <table> 上，md_in_html 不会往
+    # <tbody>/<tr> 里走，格子里的 $\\theta$ 原样输出，MathJax 默认又不认 $，
+    # 页面上就是一串源码。
+    out = ['<table class="algbox" markdown="1">', '<tbody markdown="1">']
+    for lvl, code, com in rows:
+        left = _alg_cell(code, lvl) if code else ""
+        out.append('<tr markdown="1">'
+                   '<td class="algcode" markdown="span">%s</td>'
+                   '<td class="algcom" markdown="span">%s</td></tr>'
+                   % (left, com or ""))
+    out += ["</tbody>", "</table>"]
+    return "\n".join(out)
+
+
 def process_algorithms(text):
-    """Convert custom algorithm environments to code blocks."""
+    r"""算法框 -> 两栏表格（左代码、右注释），对应书稿的版式。
+
+    原先转成 ``` 代码块，一栏平铺。书稿把 41 个算法框统一成「左代码右注释」
+    之后，这么转有两个后果：注释里的公式（$\theta$、$\hat{\mathbf b}$）在代码
+    块里不会被 MathJax 渲染，读者看到的是源码；而 \comment 的参数用 [^}]* 取，
+    遇到 $\mathbf r_{21}$ 就在第一个 } 上截断。表格才是对得上的结构。
+    """
     def algo_replace(m):
         inner = m.group(1)
-        # Extract caption
         cm = re.search(r"\\caption\{", inner)
         caption = (brace_arg(inner, cm.end() - 1)[0] or "").strip() if cm else ""
         # 算法号由 \setcounter{algorithm}{N-1} 钉死（全书连续编号 1--41）
@@ -512,72 +637,53 @@ def process_algorithms(text):
         if num_match:
             caption = f"算法 {int(num_match.group(1)) + 1}　{caption}".rstrip("　")
 
-        # lstlisting / verbatim 两种代码体
+        # 算法 37 的引言排在题注与框之间，原书如此
+        pre = ""
+        pm = re.search(r"\\algpreamble\{", inner)
+        if pm:
+            arg, end = brace_arg(inner, pm.end() - 1)
+            pre = (arg or "").strip()
+            inner = inner[:pm.start()] + inner[end:]
+
+        body = None
         code_match = re.search(
             r"\\begin\{(?:lstlisting|verbatim)\}(?:\[[^\]]*\])?(.*?)"
-            r"\\end\{(?:lstlisting|verbatim)\}",
-            inner,
-            re.DOTALL,
-        )
+            r"\\end\{(?:lstlisting|verbatim)\}", inner, re.DOTALL)
         if code_match:
-            code = code_match.group(1).strip()
-        else:
-            # Extract algorithmic content
-            algo_match = re.search(
-                r"\\begin\{algorithmic\*?\}(.*?)\\end\{algorithmic\*?\}",
-                inner,
-                re.DOTALL,
-            )
-            if algo_match:
-                code = algo_match.group(1).strip()
-            else:
-                code = inner.strip()
+            # 书稿里已无清单式算法框；万一回潮，原样放进代码块，别悄悄排错
+            out = "\n"
+            if caption:
+                out += f"**{caption}**\n\n"
+            if pre:
+                out += pre + "\n\n"
+            return out + "```\n%s\n```\n" % code_match.group(1).strip()
 
-            # 去掉浮动体样板（位置参数、计数器、题注、标签、居中）
-            code = re.sub(r"^\s*\[[a-zA-Z!]+\]", "", code)
-            code = re.sub(r"\\setcounter\{[^}]*\}\{[^}]*\}", "", code)
-            code = re.sub(r"\\caption\{[^}]*\}", "", code)
-            code = re.sub(r"\\label\{[^}]*\}", "", code)
-            code = re.sub(r"\\centering", "", code)
+        # 可选参数是框内字号（\footnotesize / \normalfont），网页版用不上，
+        # 但正则里不放行的话整段会落到 else 分支，[\normalfont] 会印出来。
+        algo_match = re.search(
+            r"\\begin\{algorithmic\*?\}(?:\[[^\]]*\])?(.*?)\\end\{algorithmic\*?\}",
+            inner, re.DOTALL)
+        body = algo_match.group(1) if algo_match else inner
+        for pat in (r"^\s*\[[a-zA-Z!]+\]", r"\\setcounter\{[^}]*\}\{[^}]*\}",
+                    r"\\centering"):
+            body = re.sub(pat, "", body)
+        for pat in (r"\\caption\{", r"\\label\{"):
+            while True:
+                mm = re.search(pat, body)
+                if not mm:
+                    break
+                _a, end = brace_arg(body, mm.end() - 1)
+                body = body[:mm.start()] + body[end:]
 
-            # Convert algorithm commands to pseudocode
-            code = re.sub(r"\\program\{([^}]*)\}", r"program \1", code)
-            code = re.sub(r"\\endprogram", "end program", code)
-            code = re.sub(r"\\function\{([^}]*)\}\{([^}]*)\}", r"function \1(\2)", code)
-            code = re.sub(r"\\endfunction", "end function", code)
-            code = re.sub(r"\\FOR\{([^}]*)\}", r"for \1", code)
-            code = re.sub(r"\\For\{([^}]*)\}", r"for \1", code)
-            code = re.sub(r"\\ENDFOR|\\EndFor", "end for", code)
-            code = re.sub(r"\\WHILE\{([^}]*)\}", r"while \1", code)
-            code = re.sub(r"\\While\{([^}]*)\}", r"while \1", code)
-            code = re.sub(r"\\ENDWHILE|\\EndWhile", "end while", code)
-            code = re.sub(r"\\IF\{([^}]*)\}", r"if \1", code)
-            code = re.sub(r"\\If\{([^}]*)\}", r"if \1", code)
-            code = re.sub(r"\\ELSE|\\Else", "else", code)
-            code = re.sub(r"\\ENDIF|\\EndIf", "end if", code)
-            code = re.sub(r"\\RETURN\b|\\Return\b", "return", code)
-            code = re.sub(r"\\REQUIRE\b", "Input:", code)
-            code = re.sub(r"\\ENSURE\b", "Output:", code)
-            code = re.sub(r"\\STATE\b|\\State\b", "", code)
-            code = re.sub(r"\\item\b", "", code)
-            code = re.sub(r"\\comment\{([^}]*)\}", r"// \1", code)
-            code = re.sub(r"\\Comment\{([^}]*)\}", r"// \1", code)
-            # Clean up extra whitespace
-            code = re.sub(r"\n\s*\n", "\n", code)
-
-        result = "\n"
+        out = "\n"
         if caption:
-            result += f"**{caption}**\n\n"
-        result += f"```\n{code}\n```\n"
-        return result
+            out += f"**{caption}**\n\n"
+        if pre:
+            out += pre + "\n\n"
+        return out + _alg_table(_alg_rows(body)) + "\n"
 
-    text = re.sub(
-        r"\\begin\{algorithm\}(.*?)\\end\{algorithm\}",
-        algo_replace,
-        text,
-        flags=re.DOTALL,
-    )
-    return text
+    return re.sub(r"\\begin\{algorithm\}(.*?)\\end\{algorithm\}",
+                  algo_replace, text, flags=re.DOTALL)
 
 
 def process_lists(text):

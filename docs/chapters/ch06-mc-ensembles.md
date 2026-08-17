@@ -252,22 +252,24 @@ $$
 
 **算法 11　基本 $NPT$ 系综模拟**
 
-```
-program mc_npt                    % 恒定 NPT 的 MC 模拟
-for 1 <= icycl <= ncycl do        % 执行 ncycl 个 MC 循环
-    ran=R*(npart+1)+1             % R 为均匀随机数：0 <= R < 1
-    if ran <= npart then
-        mcmove                    % 执行粒子位移
-    else
-        mcvol                     % 执行体积变化
-    endif
-    if icycl%nsamp == 0 then
-        sample                    % 采样可观测量
-    endif
-enddo
-[...]                             % 计算可观测量的平均值
-end program
-```
+<table class="algbox" markdown="1">
+<tbody markdown="1">
+<tr markdown="1"><td class="algcode" markdown="span"><code>program&nbsp;mc_npt</code></td><td class="algcom" markdown="span">恒定 NPT 的 MC 模拟</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>for&nbsp;1&nbsp;&lt;=&nbsp;icycl&nbsp;&lt;=&nbsp;ncycl&nbsp;do</code></td><td class="algcom" markdown="span">执行 ncycl 个 MC 循环</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>ran=R*(npart+1)+1</code></td><td class="algcom" markdown="span">R 为均匀随机数：$0 \leq R < 1$</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>if&nbsp;ran&nbsp;&lt;=&nbsp;npart&nbsp;then</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>mcmove</code></td><td class="algcom" markdown="span">执行粒子位移</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>else</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>mcvol</code></td><td class="algcom" markdown="span">执行体积变化</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>if&nbsp;icycl%nsamp&nbsp;==&nbsp;0&nbsp;then</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>sample</code></td><td class="algcom" markdown="span">采样可观测量</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>[...]</code></td><td class="algcom" markdown="span">计算可观测量的平均值</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>end&nbsp;program</code></td><td class="algcom" markdown="span"></td></tr>
+</tbody>
+</table>
 
 **具体说明**（一般说明见第 1 章「算法」）：
 
@@ -276,26 +278,28 @@ end program
 
 **算法 12　$\ln V$ 中的试探移动**
 
-```
-function mcvol                    % 尝试改变体积
-vo=box**3                         % vo 为当前体积
-eno=toterg(vo)                    % 旧构型的总能量
-lnvn=log(vo)+(R-0.5)*dlnv         % 在 lnV 中作随机步
-vn=exp(lnvn)                      % vn 为试探体积
-boxn=vn**(1/3)                    % 新的盒长
-for 1 <= i <= npart do
-    x(i)=x(i)*boxn/box            % 标度质心坐标
-enddo
-enn=toterg(vn)                    % 试探构型的总能量
-arg=-beta*((enn-eno)+p*(vn-vo)
-    -(npart+1)*log(vn/vo)/beta)   % 恰当的权重函数！
-if R >= exp(arg) then             % 接受规则 (6.2.3)
-    for 1 <= i <= npart do        % 被拒绝
-        x(i)=x(i)*box/boxn        % 恢复旧的位置
-    enddo
-endif
-end function
-```
+<table class="algbox" markdown="1">
+<tbody markdown="1">
+<tr markdown="1"><td class="algcode" markdown="span"><code>function&nbsp;mcvol</code></td><td class="algcom" markdown="span">尝试改变体积</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>vo=box**3</code></td><td class="algcom" markdown="span">vo 为当前体积</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>eno=toterg(vo)</code></td><td class="algcom" markdown="span">旧构型的总能量</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>lnvn=log(vo)+(R-0.5)*dlnv</code></td><td class="algcom" markdown="span">在 $\ln V$ 中作随机步</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>vn=exp(lnvn)</code></td><td class="algcom" markdown="span">vn 为试探体积</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>boxn=vn**(1/3)</code></td><td class="algcom" markdown="span">新的盒长</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>for&nbsp;1&nbsp;&lt;=&nbsp;i&nbsp;&lt;=&nbsp;npart&nbsp;do</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>x(i)=x(i)*boxn/box</code></td><td class="algcom" markdown="span">标度质心坐标</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>enn=toterg(vn)</code></td><td class="algcom" markdown="span">试探构型的总能量</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>arg=-beta*((enn-eno)+p*(vn-vo)</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>-(npart+1)*log(vn/vo)/beta)</code></td><td class="algcom" markdown="span">恰当的权重函数！</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>if&nbsp;R&nbsp;&gt;=&nbsp;exp(arg)&nbsp;then</code></td><td class="algcom" markdown="span">接受规则 (6.2.3)</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>for&nbsp;1&nbsp;&lt;=&nbsp;i&nbsp;&lt;=&nbsp;npart&nbsp;do</code></td><td class="algcom" markdown="span">被拒绝</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>x(i)=x(i)*box/boxn</code></td><td class="algcom" markdown="span">恢复旧的位置</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>end&nbsp;function</code></td><td class="algcom" markdown="span"></td></tr>
+</tbody>
+</table>
 
 **具体说明**（一般说明见第 1 章「算法」）：
 
@@ -558,22 +562,24 @@ $$
 
 **算法 13　基本巨正则系综模拟**
 
-```
-program mc_gc                     % 恒定 fVT 的 MC 程序
-for 1 <= icycl <= ncycl do        % 执行 ncycl 个 MC 循环
-    ran=int(R*(npav+nexc))+1
-    if ran <= npav then
-        mcmove                    % 尝试移动一个粒子
-    else
-        mcexc                     % 尝试与储库交换粒子
-    endif
-    if icycl % nsamp == 0 then
-        sample                    % 采样可观测量
-    endif
-enddo
-[...]                             % 计算可观测量的平均值
-end program
-```
+<table class="algbox" markdown="1">
+<tbody markdown="1">
+<tr markdown="1"><td class="algcode" markdown="span"><code>program&nbsp;mc_gc</code></td><td class="algcom" markdown="span">恒定 $fVT$ 的 MC 程序</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>for&nbsp;1&nbsp;&lt;=&nbsp;icycl&nbsp;&lt;=&nbsp;ncycl&nbsp;do</code></td><td class="algcom" markdown="span">执行 ncycl 个 MC 循环</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>ran=int(R*(npav+nexc))+1</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>if&nbsp;ran&nbsp;&lt;=&nbsp;npav&nbsp;then</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>mcmove</code></td><td class="algcom" markdown="span">尝试移动一个粒子</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>else</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>mcexc</code></td><td class="algcom" markdown="span">尝试与储库交换粒子</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>if&nbsp;icycl&nbsp;%&nbsp;nsamp&nbsp;==&nbsp;0&nbsp;then</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>sample</code></td><td class="algcom" markdown="span">采样可观测量</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>[...]</code></td><td class="algcom" markdown="span">计算可观测量的平均值</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>end&nbsp;program</code></td><td class="algcom" markdown="span"></td></tr>
+</tbody>
+</table>
 
 **具体说明**（一般说明见第 1 章「算法」）：
 
@@ -583,30 +589,32 @@ end program
 
 **算法 14　尝试与储库交换粒子**
 
-```
-function mcexc                    % 尝试与储库交换一个粒子
-if R < 0.5 then                   % 决定移除还是添加一个粒子
-    if npart == 0 return          % 只有 npart>0 才能移除粒子
-    o=int(npart*R)+1              % 选出待移除的粒子
-    eno = ener(x(o),o)            % 粒子 o 的能量
-    arg=npart*exp(beta*eno)
-        /(f*vol)
-    if R < arg then               % 接受规则 (6.5.14)
-        x(o)=x(npart)             % 接受：移除粒子 o
-        npart=npart-1
-    endif
-else
-    xn=R*box                      % 在随机位置放入新粒子
-    enn = ener(xn, npart+1)       % 插入在 xn 处的粒子的能量
-    arg=f*vol*exp(-beta*enn)
-        /(npart+1)
-    if R < arg then               % 接受规则 (6.5.13)
-        x(npart+1)=xn             % 接受：添加新粒子
-        npart=npart+1
-    endif
-endif
-end function
-```
+<table class="algbox" markdown="1">
+<tbody markdown="1">
+<tr markdown="1"><td class="algcode" markdown="span"><code>function&nbsp;mcexc</code></td><td class="algcom" markdown="span">尝试与储库交换一个粒子</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>if&nbsp;R&nbsp;&lt;&nbsp;0.5&nbsp;then</code></td><td class="algcom" markdown="span">决定移除还是添加一个粒子</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>if&nbsp;npart&nbsp;==&nbsp;0&nbsp;return</code></td><td class="algcom" markdown="span">只有 npart>0 才能移除粒子</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>o=int(npart*R)+1</code></td><td class="algcom" markdown="span">选出待移除的粒子</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>eno&nbsp;=&nbsp;ener(x(o),o)</code></td><td class="algcom" markdown="span">粒子 o 的能量</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>arg=npart*exp(beta*eno)</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>/(f*vol)</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>if&nbsp;R&nbsp;&lt;&nbsp;arg&nbsp;then</code></td><td class="algcom" markdown="span">接受规则 (6.5.14)</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>x(o)=x(npart)</code></td><td class="algcom" markdown="span">接受：移除粒子 o</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>npart=npart-1</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>else</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>xn=R*box</code></td><td class="algcom" markdown="span">在随机位置放入新粒子</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>enn&nbsp;=&nbsp;ener(xn,&nbsp;npart+1)</code></td><td class="algcom" markdown="span">插入在 xn 处的粒子的能量</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>arg=f*vol*exp(-beta*enn)</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>/(npart+1)</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>if&nbsp;R&nbsp;&lt;&nbsp;arg&nbsp;then</code></td><td class="algcom" markdown="span">接受规则 (6.5.13)</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>x(npart+1)=xn</code></td><td class="algcom" markdown="span">接受：添加新粒子</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>npart=npart+1</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>end&nbsp;function</code></td><td class="algcom" markdown="span"></td></tr>
+</tbody>
+</table>
 
 **具体说明**（一般说明见第 1 章「算法」）：
 
@@ -1172,22 +1180,24 @@ $$
 
 **算法 15　基本吉布斯系综模拟**
 
-```
-program mc_Gibbs                  % 吉布斯系综模拟
-for 1 <= icycl <= ncycle do       % 执行 ncycl 个 MC 循环
-    ran=R*(npart+nvol+nswap)
-    if ran <= npart then
-        mcmove                    % 尝试位移一个粒子
-    else if ran <= (npart+nvol) then
-        mcvol                     % 尝试改变体积
-    else
-        mcswap                    % 尝试交换一个粒子
-    endif
-    sample                        % 采样可观测量
-enddo
-[...]                             % 计算可观测量的平均值
-end program
-```
+<table class="algbox" markdown="1">
+<tbody markdown="1">
+<tr markdown="1"><td class="algcode" markdown="span"><code>program&nbsp;mc_Gibbs</code></td><td class="algcom" markdown="span">吉布斯系综模拟</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>for&nbsp;1&nbsp;&lt;=&nbsp;icycl&nbsp;&lt;=&nbsp;ncycle&nbsp;do</code></td><td class="algcom" markdown="span">执行 ncycl 个 MC 循环</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>ran=R*(npart+nvol+nswap)</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>if&nbsp;ran&nbsp;&lt;=&nbsp;npart&nbsp;then</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>mcmove</code></td><td class="algcom" markdown="span">尝试位移一个粒子</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>else&nbsp;if&nbsp;ran&nbsp;&lt;=&nbsp;(npart+nvol)&nbsp;then</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>mcvol</code></td><td class="algcom" markdown="span">尝试改变体积</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>else</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>mcswap</code></td><td class="algcom" markdown="span">尝试交换一个粒子</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>sample</code></td><td class="algcom" markdown="span">采样可观测量</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>[...]</code></td><td class="algcom" markdown="span">计算可观测量的平均值</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>end&nbsp;program</code></td><td class="algcom" markdown="span"></td></tr>
+</tbody>
+</table>
 
 **具体说明**（一般说明见第 1 章「算法」）：
 

@@ -65,28 +65,22 @@ $$
 
 **算法 3　分子动力学程序核心**
 
-```
- program MD
- 基本MD代码
- [...]
- setlat
- 初始化位置x的函数
- initv(temp)
- 初始化速度vx的函数
- t=0
-while (t < tmax)
- 主MD循环
- FandE
- 计算力和总能量的函数
- Integrate-V
- 积分运动方程的函数
- t=t+delt
- 更新时间
- sample
- 采样平均值的函数
-end while
- 程序结束
-```
+<table class="algbox" markdown="1">
+<tbody markdown="1">
+<tr markdown="1"><td class="algcode" markdown="span"><code>program&nbsp;MD</code></td><td class="algcom" markdown="span">基本 MD 代码</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>[...]</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>setlat</code></td><td class="algcom" markdown="span">初始化位置 x 的函数</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>initv(temp)</code></td><td class="algcom" markdown="span">初始化速度 vx 的函数</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>t=0</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>while&nbsp;(t&nbsp;</code>$<$<code>&nbsp;tmax)&nbsp;do</code></td><td class="algcom" markdown="span">MD 主循环</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>FandE</code></td><td class="algcom" markdown="span">计算力与总能量的函数</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>Integrate-V</code></td><td class="algcom" markdown="span">积分运动方程的函数</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>t=t+delt</code></td><td class="algcom" markdown="span">更新时间</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>sample</code></td><td class="algcom" markdown="span">采样平均值的函数</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>end&nbsp;program</code></td><td class="algcom" markdown="span"></td></tr>
+</tbody>
+</table>
 
 **具体说明**（一般说明见第 1 章「算法」）：
 
@@ -103,38 +97,29 @@ end while
 
 **算法 4　分子动力学程序初始化**
 
-```
- function initv(temp)
- 初始化MD程序的速度
- sumv=0
- sumv2=0
-for $1 \leq i \leq \text{npart$}
- x(i) = lattice\_pos(i)
- 将粒子放置在晶格上
- vx(i) = $\sqrt{-\ln(R)\cos(2\pi R)}$
- 生成一维正态分布
- sumv=sumv+v(i)
- 质心动量 ($m = 1$)
-end for
- sumv=sumv/npart
- 质心速度
-for $1 \leq i \leq \text{npart$}
- 设置目标动能并设定
- vx(i) = vx(i) - sumv
- 质心速度归零
- sumv2=sumv2+vx(i)$^{2}$
- 动能
-end for
- fs=$\sqrt{\text{temp}/(\text{sumv2/nf})}$
- temp = 目标初始温度
-for $1 \leq i \leq \text{npart$}
- vx(i)=vx(i)*fs
- 设置初始动力学温度
- xm(i)=x(i)-vx(i)*dt
- 前一时间步的位置
-end for
- 函数结束
-```
+<table class="algbox" markdown="1">
+<tbody markdown="1">
+<tr markdown="1"><td class="algcode" markdown="span"><code>function&nbsp;initv(temp)</code></td><td class="algcom" markdown="span">初始化 MD 程序的速度</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>sumv=0</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>sumv2=0</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>for&nbsp;</code>$1 \leq i \leq \text{npart}$<code>&nbsp;do</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>x(i)&nbsp;=&nbsp;lattice_pos(i)</code></td><td class="algcom" markdown="span">将粒子放到晶格格点上</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>vx(i)&nbsp;=&nbsp;</code>$\sqrt{-\ln \mathcal{R}}\cos(2\pi \mathcal{R})$</td><td class="algcom" markdown="span">生成一维正态分布</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>sumv=sumv+v(i)</code></td><td class="algcom" markdown="span">质心动量（$m = 1$）</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>sumv=sumv/npart</code></td><td class="algcom" markdown="span">质心速度</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>for&nbsp;</code>$1 \leq i \leq \text{npart}$<code>&nbsp;do</code></td><td class="algcom" markdown="span">设定目标动能，并将质心速度归零</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>vx(i)&nbsp;=&nbsp;vx(i)&nbsp;-&nbsp;sumv</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>sumv2=sumv2+vx(i)**2</code></td><td class="algcom" markdown="span">动能</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>fs=</code>$\sqrt{\text{temp}/(\text{sumv2/nf})}$</td><td class="algcom" markdown="span">temp = 目标初始温度</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>for&nbsp;</code>$1 \leq i \leq \text{npart}$<code>&nbsp;do</code></td><td class="algcom" markdown="span">设定初始动力学温度</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>vx(i)=vx(i)*fs</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>xm(i)=x(i)-vx(i)*dt</code></td><td class="algcom" markdown="span">前一时间步的位置</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>end&nbsp;function</code></td><td class="algcom" markdown="span"></td></tr>
+</tbody>
+</table>
 
 **具体说明**（一般说明见第 1 章「算法」）：
 
@@ -155,41 +140,34 @@ end for
 
 **算法 5　对力与能量计算**
 
-```
- function FandE
- 计算力和能量
- rc2=rc$^{2}$
- rc=2 是默认截断距离
- en=0
- 能量初始化为零
-for $1 \leq i \leq \text{npart$}
- fx(i)=0
- 力初始化为零
-end for
-for $1 \leq i \leq \text{npart-1$}
-for $i+1 \leq j \leq \text{npart$}
- 遍历所有粒子对
- xr=x(i)-x(j)
- xr=xr-box*round(xr/box)
- 最近映像距离
- r2=xr$^{2}$
-if r2 $<$ rc2
- 检查截断
- r2i=1/r2
- r2im1=r2i-1.0
- rc2r2im1=rc2*r2i-1.0
- en=en+r2im1*rc2r2im1$^{2}$
- 对能量
- ff=6.0*r2i$^{2}$*rc2r2im1
- *(rc2r2im1-2)
- 对力
- fx(i)=fx(i)+ff*xr
- fx(j)=fx(j)-ff*xr
-end if
-end for
-end for
- end function
-```
+<table class="algbox" markdown="1">
+<tbody markdown="1">
+<tr markdown="1"><td class="algcode" markdown="span"><code>function&nbsp;FandE</code></td><td class="algcom" markdown="span">计算力与能量</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>rc2=rc**2</code></td><td class="algcom" markdown="span">rc=2 是默认截断距离</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>en=0</code></td><td class="algcom" markdown="span">能量置零</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>for&nbsp;</code>$1 \leq i \leq \text{npart}$<code>&nbsp;do</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>fx(i)=0</code></td><td class="algcom" markdown="span">力置零</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>for&nbsp;</code>$1 \leq i \leq \text{npart}-1$<code>&nbsp;do</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>for&nbsp;</code>$i+1 \leq j \leq \text{npart}$<code>&nbsp;do</code></td><td class="algcom" markdown="span">遍历所有粒子对</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>xr=x(i)-x(j)</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>xr=xr-box*round(xr/box)</code></td><td class="algcom" markdown="span">最近映像距离</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>r2=xr**2</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>if&nbsp;r2&nbsp;</code>$<$<code>&nbsp;rc2&nbsp;then</code></td><td class="algcom" markdown="span">检查截断</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>r2i=1/r2</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>r2im1=r2i-1.0</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>rc2r2im1=rc2*r2i-1.0</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>en=en+r2im1*rc2r2im1**2</code></td><td class="algcom" markdown="span">对能量</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>ff=6.0*r2i**2*rc2r2im1</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>\hspace*{2em}*(rc2r2im1-2)</code></td><td class="algcom" markdown="span">对力</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>fx(i)=fx(i)+ff*xr</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>fx(j)=fx(j)-ff*xr</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>end&nbsp;function</code></td><td class="algcom" markdown="span"></td></tr>
+</tbody>
+</table>
 
 **具体说明**（一般说明见第 1 章「算法」）：
 
@@ -250,32 +228,24 @@ $$
 
 **算法 6　运动方程积分**
 
-```
- function Integrate-V
- 积分运动方程
- sumv=0
- sumv2=0
-for $1 \leq i \leq \text{npart$}
- MD循环
- xx=2.0*x(i)-xm(i)+delt$^{2}$*fx(i)
- Verlet算法 (4.2.3)
- vi=(xx-xm(i))/(2*delt)
- 速度 (4.2.4)
- sumv=sumv+vi
- 质心速度
- sumv2=sumv2+vi$^{2}$
- 总动能
- xm(i)=x(i)
- 更新“旧”位置
- x(i)=xx
- 更新“当前”位置
-end for
- temp=sumv2/(nf)
- 当前温度
- etot=(en+0.5*sumv2)/npart
- 以及每个粒子的总能量
- 函数结束（可能在别处使用）
-```
+<table class="algbox" markdown="1">
+<tbody markdown="1">
+<tr markdown="1"><td class="algcode" markdown="span"><code>function&nbsp;Integrate-V</code></td><td class="algcom" markdown="span">积分运动方程</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>sumv=0</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>sumv2=0</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>for&nbsp;</code>$1 \leq i \leq \text{npart}$<code>&nbsp;do</code></td><td class="algcom" markdown="span">MD 循环</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>xx=2*x(i)-xm(i)+delt**2*fx(i)</code></td><td class="algcom" markdown="span">Verlet 算法（式 (4.2.3)）</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>vi=(xx-xm(i))/(2*delt)</code></td><td class="algcom" markdown="span">速度（式 (4.2.4)）</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>sumv=sumv+vi</code></td><td class="algcom" markdown="span">质心速度</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>sumv2=sumv2+vi**2</code></td><td class="algcom" markdown="span">总动能</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>xm(i)=x(i)</code></td><td class="algcom" markdown="span">更新“旧”位置</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>x(i)=xx</code></td><td class="algcom" markdown="span">更新“当前”位置</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>temp=sumv2/(nf)</code></td><td class="algcom" markdown="span">当前温度</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>etot=(en+0.5*sumv2)/npart</code></td><td class="algcom" markdown="span">以及每个粒子的总能量</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>end&nbsp;function</code></td><td class="algcom" markdown="span">可能在别处用到</td></tr>
+</tbody>
+</table>
 
 **具体说明**（一般说明见第 1 章「算法」）：
 
@@ -513,28 +483,23 @@ $$
 
 **算法 7　速度 Verlet 时间步进**
 
-```
- function vel\_verlet
- 假设当前x、v和f已知
- 来自前一时间步
- K=0
- 动能累加器
-for $1 \leq i \leq \text{npart$}
- v(i)=v(i)+f(i)*delt2/m
- $v_i$的半步更新（式 (4.3.5)）
- x(i)=x(i)+v(i)*delt
- 使用式 (4.3.4) 更新$x_i$
-end for
- f = force
- 更新所有力
-for $1 \leq i \leq \text{npart$}
- v(i)=v(i)+f(i)*delt2/m
- $v_i$的第二次半步更新（式 (4.3.5)）
- K=K+m*v(i)*v(i)/2
- 更新动能
-end for
- 函数结束
-```
+<table class="algbox" markdown="1">
+<tbody markdown="1">
+<tr markdown="1"><td class="algcode" markdown="span"><code>function&nbsp;vel_verlet</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"></td><td class="algcom" markdown="span">假设当前的 x、v 和 f 已知，来自前一时间步</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>K=0</code></td><td class="algcom" markdown="span">动能累加器</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>for&nbsp;</code>$1 \leq i \leq \text{npart}$<code>&nbsp;do</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>v(i)=v(i)+f(i)*delt2/m</code></td><td class="algcom" markdown="span">$\mathbf{v}_i$ 的半步更新（式 (4.3.5)）</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>x(i)=x(i)+v(i)*delt</code></td><td class="algcom" markdown="span">用式 (4.3.4) 更新 $\mathbf{x}_i$</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>f&nbsp;=&nbsp;force</code></td><td class="algcom" markdown="span">更新所有的力</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>for&nbsp;</code>$1 \leq i \leq \text{npart}$<code>&nbsp;do</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>v(i)=v(i)+f(i)*delt2/m</code></td><td class="algcom" markdown="span">$\mathbf{v}_i$ 的第二次半步更新（式 (4.3.5)）</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>K=K+m*v(i)*v(i)/2</code></td><td class="algcom" markdown="span">更新动能</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>end&nbsp;function</code></td><td class="algcom" markdown="span"></td></tr>
+</tbody>
+</table>
 
 **具体说明**（一般说明见第 1 章「算法」）：
 
