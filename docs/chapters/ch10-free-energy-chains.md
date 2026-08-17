@@ -15,7 +15,7 @@
 Kumar 等人[[440,441]](references.md#ref-440) 提出了一种密切相关的测量链分子化学势的方法。在该方案中，链分子逐个单体地构建。Kumar 等人的方法类似于 Mon 和 Griffiths [[442]](references.md#ref-442) 早先提出的用于测量超额化学势的逐步插入方案。中间步骤所涉及的可逆功使用 Widom 方法测量；也就是说，长度为 $\ell$ 和 $\ell+1$ 的链的超额自由能之差通过计算 $\Delta U(\ell \to \ell+1)$（即与添加第 $(\ell+1)$ 个单体相关的势能变化）来测量。自由能变化由下式给出：
 
 $$
-\Delta F_{\mathrm{ex}}(\ell \to \ell+1) \equiv \mu_{\mathrm{ex}}^{\mathrm{incr}}(\ell \to \ell+1) = -k_B T \ln \langle \exp[-\beta \Delta \mathcal{U}(\ell \to \ell+1)] \rangle .
+\Delta F_{\mathrm{ex}}(\ell \to \ell+1) \equiv \mu_{\mathrm{ex}}^{\mathrm{incr}}(\ell \to \ell+1) = -k_{\mathrm{B}} T \ln \langle \exp[-\beta \Delta \mathcal{U}(\ell \to \ell+1)] \rangle .
 \tag{10.1.1}
 $$
 
@@ -185,7 +185,7 @@ $$
 其中 $c$ 是数值常数。我们假设 $Q_{\mathrm{id}}$ 是已知的。我们的目标是计算外部相互作用对构象配分函数的影响。因此，我们希望计算 $Q/Q_{\mathrm{id}}$，其中 $Q$ 表示相互作用链的配分函数。相互作用链的超额化学势由下式给出
 
 $$
-\mu_{\mathrm{ex}} = -k_B T \ln(Q/Q_{\mathrm{id}}) .
+\mu_{\mathrm{ex}} = -k_{\mathrm{B}} T \ln(Q/Q_{\mathrm{id}}) .
 $$
 
 在考虑计算 $\mu_{\mathrm{ex}}$ 的“聪明”方法之前，让我们简要回顾两种不太聪明的方法。
@@ -209,7 +209,7 @@ $$
 
 这种方法显然优于第一种方案。然而，在许多实际情况中，它仍然会产生较差的统计结果，因为大多数理想链构象不会对应于相互作用链在能量上有利的情况。因此，对于大多数构象，玻尔兹曼权重仍然很小，统计精度也不会很好。
 
-这两种方案的问题在于，它们都不允许我们专注于那些对 $Q$ 贡献最大的构象，即那些内部和外部势能之和不大于每自由度几个 $k_B T$ 的构象。显然，将采样偏向于这种有利构象将是令人满意的。
+这两种方案的问题在于，它们都不允许我们专注于那些对 $Q$ 贡献最大的构象，即那些内部和外部势能之和不大于每自由度几个 $k_{\mathrm{B}} T$ 的构象。显然，将采样偏向于这种有利构象将是令人满意的。
 
 事实证明，我们可以使用类似于第 10.2.1 节中计算具有许多固定构象的链分子超额化学势的过程来计算 $\mu_{\mathrm{ex}}$。为了计算 $\mu_{\mathrm{ex}}$，我们应用以下构建 $\ell$ 段链构象的方案。链构象的构建逐段进行。让我们考虑添加一个这样的片段。具体来说，假设我们已经生长了 $i$ 个片段，并且我们正试图添加片段 $i+1$。具体步骤如下：
 
@@ -397,7 +397,7 @@ $$
 因此，超额化学势由下式给出
 
 $$
-\mu_{\mathrm{ex}}(\ell) = -k_B T \ln \frac{\langle N_{\ell} \rangle}{\prod_{i=0}^{\ell} \pi_i} .
+\mu_{\mathrm{ex}}(\ell) = -k_{\mathrm{B}} T \ln \frac{\langle N_{\ell} \rangle}{\prod_{i=0}^{\ell} \pi_i} .
 \tag{10.2.26}
 $$
 

@@ -37,7 +37,7 @@ $$
 其中$\{\mu\}$表示$\mu_1, \mu_2, \cdots, \mu_n$，$\{N\}$代表$N_1, N_2, \cdots, N_n$。巨势$\Omega = \Omega(\{\mu\}, V, T)$由下式给出：
 
 $$
-\Omega = -k_B T \ln \Xi(\{\mu\}, V, T).
+\Omega = -k_{\mathrm{B}} T \ln \Xi(\{\mu\}, V, T).
 $$
 
 由式 (C.1.3) 可得：

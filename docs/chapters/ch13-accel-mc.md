@@ -116,20 +116,20 @@ $$
 这个规则允许我们快速估算温度间距。注意，两个被温度间隔$\Delta T$分隔的系统的平均能量差等于$\Delta E \approx C_V \Delta T$，其中$C_V(T)$是系统在温度$T$和体积$V$下的热容。但系统的能量方差也与热容有关（式 (5.1.7)）：
 
 $$
-k_B T^2 C_V = \left(\langle E^2 \rangle - \langle E \rangle^2\right).
+k_{\mathrm{B}} T^2 C_V = \left(\langle E^2 \rangle - \langle E \rangle^2\right).
 $$
 
 因此，我们估算$\Delta T$最优值的规则是
 
 $$
-\sqrt{k_B T^2 C_V} \approx C_V \Delta T
+\sqrt{k_{\mathrm{B}} T^2 C_V} \approx C_V \Delta T
 \tag{13.1.6}
 $$
 
 或
 
 $$
-\frac{\Delta T}{T} \approx \sqrt{k_B / C_V}.
+\frac{\Delta T}{T} \approx \sqrt{k_{\mathrm{B}} / C_V}.
 \tag{13.1.7}
 $$
 
@@ -498,7 +498,7 @@ $$
 在这种情形下，对体系 $B$ 的指数分布作 Metropolis 采样，会比对体系 A 的均匀分布作采样更慢。Jarzynski [[581]](references.md#ref-581)证明：对于 A 与 B 都可以是复杂多体体系的一般情形，A 与 B 之间的自由能差 $\Delta F$ 由下式给出
 
 $$
-\Delta F = -k_B T \ln\left\langle \mathrm{e}^{-\beta\left[U_B(q') - U_A(q) - \ln J(q)\right]}\right\rangle,
+\Delta F = -k_{\mathrm{B}} T \ln\left\langle \mathrm{e}^{-\beta\left[U_B(q') - U_A(q) - \ln J(q)\right]}\right\rangle,
 $$
 
 因此，一个满足 $\ln J(q) \approx U_B(q') - U_A(q)$ 的变换将会加快自由能差的估计——前提是 A 容易采样（没有势垒，也没有陷阱）。
@@ -561,7 +561,7 @@ $$
     接下来我们考察用归一化流计算自由能差的做法。出发点是如下关系式[[581]](references.md#ref-581)，它把通过双射映射相联系的两个体系 $A$ 与 $B$ 的自由能差 $\Delta F \equiv F_B - F_A$ 表示为
 
     $$
-    e^{-\beta\Delta F} = \frac{Z_B}{Z_A} = \left\langle e^{-\beta[\mathcal{U}_B - \mathcal{U}_A - k_BT\ln J]}\right\rangle_A,
+    e^{-\beta\Delta F} = \frac{Z_B}{Z_A} = \left\langle e^{-\beta[\mathcal{U}_B - \mathcal{U}_A - k_{\mathrm{B}}T\ln J]}\right\rangle_A,
     \tag{13.4.6}
     $$
 
@@ -571,7 +571,7 @@ $$
 
     ![图 13.4](../images/fig_13_4.png)
 
-    *图 13.4　沿 Mueller 势势能景观中对角 $x_1 - x_2$ 方向的自由能剖面（见图 13.3）。图中比较了使用常规（有偏）模拟得到的参考自由能剖面、使用无偏归一化流得到的结果，以及归一化流加偏倚的结果。注意在加入偏倚后，可以恢复出在原始归一化流计算中采样很差的区间内的自由能剖面。本图基于文献[[583]](references.md#ref-583) 的数据。（图内标注：纵轴 Free energy$/k_BT$ = 自由能$/k_BT$）*
+    *图 13.4　沿 Mueller 势势能景观中对角 $x_1 - x_2$ 方向的自由能剖面（见图 13.3）。图中比较了使用常规（有偏）模拟得到的参考自由能剖面、使用无偏归一化流得到的结果，以及归一化流加偏倚的结果。注意在加入偏倚后，可以恢复出在原始归一化流计算中采样很差的区间内的自由能剖面。本图基于文献[[583]](references.md#ref-583) 的数据。\figkey{纵轴 Free energy$/k_{\mathrm{B}}T$ = 自由能$/k_{\mathrm{B}}T$}*
 
     不过要注意，把归一化流用于 Monte Carlo 采样在很大程度上仍是“进行中的工作”。对于更高维的问题（例如液体），从高斯分布出发的映射[[583]](references.md#ref-583) 往往会遇到麻烦：从与目标态更相似的参考态出发构造映射的做法效果更好[[584,585,590]](references.md#ref-584)。
 

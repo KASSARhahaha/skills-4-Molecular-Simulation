@@ -120,8 +120,8 @@ $$
 
 $$
 \begin{aligned}
-F(N, V, T) &= -k_B T \ln Q\\
-&= -k_B T \ln \left[\frac{V^N}{\Lambda^{3N} N!}\right] - k_B T \ln \left[\int \mathrm{d}\mathbf{s}^N \exp[-\beta \mathcal{U}(\mathbf{s}^N; L)]\right]\\
+F(N, V, T) &= -k_{\mathrm{B}} T \ln Q\\
+&= -k_{\mathrm{B}} T \ln \left[\frac{V^N}{\Lambda^{3N} N!}\right] - k_{\mathrm{B}} T \ln \left[\int \mathrm{d}\mathbf{s}^N \exp[-\beta \mathcal{U}(\mathbf{s}^N; L)]\right]\\
 &= F^{\text{id}}(N, V, T) + F^{\text{ex}}(N, V, T).
 \end{aligned}
 \tag{6.3.4}
@@ -137,7 +137,7 @@ Q(N, M, V, V_0, T) &= Q(M, V_0 - V, T) \frac{V^N}{\Lambda^{3M} N!} \int \mathrm{
 \tag{6.3.5}
 $$
 
-其中 $F_R$ 表示储库的亥姆霍兹自由能。该组合系统的总自由能为 $F^{\text{tot}} = -k_B T \ln Q(N, M, V, V_0, T)$。现在假设两个子系统可以交换体积。在这种情况下，$N$ 粒子子系统的体积 $V$ 可以涨落。$V$ 的最概然值将是使组合系统自由能最小的那个值。$N$ 粒子子系统具有体积 $V$ 的概率密度 $\mathcal{N}(V)$ 为[^1]
+其中 $F_R$ 表示储库的亥姆霍兹自由能。该组合系统的总自由能为 $F^{\text{tot}} = -k_{\mathrm{B}} T \ln Q(N, M, V, V_0, T)$。现在假设两个子系统可以交换体积。在这种情况下，$N$ 粒子子系统的体积 $V$ 可以涨落。$V$ 的最概然值将是使组合系统自由能最小的那个值。$N$ 粒子子系统具有体积 $V$ 的概率密度 $\mathcal{N}(V)$ 为[^1]
 
 $$
 \mathcal{N}(V) = \frac{\exp[-\beta F_R(M, V_0 - V, T)] V^N \int \mathrm{d}\mathbf{s}^N \exp[-\beta \mathcal{U}(\mathbf{s}^N; L)]}{\int_0^{V_0} \mathrm{d}V' \exp[-\beta F_R(M, V_0 - V', T)] V'^N \int \mathrm{d}\mathbf{s}^N \exp[-\beta \mathcal{U}(\mathbf{s}^N; L')]}.
@@ -171,7 +171,7 @@ $$
 在同一极限下，组合系统的自由能与不存在 $N$ 粒子子系统时储库自由能之差即为熟知的吉布斯自由能：
 
 $$
-G(N, P, T) = -k_B T \ln Q(N, P, T).
+G(N, P, T) = -k_{\mathrm{B}} T \ln Q(N, P, T).
 \tag{6.3.10}
 $$
 
@@ -353,7 +353,7 @@ $$
 
     *图 6.3　从 $NPT$ 模拟获得的 Lennard-Jones 流体的状态方程；$T = 2.0$ 的等温线。实线是 Johnson 等人[[83]](references.md#ref-83) 的状态方程，方块是模拟结果（$N = 108$）。*
 
-    在分子液体的真实模型模拟中，重要的是验证模型流体在标准大气压下具有与真实流体相同的密度。使用 $NVT$ 模拟，需要进行多次模拟才能确定压力约为 $1\,\text{atm}$ 时的密度。在 $NPT$ 模拟中，一次模拟即可获得此结果。在约化单位中，大气压通常远小于 1。因此，$P = 0$ 的 $NPT$ 模拟可以很好地给出大气压下液体密度的初步估计。{ 注：严格来说，液体在 $P = 0$ 时只是亚稳态。然而，由于气泡形成的成核势垒通常远大于 $k_B T$，这种亚稳态的寿命通常远长于模拟时间。}
+    在分子液体的真实模型模拟中，重要的是验证模型流体在标准大气压下具有与真实流体相同的密度。使用 $NVT$ 模拟，需要进行多次模拟才能确定压力约为 $1\,\text{atm}$ 时的密度。在 $NPT$ 模拟中，一次模拟即可获得此结果。在约化单位中，大气压通常远小于 1。因此，$P = 0$ 的 $NPT$ 模拟可以很好地给出大气压下液体密度的初步估计。{ 注：严格来说，液体在 $P = 0$ 时只是亚稳态。然而，由于气泡形成的成核势垒通常远大于 $k_{\mathrm{B}} T$，这种亚稳态的寿命通常远长于模拟时间。}
 
     生成此例的 Fortran 代码可在在线 SI 中找到，案例研究 7。
 
@@ -478,7 +478,7 @@ $$
 现在让我们将 $\mu$ 与 $f$ 联系起来。分子气体在密度 $\rho$ 时的化学势的完整表达式为：
 
 $$
-\mu_g = k_B T \ln \left[\frac{\Lambda^3 \rho}{q_{\text{int}}(T)}\right],
+\mu_g = k_{\mathrm{B}} T \ln \left[\frac{\Lambda^3 \rho}{q_{\text{int}}(T)}\right],
 \tag{6.5.5}
 $$
 
@@ -491,21 +491,21 @@ $$
 如果分子的内自由度不影响其分子间相互作用，我们可以利用理想气体化学势 $\mu^{\text{id gas}}$ 可以写为
 
 $$
-\mu^{\text{id gas}} = k_B T \ln \left[\frac{\Lambda^3}{q_{\text{int}}(T)}\right] + k_B T \ln \rho^{\text{id gas}} \equiv \mu^{-\circ} + k_B T \ln \rho^{\text{id gas}}.
+\mu^{\text{id gas}} = k_{\mathrm{B}} T \ln \left[\frac{\Lambda^3}{q_{\text{int}}(T)}\right] + k_{\mathrm{B}} T \ln \rho^{\text{id gas}} \equiv \mu^{-\circ} + k_{\mathrm{B}} T \ln \rho^{\text{id gas}}.
 \tag{6.5.6}
 $$
 
 类似地，相互作用系统的化学势为
 
 $$
-\mu^{\text{sys}} = \mu^{-\circ} + k_B T \ln \rho^{\text{sys}} + \mu^{\text{ex}},
+\mu^{\text{sys}} = \mu^{-\circ} + k_{\mathrm{B}} T \ln \rho^{\text{sys}} + \mu^{\text{ex}},
 \tag{6.5.7}
 $$
 
 因此，对于与相互作用系统处于平衡的密度（$=$ 逸度）为 $f$ 的理想气体，我们有：
 
 $$
-k_B T \ln \rho^{\text{sys}} + \mu^{\text{ex}} = k_B T \ln f.
+k_{\mathrm{B}} T \ln \rho^{\text{sys}} + \mu^{\text{ex}} = k_{\mathrm{B}} T \ln f.
 \tag{6.5.8}
 $$
 
@@ -532,7 +532,7 @@ $$
 \tag{6.5.11}
 $$
 
-注意，在这个概率比值中，所有对储库的显式引用都已消失。同样重要的是，隐藏在热 de Broglie 波长 $\Lambda$ 中的普朗克常数也已消失，这正是经典模拟中应有的情况。
+注意，在这个概率比值中，所有对储库的显式引用都已消失。同样重要的是，隐藏在热 de Broglie 波长 $\Lambda$ 中的普朗克常量也已消失，这正是经典模拟中应有的情况。
 
 #### 耦合的内自由度
 
@@ -807,7 +807,7 @@ $$
 
 其中最后一个等式定义了一个新的配分函数 $Y$，它是 $N$、$\{\xi_\alpha\}$、$V$ 和 $T$ 的函数。在公式 (6.5.28) 中，“对身份的求和”意味着所有 $N$ 个粒子都可以具有所有 $n$ 种可能身份的求和。
 
-注意 $Y(N, \{\xi_\alpha\}, V, T)$ 是具有恒定 $N$、$V$、$T$ 和 $\{\xi_\alpha\}$ 的系统的配分函数。利用 $k_B T \ln \Xi = PV$（公式 (2.3.21)）以及第 2.3.3 节中提到的最大项方法，可以得出 $k_B T \ln Y = PV - N k_B T \ln f_{\text{tot}}$。$Y(N, \{\xi_\alpha\}, V, T)$ 可以看作是恒定 $N$、$\{\xi_\alpha\}$、$V$ 和 $T$ 下的半巨正则配分函数。在恒定压力下考虑半巨正则配分函数通常更方便，即更便于与实验比较：
+注意 $Y(N, \{\xi_\alpha\}, V, T)$ 是具有恒定 $N$、$V$、$T$ 和 $\{\xi_\alpha\}$ 的系统的配分函数。利用 $k_{\mathrm{B}} T \ln \Xi = PV$（公式 (2.3.21)）以及第 2.3.3 节中提到的最大项方法，可以得出 $k_{\mathrm{B}} T \ln Y = PV - N k_{\mathrm{B}} T \ln f_{\text{tot}}$。$Y(N, \{\xi_\alpha\}, V, T)$ 可以看作是恒定 $N$、$\{\xi_\alpha\}$、$V$ 和 $T$ 下的半巨正则配分函数。在恒定压力下考虑半巨正则配分函数通常更方便，即更便于与实验比较：
 
 $$
 \begin{aligned}
@@ -821,7 +821,7 @@ $$
 与热力学的关系由下式给出
 
 $$
--k_B T \ln \mathcal{Y}'(N, \{\xi_\alpha\}, P, T) = N k_B T \ln f_{\text{tot}}.
+-k_{\mathrm{B}} T \ln \mathcal{Y}'(N, \{\xi_\alpha\}, P, T) = N k_{\mathrm{B}} T \ln f_{\text{tot}}.
 \tag{6.5.30}
 $$
 
@@ -850,7 +850,7 @@ $$
 然后我们应该计算混合物中两相的 $f_{\text{tot}}(\lambda = 1)$ 值。一般来说，对于给定的 $\{\xi_\alpha\}$、$P$、$T$，我们会发现 $f_{\text{tot}}^{\text{I}} \neq f_{\text{tot}}^{\text{II}}$。最后一步是使用
 
 $$
-\left(\frac{\partial k_B T \ln f_{\text{tot}}}{\partial P}\right)_{T,\{\xi_\alpha\}} = \frac{\langle V \rangle}{N}
+\left(\frac{\partial k_{\mathrm{B}} T \ln f_{\text{tot}}}{\partial P}\right)_{T,\{\xi_\alpha\}} = \frac{\langle V \rangle}{N}
 \tag{6.5.33}
 $$
 
@@ -859,7 +859,7 @@ $$
 我们对半巨正则系综的推导与文献[[203]](references.md#ref-203) 中使用的不同，但结果当然是相同的。特别地，我们可以很容易地建立与混合物通常热力学描述的联系，注意到模拟直接给出 $\langle x_\alpha \rangle$ 作为 $\xi_\alpha$ 的函数。一旦我们通过例如热力学积分计算了 $\ln f_{\text{tot}}$，我们就可以计算混合物的摩尔吉布斯自由能
 
 $$
-\frac{G(N, P, T, \{\xi_\alpha\})}{N} = k_B T \sum_{\alpha=1}^n \langle x_\alpha \rangle \ln[f_{\text{tot}} \xi_\alpha],
+\frac{G(N, P, T, \{\xi_\alpha\})}{N} = k_{\mathrm{B}} T \sum_{\alpha=1}^n \langle x_\alpha \rangle \ln[f_{\text{tot}} \xi_\alpha],
 \tag{6.5.34}
 $$
 
@@ -877,11 +877,11 @@ $$
 到目前为止，我们假设可以施加逸度分数 $\xi_\alpha$。然而，如果我们有一个处于化学平衡的化合物混合物，那么它们的逸度之间存在关系。这就是最终量子力学变得重要的地方，因为理想气相中物种 $\alpha$ 的化学势等于
 
 $$
-\mu_\alpha^{\text{id gas}} = k_B T \ln \left[\frac{\Lambda_\alpha^3}{q_{\text{int}\,\alpha}(T)}\right] + k_B T \ln f_\alpha = \mu^{-\circ} + k_B T \ln f_\alpha,
+\mu_\alpha^{\text{id gas}} = k_{\mathrm{B}} T \ln \left[\frac{\Lambda_\alpha^3}{q_{\text{int}\,\alpha}(T)}\right] + k_{\mathrm{B}} T \ln f_\alpha = \mu^{-\circ} + k_{\mathrm{B}} T \ln f_\alpha,
 \tag{6.5.36}
 $$
 
-其中 $\Lambda$ 和 $q_{\text{int}}$ 都依赖于普朗克常数。如果存在一个化学反应，其中 $\nu_\alpha$ 个 $\alpha$ 类型分子、$\nu_\beta$ 个 $\beta$ 类型分子等——可以转化为 $\nu_{\alpha'}$ 个 $\alpha'$ 类型分子等，那么平衡意味着
+其中 $\Lambda$ 和 $q_{\text{int}}$ 都依赖于普朗克常量。如果存在一个化学反应，其中 $\nu_\alpha$ 个 $\alpha$ 类型分子、$\nu_\beta$ 个 $\beta$ 类型分子等——可以转化为 $\nu_{\alpha'}$ 个 $\alpha'$ 类型分子等，那么平衡意味着
 
 $$
 \sum_\alpha \nu_\alpha \mu_\alpha = \sum_{\alpha'} \nu_{\alpha'} \mu_{\alpha'}
@@ -1418,7 +1418,7 @@ $$
 [^2]: $\mathbf{h}$ 必须是对称的，因为任何反对称分量都对应于一个不改变系统物理状态的旋转。
 [^3]: 为了与弹性理论中使用的符号联系，我们可以将 $\mathbf{h}$ 写为 $\mathbf{h} \equiv \mathbf{h}_0 \cdot \mathbf{h}_0^{-1} \cdot \mathbf{h}$，其中 $\mathbf{h}_0^{-1} \cdot \mathbf{h} \equiv [\mathbf{I} + \boldsymbol{\epsilon}]$，$\mathbf{h}_0$ 描述未变形固体的形状，$\boldsymbol{\epsilon}$ 是所谓的应变张量。
 [^4]: 然而，绝不应将恒定应力方法用于均匀流体，因为后者对保持体积不变的盒变形没有抵抗力，可能会产生非常奇怪（扁平、细长等）的盒形状。这种强烈变形的模拟盒往往表现出显著的有限尺寸效应。
-[^5]: 通常，逸度是按照与系统处于平衡的相同粒子的假设理想气体的压力来定义的。但由于理想气体压力满足 $P^{\text{id}} = \rho k_B T$，我们同样可以使用密度。
+[^5]: 通常，逸度是按照与系统处于平衡的相同粒子的假设理想气体的压力来定义的。但由于理想气体压力满足 $P^{\text{id}} = \rho k_{\mathrm{B}} T$，我们同样可以使用密度。
 [^6]: 然而，当我们考虑化学平衡时，$\mu^{-\circ}$ 项变得重要。
 [^7]: 如前所述，我们将 $f$ 定义为假设理想气体的密度。
 [^8]: 在下面的讨论中，我们偏离了 Kofke 和 Glandt [[203]](references.md#ref-203) 对半巨正则系综的原始推导，以强调半巨正则系综与分子体系巨正则系综之间的密切关系。

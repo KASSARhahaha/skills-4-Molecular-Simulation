@@ -55,7 +55,7 @@ $$
 这表明$\omega^D(r_{ij})$不能为负值。在朗之万方程的精神下，$\gamma$和$\sigma$通过温度相关联：
 
 $$
-\sigma^2 = 2k_BT\gamma.
+\sigma^2 = 2k_{\mathrm{B}}T\gamma.
 \tag{16.1.5}
 $$
 
@@ -124,7 +124,7 @@ $$
 
     $$
     \begin{aligned}
-    \sigma^2 &= 2\gamma k_BT \\
+    \sigma^2 &= 2\gamma k_{\mathrm{B}}T \\
     \omega^D\left(r_{ij}\right) &= \left[\omega^R\left(r_{ij}\right)\right]^2.
     \end{aligned}
     $$
@@ -142,14 +142,14 @@ $$
 
     ![图 16.1](../images/fig_16_1.png)
 
-    *图 16.1　（左）$k_BT = 0.45$时的密度分布。（右）使用 DPD 和吉布斯系综模拟计算的相图。两种技术得到相同的相图，但吉布斯系综技术由于不存在表面需要更少的粒子。在 DPD 模拟中，我们使用了$10 \times 10 \times 20$（以$r_c^3$为单位）的盒子。积分时间步为$\Delta t = 0.03$。（图内标注：comp 1 / comp 2 = 组分 1 / 组分 2；Gibbs ensemble = 吉布斯系综）*
+    *图 16.1　（左）$k_{\mathrm{B}}T = 0.45$时的密度分布。（右）使用 DPD 和吉布斯系综模拟计算的相图。两种技术得到相同的相图，但吉布斯系综技术由于不存在表面需要更少的粒子。在 DPD 模拟中，我们使用了$10 \times 10 \times 20$（以$r_c^3$为单位）的盒子。积分时间步为$\Delta t = 0.03$。（图内标注：comp 1 / comp 2 = 组分 1 / 组分 2；Gibbs ensemble = 吉布斯系综）*
 
     由于我们可以为 DPD 系统写出哈密顿量，我们也可以进行标准的 Monte Carlo 模拟[[691]](references.md#ref-691)。例如，我们也可以使用吉布斯系综模拟（见第 6.6 节）来计算相图。正如预期的那样，图 16.1 显示两种技术给出了相同的结果。当然，由于界面的存在，在这种 DPD 模拟中需要更多的粒子。
 
     热力学量仅使用保守力计算。系统的压力使用以下公式计算：
 
     $$
-    p = \rho k_BT + \frac{1}{3V} \sum_{i>j} \left( \mathbf{r}_{ij} \cdot \mathbf{f}_{ij}^C \right).
+    p = \rho k_{\mathrm{B}}T + \frac{1}{3V} \sum_{i>j} \left( \mathbf{r}_{ij} \cdot \mathbf{f}_{ij}^C \right).
     $$
 
     ![图 16.2](../images/fig_16_2.png)

@@ -36,7 +36,7 @@ $$
 
 其中$Q_I$表示区域 I 中所有状态的配分函数，区域 II 类似。由于概率比值等于各自配分函数之比，该比值可以用区域 I 和 II 之间的自由能差$F_I - F_{II}$来表示。式 (8.1.1) 表明，如果我们能计算两个区域之间的自由能差，就可以计算在两个宏观态中找到系统的相对概率，即使在一个宏观态中观察系统的平衡概率比另一个小得多。重要的是，当概率比值极端时，通过暴力方法计算概率比值变得极其昂贵，但计算自由能差并不受此缺点的影响。简而言之，这就是为什么自由能计算很重要，以及为什么它们通常优于暴力玻尔兹曼采样。
 
-如果我们希望计算更多（例如 n 个）不同区域的相对自由能，计算$n(n-1)/2$个自由能差是不明智的（虽然不是错误的）。相反，我们应该计算所有 n 个宏观态相对于单一参考态的自由能差，该参考态的自由能是已知的，无论是解析的还是来自先前的模拟。这种计算通常被称为“绝对”自由能计算。然而，它们并非真正意义上的“绝对”：所有参考宏观态的一个偏移（例如，将对应于原子静止质量的能量包含在自由能中），对任何可观测量都不会产生任何影响。更重要的是，经典多体系统的可观测量不能依赖于普朗克常数，即使该常数出现在绝对自由能的表达式中。类似地，经典系统的相行为和静态平衡性质不能依赖于组成粒子的质量$m_i$。因此，任何看起来依赖于$h$或在 Monte Carlo 情况下也依赖于$m_i$的经典模拟结果都是错误的。%
+如果我们希望计算更多（例如 n 个）不同区域的相对自由能，计算$n(n-1)/2$个自由能差是不明智的（虽然不是错误的）。相反，我们应该计算所有 n 个宏观态相对于单一参考态的自由能差，该参考态的自由能是已知的，无论是解析的还是来自先前的模拟。这种计算通常被称为“绝对”自由能计算。然而，它们并非真正意义上的“绝对”：所有参考宏观态的一个偏移（例如，将对应于原子静止质量的能量包含在自由能中），对任何可观测量都不会产生任何影响。更重要的是，经典多体系统的可观测量不能依赖于普朗克常量，即使该常数出现在绝对自由能的表达式中。类似地，经典系统的相行为和静态平衡性质不能依赖于组成粒子的质量$m_i$。因此，任何看起来依赖于$h$或在 Monte Carlo 情况下也依赖于$m_i$的经典模拟结果都是错误的。%
 [^1]
 
 ### 序参量和反应坐标
@@ -200,7 +200,7 @@ $$
     \lambda \equiv \left(\frac{\beta\partial G}{N\partial s}\right)_{T,P}.
     $$
 
-    利用$G = -k_B T \ln Q(N,P,T)$，我们得到
+    利用$G = -k_{\mathrm{B}} T \ln Q(N,P,T)$，我们得到
 
     $$
     \lambda = -\frac{\beta}{NQ(N,P,T)}\left(\frac{\partial Q(N,P,T)}{\partial s}\right)_{T,P} = -\frac{\beta\epsilon}{s^2}\left\langle\left(\frac{\sigma}{r}\right)^{1/s}\ln(\sigma/r)\right\rangle = -\frac{\beta\epsilon}{s^2}\langle u(r)\ln(\sigma/r)\rangle.
@@ -245,7 +245,7 @@ $$
 对于经典原子系统，亥姆霍兹自由能$F$与正则配分函数$Q(N,V,T)$（公式 (2.2.14)）的关系为：
 
 $$
-F = -k_BT\ln Q(N,V,T) \equiv -k_BT\ln
+F = -k_{\mathrm{B}}T\ln Q(N,V,T) \equiv -k_{\mathrm{B}}T\ln
 \left[
 \frac{\int \mathrm{d}p^N \mathrm{d}r^N \exp[-\beta\mathcal{H}(p^N,r^N)]}{h^{dN}N!}
 \right],
@@ -284,12 +284,12 @@ $$
 要计算稠密液体的自由能，可以构建一条通往极稀薄气相的可逆路径。
 不需要一直到达理想气体，但应该达到一个足够稀薄的状态，以确保自由能可以被准确计算，
 无论是通过化学势的直接计算（见第 8.5.1 和 8.5.2 节），
-还是通过压缩因子$PV/(Nk_BT)$的维里展开前几项的知识，如下所述。
+还是通过压缩因子$PV/(Nk_{\mathrm{B}}T)$的维里展开前几项的知识，如下所述。
 
 在低密度下
 
 $$
-\frac{P(\rho,T) - \rho k_BT}{\rho^2} \to B_2(T),
+\frac{P(\rho,T) - \rho k_{\mathrm{B}}T}{\rho^2} \to B_2(T),
 \tag{8.4.3}
 $$
 
@@ -302,7 +302,7 @@ $$
 一旦我们知道$B_2$，我们不从公式 (8.4.1) 出发，而是从过量自由能$F^{\mathrm{ex}}(\rho,T) \equiv F(\rho,T) - F^{\mathrm{id}}(\rho,T)$的密度导数表达式出发：
 
 $$
-\left(\frac{\partial F^{\mathrm{ex}}(\rho,T)}{\partial\rho}\right)_{NT} = \frac{P(\rho,T) - \rho k_BT}{\rho^2}.
+\left(\frac{\partial F^{\mathrm{ex}}(\rho,T)}{\partial\rho}\right)_{NT} = \frac{P(\rho,T) - \rho k_{\mathrm{B}}T}{\rho^2}.
 \tag{8.4.4}
 $$
 
@@ -489,9 +489,9 @@ $$
 
 $$
 \begin{align}
-F(N,V,T) &= -k_BT\ln Q \nonumber\\
-&= -k_BT\ln\left[\frac{V^N}{\Lambda^{dN}N!}\right]
-- k_BT\ln\left[\int \mathrm{d}s^N \exp[-\beta U(s^N;L)]\right] \nonumber\\
+F(N,V,T) &= -k_{\mathrm{B}}T\ln Q \nonumber\\
+&= -k_{\mathrm{B}}T\ln\left[\frac{V^N}{\Lambda^{dN}N!}\right]
+- k_{\mathrm{B}}T\ln\left[\int \mathrm{d}s^N \exp[-\beta U(s^N;L)]\right] \nonumber\\
 &= F^{\mathrm{id}}(N,V,T) + F^{\mathrm{ex}}(N,V,T).
 \tag{8.5.3}
 \end{align}
@@ -502,16 +502,16 @@ $$
 对于足够大的$N$，化学势由下式给出
 
 $$
-\mu = -k_BT\ln(Q_{N+1}/Q_N).
+\mu = -k_{\mathrm{B}}T\ln(Q_{N+1}/Q_N).
 $$
 
 如果我们使用$Q_N$的显式形式（公式 (8.5.3)），我们发现
 
 $$
 \begin{align}
-\mu &= -k_BT\ln(Q_{N+1}/Q_N) \nonumber\\
-&= -k_BT\ln\left[\frac{V/\Lambda^d}{N+1}\right]
-- k_BT\ln\left[\frac{\int \mathrm{d}s^{N+1}\exp[-\beta U(s^{N+1})]}{\int \mathrm{d}s^N\exp[-\beta U(s^N)]}\right] \nonumber\\
+\mu &= -k_{\mathrm{B}}T\ln(Q_{N+1}/Q_N) \nonumber\\
+&= -k_{\mathrm{B}}T\ln\left[\frac{V/\Lambda^d}{N+1}\right]
+- k_{\mathrm{B}}T\ln\left[\frac{\int \mathrm{d}s^{N+1}\exp[-\beta U(s^{N+1})]}{\int \mathrm{d}s^N\exp[-\beta U(s^N)]}\right] \nonumber\\
 &\equiv \mu^{\mathrm{id}}(\rho) + \mu^{\mathrm{ex}}.
 \tag{8.5.4}
 \end{align}
@@ -525,8 +525,8 @@ $\Delta U \equiv U(s^{N+1}) - U(s^N)$。
 利用这种分离，我们可以将$\mu^{\mathrm{ex}}$写为
 
 $$
-\mu^{\mathrm{ex}} = -k_BT\ln\int \mathrm{d}s_{N+1}\langle\exp(-\beta\Delta \mathcal{U})\rangle_N
-= -k_BT\ln\langle\exp(-\beta\Delta \mathcal{U})\rangle_N,
+\mu^{\mathrm{ex}} = -k_{\mathrm{B}}T\ln\int \mathrm{d}s_{N+1}\langle\exp(-\beta\Delta \mathcal{U})\rangle_N
+= -k_{\mathrm{B}}T\ln\langle\exp(-\beta\Delta \mathcal{U})\rangle_N,
 \tag{8.5.5}
 $$
 
@@ -581,7 +581,7 @@ $N$个粒子的位置不相关。Widom 方法为我们提供了一种强大的�
 
 #### 与逸度的关系
 
-一个物种的化学势的完整表达式依赖于普朗克常数，通过热 de Broglie 波长和可能的分子内部配分函数。然而，正如我们在第 8.1.2 节中所论证的，经典模拟的结果不依赖于普朗克常数。
+一个物种的化学势的完整表达式依赖于普朗克常量，通过热 de Broglie 波长和可能的分子内部配分函数。然而，正如我们在第 8.1.2 节中所论证的，经典模拟的结果不依赖于普朗克常量。
 
 这一陈述也适用于粒子插入法。可以将该方法视为计算物种$\alpha$的逸度$f_\alpha$的技术：
 
@@ -591,7 +591,7 @@ f_\alpha = \frac{\rho_\alpha}{\langle\exp(-\beta\Delta \mathcal{U}_\alpha)\rangl
 $$
 
 其中$\rho_\alpha$表示物种$\alpha$的数密度，$\Delta U_\alpha$表示随机插入类型为$\alpha$的试探粒子时系统势能的变化。
-显然，$f_\alpha$不依赖于普朗克常数。
+显然，$f_\alpha$不依赖于普朗克常量。
 
 #### 非均匀系统
 
@@ -601,7 +601,7 @@ $$
 换句话说，
 
 $$
-\mu = k_BT\ln\left[\frac{\rho(\mathbf{r})}{\langle\exp[-\beta\Delta \mathcal{U}(\mathbf{r})]\rangle_N}\right]
+\mu = k_{\mathrm{B}}T\ln\left[\frac{\rho(\mathbf{r})}{\langle\exp[-\beta\Delta \mathcal{U}(\mathbf{r})]\rangle_N}\right]
 \tag{8.5.7}
 $$
 
@@ -611,10 +611,10 @@ $$
 作为说明，考虑一个我们可以解析处理的简单例子：
 无限长宽度为$W \ll L$的狭缝中长度为$L$的无限薄针。
 针的过量化学势与以随机方向在狭缝中插入的针不与壁面重叠的概率$P_{\mathrm{n.o.}}$有关：
-$\mu^{\mathrm{ex}} = -k_BT\ln P_{\mathrm{n.o.}}$。
+$\mu^{\mathrm{ex}} = -k_{\mathrm{B}}T\ln P_{\mathrm{n.o.}}$。
 显然，如果插入的针的方向是随机的，它将与壁面重叠的概率将接近 100\%。
 然而，如果我们只在狭缝中间插入针，
-狭缝中与壁面平行排列的粒子，则 $P^{\parallel}_{\text{n.o.}} = 1$ 且 $\mu^{\parallel}_{\text{ex}} = 0$。在这种情况下，$\mu = \mu^{\parallel} = k_BT \ln \rho^{\parallel}$。换言之，我们不需要进行任何粒子插入操作：只需确定密度 $\rho$ 以及狭缝中央针状粒子的取向分布即可。这些信息使我们能够计算概率密度 $p^{\parallel}$，从而得到 $\mu$。
+狭缝中与壁面平行排列的粒子，则 $P^{\parallel}_{\text{n.o.}} = 1$ 且 $\mu^{\parallel}_{\text{ex}} = 0$。在这种情况下，$\mu = \mu^{\parallel} = k_{\mathrm{B}}T \ln \rho^{\parallel}$。换言之，我们不需要进行任何粒子插入操作：只需确定密度 $\rho$ 以及狭缝中央针状粒子的取向分布即可。这些信息使我们能够计算概率密度 $p^{\parallel}$，从而得到 $\mu$。
 
 ???+ example "例 17（化学势：粒子插入法）"
 
@@ -673,7 +673,7 @@ $$
 因此，
 
 $$
--k_BT \ln \left\langle \frac{V/\Lambda^d}{N+1} \exp(-\beta \Delta \mathcal{U}) \right\rangle_\mu = \mu.
+-k_{\mathrm{B}}T \ln \left\langle \frac{V/\Lambda^d}{N+1} \exp(-\beta \Delta \mathcal{U}) \right\rangle_\mu = \mu.
 \tag{8.5.10}
 $$
 
@@ -683,7 +683,7 @@ $$
 
 $$
 \begin{aligned}
-G(N, P, T) = -k_BT \ln \Biggl[ &\int \mathrm{d}V\, V^N \exp(-\beta PV) \frac{1}{\Lambda^{dN} N!}\\
+G(N, P, T) = -k_{\mathrm{B}}T \ln \Biggl[ &\int \mathrm{d}V\, V^N \exp(-\beta PV) \frac{1}{\Lambda^{dN} N!}\\
 &\times \int \mathrm{d}\mathbf{s}^N \exp\left(-\beta U(\mathbf{s}^N; V)\right) \Biggr].
 \end{aligned}
 $$
@@ -691,7 +691,7 @@ $$
 则 $\mu = G(N+1, P, T) - G(N, P, T)$ 为
 
 $$
-\mu = -k_BT \ln \left\langle \frac{V/\Lambda^d}{(N+1)} \int \mathrm{d}\mathbf{s}^{N+1} \exp(-\beta \Delta \mathcal{U}) \right\rangle_P,
+\mu = -k_{\mathrm{B}}T \ln \left\langle \frac{V/\Lambda^d}{(N+1)} \int \mathrm{d}\mathbf{s}^{N+1} \exp(-\beta \Delta \mathcal{U}) \right\rangle_P,
 \tag{8.5.11}
 $$
 
@@ -699,7 +699,7 @@ $$
 
 $$
 \begin{align}
-\mu &= -k_BT \ln(k_BT/P\Lambda^d) - k_BT \ln \left\langle \frac{PV}{(N+1)k_BT} \int \mathrm{d}\mathbf{s}^{N+1} \exp(-\beta \Delta U) \right\rangle \nonumber \\
+\mu &= -k_{\mathrm{B}}T \ln(k_{\mathrm{B}}T/P\Lambda^d) - k_{\mathrm{B}}T \ln \left\langle \frac{PV}{(N+1)k_{\mathrm{B}}T} \int \mathrm{d}\mathbf{s}^{N+1} \exp(-\beta \Delta U) \right\rangle \nonumber \\
 &= \mu^{\text{id}}(P) + \mu^{\text{ex}}(P).
 \tag{8.5.12}
 \end{align}
@@ -713,7 +713,7 @@ $$
 \mu/T = -(\partial S/\partial N)_{V,E}
 $$
 
-出发。在微正则系综中，熵 $S$ 与可达状态总数 $\Omega(N, V, E)$ 的关系为 $S = k_B \ln \Omega(N, V, E)$。$\Omega(N, V, E)$ 的经典表达式为
+出发。在微正则系综中，熵 $S$ 与可达状态总数 $\Omega(N, V, E)$ 的关系为 $S = k_{\mathrm{B}} \ln \Omega(N, V, E)$。$\Omega(N, V, E)$ 的经典表达式为
 
 $$
 \Omega(N, V, E) = \frac{1}{h^{3N} N!} \int \mathrm{d}\mathbf{p}^N \mathrm{d}\mathbf{r}^N \delta(\mathcal{H}(\mathbf{p}^N, \mathbf{r}^N) - E).
@@ -723,7 +723,7 @@ $$
 推导过程与之前类似，但现在我们必须计算 $\Omega(N+1, V, E)/\Omega(N, V, E)$。这稍显繁琐（参见[[331–333]](references.md#ref-331)），我们只给出最终结果：
 
 $$
-\beta \mu^{\text{ex}} = -\ln \left[ \langle T \rangle^{-3/2} \left\langle T^{3/2} \exp(-\Delta \mathcal{U}/k_BT) \right\rangle \right],
+\beta \mu^{\text{ex}} = -\ln \left[ \langle T \rangle^{-3/2} \left\langle T^{3/2} \exp(-\Delta \mathcal{U}/k_{\mathrm{B}}T) \right\rangle \right],
 \tag{8.5.14}
 $$
 
@@ -732,7 +732,7 @@ $$
 粒子插入法对化学势的估计在很大程度上取决于系统尺寸，至少在恒定 $N, V, T$ 或 $N, V, E$ 系统中是如此[[171,336]](references.md#ref-171)。对于恒定 $N, V, T$ 情况，已知的 $O(1/N)$ 阶主导修正为[[337]](references.md#ref-337)：
 
 $$
-\delta \mu^{\text{ex}}(N) = \frac{1}{2N} \left[ \left(\frac{\partial P}{\partial \rho}\right)^{-1} - k_BT \left(\frac{\partial \rho}{\partial P}\right)^{-1} - \frac{\rho k_BT (\partial^2 P/\partial \rho^2)}{(\partial P/\partial \rho)^2} \right].
+\delta \mu^{\text{ex}}(N) = \frac{1}{2N} \left[ \left(\frac{\partial P}{\partial \rho}\right)^{-1} - k_{\mathrm{B}}T \left(\frac{\partial \rho}{\partial P}\right)^{-1} - \frac{\rho k_{\mathrm{B}}T (\partial^2 P/\partial \rho^2)}{(\partial P/\partial \rho)^2} \right].
 \tag{8.5.15}
 $$
 
@@ -761,11 +761,11 @@ $$
 在式 (8.5.17) 的第一行中，我们使用了吉布斯-杜亥姆关系。我们假设 $A$ 和 $B$ 的理想气体化学势贡献是已知的。我们需要计算的量是 $\Delta \mu^{\text{ex}} \equiv (\mu_A - \mu_B)^{\text{ex}}$。直观地，我们可能尝试使用粒子插入法分别获得物质 $A$ 和 $B$ 的 $\mu^{\text{ex}}$，然后相减来测量这个量。虽然这种方法在原则上正确，但耗时且精度不高。幸运的是，$\Delta \mu^{\text{ex}}$ 可以通过测量与虚拟试验移动相关的玻尔兹曼因子更直接地获得，在虚拟试验移动中，随机选取的一个 $B$ 型粒子被转变为 $A$ 型粒子[[334,335,339]](references.md#ref-334)（见图 8.3）。我们留给读者作为练习来推导 $\Delta \mu^{\text{ex}}$ 的结果表达式为
 
 $$
-\Delta \mu^{\text{ex}} = -k_BT \ln \left\langle \frac{N_B}{N_A + 1} \exp(-\beta \Delta \mathcal{U}^{+-}) \right\rangle,
+\Delta \mu^{\text{ex}} = -k_{\mathrm{B}}T \ln \left\langle \frac{N_B}{N_A + 1} \exp(-\beta \Delta \mathcal{U}^{+-}) \right\rangle,
 \tag{8.5.18}
 $$
 
-其中 $\Delta U^{+-}$ 表示将一个 $B$ 型粒子变为 $A$ 型粒子时系统势能的变化；$-k_BT \ln(N_B/[N_A + 1])$ 仅是化学势的理想混合贡献。关于式 (8.5.18) 需要指出的是，对于理想混合物（即 $A$ 和 $B$ 具有相同的分子间相互作用），$\ln \langle \exp(-\beta \Delta U^{+-}) \rangle$ 恒等于零。换言之，
+其中 $\Delta U^{+-}$ 表示将一个 $B$ 型粒子变为 $A$ 型粒子时系统势能的变化；$-k_{\mathrm{B}}T \ln(N_B/[N_A + 1])$ 仅是化学势的理想混合贡献。关于式 (8.5.18) 需要指出的是，对于理想混合物（即 $A$ 和 $B$ 具有相同的分子间相互作用），$\ln \langle \exp(-\beta \Delta U^{+-}) \rangle$ 恒等于零。换言之，
 
 ![图 8.3](../images/fig_8_3.png)
 
@@ -780,21 +780,21 @@ $$
 
 $$
 \begin{align}
-\mu &= +k_BT \ln(Q_N/Q_{N+1}) \nonumber \\
-&= \mu^{\text{id}} + k_BT \ln \langle \exp(+\beta \Delta \mathcal{U}) \rangle_{N+1},
+\mu &= +k_{\mathrm{B}}T \ln(Q_N/Q_{N+1}) \nonumber \\
+&= \mu^{\text{id}} + k_{\mathrm{B}}T \ln \langle \exp(+\beta \Delta \mathcal{U}) \rangle_{N+1},
 \tag{8.6.1}
 \end{align}
 $$
 
-其中 $\Delta U$ 表示粒子 $N+1$ 与其余 $N$ 个粒子的相互作用能。式 (8.6.1) 表明化学势也可以通过随机粒子移除采样 $\langle \exp(+\beta \Delta U) \rangle_{N+1}$ 来估计。然而，如下文所解释的，这种程序通常不奏效。原因是函数 $\exp(\beta \Delta U)$ 不一定有界。如果 $\Delta U$ 可以发散，它就可以变得任意大。$\exp(-\beta \Delta U)$ 则不然，因为可用经典统计力学描述的系统必须满足的条件之一是其势能函数必须从下方有界。式 (8.6.1) 的问题在于，被积函数的非常大的值与玻尔兹曼因子的非常小的值 $O(\exp(-\beta \Delta U))$ 相重合，而后者决定了 Monte Carlo 运行中某个构型被采样的频率。因此，对式 (8.6.1) 中平均值的有显著贡献来自构型空间中在运行期间几乎不被采样甚至从未被采样的部分。硬球体系很好地说明了这个问题的本质。由于非重叠硬球的势能函数始终为零，对致密硬球流体简单地用 Monte Carlo 采样式 (8.6.1) 将始终得到荒谬的估计 $\mu^{\text{ex}} = 0$，而实际上，在凝固点处 $\mu^{\text{ex}}/k_BT \sim 15$。通过粒子插入和粒子移除模拟获得化学势的正确方法已由 Shing 和 Gubbins 指出[[341,342]](references.md#ref-341)。我们发现方便在一种更一般的测量自由能差的方法的背景下讨论 Shing-Gubbins 方法，该方法由 Bennett 引入[[343]](references.md#ref-343)，称为重叠分布法。该方法提供了一个早期示例，说明如何计算自由能景观作为序参量的函数。
+其中 $\Delta U$ 表示粒子 $N+1$ 与其余 $N$ 个粒子的相互作用能。式 (8.6.1) 表明化学势也可以通过随机粒子移除采样 $\langle \exp(+\beta \Delta U) \rangle_{N+1}$ 来估计。然而，如下文所解释的，这种程序通常不奏效。原因是函数 $\exp(\beta \Delta U)$ 不一定有界。如果 $\Delta U$ 可以发散，它就可以变得任意大。$\exp(-\beta \Delta U)$ 则不然，因为可用经典统计力学描述的系统必须满足的条件之一是其势能函数必须从下方有界。式 (8.6.1) 的问题在于，被积函数的非常大的值与玻尔兹曼因子的非常小的值 $O(\exp(-\beta \Delta U))$ 相重合，而后者决定了 Monte Carlo 运行中某个构型被采样的频率。因此，对式 (8.6.1) 中平均值的有显著贡献来自构型空间中在运行期间几乎不被采样甚至从未被采样的部分。硬球体系很好地说明了这个问题的本质。由于非重叠硬球的势能函数始终为零，对致密硬球流体简单地用 Monte Carlo 采样式 (8.6.1) 将始终得到荒谬的估计 $\mu^{\text{ex}} = 0$，而实际上，在凝固点处 $\mu^{\text{ex}}/k_{\mathrm{B}}T \sim 15$。通过粒子插入和粒子移除模拟获得化学势的正确方法已由 Shing 和 Gubbins 指出[[341,342]](references.md#ref-341)。我们发现方便在一种更一般的测量自由能差的方法的背景下讨论 Shing-Gubbins 方法，该方法由 Bennett 引入[[343]](references.md#ref-343)，称为重叠分布法。该方法提供了一个早期示例，说明如何计算自由能景观作为序参量的函数。
 
 ### 重叠分布法
 考虑两个 $N$ 粒子系统，分别标记为 0 和 1，配分函数为 $Q_0$ 和 $Q_1$。为方便起见，我们假设两个系统具有相同的体积 $V$，但这并非必要。由式 (6.3.4) 可知，自由能差 $\Delta F = F_1 - F_0$ 可以写为
 
 $$
 \begin{align}
-\Delta F &= -k_BT \ln(Q_1/Q_0) \nonumber \\
-&= -k_BT \ln \frac{\int \mathrm{d}\mathbf{X} \exp[-\beta \mathcal{U}_1(\mathbf{X})]}{\int \mathrm{d}\mathbf{X} \exp[-\beta \mathcal{U}_0(\mathbf{X})]}.
+\Delta F &= -k_{\mathrm{B}}T \ln(Q_1/Q_0) \nonumber \\
+&= -k_{\mathrm{B}}T \ln \frac{\int \mathrm{d}\mathbf{X} \exp[-\beta \mathcal{U}_1(\mathbf{X})]}{\int \mathrm{d}\mathbf{X} \exp[-\beta \mathcal{U}_0(\mathbf{X})]}.
 \tag{8.6.2}
 \end{align}
 $$
@@ -817,7 +817,7 @@ p_1(\Delta U) &= \frac{\int \mathrm{d}\mathbf{X} \exp[-\beta(U_0 + \Delta U)] \d
 \end{align}
 $$
 
-其中 $p_0(\Delta U)$ 是在对系统 0 的可达构型进行玻尔兹曼采样时，发现系统 1 和系统 0 之间势能差为 $\Delta U$ 的概率密度。由于系统 1 和系统 0 之间的自由能差就是 $\Delta F = -k_BT \ln(q_1/q_0)$，由式 (8.6.4) 我们得到
+其中 $p_0(\Delta U)$ 是在对系统 0 的可达构型进行玻尔兹曼采样时，发现系统 1 和系统 0 之间势能差为 $\Delta U$ 的概率密度。由于系统 1 和系统 0 之间的自由能差就是 $\Delta F = -k_{\mathrm{B}}T \ln(q_1/q_0)$，由式 (8.6.4) 我们得到
 
 $$
 \ln p_1(\Delta \mathcal{U}) = \beta(\Delta F - \Delta \mathcal{U}) + \ln p_0(\Delta \mathcal{U}).
@@ -910,7 +910,7 @@ $$
 $$
 \begin{align}
 P &= -\left(\frac{\partial F}{\partial V}\right)_{N,T} = -\lim_{\Delta V \to 0} \frac{F(V + \Delta V) - F(V)}{\Delta V} \nonumber \\
-&= \rho k_BT + k_BT \lim_{\Delta V \to 0} \frac{\ln \langle \exp(-\beta[\mathcal{U}(V + \Delta V) - \mathcal{U}(V)]) \rangle}{\Delta V}.
+&= \rho k_{\mathrm{B}}T + k_{\mathrm{B}}T \lim_{\Delta V \to 0} \frac{\ln \langle \exp(-\beta[\mathcal{U}(V + \Delta V) - \mathcal{U}(V)]) \rangle}{\Delta V}.
 \tag{8.6.11}
 \end{align}
 $$
@@ -1141,7 +1141,7 @@ $$
 因此
 
 $$
-F(Q) = F'(Q') - k_BT \ln\left|\frac{\partial Q'}{\partial Q}\right|.
+F(Q) = F'(Q') - k_{\mathrm{B}}T \ln\left|\frac{\partial Q'}{\partial Q}\right|.
 $$
 
 ![图 8.5](../images/fig_8_5.png)
@@ -1177,7 +1177,7 @@ $$
 
 ### 自由能剖面的偏倚采样
 
-到目前为止，我们假设可以通过某种方式从足够长的模拟中获得$P(Q)$，或等价地获得$F(Q)$，以采样感兴趣的$Q$范围。然而，通常情况并非如此。自由能计算常用于确定远高于热能$k_BT$的自由能势垒。在这种情况下，在平衡模拟中采样势垒区域中点的概率可以忽略不计。
+到目前为止，我们假设可以通过某种方式从足够长的模拟中获得$P(Q)$，或等价地获得$F(Q)$，以采样感兴趣的$Q$范围。然而，通常情况并非如此。自由能计算常用于确定远高于热能$k_{\mathrm{B}}T$的自由能势垒。在这种情况下，在平衡模拟中采样势垒区域中点的概率可以忽略不计。
 
 幸运的是，如果我们对采样进行偏倚使其偏向感兴趣的区域，我们仍然可以在平衡模拟中采样自由能势垒。在实践中，这意味着我们进行同一系统的模拟，但现在施加一个仅依赖于序参数的势$V_\text{bias}(Q)$，迫使系统采样那些否则几乎不会被访问的$Q$区域。当然，在偏倚模拟中获得的$Q$的概率分布不是原始分布$P_0(Q)$（下标 0 表示无偏概率分布），而是
 
@@ -1238,7 +1238,7 @@ $$
 其中$\mathcal{N}(U)$是系统在势能$U$处的（未归一化）态密度。注意$\mathcal{N}(U)$不依赖于温度。一旦指定了系统的哈密顿量，它就是固定的。如果我们能够计算系统的态密度，那么我们就可以在任何温度下计算该系统的自由能（构型部分），最多差一个（不重要的）可加常数：
 
 $$
-F(N, V, T) = -k_BT \ln\left[\int \mathrm{d}U\, \mathcal{N}(U)\exp(-\beta U)\right].
+F(N, V, T) = -k_{\mathrm{B}}T \ln\left[\int \mathrm{d}U\, \mathcal{N}(U)\exp(-\beta U)\right].
 \tag{8.6.34}
 $$
 
@@ -1409,7 +1409,7 @@ $$
 P(Q) = \frac{\int \mathrm{d}X\, \delta(Q(X)-Q)\exp[-\beta U(X)]}{\int \mathrm{d}X \exp[-\beta U(X)]}.
 $$
 
-根据式 (8.6.25)，$-k_BT\ln P(Q)$ 等于朗道自由能 $F(Q)$（相差一个常数）。因此 $P(Q)$ 不仅依赖于 $Q$，也依赖于温度。
+根据式 (8.6.25)，$-k_{\mathrm{B}}T\ln P(Q)$ 等于朗道自由能 $F(Q)$（相差一个常数）。因此 $P(Q)$ 不仅依赖于 $Q$，也依赖于温度。
 
 普通的 Metropolis 采样只会探测 $P(Q)$ 极大值附近的区域。为了在所需的序参数范围上采样该分布，我们采用 Wang-Landau 的技巧：借助一个动态调整的函数 $g(Q)$ 来偏倚从状态 $o$ 到状态 $n$ 的试探移动的接受概率：
 
@@ -1457,7 +1457,7 @@ $$
 \tag{8.6.43}
 $$
 
-换句话说，$-k_BT\ln g(Q)$ 等于朗道自由能 $F(Q)$（相差一个无关紧要的加性常数）。顺便一提，Calvo 的方法也为伞形采样中“如何构造一个好的偏倚函数”这一老问题提供了一个解答。
+换句话说，$-k_{\mathrm{B}}T\ln g(Q)$ 等于朗道自由能 $F(Q)$（相差一个无关紧要的加性常数）。顺便一提，Calvo 的方法也为伞形采样中“如何构造一个好的偏倚函数”这一老问题提供了一个解答。
 
 最初的 Wang-Landau（WL）方法关注的是具有离散状态的自旋体系。但在讨论 Calvo 的方法时，我们已经隐含地假定 WL 方法可以推广到具有连续自由度的体系。例如，如果态密度是能量的连续函数，我们可以通过对能量分箱来估计该函数[[356,361]](references.md#ref-356)。更精确的做法是把分箱与插值方案结合起来[[356,362]](references.md#ref-356)。另一种做法是用一组在模拟过程中不断更新的高斯函数来表示态密度[[363]](references.md#ref-363)（这一做法与元动力学相似，见第 8.6.9 节）。
 
@@ -1470,7 +1470,7 @@ $$
 一旦知道 $N_{VT}(E,N)$，我们就可以计算常见的热力学性质。例如可由
 
 $$
-P = \frac{k_BT}{V}\ln \Xi(\mu,V,T)
+P = \frac{k_{\mathrm{B}}T}{V}\ln \Xi(\mu,V,T)
 $$
 
 得到压力，这就是式 (2.3.21)。类似地，恒定 $V$、$T$ 下 $N$ 粒子体系的能量可由
@@ -1668,7 +1668,7 @@ $$
 最后，把这一 $p_{k,n}$ 的表达式代入式 (8.6.52)，就得到 $Z_i/Z$、从而得到 $\Delta F_i$ 的表达式：
 
 $$
-\Delta F_i = -k_BT\ln \sum_{k=1}^{K}\sum_{n=1}^{N_k}\frac{\exp[-\beta V_i(\mathcal{X}_{k,n})]}{\sum_{k'=1}^{K}N_{k'}\exp\left[-\beta(V_{k'}(\mathcal{X}_{k,n})-\Delta F_{k'})\right]}.
+\Delta F_i = -k_{\mathrm{B}}T\ln \sum_{k=1}^{K}\sum_{n=1}^{N_k}\frac{\exp[-\beta V_i(\mathcal{X}_{k,n})]}{\sum_{k'=1}^{K}N_{k'}\exp\left[-\beta(V_{k'}(\mathcal{X}_{k,n})-\Delta F_{k'})\right]}.
 \tag{8.6.59}
 $$
 
@@ -1699,7 +1699,7 @@ $$
     此时作为坐标 $z$ 之函数的朗道自由能就等于势能：
 
     $$
-    F(z) = -k_BT\ln[p_0(z)] = u(z) = z,
+    F(z) = -k_{\mathrm{B}}T\ln[p_0(z)] = u(z) = z,
     $$
 
     其中我们把参考点取在 $z = 0$。如果 $\beta u(z) \gg 1$，直接模拟气压高度分布得到的统计很差。这正是我们采用自洽直方图方法的原因。对于第 $i$ 个窗口，我们使用如下窗口势：
@@ -1852,7 +1852,7 @@ $$
 [^4]: 对于多组分系统，共存要求所有物种$\alpha$的化学势相等：$\mu_{\alpha I} = \mu_{\alpha II}$。
 [^5]: 如果固-液界面低于粗糙化转变，则晶体面的添加/移除涉及一个核化事件，这可能是稀有的。这个问题可以通过使用螺旋边界条件来部分克服——即周期性边界条件中，在（例如）$x$方向上的相邻周期盒在垂直于原始晶面（例如$z$）的方向上偏移一个晶格间距。在$y$方向上，应施加$x$方向上一个晶格间距的偏移。使用这种螺旋边界条件应导致阶梯棱（$x$）和扭折（$y$）的形成，只要晶体结构和取向不变，这些阶梯棱和扭折就不会消失。扭折位点是晶体生长/溶解的理想位置。
 [^6]: 如果固体包含大量空位，吉布斯系综方法似乎仍然可能有效。然而，在这种情况下会出现另一个问题：在含有大量空位的固体中，粒子数可能与晶格位点数有很大差异。如果忽略这种效应，模拟仍然会给出答案，但将是错误的（参见[[224]](references.md#ref-224)）。
-[^7]: 巨势$-PV(\mu,V,T) = -k_BT\ln\Xi(\mu,V,T)$则不同：它可以直接计算，至少对于均匀系统而言，但在这种情况下，问题在于特别是在高密度下，恒定$\mu$、$V$和$T$的模拟收敛缓慢，甚至根本不收敛。
+[^7]: 巨势$-PV(\mu,V,T) = -k_{\mathrm{B}}T\ln\Xi(\mu,V,T)$则不同：它可以直接计算，至少对于均匀系统而言，但在这种情况下，问题在于特别是在高密度下，恒定$\mu$、$V$和$T$的模拟收敛缓慢，甚至根本不收敛。
 [^8]: 需要注意的是我们必须指定能量零点。同样，这对实验也是如此。
 [^9]: Stockmayer 流体由嵌入点偶极的 Lennard-Jones 粒子组成。
 [^10]: 1962 年，Hoover 和 Poirier [[326]](references.md#ref-326)在计算维里系数的背景下推导了一个密切相关的表达式。然而，他们并没有将其用作“粒子插入”方法。

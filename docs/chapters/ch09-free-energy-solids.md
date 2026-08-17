@@ -13,14 +13,14 @@
 热力学积分是研究固-液相变最常用的方法。对于液相，该计算非常直接，已在第 8.4.1 节中讨论过：液相的亥姆霍兹自由能 $F$ 通过对状态方程进行积分来确定，从流体表现为理想气体的低密度开始：
 
 $$
-\frac{F(\rho)}{Nk_BT} = \frac{F^{\mathrm{id}}(\rho)}{Nk_BT} + \frac{1}{k_BT}\int_0^{\rho} \mathrm{d}\rho'\, \frac{P(\rho') - \rho' k_BT}{\rho'^2} ,
+\frac{F(\rho)}{Nk_{\mathrm{B}}T} = \frac{F^{\mathrm{id}}(\rho)}{Nk_{\mathrm{B}}T} + \frac{1}{k_{\mathrm{B}}T}\int_0^{\rho} \mathrm{d}\rho'\, \frac{P(\rho') - \rho' k_{\mathrm{B}}T}{\rho'^2} ,
 \tag{9.1.1}
 $$
 
 其中状态方程表示为密度 $(\rho)$ 的函数 $P(\rho)$，$F^{\mathrm{id}}(\rho)$ 是密度为 $\rho$ 的理想气体的自由能。一个重要条件是式 (9.1.1) 中的积分路径必须是可逆的。如果积分路径穿越强一级相变，则可能出现滞后现象，式 (9.1.1) 便不再适用。对于液相，可以通过分两步进行积分来避免此问题。首先在远高于临界温度的温度下开始模拟，沿等温线压缩至所需密度，确定状态方程。第二步，在恒定密度下将系统冷却至目标温度。此步骤中的自由能变化由下式给出：
 
 $$
-\frac{F(T = T_{II})}{k_BT_{II}} - \frac{F(T = T_I)}{k_BT_I} = \int_{T_I}^{T_{II}} \mathrm{d}(1/T)\, U(T, N, V) .
+\frac{F(T = T_{II})}{k_{\mathrm{B}}T_{II}} - \frac{F(T = T_I)}{k_{\mathrm{B}}T_I} = \int_{T_I}^{T_{II}} \mathrm{d}(1/T)\, U(T, N, V) .
 \tag{9.1.2}
 $$
 
@@ -79,7 +79,7 @@ $$
 
 对于具有发散短程排斥相互作用的体系，例如 Lennard-Jones 势，式 (9.2.2) 中的被积函数将表现出弱的、可积的发散。这种发散是由于爱因斯坦晶体的势能函数并不完全排除两个粒子具有相同质心坐标的构型。
 
-发散贡献的幅度可以通过增大 $\alpha$ 的值来强烈抑制。然而，为了提高计算精度，更好的做法是将热力学积分从 $\lambda = 0$ 进行到 $\lambda = 1 - \delta\lambda$，然后利用微扰表达式 $\Delta F = -k_BT \ln\langle \exp(-\beta \Delta U) \rangle$ 计算 $\lambda = 1$ 与 $\lambda = 1 - \delta\lambda$ 之间的自由能差，其中 $\Delta U \equiv U(\mathbf{r}^N; \lambda=1) - U(\mathbf{r}^N; \lambda - \delta\lambda)$。$\delta\lambda$ 的精确值并不重要，但如果取得太大，微扰表达式会变得不精确；如果取得太小，哈密顿积分中使用的数值求积会变得不够精确。我们将在第 9.2.2 节中回到这个问题。
+发散贡献的幅度可以通过增大 $\alpha$ 的值来强烈抑制。然而，为了提高计算精度，更好的做法是将热力学积分从 $\lambda = 0$ 进行到 $\lambda = 1 - \delta\lambda$，然后利用微扰表达式 $\Delta F = -k_{\mathrm{B}}T \ln\langle \exp(-\beta \Delta U) \rangle$ 计算 $\lambda = 1$ 与 $\lambda = 1 - \delta\lambda$ 之间的自由能差，其中 $\Delta U \equiv U(\mathbf{r}^N; \lambda=1) - U(\mathbf{r}^N; \lambda - \delta\lambda)$。$\delta\lambda$ 的精确值并不重要，但如果取得太大，微扰表达式会变得不精确；如果取得太小，哈密顿积分中使用的数值求积会变得不够精确。我们将在第 9.2.2 节中回到这个问题。
 
 #### 其他方法
 
@@ -92,9 +92,9 @@ $$
 
 其中 $U_0$ 是势能极小值。[^5]
 
-相互作用晶体的平均超额势能差等于 $U_{\mathrm{exc}}(N, V, T) = U(N, V, T) - U(N, V, T=0)$。对于谐振晶体，$U_{\mathrm{exc}}^h(N, V, T) = d(N-1)k_BT/2$。
+相互作用晶体的平均超额势能差等于 $U_{\mathrm{exc}}(N, V, T) = U(N, V, T) - U(N, V, T=0)$。对于谐振晶体，$U_{\mathrm{exc}}^h(N, V, T) = d(N-1)k_{\mathrm{B}}T/2$。
 
-在足够低的温度 $T_L$ 下，具有完整分子间相互作用的晶体将（通常）变得越来越谐性，因此非常接近谐振晶体。Cheng 和 Ceriotti [[409]](references.md#ref-409) 提出，当 $\Delta U = U_{\mathrm{exc}}(N, V, T_L) - U_{\mathrm{exc}}^h(N, V, T_L) = O(k_BT_L)$ 时，可以使用热力学微扰表达式 (8.6.10) 获得相互作用晶体的自由能：
+在足够低的温度 $T_L$ 下，具有完整分子间相互作用的晶体将（通常）变得越来越谐性，因此非常接近谐振晶体。Cheng 和 Ceriotti [[409]](references.md#ref-409) 提出，当 $\Delta U = U_{\mathrm{exc}}(N, V, T_L) - U_{\mathrm{exc}}^h(N, V, T_L) = O(k_{\mathrm{B}}T_L)$ 时，可以使用热力学微扰表达式 (8.6.10) 获得相互作用晶体的自由能：
 
 $$
 \beta \Delta F = -\ln\langle \exp(-\beta \Delta U) \rangle_h .
@@ -293,7 +293,7 @@ skip
     其中 $\rho^* = \sigma^3 \rho / \sqrt{2}$。在图 9.2 中，我们将该液相和固相状态方程的预测与 Alder 和 Wainwright [[422]](references.md#ref-422) 以及 Adams [[171]](references.md#ref-171) 的计算机模拟结果进行了比较。可以看出，经验状态方程很好地再现了模拟数据。为了计算液相的化学势，我们从稀薄气体极限开始积分状态方程（参见式 (9.1.1)）。这给出了亥姆霍兹自由能作为密度的函数。化学势则由下式得出：
 
     $$
-    \beta\mu(\rho) = \frac{\beta G}{N} = \frac{\beta F}{N} + \frac{P}{\rho k_BT} .
+    \beta\mu(\rho) = \frac{\beta G}{N} = \frac{\beta F}{N} + \frac{P}{\rho k_{\mathrm{B}}T} .
     $$
 
     ![图 9.2](../images/fig_9_2.png)
@@ -303,7 +303,7 @@ skip
     理想气体每粒子自由能由下式给出：
 
     $$
-    \beta f^{\mathrm{id}}(\rho) = \frac{F^{\mathrm{id}}(\rho)}{Nk_BT} = \ln\rho\Lambda^3 - 1 ,
+    \beta f^{\mathrm{id}}(\rho) = \frac{F^{\mathrm{id}}(\rho)}{Nk_{\mathrm{B}}T} = \ln\rho\Lambda^3 - 1 ,
     $$
 
     其中 $\Lambda$ 为 de Broglie 热波长。在下文中，我们将写 $\beta f^{\mathrm{id}}(\rho) = \ln\rho - 1$。
@@ -380,13 +380,13 @@ $$
 
 其中 $g(\lambda)$ 是 $\lambda$ 的一个任意函数，$G^{-1}(\lambda)$ 是函数 $1/g(\lambda)$ 的原函数。如果我们能找到一个函数 $g(\lambda)$ 使得被积函数 $g(\lambda)\langle \mathbf{r}^2 \rangle_{\lambda}$ 是缓慢变化的函数，则需要更少的函数求值来获得精确估计。为此，我们需要了解 $\langle \mathbf{r}^2 \rangle_{\lambda}$ 的行为。
 
-对于 $\lambda \to 0$，$\langle \mathbf{r}^2 \rangle_{\lambda} \to \langle \mathbf{r}^2 \rangle_0$，后者是正常硬球晶体中原子围绕其格点的均方位移。在高 $\lambda$ 值下，系统表现为爱因斯坦晶体，我们有 $\langle \mathbf{r}^2 \rangle_{\lambda} \to 3k_BT/(2\lambda)$。这引出以下关于 $g(\lambda)$ 函数形式的猜测：
+对于 $\lambda \to 0$，$\langle \mathbf{r}^2 \rangle_{\lambda} \to \langle \mathbf{r}^2 \rangle_0$，后者是正常硬球晶体中原子围绕其格点的均方位移。在高 $\lambda$ 值下，系统表现为爱因斯坦晶体，我们有 $\langle \mathbf{r}^2 \rangle_{\lambda} \to 3k_{\mathrm{B}}T/(2\lambda)$。这引出以下关于 $g(\lambda)$ 函数形式的猜测：
 
 $$
-g(\lambda) \approx k_BT / \langle \mathbf{r}^2 \rangle_{\lambda} \approx c + \lambda ,
+g(\lambda) \approx k_{\mathrm{B}}T / \langle \mathbf{r}^2 \rangle_{\lambda} \approx c + \lambda ,
 $$
 
-其中 $c = k_BT / \langle \mathbf{r}^2 \rangle_0$。此处 $\langle \mathbf{r}^2 \rangle_0$ 可以从图 9.3 估算。$c$ 的值显然取决于密度（和温度）。对于 $\rho = 1.04$，外推到 $\lambda \to 0$ 给出 $\langle \mathbf{r}^2 \rangle_0 \approx 0.014$，从而 $c = 70$。如果使用此函数 $g(\lambda)$，自由能差由下式计算：
+其中 $c = k_{\mathrm{B}}T / \langle \mathbf{r}^2 \rangle_0$。此处 $\langle \mathbf{r}^2 \rangle_0$ 可以从图 9.3 估算。$c$ 的值显然取决于密度（和温度）。对于 $\rho = 1.04$，外推到 $\lambda \to 0$ 给出 $\langle \mathbf{r}^2 \rangle_0 \approx 0.014$，从而 $c = 70$。如果使用此函数 $g(\lambda)$，自由能差由下式计算：
 
 $$
 \frac{\Delta F}{N} = \int_{\ln c}^{\ln(\lambda_{\max}+c)} \mathrm{d}[\ln(\lambda+c)] (\lambda+c) \langle \mathbf{r}^2 \rangle_{\lambda} .
@@ -415,7 +415,7 @@ Q = c_N \int \mathrm{d}\mathbf{r}^{dN} \mathrm{d}\mathbf{p}^{dN} \exp[-\beta \ma
 \tag{9.2.15}
 $$
 
-其中 $c_N = (h^{dN_{\mathrm{mol}}}N_1!N_2!\cdots N_m!)^{-1}$，$N_1$ 表示第 1 种不可区分粒子的数目，$N_2$ 表示第 2 种粒子的数目，等等，$N_1 + N_2 + \cdots + N_m = N_{\mathrm{mol}}$。在所有遵循经典统计力学的系统之间的相平衡计算中，普朗克常数 $h$ 从结果中消去。
+其中 $c_N = (h^{dN_{\mathrm{mol}}}N_1!N_2!\cdots N_m!)^{-1}$，$N_1$ 表示第 1 种不可区分粒子的数目，$N_2$ 表示第 2 种粒子的数目，等等，$N_1 + N_2 + \cdots + N_m = N_{\mathrm{mol}}$。在所有遵循经典统计力学的系统之间的相平衡计算中，普朗克常量 $h$ 从结果中消去。
 
 因此，在下文中我们省略所有 $h$ 因子。如文献[[428]](references.md#ref-428) 所讨论的，约束系统的配分函数 $Q_{\mathrm{con}}$ 可以写为
 
@@ -482,7 +482,7 @@ $$
 做出这种 $\alpha_i$ 选择有一个很好的理由：在这种情况下，谐弹簧对晶体质心施加的合力始终为零，前提是当所有粒子都在其格点位置时该合力为零。这使得在具有固定质心的爱因斯坦晶体上执行 MD 模拟更加容易。约束爱因斯坦晶体与无约束爱因斯坦晶体之间的自由能差为
 
 $$
-F_{\mathrm{Ein}}^{\mathrm{CM}} = F_{\mathrm{Ein}} - k_BT \ln\left(\frac{\beta^2\alpha}{4\pi^2}\right)^{d/2} .
+F_{\mathrm{Ein}}^{\mathrm{CM}} = F_{\mathrm{Ein}} - k_{\mathrm{B}}T \ln\left(\frac{\beta^2\alpha}{4\pi^2}\right)^{d/2} .
 \tag{9.2.23}
 $$
 
@@ -519,7 +519,7 @@ $$
 使用式 (9.2.24) 和 (9.2.26)，约束晶体和无约束晶体之间的亥姆霍兹自由能差为
 
 $$
-F^{\mathrm{CM}} = F - k_BT \ln(Z^{\mathrm{CM}}/Z) - k_BT \ln(\beta/2\pi M)^{d/2} .
+F^{\mathrm{CM}} = F - k_{\mathrm{B}}T \ln(Z^{\mathrm{CM}}/Z) - k_{\mathrm{B}}T \ln(\beta/2\pi M)^{d/2} .
 \tag{9.2.28}
 $$
 
@@ -533,7 +533,7 @@ $$
 
 其中 $\mathbf{r}_{\mathrm{CM}} \equiv \sum_i \mu_i\mathbf{r}_i$，$P(\mathbf{r}_{\mathrm{CM}})$ 是质心 $\mathbf{r}_{\mathrm{CM}}$ 的概率分布函数。为了计算 $P(\mathbf{r}_{\mathrm{CM}})$，我们利用晶格质心的概率分布均匀分布在等于维格纳-塞茨胞体积的空间上这一事实。[^7] 将质心坐标的积分限制在单个维格纳-塞茨胞的原因是，如果质心移动到另一个维格纳-塞茨胞，我们实际上创建了晶体的一个副本，对应于粒子的另一种排列。这样的构型不应被计为独立的。因此 $P(\mathbf{r}_{\mathrm{CM}}) = 1/V_{\mathrm{WS}} = N_{\mathrm{WS}}/V$，其中 $V_{\mathrm{WS}}$ 是一个维格纳-塞茨胞的体积，$N_{\mathrm{WS}}$ 是系统中此类胞的数目。因此 $Z^{\mathrm{CM}}/Z = P(\mathbf{r}_{\mathrm{CM}} = 0) = N_{\mathrm{WS}}/V$。在每胞一个分子的情况下，这意味着 $Z^{\mathrm{CM}}/Z = N_{\mathrm{mol}}/V$，其中 $N_{\mathrm{mol}}$ 是系统中的分子数。
 
-在数值自由能计算中，实际模拟涉及计算爱因斯坦晶体与正常晶体之间（均具有固定质心）的自由能差。我们将此自由能差记为 $\Delta F^{\mathrm{CM}} \equiv F^{\mathrm{CM}} - F^{\mathrm{CM}}_{\mathrm{Ein}}$。无约束晶体每粒子的自由能（以 $k_BT$ 为单位）为
+在数值自由能计算中，实际模拟涉及计算爱因斯坦晶体与正常晶体之间（均具有固定质心）的自由能差。我们将此自由能差记为 $\Delta F^{\mathrm{CM}} \equiv F^{\mathrm{CM}} - F^{\mathrm{CM}}_{\mathrm{Ein}}$。无约束晶体每粒子的自由能（以 $k_{\mathrm{B}}T$ 为单位）为
 
 $$
 \frac{\beta F}{N} = \frac{\beta\Delta F^{\mathrm{CM}}}{N} + \frac{\beta F_{\mathrm{Ein}}}{N} + \frac{\ln(N_{\mathrm{mol}}/V)}{N} - \frac{d}{2N}\ln(\beta\alpha M/2\pi) .
@@ -565,11 +565,11 @@ $$
 
 其中我们使用了斯特林近似：$\ln N! \approx N\ln N - N + (\ln 2\pi N)/2$。
 
-Hoover 分析了具有周期性边界的经典谐晶体的系统尺寸依赖性[[429]](references.md#ref-429)。在该研究中，确定了谐晶体每粒子自由能的主要有限尺寸修正为 $k_BT \ln N / N$。假设该结果可以推广到任意晶体，我们应预期 $\beta F^{\mathrm{ex}}/N + (d-1)\ln N/(2N)$ 将以 $N^{-1}$ 标度，加上 $O(1/N^2)$ 量级的修正项。图 9.4 展示了三维硬球的 $\beta F^{\mathrm{ex}}/N + (d-1)\ln N/(2N)$ 的 $N$ 依赖性。该图清楚地表明剩余的系统尺寸依赖性以 $1/N$ 标度。这是一个有用的结果，因为它为我们提供了一种将有限系统的自由能计算外推到 $N \to \infty$ 极限的程序。更多细节请参见文献[[425]](references.md#ref-425)。
+Hoover 分析了具有周期性边界的经典谐晶体的系统尺寸依赖性[[429]](references.md#ref-429)。在该研究中，确定了谐晶体每粒子自由能的主要有限尺寸修正为 $k_{\mathrm{B}}T \ln N / N$。假设该结果可以推广到任意晶体，我们应预期 $\beta F^{\mathrm{ex}}/N + (d-1)\ln N/(2N)$ 将以 $N^{-1}$ 标度，加上 $O(1/N^2)$ 量级的修正项。图 9.4 展示了三维硬球的 $\beta F^{\mathrm{ex}}/N + (d-1)\ln N/(2N)$ 的 $N$ 依赖性。该图清楚地表明剩余的系统尺寸依赖性以 $1/N$ 标度。这是一个有用的结果，因为它为我们提供了一种将有限系统的自由能计算外推到 $N \to \infty$ 极限的程序。更多细节请参见文献[[425]](references.md#ref-425)。
 
 ???+ example "例证 12（FCC 还是 HCP？）"
 
-    硬球晶体可以以不同的晶相存在。其中最著名的是面心立方（FCC）和六方密堆积（HCP）结构。确定哪种相在热力学上最稳定并不容易。原因是各种结构之间的自由能差在每粒子 $10^{-3}k_BT$ 或更小的量级。因此，早期旨在计算此自由能差的数值研究[[314]](references.md#ref-314) 并未得出结论。后续研究[[303,412]](references.md#ref-303) 最终证明 FCC 结构是最稳定的。虽然后一项模拟中的一项使用了文献[[314]](references.md#ref-314) 的爱因斯坦晶体方法，但其他方法基于不同的方法。这里我们简要讨论 Bruce 等人[[412]](references.md#ref-412) 的所谓晶格切换 Monte Carlo 方法。
+    硬球晶体可以以不同的晶相存在。其中最著名的是面心立方（FCC）和六方密堆积（HCP）结构。确定哪种相在热力学上最稳定并不容易。原因是各种结构之间的自由能差在每粒子 $10^{-3}k_{\mathrm{B}}T$ 或更小的量级。因此，早期旨在计算此自由能差的数值研究[[314]](references.md#ref-314) 并未得出结论。后续研究[[303,412]](references.md#ref-303) 最终证明 FCC 结构是最稳定的。虽然后一项模拟中的一项使用了文献[[314]](references.md#ref-314) 的爱因斯坦晶体方法，但其他方法基于不同的方法。这里我们简要讨论 Bruce 等人[[412]](references.md#ref-412) 的所谓晶格切换 Monte Carlo 方法。
 
     密堆积晶体由在垂直方向上堆叠的六方密堆积二维平面组成。假设我们通过堆叠平面来构造晶体。对于每一个新平面，有两种不同的方式将其堆叠在前一个平面上，使得所有原子都适合前一平面原子之间的三角孔。让我们用 B 和 C 表示新平面的这两个位置，用 A 表示原始平面的位置。用这种记法，FCC 堆叠遵循以下序列 $\cdots\mathrm{ABCABCABC}\cdots$，而 HCP 结构的特征是 $\cdots\mathrm{ABABABA}\cdots$。此外，许多混合密堆积结构也是可能的，只要我们从不将两个相同的平面堆叠在一起（即 BAAB 是被禁止的）。
 
@@ -582,7 +582,7 @@ Hoover 分析了具有周期性边界的经典谐晶体的系统尺寸依赖性[
     其中 $\mathbf{R}_i(\alpha)$ 是粒子 $i$ 在结构 $\alpha$ 中的理想参考晶格位置，$\alpha$ 标记晶体结构（例如 FCC 或 HCP）。我们现在可以执行 Monte Carlo 模拟，其中除了通常的粒子位移移动外，我们还尝试不影响位移矢量 $\mathbf{u}_i$ 但将参考晶格 $\mathbf{R}_i(\alpha)$ 从 FCC 切换到 HCP 的移动。原则上，这两种结构之间的自由能差将直接从在这种 Monte Carlo 模拟中找到两种结构的相对概率得出：
 
     $$
-    F_{\mathrm{hcp}} - F_{\mathrm{fcc}} = k_BT \ln\left(\frac{P(\mathrm{fcc})}{P(\mathrm{hcp})}\right) .
+    F_{\mathrm{hcp}} - F_{\mathrm{fcc}} = k_{\mathrm{B}}T \ln\left(\frac{P(\mathrm{fcc})}{P(\mathrm{hcp})}\right) .
     $$
 
     然而在实践中，这种晶格切换的接受概率非常低。解决此类问题的常用方法是将大的试探移动分解为许多小步骤，每个步骤都有合理的接受概率。Bruce 等人的晶格切换方法采用了 Berg 和 Neuhaus [[350]](references.md#ref-350) 的多正则方法。该方法是第 8.6.6 节中描述的伞形采样方案的一个版本。此过程的第一步是定义一个方便的连接两个状态的“序参量”。为此，Bruce 等人定义了一个重叠序参量 $M$：
@@ -599,7 +599,7 @@ Hoover 分析了具有周期性边界的经典谐晶体的系统尺寸依赖性[
 
     其中 $P(\mathbf{u}^N,\alpha)$ 是未加权分布，$\eta[M(\mathbf{u}^N)]$ 是需要设定的权重。这些权重应选择使得所有相关的 $M$ 值都能被采样到。从给定的模拟中，我们可以对这些权重进行估计，然后在下一次（更长的）模拟中加以使用和更新，直到达到所需的精度。
 
-    Bruce 等人[[412]](references.md#ref-412) 使用该方法以 $10^{-5}k_BT$ 的统计误差计算了 HCP 和 FCC 结构之间的自由能差。Bruce 等人的计算进一步支持了 FCC 结构比 HCP 结构更稳定的观察结果。Mau 和 Huse [[430]](references.md#ref-430) 表明，FCC 和 HCP 堆叠的所有混合物都具有高于纯 FCC 结构的自由能。
+    Bruce 等人[[412]](references.md#ref-412) 使用该方法以 $10^{-5}k_{\mathrm{B}}T$ 的统计误差计算了 HCP 和 FCC 结构之间的自由能差。Bruce 等人的计算进一步支持了 FCC 结构比 HCP 结构更稳定的观察结果。Mau 和 Huse [[430]](references.md#ref-430) 表明，FCC 和 HCP 堆叠的所有混合物都具有高于纯 FCC 结构的自由能。
 
 ## 空位与间隙原子
 
@@ -668,8 +668,8 @@ $$
 
 $$
 \begin{aligned}
-G &= G_0(N) + ng_{\mathrm{vac}} + Mk_BT \left[ \frac{n}{M}\ln\frac{n}{M} + \left(1 - \frac{n}{M}\right)\ln\left(1 - \frac{n}{M}\right) \right] \\
-&\approx G_0(N) + ng_{\mathrm{vac}} + nk_BT \ln\frac{n}{M} - nk_BT .
+G &= G_0(N) + ng_{\mathrm{vac}} + Mk_{\mathrm{B}}T \left[ \frac{n}{M}\ln\frac{n}{M} + \left(1 - \frac{n}{M}\right)\ln\left(1 - \frac{n}{M}\right) \right] \\
+&\approx G_0(N) + ng_{\mathrm{vac}} + nk_{\mathrm{B}}T \ln\frac{n}{M} - nk_{\mathrm{B}}T .
 \end{aligned}
 $$
 
@@ -682,27 +682,27 @@ $$
 其中我们忽略了 $\ln M$ 随 $n$ 变化引起的小修正。如果将该值代入总吉布斯自由能的表达式，我们发现
 
 $$
-G = G_0(N) + \langle n \rangle g_{\mathrm{vac}} - \langle n \rangle g_{\mathrm{vac}} - \langle n \rangle k_BT = G_0 - \langle n \rangle k_BT .
+G = G_0(N) + \langle n \rangle g_{\mathrm{vac}} - \langle n \rangle g_{\mathrm{vac}} - \langle n \rangle k_{\mathrm{B}}T = G_0 - \langle n \rangle k_{\mathrm{B}}T .
 $$
 
 粒子总数为 $M - \langle n \rangle$。因此每粒子吉布斯自由能为
 
 $$
-\mu = \frac{G_0 - \langle n \rangle k_BT}{N} = \mu_0 - \frac{\langle n \rangle k_BT}{N} \approx \mu_0 - x_v k_BT ,
+\mu = \frac{G_0 - \langle n \rangle k_{\mathrm{B}}T}{N} = \mu_0 - \frac{\langle n \rangle k_{\mathrm{B}}T}{N} \approx \mu_0 - x_v k_{\mathrm{B}}T ,
 \tag{9.3.5}
 $$
 
 其中我们定义了 $x_v \equiv n/N$。因此由于空位存在引起的固体化学势变化为
 
 $$
-\delta\mu = -x_v k_BT ,
+\delta\mu = -x_v k_{\mathrm{B}}T ,
 \tag{9.3.6}
 $$
 
 由此可得，在固定化学势下固体的压力变化等于
 
 $$
-\delta P = x_v \rho_s k_BT .
+\delta P = x_v \rho_s k_{\mathrm{B}}T .
 \tag{9.3.7}
 $$
 
@@ -711,26 +711,26 @@ $$
 在数值上，计算平衡空位浓度是直接的。需要计算的核心量是 $-f_1$，即在特定格点处创建一个空位引起的晶体自由能变化。实际上，考虑 $+f_1$（在特定格点处移除一个空位引起的自由能变化）更为方便。该量可以通过几种方式计算。例如，我们可以使用粒子插入方法。我们从包含一个空位的晶体出发，尝试在该空位周围的维格纳-塞茨胞中进行试探插入。则 $f_1$ 由下式给出：
 
 $$
-f_1 = -k_BT \ln\left(\frac{V_{\mathrm{WS}}\langle\exp(-\beta\delta U)\rangle}{\Lambda^d}\right) ,
+f_1 = -k_{\mathrm{B}}T \ln\left(\frac{V_{\mathrm{WS}}\langle\exp(-\beta\delta U)\rangle}{\Lambda^d}\right) ,
 \tag{9.3.8}
 $$
 
 其中 $V_{\mathrm{WS}}$ 是维格纳-塞茨胞的体积，$\delta U$ 是与试探粒子插入相关的势能变化。对于硬粒子
 
 $$
-f_1 = -k_BT \ln\left(\frac{V_{\mathrm{WS}}P_{\mathrm{acc}}(V_{\mathrm{WS}})}{\Lambda^d}\right) ,
+f_1 = -k_{\mathrm{B}}T \ln\left(\frac{V_{\mathrm{WS}}P_{\mathrm{acc}}(V_{\mathrm{WS}})}{\Lambda^d}\right) ,
 $$
 
 其中 $P_{\mathrm{acc}}(V_{\mathrm{WS}})$ 是在维格纳-塞茨胞中的试探插入被接受的概率。由于维格纳-塞茨胞的大部分不可访问，更有效的方法是在子体积（通常与固体格气模型中的胞体积同数量级）中尝试插入。但那时我们还应考虑反向移动——在无空位晶体的维格纳-塞茨胞的子体积 $v$ 中移除一个粒子。在这种情况下，我们只需计算 $P_{\mathrm{rem}}(v)$，即粒子恰好在该体积内的概率。$f_1$ 的表达式为
 
 $$
-f_1 = -k_BT \ln\left(\frac{v P_{\mathrm{acc}}(v)}{P_{\mathrm{rem}}(v)\Lambda^d}\right) .
+f_1 = -k_{\mathrm{B}}T \ln\left(\frac{v P_{\mathrm{acc}}(v)}{P_{\mathrm{rem}}(v)\Lambda^d}\right) .
 $$
 
 当然，在空位浓度的最终表达式中，$\Lambda^d$ 因子会消去（正如应该的那样），因为它被化学势理想部分中相同的项所抵消。空位浓度的直接计算[[431,432]](references.md#ref-431) 表明，硬球固体在共存附近的该浓度约为 $2.6 \times 10^{-4}$。假设无缺陷晶体在压力 $P$ 和化学势 $\mu$ 下与液体处于平衡，则容易验证由于空位存在引起的共存压力偏移为
 
 $$
-\delta P_{\mathrm{coex}} = \frac{-x^{(0)}k_BT}{v_l - v_s} ,
+\delta P_{\mathrm{coex}} = \frac{-x^{(0)}k_{\mathrm{B}}T}{v_l - v_s} ,
 $$
 
 其中 $v_l$（$v_s$）是液体（固体）的摩尔体积。共存化学势的相应偏移为
@@ -753,14 +753,14 @@ $$
 接下来，我们将粒子“生长”到其余球体的大小。这将需要可逆功 $w$。后一个量可以容易地计算，因为模拟给出了作用在该球体表面上的压力。在给定八面体孔中添加间隙原子所涉及的总自由能变化为
 
 $$
-f_I = -k_BT \ln\left(\frac{P_{\mathrm{acc}}}{V_{\mathrm{WS}}\Lambda^3}\right) + w
+f_I = -k_{\mathrm{B}}T \ln\left(\frac{P_{\mathrm{acc}}}{V_{\mathrm{WS}}\Lambda^3}\right) + w
 \tag{9.3.10}
 $$
 
 以及
 
 $$
-x_I = \exp\left(-\beta\left[w - k_BT \ln\left(\frac{P_{\mathrm{acc}}}{V_{\mathrm{WS}}\Lambda^3}\right) - \mu\right]\right) .
+x_I = \exp\left(-\beta\left[w - k_{\mathrm{B}}T \ln\left(\frac{P_{\mathrm{acc}}}{V_{\mathrm{WS}}\Lambda^3}\right) - \mu\right]\right) .
 \tag{9.3.11}
 $$
 

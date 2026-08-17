@@ -460,7 +460,7 @@ $$
 \tag{A.4.14}
 $$
 
-其中$h$是普朗克常数，$\delta$函数将积分限制在由$H(\mathbf{p},\mathbf{q}) = E$定义的相空间超曲面上。我们可以用其他相空间坐标重新表达这个积分，但此时必须考虑两种坐标集中的体积元不一定相同。与$\boldsymbol{\zeta}$关联的体积元为：
+其中$h$是普朗克常量，$\delta$函数将积分限制在由$H(\mathbf{p},\mathbf{q}) = E$定义的相空间超曲面上。我们可以用其他相空间坐标重新表达这个积分，但此时必须考虑两种坐标集中的体积元不一定相同。与$\boldsymbol{\zeta}$关联的体积元为：
 
 $$
 \mathrm{d}\boldsymbol{\zeta} = \mathrm{d}q_1... \mathrm{d}q_N\,\mathrm{d}p_1... \mathrm{d}p_N

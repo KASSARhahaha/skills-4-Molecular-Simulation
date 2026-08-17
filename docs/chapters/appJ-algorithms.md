@@ -74,7 +74,7 @@
 <table class="algbox" markdown="1">
 <tbody markdown="1">
 <tr markdown="1"><td class="algcode" markdown="span"><code>function&nbsp;bondl</code></td><td class="algcom" markdown="span">返回键长 $\ell$；假设为谐振弹簧，弹簧常数 $k_v$。$\ell_0$：$T=0$ 时的键长</td></tr>
-<tr markdown="1"><td class="algcode" markdown="span">$\alpha = k_v/(k_B T)$</td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span">$\alpha = k_v/(k_{\mathrm{B}} T)$</td><td class="algcom" markdown="span"></td></tr>
 <tr markdown="1"><td class="algcode" markdown="span">$\ell_M = (\ell_0/2) * (1 + \sqrt{1 + 8/(\alpha \ell_0^2)})$</td><td class="algcom" markdown="span">$T$ 时的极大值位置</td></tr>
 <tr markdown="1"><td class="algcode" markdown="span"><code>ready=.false.</code></td><td class="algcom" markdown="span"></td></tr>
 <tr markdown="1"><td class="algcode" markdown="span"><code>while&nbsp;ready&nbsp;==&nbsp;.false.&nbsp;do</code></td><td class="algcom" markdown="span"></td></tr>

@@ -33,7 +33,7 @@
 | $\mathbf{P}$ | 极化强度（Polarization） |
 | $Q$ | 配分函数（Partition function） |
 | $\mathbf{Q}$ | 单位模长四元数（Quaternion of unit norm） |
-| $R$ | 气体常数（The gas constant） |
+| $R$ | 气体常量（The gas constant） |
 | $\mathcal{R}$ | 随机数（Random number） |
 | $S$ | 作用量（Action） |
 | $S$ | 熵（Entropy） |
@@ -51,10 +51,10 @@
 | $g$ | 重力加速度（Gravitational acceleration） |
 | $g(r)$ | 径向分布函数（Radial distribution function） |
 | $g_k$ | Kirkwood 因子（The Kirkwood factor） |
-| $h$ | 普朗克常数（Planck's constant） |
+| $h$ | 普朗克常量（Planck's constant） |
 | $h$ | 偏摩尔焓（Partial molar enthalpy） |
 | $\mathrm{i}L$ | 刘维尔算子（Liouville operator） |
-| $k_B$ | 玻尔兹曼常数（Boltzmann's constant） |
+| $k_{\mathrm{B}}$ | 玻尔兹曼常量（Boltzmann's constant） |
 | $m$ | 质量（Mass） |
 | $p$ | 动量（Momentum） |
 | $p_n$ | 压力张量的法向分量（Normal component of the pressure tensor） |
@@ -87,7 +87,7 @@
 | $\kappa$ | 透射系数（Transmission coefficient） |
 | $\lambda$ | 耦合参数（Coupling parameter） |
 | $\lambda$ | 李雅普诺夫指数（Lyapunov exponent） |
-| $\lambda_B$ | Bjerrum 长度（Bjerrum length） |
+| $\lambda_{\mathrm{B}}$ | Bjerrum 长度（Bjerrum length） |
 | $\lambda_T$ | 热导率（Thermal conductivity） |
 | $\mu$ | 偶极矩（数值）（Dipole moment (value)） |
 | $\mu$ | 化学势（Chemical potential） |

@@ -226,10 +226,10 @@ $$
 热力学化学势$\mu_{\text{thermo}}$与分子化学势$\mu$之间的关系很简单：
 
 $$
-\mu_{\text{thermo}} = N_A \mu,
+\mu_{\text{thermo}} = N_{\mathrm{A}} \mu,
 $$
 
-其中$N_A$表示阿伏伽德罗常数。
+其中$N_{\mathrm{A}}$表示阿伏伽德罗常量。
 将式 (2.1.12) 推广到多组分系统是直接的，稍后将会遇到。
 现在我们可以写出最常用的热力学第一定律形式：
 
@@ -694,11 +694,11 @@ $$
 如果我们这样做，我们会发现答案“不完全是”：由于（不幸的）历史原因（在统计力学创立之前，熵已经有了单位），熵并不简单地等于$\ln\Omega$；而是：
 
 $$
-S(N, V, E) \equiv k_B \ln\Omega(N, V, E),
+S(N, V, E) \equiv k_{\mathrm{B}} \ln\Omega(N, V, E),
 \tag{2.2.6}
 $$
 
-其中$k_B$是玻尔兹曼常数，在 SI 单位制中的值为$1.380649 \times 10^{-23}$ J/K。
+其中$k_{\mathrm{B}}$是玻尔兹曼常量，在 SI 单位制中的值为$1.380649 \times 10^{-23}$ J/K。
 通过这一对应关系，我们看到量子系统的所有简并本征态等概率的假设立即意味着，在热平衡时，复合系统的熵达到最大值。
 将这一表述称为热力学第二定律有些为时过早，因为我们尚未证明当前定义的熵确实等价于热力学定义。
 我们暂且先接受这一结果。
@@ -716,7 +716,7 @@ $$
 如果我们在这里使用相同的定义，我们得到：
 
 $$
-\beta = 1/(k_B T).
+\beta = 1/(k_{\mathrm{B} T).}
 \tag{2.2.8}
 $$
 
@@ -745,14 +745,14 @@ $$
 并利用前述关系，得到：
 
 $$
-\ln\Omega_2(E - E_i) = \ln\Omega_2(E) - E_i/k_B T + \mathcal{O(1/E).}
+\ln\Omega_2(E - E_i) = \ln\Omega_2(E) - E_i/k_{\mathrm{B} T + \mathcal{O}(1/E).}
 \tag{2.2.11}
 $$
 
 如果我们将此结果代入式 (2.2.9)，并取$E \to \infty$的极限，得到：
 
 $$
-P_i = \frac{\exp(-E_i/k_B T)}{\sum_j \exp(-E_j/k_B T)}.
+P_i = \frac{\exp(-E_i/k_{\mathrm{B}} T)}{\sum_j \exp(-E_j/k_{\mathrm{B}} T)}.
 \tag{2.2.12}
 $$
 
@@ -762,9 +762,9 @@ $$
 $$
 \begin{aligned}
 \langle E \rangle &= \sum_i E_i P_i
-= \frac{\sum_i E_i \exp(-E_i/k_B T)}{\sum_j \exp(-E_j/k_B T)}\\
-&= -\frac{\partial \ln \sum_i \exp(-E_i/k_B T)}{\partial 1/k_B T}
-= -\frac{\partial \ln Q}{\partial 1/k_B T},
+= \frac{\sum_i E_i \exp(-E_i/k_{\mathrm{B}} T)}{\sum_j \exp(-E_j/k_{\mathrm{B}} T)}\\
+&= -\frac{\partial \ln \sum_i \exp(-E_i/k_{\mathrm{B}} T)}{\partial 1/k_{\mathrm{B}} T}
+= -\frac{\partial \ln Q}{\partial 1/k_{\mathrm{B}} T},
 \end{aligned}
 \tag{2.2.13}
 $$
@@ -774,7 +774,7 @@ $$
 如果我们将式 (2.2.13) 与热力学关系式 (2.1.36)（$E = \partial (F/T)/\partial (1/T)$，其中$F$是亥姆霍兹自由能）进行比较，我们看到$F$与配分函数$Q$相关：
 
 $$
-F = -k_B T \ln Q = -k_B T \ln \left[\sum_i \exp(-E_i/k_B T)\right].
+F = -k_{\mathrm{B}} T \ln Q = -k_{\mathrm{B}} T \ln \left[\sum_i \exp(-E_i/k_{\mathrm{B}} T)\right].
 \tag{2.2.14}
 $$
 
@@ -788,12 +788,12 @@ $$
 
 到目前为止，我们已经用纯量子力学的术语表述了统计力学。
 熵与具有能量$E$、体积$V$和粒子数$N$的系统的态密度有关。
-类似地，亥姆霍兹自由能与配分函数$Q$有关，后者是对所有量子态$i$的玻尔兹曼因子$\exp(-E_i/k_B T)$的求和。
+类似地，亥姆霍兹自由能与配分函数$Q$有关，后者是对所有量子态$i$的玻尔兹曼因子$\exp(-E_i/k_{\mathrm{B}} T)$的求和。
 具体来说，让我们考虑某个可观测量$A$的平均值。
 我们知道温度$T$下系统处于能量为$E_i$的能量本征态的概率，因此我们可以计算$A$的热平均：
 
 $$
-\langle A \rangle = \frac{\sum_i \exp(-E_i/k_B T) \langle i|A|i\rangle}{\sum_j \exp(-E_j/k_B T)},
+\langle A \rangle = \frac{\sum_i \exp(-E_i/k_{\mathrm{B}} T) \langle i|A|i\rangle}{\sum_j \exp(-E_j/k_{\mathrm{B}} T)},
 \tag{2.2.15}
 $$
 
@@ -805,13 +805,13 @@ $$
 
 幸运的是，式 (2.2.15) 可以在经典极限下简化为更实用的表达式。
 为此，我们首先将式 (2.2.15) 重写为与具体基组无关的形式。
-注意到$\exp(-E_i/k_B T) = \langle i|\exp(-\mathcal{H}/k_B T)|i\rangle$，其中$\mathcal{H}$是系统的哈密顿量。
+注意到$\exp(-E_i/k_{\mathrm{B}} T) = \langle i|\exp(-\mathcal{H}/k_{\mathrm{B}} T)|i\rangle$，其中$\mathcal{H}$是系统的哈密顿量。
 利用这一关系，我们可以写出：
 
 $$
 \langle A \rangle
-= \frac{\sum_i \langle i|\exp(-\mathcal{H}/k_B T) A|i\rangle}{\sum_j \langle j|\exp(-\mathcal{H}/k_B T)|j\rangle}
-= \frac{\text{Tr} \exp(-\mathcal{H}/k_B T) A}{\text{Tr} \exp(-\mathcal{H}/k_B T)},
+= \frac{\sum_i \langle i|\exp(-\mathcal{H}/k_{\mathrm{B}} T) A|i\rangle}{\sum_j \langle j|\exp(-\mathcal{H}/k_{\mathrm{B}} T)|j\rangle}
+= \frac{\text{Tr} \exp(-\mathcal{H}/k_{\mathrm{B}} T) A}{\text{Tr} \exp(-\mathcal{H}/k_{\mathrm{B}} T)},
 \tag{2.2.16}
 $$
 
@@ -834,7 +834,7 @@ $$
 
 其中$[K, U]$是动能和势能算符的对易子：
 $O([K, U])$代表包含$K$和$U$的对易子和高阶对易子的所有项。
-容易验证对易子$[K, U]$的量级为$\hbar$（$\hbar \equiv h/(2\pi)$，其中$h$是普朗克常数）。
+容易验证对易子$[K, U]$的量级为$\hbar$（$\hbar \equiv h/(2\pi)$，其中$h$是普朗克常量）。
 因此，在$\hbar \to 0$的极限下，我们可以忽略$O([K, U])$量级的项。
 在这种情况下，我们可以写出：
 
@@ -953,7 +953,7 @@ $$
 如果我们将热德布罗意波长（thermal de Broglie wavelength）定义为
 
 $$
-\Lambda \equiv \left(\frac{h^2}{2\pi m k_B T}\right)^{1/2},
+\Lambda \equiv \left(\frac{h^2}{2\pi m k_{\mathrm{B}} T}\right)^{1/2},
 \tag{2.3.5}
 $$
 
@@ -1006,7 +1006,7 @@ $$
 为简单起见，我们从系统总熵的量子表达式（公式 (2.2.6)）出发：
 
 $$
-S = S_1 + S_2 = k_B \ln \Omega_1(E_1, V_1, N_1) + k_B \ln \Omega_2(E_2, V_2, N_2).
+S = S_1 + S_2 = k_{\mathrm{B}} \ln \Omega_1(E_1, V_1, N_1) + k_{\mathrm{B}} \ln \Omega_2(E_2, V_2, N_2).
 \tag{2.3.11}
 $$
 
@@ -1025,7 +1025,7 @@ $$
 $$
 \displaystyle
 = \ln\Omega(E, V, N_2) +
-\frac{E - E_1{k_B T} + \frac{P(V - V_1)}{k_B T} + \cdots,
+\frac{E - E_1{k_{\mathrm{B}} T} + \frac{P(V - V_1)}{k_{\mathrm{B}} T} + \cdots,
 }
 $$
 
@@ -1035,7 +1035,7 @@ $$
 \mathcal{P}(E_1, V_1, N_1) =
 \frac{\Omega(E - E_1, V - V_1, N_2)}
 {\sum_j \int \mathrm{d}V \, \Omega(E - E_j, V - V, N_2)}
-\propto \exp\left(-\frac{E_1}{k_B T} - \frac{P V_1}{k_B T}\right).
+\propto \exp\left(-\frac{E_1}{k_{\mathrm{B}} T} - \frac{P V_1}{k_{\mathrm{B}} T}\right).
 \tag{2.3.13}
 $$
 
@@ -1080,7 +1080,7 @@ $$
 $$
 \displaystyle
 = \ln\Omega(E, V_2, N) +
-\frac{E - E_1{k_B T} - \frac{\mu(N - N_1)}{k_B T} + \cdots,
+\frac{E - E_1{k_{\mathrm{B}} T} - \frac{\mu(N - N_1)}{k_{\mathrm{B}} T} + \cdots,
 }
 $$
 
@@ -1091,7 +1091,7 @@ $$
 \mathcal{P}(E - E_1, V_2, N - N_1) &=
 \frac{\Omega(E - E_1, V_2, N - N_1)}
 {\sum_M \sum_j \Omega(E - E_j, V_2, N - M)}\\
-&\propto \exp\left(-\frac{E_1}{k_B T} + \frac{\mu N_1}{k_B T}\right).
+&\propto \exp\left(-\frac{E_1}{k_{\mathrm{B}} T} + \frac{\mu N_1}{k_{\mathrm{B}} T}\right).
 \end{aligned}
 \tag{2.3.18}
 $$
@@ -1121,7 +1121,7 @@ $$
 由公式 (2.3.19) 和 (2.3.8)，利用最大项方法，可得：
 
 $$
--k_B T \ln \Xi = F - N\mu = \Omega,
+-k_{\mathrm{B}} T \ln \Xi = F - N\mu = \Omega,
 \tag{2.3.21}
 $$
 
@@ -1232,7 +1232,7 @@ $$
 因此，
 
 $$
-P_x \equiv \frac{\langle M_x \rangle}{V} = \frac{\mu^2 \rho}{3 k_B T} E_x.
+P_x \equiv \frac{\langle M_x \rangle}{V} = \frac{\mu^2 \rho}{3 k_{\mathrm{B}} T} E_x.
 \tag{2.5.5}
 $$
 
@@ -1406,7 +1406,7 @@ $$
 \tag{2.5.23}
 $$
 
-将输运系数与时间关联函数的积分联系起来的公式 (2.5.23) 是一个所谓的 Green-Kubo 关系的例子[[62]](references.md#ref-62)。在第 5 章中我们将看到，迁移率$\mathfrak{m}$通过爱因斯坦关系$\mathfrak{m} = \beta D$与自扩散系数$D$相关。在附录 F.1 节中，我们讨论了如何从某些时间关联函数的知识出发，计算由施加周期性扰动引起的耗散率。这样的信息在建模辐射吸收等方面非常有用，尽管附录中推导的表达式仅适用于$\hbar\omega \ll k_B T$的经典情况。
+将输运系数与时间关联函数的积分联系起来的公式 (2.5.23) 是一个所谓的 Green-Kubo 关系的例子[[62]](references.md#ref-62)。在第 5 章中我们将看到，迁移率$\mathfrak{m}$通过爱因斯坦关系$\mathfrak{m} = \beta D$与自扩散系数$D$相关。在附录 F.1 节中，我们讨论了如何从某些时间关联函数的知识出发，计算由施加周期性扰动引起的耗散率。这样的信息在建模辐射吸收等方面非常有用，尽管附录中推导的表达式仅适用于$\hbar\omega \ll k_{\mathrm{B}} T$的经典情况。
 
 #### 功率谱
 
@@ -1488,7 +1488,7 @@ $$
 P = \frac{RT}{v - b} - \frac{a}{v^2},
 $$
 
-其中$R$是气体常数。证明常数$a$和$b$可以与临界点相关联：
+其中$R$是气体常量。证明常数$a$和$b$可以与临界点相关联：
 
 $$
 a = \frac{27 R^2 T_c^2}{64 P_c}, \qquad b = \frac{R T_c}{8 P_c}.
@@ -1696,4 +1696,4 @@ $$
 [^7]: 对于分子系统，特别是键长由完整约束固定的柔性分子系统（见第 14.1 节），对动量的积分可能会产生依赖于分子中原子核坐标的雅可比行列式。
 [^8]: 最大项或鞍点近似基于以下观察：我们可以通过将$x^*$附近的$R(x)$替换为$R(x^*) - (c/2)(x - x^*)^2$来近似$e^{R(x)}$的（一维）积分$I$，其中$c$等于$R(x)$在$x^*$处（取负的）二阶导数。所得的高斯积分$\int \mathrm{d}x \, e^{R(x^*) - (c/2)(x - x^*)^2}$给出$I \approx e^{R(x^*)}\sqrt{2\pi/c}$。在统计力学中，$\ln I$与适当的热力学势相关，而在热力学极限下$\ln\sqrt{2\pi/c}$的贡献可以忽略。
 [^9]: 正是这位 Elisabeth Monroe 与 Kirkwood 一起奠定了熵冻结理论的基础。
-[^10]: 注意对于理想气体，$P = \rho k_B T$。因此我们也可以写成$\phi = f/(\rho k_B T)$。在本书的其余部分，我们用这个关系通过$\phi = f'/\rho^{\text{id}}$来定义逸度。注意$f' = f/(k_B T)$。在下文中我们去掉撇号。
+[^10]: 注意对于理想气体，$P = \rho k_{\mathrm{B}} T$。因此我们也可以写成$\phi = f/(\rho k_{\mathrm{B}} T)$。在本书的其余部分，我们用这个关系通过$\phi = f'/\rho^{\text{id}}$来定义逸度。注意$f' = f/(k_{\mathrm{B}} T)$。在下文中我们去掉撇号。

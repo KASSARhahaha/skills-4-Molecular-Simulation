@@ -11,9 +11,9 @@
 
 在下面的讨论中，我们首先讨论通过 MC 或 MD 计算系统静态性质的方法的统计力学基础。之后，我们讨论输运性质的数值测量。
 
-### 经典模拟中的普朗克常数
+### 经典模拟中的普朗克常量
 
-本书所描述的模拟技术都基于经典统计力学。因此，计算得到的任何可测量都不能依赖于普朗克常数$h$的值。某些量（例如第 8.5 节中讨论的化学势）似乎通过热德布罗意波长$\Lambda$依赖于$h$。然而，在这种情况下，普朗克常数是人为引入的，以实现与已知量子结果的一致性。改变$h$的值会导致化学势的整体偏移，但这不会影响纯经典系统的任何可测量性质。实际上，经典世界和量子世界之间的分离并不是干净的。许多分子具有内部振动（甚至转动），其能级间距与热能相比并不小。在这种情况下，必须做出选择：如果激发能远大于$k_BT$，这些模式将主要处于基态，因此可以忽略它们。然而，在许多情况下，量子自由度与经典浴之间存在某种程度的耦合。分子内部自由度的量子性质的一个后果是其平均内能的热贡献低于相应的经典值。许多分子性质几乎不受内部自由度量化的影响，但量子效应对热容和热导率等量有很大影响。这个问题在纯经典模拟的框架内是无法解决的。
+本书所描述的模拟技术都基于经典统计力学。因此，计算得到的任何可测量都不能依赖于普朗克常量$h$的值。某些量（例如第 8.5 节中讨论的化学势）似乎通过热德布罗意波长$\Lambda$依赖于$h$。然而，在这种情况下，普朗克常量是人为引入的，以实现与已知量子结果的一致性。改变$h$的值会导致化学势的整体偏移，但这不会影响纯经典系统的任何可测量性质。实际上，经典世界和量子世界之间的分离并不是干净的。许多分子具有内部振动（甚至转动），其能级间距与热能相比并不小。在这种情况下，必须做出选择：如果激发能远大于$k_{\mathrm{B}}T$，这些模式将主要处于基态，因此可以忽略它们。然而，在许多情况下，量子自由度与经典浴之间存在某种程度的耦合。分子内部自由度的量子性质的一个后果是其平均内能的热贡献低于相应的经典值。许多分子性质几乎不受内部自由度量化的影响，但量子效应对热容和热导率等量有很大影响。这个问题在纯经典模拟的框架内是无法解决的。
 
 ## 静态性质
 
@@ -24,7 +24,7 @@
 正如第 4 章中简要讨论的，温度通常通过计算每个自由度的平均动能来测量。对于具有$f$个自由度的系统，温度$T$由下式给出：
 
 $$
-k_BT = \frac{\langle 2\mathcal{K} \rangle}{f}.
+k_{\mathrm{B}}T = \frac{\langle 2\mathcal{K} \rangle}{f}.
 \tag{5.1.1}
 $$
 
@@ -35,7 +35,7 @@ $N$粒子系统的自由度数等于$Nd - N_c$，其中$d$是空间维数，$N_c
 上述描述对于 MD 模拟来说是一种过度简化，因为在 MD 中我们必然使用离散时间步长。主要原因是，正如文献[[114,115]](references.md#ref-114)所指出的，由速度 Verlet 算法生成的速度与动量之间的关系并不简单地是$v_i = p_i/m_i$。相反，“真实”速度通过哈密顿运动方程定义：$\dot{r}_i^{\mathrm{true}} \equiv \partial H/\partial p_i$。对于使用有限时间步长的模拟，哈密顿量并不守恒，而是“影子”哈密顿量$H_S$守恒（见式 (4.3.22)）[^1]。正是这个哈密顿量决定了相空间中的密度，并应该出现在玻尔兹曼因子中。于是我们可以使用
 
 $$
-\left\langle p_i \frac{\partial \mathcal{H}_S}{\partial p_i} \right\rangle_{NVT} = \left\langle p_i \dot{r}_i^{\mathrm{true}} \right\rangle_{NVT} = k_BT.
+\left\langle p_i \frac{\partial \mathcal{H}_S}{\partial p_i} \right\rangle_{NVT} = \left\langle p_i \dot{r}_i^{\mathrm{true}} \right\rangle_{NVT} = k_{\mathrm{B}}T.
 \tag{5.1.2}
 $$
 
@@ -46,7 +46,7 @@ $$
 \tag{5.1.3}
 $$
 
-因此，为了计算正确的温度，我们必须通过从多个连续位置插值来估计真实速度$\dot{r}_i^{\mathrm{true}}$ [[115]](references.md#ref-115)。于是$\langle p_i \dot{r}_i^{\mathrm{true}} \rangle = k_BT$。
+因此，为了计算正确的温度，我们必须通过从多个连续位置插值来估计真实速度$\dot{r}_i^{\mathrm{true}}$ [[115]](references.md#ref-115)。于是$\langle p_i \dot{r}_i^{\mathrm{true}} \rangle = k_{\mathrm{B}}T$。
 
 在大多数简单的 MD 程序中，并没有遵循这一过程。然而，当估计具有高频内部运动的分子体系（例如溶液中的蛋白质）的温度时，使用错误的速度可能导致平动温度与振动温度之间出现严重偏差[[115]](references.md#ref-115)（见例证 1）。
 
@@ -84,7 +84,7 @@ $$
 显然，如果我们在模拟中测量$E$（到一个常数），那么我们可以通过在一系列温度下进行模拟并通过数值微分来估计$C_V$。然而，我们也可以通过研究内能的自发涨落，在固定温度下确定$C_V$。我们从以下表达式出发：
 
 $$
-C_V = \left( \frac{\partial E}{\partial T} \right)_{NV} = \left( \frac{\partial E}{\partial \beta} \right)_{NV} \left( \frac{\mathrm{d}\beta}{\mathrm{d}T} \right) = -\frac{1}{k_B T^2} \left( \frac{\partial E}{\partial \beta} \right)_{NV}.
+C_V = \left( \frac{\partial E}{\partial T} \right)_{NV} = \left( \frac{\partial E}{\partial \beta} \right)_{NV} \left( \frac{\mathrm{d}\beta}{\mathrm{d}T} \right) = -\frac{1}{k_{\mathrm{B}} T^2} \left( \frac{\partial E}{\partial \beta} \right)_{NV}.
 \tag{5.1.5}
 $$
 
@@ -98,7 +98,7 @@ $$
 因此
 
 $$
-C_V = \frac{1}{k_B T^2} \left( \langle E^2 \rangle - \langle E \rangle^2 \right).
+C_V = \frac{1}{k_{\mathrm{B}} T^2} \left( \langle E^2 \rangle - \langle E \rangle^2 \right).
 \tag{5.1.7}
 $$
 
@@ -107,7 +107,7 @@ $$
 由于$C_V$与恒定温度下能量的涨落有关，似乎我们不能使用涨落表达式从恒定$N$、$V$和$E$的 MD 模拟中确定$C_V$。然而，Lebowitz 等人[[106]](references.md#ref-106)证明了我们可以通过测量动能$K$的涨落来确定恒定$N$、$V$、$E$下的$C_V$：
 
 $$
-\langle \mathcal{K}^2 \rangle_{NVE} - \langle \mathcal{K} \rangle_{NVE}^2 = \frac{3N k_B^2 T^2}{2} \left( 1 - \frac{3N k_B}{2C_V} \right).
+\langle \mathcal{K}^2 \rangle_{NVE} - \langle \mathcal{K} \rangle_{NVE}^2 = \frac{3N k_{\mathrm{B}}^2 T^2}{2} \left( 1 - \frac{3N k_{\mathrm{B}}}{2C_V} \right).
 \tag{5.1.8}
 $$
 
@@ -134,7 +134,7 @@ $$
 由式 (2.3.6) 可知
 
 $$
-F = -k_B T \ln Q(N,V,T) = c(N,T) - k_B T \ln \left[ \int_V \cdots \int_V \mathrm{d}\mathbf{r}^N \exp\left(-\beta U(\mathbf{r}^N)\right) \right],
+F = -k_{\mathrm{B}} T \ln Q(N,V,T) = c(N,T) - k_{\mathrm{B}} T \ln \left[ \int_V \cdots \int_V \mathrm{d}\mathbf{r}^N \exp\left(-\beta U(\mathbf{r}^N)\right) \right],
 \tag{5.1.11}
 $$
 
@@ -159,14 +159,14 @@ $$
 $U(\mathbf{s}^N; L)$依赖于$L$，因为如果我们在保持所有$\mathbf{s}_i$不变的情况下改变$L$，所有真实距离都会改变。为简洁起见，我们将$\int \cdots \int$替换为单个积分号。于是我们可以写出
 
 $$
-P = k_B T \left( \frac{\partial \left[ \ln V^N + \ln \int_0^1 \mathrm{d}\mathbf{s}^N \exp\left(-\beta U(\mathbf{s}^N; L)\right) \right]}{\partial V} \right)_{N,T},
+P = k_{\mathrm{B}} T \left( \frac{\partial \left[ \ln V^N + \ln \int_0^1 \mathrm{d}\mathbf{s}^N \exp\left(-\beta U(\mathbf{s}^N; L)\right) \right]}{\partial V} \right)_{N,T},
 \tag{5.1.14}
 $$
 
-其中我们利用了$c(N,T)$与$V$无关这一事实。式 (5.1.14) 右边的第一项给出理想气体压力$Nk_BT/V$。第二项描述了由于分子间相互作用而产生的超额压力：
+其中我们利用了$c(N,T)$与$V$无关这一事实。式 (5.1.14) 右边的第一项给出理想气体压力$Nk_{\mathrm{B}}T/V$。第二项描述了由于分子间相互作用而产生的超额压力：
 
 $$
-P_{\mathrm{exc}} = k_B T \left( \frac{\partial \left[ \ln \int_0^1 \mathrm{d}\mathbf{s}^N \exp\left(-\beta U(\mathbf{s}^N; L)\right) \right]}{\partial V} \right)_{N,T} = -\left\langle \frac{\partial U(\mathbf{s}^N; L)}{\partial V} \right\rangle_{N,T}.
+P_{\mathrm{exc}} = k_{\mathrm{B}} T \left( \frac{\partial \left[ \ln \int_0^1 \mathrm{d}\mathbf{s}^N \exp\left(-\beta U(\mathbf{s}^N; L)\right) \right]}{\partial V} \right)_{N,T} = -\left\langle \frac{\partial U(\mathbf{s}^N; L)}{\partial V} \right\rangle_{N,T}.
 \tag{5.1.15}
 $$
 
@@ -220,9 +220,9 @@ $$
 
 $$
 \begin{aligned}
-P &= \rho k_B T + \frac{1}{2dV} \left\langle \sum_{i=1}^{N} \sum_{j \neq i} \mathbf{f}(r_{ij}) \cdot \mathbf{r}_i + \sum_{j=1}^{N} \sum_{i \neq j} \mathbf{f}(r_{ji}) \cdot \mathbf{r}_j \right\rangle_{N,T}\\
-&= \rho k_B T + \frac{1}{2dV} \left\langle \sum_{i=1}^{N} \sum_{j \neq i} \mathbf{f}(r_{ij}) \cdot \mathbf{r}_{ij} \right\rangle_{N,T}\\
-&= \rho k_B T + \frac{\rho^2}{2d} \int \mathrm{d}\mathbf{r} \, g(r) r f(r).
+P &= \rho k_{\mathrm{B}} T + \frac{1}{2dV} \left\langle \sum_{i=1}^{N} \sum_{j \neq i} \mathbf{f}(r_{ij}) \cdot \mathbf{r}_i + \sum_{j=1}^{N} \sum_{i \neq j} \mathbf{f}(r_{ji}) \cdot \mathbf{r}_j \right\rangle_{N,T}\\
+&= \rho k_{\mathrm{B}} T + \frac{1}{2dV} \left\langle \sum_{i=1}^{N} \sum_{j \neq i} \mathbf{f}(r_{ij}) \cdot \mathbf{r}_{ij} \right\rangle_{N,T}\\
+&= \rho k_{\mathrm{B}} T + \frac{\rho^2}{2d} \int \mathrm{d}\mathbf{r} \, g(r) r f(r).
 \end{aligned}
 \tag{5.1.21}
 $$
@@ -248,7 +248,7 @@ $$
 
 如果我们取局部维里压力，例如在$x = 0$的硬壁附近，我们会发现这个压力的量度不是常数：因此其梯度不与力学力相关。
 
-但我们可以直接计算力学压力。让我们考虑在$x$处的一个虚构平面。然后我们可以计算该平面上的力，即（比方说）该平面左侧的所有粒子通过该平面的平均动量转移。这个力有两个贡献：1）携带自身动量的粒子引起的动量转移，施加合力$\rho(x)k_BT$；2）由于分割平面左侧的粒子与右侧粒子相互作用而产生的力（注意：选择“左”或“右”是无关紧要的）。我们可以为任何平面（以及任何势能，甚至是多体势能）计算这个力。然而，对于两两可加的势能，表达式可以简化，因为我们可以将通过一个平面作用的力写为所有满足$x_i < x$且$x_j > x$的对力$f_x(r_{ij})$之和。这种计算压力的方法通常被称为“平面方法”[[132]](references.md#ref-132)。根据构造，对于力学平衡的系统，由此获得的力学力不依赖于$x$。
+但我们可以直接计算力学压力。让我们考虑在$x$处的一个虚构平面。然后我们可以计算该平面上的力，即（比方说）该平面左侧的所有粒子通过该平面的平均动量转移。这个力有两个贡献：1）携带自身动量的粒子引起的动量转移，施加合力$\rho(x)k_{\mathrm{B}}T$；2）由于分割平面左侧的粒子与右侧粒子相互作用而产生的力（注意：选择“左”或“右”是无关紧要的）。我们可以为任何平面（以及任何势能，甚至是多体势能）计算这个力。然而，对于两两可加的势能，表达式可以简化，因为我们可以将通过一个平面作用的力写为所有满足$x_i < x$且$x_j > x$的对力$f_x(r_{ij})$之和。这种计算压力的方法通常被称为“平面方法”[[132]](references.md#ref-132)。根据构造，对于力学平衡的系统，由此获得的力学力不依赖于$x$。
 
 #### 虚拟体积变化
 
@@ -289,14 +289,14 @@ $$
 然而，与热容的情况一样，我们可以使用涨落表达式从恒定压力下单个状态点的模拟来估计压缩率。我们利用
 
 $$
-\langle V \rangle_{N,P,T} = -k_B T \left( \frac{\partial \ln Q(N,P,T)}{\partial P} \right).
+\langle V \rangle_{N,P,T} = -k_{\mathrm{B}} T \left( \frac{\partial \ln Q(N,P,T)}{\partial P} \right).
 \tag{5.1.27}
 $$
 
 由此可得
 
 $$
-\beta_T = -\frac{1}{V} \left( \frac{\partial V}{\partial P} \right)_{N,T} = \frac{\langle V^2 \rangle - \langle V \rangle^2}{\langle V \rangle k_B T}.
+\beta_T = -\frac{1}{V} \left( \frac{\partial V}{\partial P} \right)_{N,T} = \frac{\langle V^2 \rangle - \langle V \rangle^2}{\langle V \rangle k_{\mathrm{B}} T}.
 \tag{5.1.28}
 $$
 
@@ -325,7 +325,7 @@ $$
 $$
 \begin{aligned}
 \gamma &= \left( \frac{\partial F}{\partial A} \right)_{N,V,T}
-= -k_B T \left( \frac{\partial \left[ \ln \int_0^1 \mathrm{d}\mathbf{s}^N \exp\left(-\beta U(\mathbf{s}^N; \lambda W, H/\lambda)\right) \right]}{\partial A} \right)_{N,V,T}\\
+= -k_{\mathrm{B}} T \left( \frac{\partial \left[ \ln \int_0^1 \mathrm{d}\mathbf{s}^N \exp\left(-\beta U(\mathbf{s}^N; \lambda W, H/\lambda)\right) \right]}{\partial A} \right)_{N,V,T}\\
 &= \frac{1}{2S} \left\langle \frac{\partial U(\mathbf{s}^N; \lambda W, H/\lambda)}{\partial \lambda} \right\rangle_{N,V,T}.
 \end{aligned}
 \tag{5.1.31}
@@ -600,7 +600,7 @@ $$
     压力可以从以下公式计算
 
     $$
-    P = \rho k_B T - \frac{1}{3} \cdot \frac{1}{2}\rho^2 \int_0^\infty \mathrm{d}r \, \frac{\mathrm{d}u(r)}{\mathrm{d}r} r g(r) = \rho k_B T - \frac{2}{3}\pi\rho^2 \int_0^\infty \mathrm{d}r \, \frac{\mathrm{d}u(r)}{\mathrm{d}r} r^3 g(r),
+    P = \rho k_{\mathrm{B}} T - \frac{1}{3} \cdot \frac{1}{2}\rho^2 \int_0^\infty \mathrm{d}r \, \frac{\mathrm{d}u(r)}{\mathrm{d}r} r g(r) = \rho k_{\mathrm{B}} T - \frac{2}{3}\pi\rho^2 \int_0^\infty \mathrm{d}r \, \frac{\mathrm{d}u(r)}{\mathrm{d}r} r^3 g(r),
     \tag{5.1.55}
     $$
 
@@ -813,20 +813,20 @@ $$
     然而，如附录 D 式 (D.1.5) 所讨论的，扩散的驱动力是化学势 $\mu$ 的梯度。采用这一定义，我们得到扩散系数的第三个定义，即集体扩散系数（或修正扩散系数，或麦克斯韦-斯特藩扩散系数）$D_c$，对于恒温系统：
 
     $$
-    J(c) \equiv -\frac{L(c)}{k_B T} \nabla \mu = -D_c(c) \frac{c}{k_B T} \nabla \mu,
+    J(c) \equiv -\frac{L(c)}{k_{\mathrm{B}} T} \nabla \mu = -D_c(c) \frac{c}{k_{\mathrm{B}} T} \nabla \mu,
     \tag{5.2.18}
     $$
 
     其中 $L(c)$ 是昂萨格输运系数。由于我们测量的通量与我们如何定义扩散系数无关，这些扩散系数之间的关系为：
 
     $$
-    D_t = D_c \frac{1}{k_B T c} \frac{\nabla \mu}{\nabla \ln c} = \Gamma D_c,
+    D_t = D_c \frac{1}{k_{\mathrm{B}} T c} \frac{\nabla \mu}{\nabla \ln c} = \Gamma D_c,
     $$
 
     其中 $\Gamma$ 是热力学因子：
 
     $$
-    \Gamma = \frac{1}{k_B T} \frac{\partial \mu}{\partial \ln c} = \frac{\partial \ln f}{\partial \ln c},
+    \Gamma = \frac{1}{k_{\mathrm{B}} T} \frac{\partial \mu}{\partial \ln c} = \frac{\partial \ln f}{\partial \ln c},
     $$
 
     这里我们将化学势替换为逸度 $f$。对于多孔材料中的吸附，孔道中浓度与压力之间的关系由吸附等温线给出。图 5.7a 给出了一个典型的等温线。在低压下，我们可以假设理想气体行为，$f = P$。因此，吸附量由亨利系数给出：
@@ -838,7 +838,7 @@ $$
     且
 
     $$
-    \Gamma_{P \to 0} = \frac{k_B T}{c} \frac{\partial \ln f}{\partial \ln c} = 1.
+    \Gamma_{P \to 0} = \frac{k_{\mathrm{B}} T}{c} \frac{\partial \ln f}{\partial \ln c} = 1.
     $$
 
     ![图 5.7](../images/fig_5_7.png)
@@ -872,7 +872,7 @@ $$
 Green-Kubo 关系已为许多其他输运系数推导出来，例如剪切黏度 $\eta$，
 
 $$
-\eta = \frac{1}{V k_B T} \int_0^\infty \mathrm{d}t \, \langle \sigma_{xy}(0) \sigma_{xy}(t) \rangle
+\eta = \frac{1}{V k_{\mathrm{B}} T} \int_0^\infty \mathrm{d}t \, \langle \sigma_{xy}(0) \sigma_{xy}(t) \rangle
 \tag{5.2.21}
 $$
 
@@ -886,7 +886,7 @@ $$
 热导率 $\lambda_T$，
 
 $$
-\lambda_T = \frac{1}{V k_B T^2} \int_0^\infty \mathrm{d}t \, \langle j_e^z(0) j_e^z(t) \rangle
+\lambda_T = \frac{1}{V k_{\mathrm{B}} T^2} \int_0^\infty \mathrm{d}t \, \langle j_e^z(0) j_e^z(t) \rangle
 \tag{5.2.23}
 $$
 
@@ -900,7 +900,7 @@ $$
 以及电导率 $\sigma_e$，
 
 $$
-\sigma_e = \frac{1}{V k_B T} \int_0^\infty \mathrm{d}t \, \langle j_x^{\mathrm{el}}(0) j_x^{\mathrm{el}}(t) \rangle
+\sigma_e = \frac{1}{V k_{\mathrm{B}} T} \int_0^\infty \mathrm{d}t \, \langle j_x^{\mathrm{el}}(0) j_x^{\mathrm{el}}(t) \rangle
 \tag{5.2.25}
 $$
 
@@ -1525,7 +1525,7 @@ $$
 **问题 15（热容）。**定容热容可以由正则系综中总能量的涨落算出：
 
 $$
-C_v = \frac{\langle E^2 \rangle - \langle E \rangle^2}{k_B T^2} .
+C_v = \frac{\langle E^2 \rangle - \langle E \rangle^2}{k_{\mathrm{B}} T^2} .
 $$
 
 1. 推导这个方程。

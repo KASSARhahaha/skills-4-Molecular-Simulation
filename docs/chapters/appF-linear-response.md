@@ -107,7 +107,7 @@ $$
 \tag{F.1.7}
 $$
 
-因此，通过了解与外场耦合的量的自关联函数，我们可以计算吸收谱的形状。这个关系是在假设经典动力学的情况下推导的，因此仅在$\hbar \omega \ll k_B T$时才有效。然而，也有可能推导出适用于任意频率的量子力学版本的线性响应理论（参见例如文献[[53]](references.md#ref-53)）。
+因此，通过了解与外场耦合的量的自关联函数，我们可以计算吸收谱的形状。这个关系是在假设经典动力学的情况下推导的，因此仅在$\hbar \omega \ll k_{\mathrm{B}} T$时才有效。然而，也有可能推导出适用于任意频率的量子力学版本的线性响应理论（参见例如文献[[53]](references.md#ref-53)）。
 
 举一个具体的例子，让我们计算稀薄极性分子气体的吸收谱形状。在这种情况下，相关的关联函数是偶极（$\boldsymbol{\mu}$）自关联函数：
 
@@ -173,7 +173,7 @@ $$
 其中$\mathbf{j}(\mathbf{r})$表示点$\mathbf{r}$处的电流密度。扰动在时间$t$引起的平均电流密度为
 
 $$
-\langle \mathbf{j}(t) \rangle = \frac{\mathbf{A}}{c V k_B T} \int \mathrm{d}\mathbf{r} \, \mathrm{d}\mathbf{r}' \, \langle \mathbf{j}(\mathbf{r}, 0) \cdot \mathbf{j}(\mathbf{r}', t) \rangle.
+\langle \mathbf{j}(t) \rangle = \frac{\mathbf{A}}{c V k_{\mathrm{B}} T} \int \mathrm{d}\mathbf{r} \, \mathrm{d}\mathbf{r}' \, \langle \mathbf{j}(\mathbf{r}, 0) \cdot \mathbf{j}(\mathbf{r}', t) \rangle.
 \tag{F.2.5}
 $$
 
@@ -187,14 +187,14 @@ $$
 由此立即可得
 
 $$
-\boldsymbol{\sigma}(t) = \frac{1}{V k_B T} \int \mathrm{d}\mathbf{r} \, \mathrm{d}\mathbf{r}' \, \langle \mathbf{j}(\mathbf{r}, 0) \cdot \mathbf{j}(\mathbf{r}', t) \rangle.
+\boldsymbol{\sigma}(t) = \frac{1}{V k_{\mathrm{B}} T} \int \mathrm{d}\mathbf{r} \, \mathrm{d}\mathbf{r}' \, \langle \mathbf{j}(\mathbf{r}, 0) \cdot \mathbf{j}(\mathbf{r}', t) \rangle.
 \tag{F.2.7}
 $$
 
 直流电导率则为
 
 $$
-\boldsymbol{\sigma}(\omega = 0) = \frac{1}{V k_B T} \int_0^{\infty} \mathrm{d}t \int \mathrm{d}\mathbf{r} \, \mathrm{d}\mathbf{r}' \, \langle \mathbf{j}(\mathbf{r}, 0) \cdot \mathbf{j}(\mathbf{r}', t) \rangle.
+\boldsymbol{\sigma}(\omega = 0) = \frac{1}{V k_{\mathrm{B}} T} \int_0^{\infty} \mathrm{d}t \int \mathrm{d}\mathbf{r} \, \mathrm{d}\mathbf{r}' \, \langle \mathbf{j}(\mathbf{r}, 0) \cdot \mathbf{j}(\mathbf{r}', t) \rangle.
 \tag{F.2.8}
 $$
 
@@ -245,21 +245,21 @@ $$
 我们可以计算剪应力$\sigma_{xy}(t)$对从$H_1$到$H_0$突然变化的时间依赖响应：
 
 $$
-\langle \sigma_{xy}(t) \rangle = -\epsilon \frac{1}{V k_B T} \langle \sigma_{xy}(0) \sigma_{xy}(t) \rangle.
+\langle \sigma_{xy}(t) \rangle = -\epsilon \frac{1}{V k_{\mathrm{B}} T} \langle \sigma_{xy}(0) \sigma_{xy}(t) \rangle.
 \tag{F.3.7}
 $$
 
 将式 (F.3.6) 和 (F.3.7) 与式 (2.5.14) 结合，我们立即看到由稳定剪切产生的稳态应力$\sigma_{xy}$为
 
 $$
-\sigma_{xy} = \frac{\partial v_x}{\partial y} \times \frac{1}{V k_B T} \int_0^{\infty} \mathrm{d}t \, \langle \sigma_{xy}(0) \sigma_{xy}(t) \rangle,
+\sigma_{xy} = \frac{\partial v_x}{\partial y} \times \frac{1}{V k_{\mathrm{B}} T} \int_0^{\infty} \mathrm{d}t \, \langle \sigma_{xy}(0) \sigma_{xy}(t) \rangle,
 \tag{F.3.8}
 $$
 
 剪切黏度$\eta$的表达式为
 
 $$
-\eta = \frac{1}{V k_B T} \int_0^{\infty} \mathrm{d}t \, \langle \sigma_{xy}(0) \sigma_{xy}(t) \rangle.
+\eta = \frac{1}{V k_{\mathrm{B}} T} \int_0^{\infty} \mathrm{d}t \, \langle \sigma_{xy}(0) \sigma_{xy}(t) \rangle.
 \tag{F.3.9}
 $$
 
@@ -427,7 +427,7 @@ $$
 
 $$
 \begin{aligned}
-C^{(2)}_{\alpha\beta\gamma\delta} = {}& -\frac{1}{V k_B T} \left\langle \Delta\sigma_{\alpha\beta} \, \Delta\sigma_{\gamma\delta} \right\rangle + 2\rho k_B T (\delta_{\alpha\gamma} \delta_{\beta\delta} + \delta_{\alpha\delta} \delta_{\beta\gamma})\\
+C^{(2)}_{\alpha\beta\gamma\delta} = {}& -\frac{1}{V k_{\mathrm{B}} T} \left\langle \Delta\sigma_{\alpha\beta} \, \Delta\sigma_{\gamma\delta} \right\rangle + 2\rho k_{\mathrm{B}} T (\delta_{\alpha\gamma} \delta_{\beta\delta} + \delta_{\alpha\delta} \delta_{\beta\gamma})\\
 & + 4 \sum_{i<j,\,k<l} \left\langle \frac{\partial^2 U}{\partial r_{ij}^2 \partial r_{kl}^2} r_{ij\alpha} r_{ij\beta} r_{kl\gamma} r_{kl\delta} \right\rangle.
 \end{aligned}
 \tag{F.4.19}

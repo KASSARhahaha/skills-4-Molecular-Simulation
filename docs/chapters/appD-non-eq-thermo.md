@@ -52,7 +52,7 @@ $$
 \tag{D.1.6}
 $$
 
-其中$\beta \equiv 1/k_B T$，以及
+其中$\beta \equiv 1/k_{\mathrm{B}} T$，以及
 
 $$
 \sigma = \left(\mathbf{J}_q - \sum_i \mathbf{J}_i h_i\right) \cdot \nabla \frac{1}{T} - \frac{1}{T}\sum_i \mathbf{J}_i \cdot \left(\nabla \mu_i\right)_T - \mathbf{F}_i ,
@@ -96,10 +96,10 @@ $$
 
 ## 涨落
 
-在前面的章节中，我们论述了系统的平衡态对应于具有最多微观实现数目的状态。此外，我们论证了可以将这一概率图景与封闭系统的熵达到最大值的实验观测联系起来，通过将熵$S$与$k_B \ln \Omega$等同：
+在前面的章节中，我们论述了系统的平衡态对应于具有最多微观实现数目的状态。此外，我们论证了可以将这一概率图景与封闭系统的熵达到最大值的实验观测联系起来，通过将熵$S$与$k_{\mathrm{B}} \ln \Omega$等同：
 
 $$
-S = k_B \ln \Omega .
+S = k_{\mathrm{B}} \ln \Omega .
 \tag{D.2.1}
 $$
 
@@ -134,7 +134,7 @@ $$
 如果$\alpha_i$是线性无关的，则$g_{ij}$是一个对称正定矩阵。系统处于偏离（但接近）最概然状态、由变量$\{\alpha_1, \alpha_2, \cdots, \alpha_k\}$表征的状态的概率为
 
 $$
-P(\{\alpha_1, \alpha_2, \cdots, \alpha_k\}) \propto \exp\!\left(-\frac{1}{2k_B}\sum_{i,j} g_{ij}\alpha_i \alpha_j\right) .
+P(\{\alpha_1, \alpha_2, \cdots, \alpha_k\}) \propto \exp\!\left(-\frac{1}{2k_{\mathrm{B}}}\sum_{i,j} g_{ij}\alpha_i \alpha_j\right) .
 \tag{D.2.6}
 $$
 
@@ -166,42 +166,42 @@ $$
 为了与平衡态中涨落的衰减建立联系，我们现在证明平衡涨落$\alpha_i$仅与其共轭力$X_j$相关：
 
 $$
-\langle \alpha_i X_j \rangle = -k_B \delta_{ij} ,
+\langle \alpha_i X_j \rangle = -k_{\mathrm{B}} \delta_{ij} ,
 \tag{D.3.1}
 $$
 
-其中$k_B$是玻尔兹曼常数，$\delta_{ij}$是克罗内克 $\delta$。式 (D.3.1) 可由以下事实推导：
+其中$k_{\mathrm{B}}$是玻尔兹曼常量，$\delta_{ij}$是克罗内克 $\delta$。式 (D.3.1) 可由以下事实推导：
 
 $$
-\langle \alpha_i X_j \rangle = k_B \int \mathrm{d}\{\alpha\}\, \alpha_i \frac{\partial P(\{\alpha\})}{\partial \alpha_j} = -k_B \int \mathrm{d}\{\alpha\}\, \frac{\partial \alpha_i}{\partial \alpha_j} P(\{\alpha\}) = -k_B \delta_{ij} ,
+\langle \alpha_i X_j \rangle = k_{\mathrm{B}} \int \mathrm{d}\{\alpha\}\, \alpha_i \frac{\partial P(\{\alpha\})}{\partial \alpha_j} = -k_{\mathrm{B}} \int \mathrm{d}\{\alpha\}\, \frac{\partial \alpha_i}{\partial \alpha_j} P(\{\alpha\}) = -k_{\mathrm{B}} \delta_{ij} ,
 \tag{D.3.2}
 $$
 
 其中$\{\alpha\}$表示集合$\{\alpha_1, \alpha_2, \cdots, \alpha_k\}$。利用$J_i = \sum_j L_{ij} X_j$，可以得到：
 
 $$
-\langle \alpha_j(t) J_i(t) \rangle = -k_B L_{ij} .
+\langle \alpha_j(t) J_i(t) \rangle = -k_{\mathrm{B}} L_{ij} .
 \tag{D.3.3}
 $$
 
 式 (D.3.3) 使我们能够推导昂萨格倒易关系（Onsager reciprocal relations）。但在推导之前，请注意，从微观上看，式 (D.3.3) 有些奇怪，因为时刻$t$的涨落只会导致$t > 0$时的流。事实上，由于$\alpha_j$和$J_j$具有不同的时间反演对称性，等时积$\langle \alpha_j(t) J_i(t) \rangle$实际上为零。非零的量是$\langle \alpha_j(t) J_i(t+\epsilon) \rangle$。我们稍后将回到这一点。目前，我们继续使用式 (D.3.3) 并将其重写为：
 
 $$
-\int_0^\infty \mathrm{d}t\, \langle \alpha_j(0) \dot{J}_i(t) \rangle = -k_B L_{ij} ,
+\int_0^\infty \mathrm{d}t\, \langle \alpha_j(0) \dot{J}_i(t) \rangle = -k_{\mathrm{B}} L_{ij} ,
 \tag{D.3.4}
 $$
 
 其中我们利用了$\langle \alpha_j(0) \dot{J}_i(0) \rangle$为零这一事实。接下来，利用时间平移不变性：
 
 $$
-\int_0^\infty \mathrm{d}t\, \langle \dot{\alpha}_j(0) J_i(t) \rangle = +k_B L_{ij} ,
+\int_0^\infty \mathrm{d}t\, \langle \dot{\alpha}_j(0) J_i(t) \rangle = +k_{\mathrm{B}} L_{ij} ,
 \tag{D.3.5}
 $$
 
 并利用$J_j = \dot{\alpha}_j$这一事实：
 
 $$
-\int_0^\infty \mathrm{d}t\, \langle J_j(0) J_i(t) \rangle = k_B L_{ij} .
+\int_0^\infty \mathrm{d}t\, \langle J_j(0) J_i(t) \rangle = k_{\mathrm{B}} L_{ij} .
 \tag{D.3.6}
 $$
 

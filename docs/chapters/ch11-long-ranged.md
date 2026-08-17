@@ -26,11 +26,11 @@ $$
 \phi'(r) \equiv \frac{\Phi(r)}{\epsilon}
 = \frac{1}{\epsilon}\frac{e^2}{4\pi\epsilon_0\epsilon_r\sigma}
 \frac{(Q_1/e)(Q_2/e)}{r/\sigma}
-= \frac{(\lambda_B/\sigma)}{(\epsilon/k_BT)}
+= \frac{(\lambda_{\mathrm{B}}/\sigma)}{(\epsilon/k_{\mathrm{B}}T)}
 \frac{q_1 q_2}{r^*},
 $$
 
-其中$r^*$是以$\sigma$为单位的距离，$q\equiv Q/e$，$\lambda_B$是 Bjerrum 长度（参见例如文献[[59]](references.md#ref-59)）。用约化 Bjerrum 长度$\lambda^*\equiv \lambda/\sigma$和约化温度$T^*\equiv k_BT/\epsilon$表示，我们得到
+其中$r^*$是以$\sigma$为单位的距离，$q\equiv Q/e$，$\lambda_{\mathrm{B}}$是 Bjerrum 长度（参见例如文献[[59]](references.md#ref-59)）。用约化 Bjerrum 长度$\lambda^*\equiv \lambda/\sigma$和约化温度$T^*\equiv k_{\mathrm{B}}T/\epsilon$表示，我们得到
 
 $$
 \phi'(r) = \frac{T^*\lambda^* q_1 q_2}{r^*}.
