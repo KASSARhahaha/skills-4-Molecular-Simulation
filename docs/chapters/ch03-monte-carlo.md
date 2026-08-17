@@ -198,15 +198,15 @@ MC 移动不需要满足的唯一标准是生成物理上合理的轨迹。在�
 
 ```
 program MC
-// basic Metropolis algorithm
+// 基本 Metropolis 算法
 for $1 \leq \text{itrial \leq \text{ntrial}$}
-// perform ntrial MC trial moves
+// 执行 ntrial 次 MC 试探移动
  mcmove
-// trial move procedure
+// 试探移动过程
 if (itrial \% nsamp) == 0
-// \% denotes the Modulo operation
+// \% 表示取模运算
  sample
-// sample procedure
+// 采样过程
 end if
 end for
 end program
@@ -221,19 +221,19 @@ end program
 
 ```
 \function{mcmove}
-// Metropolis MC trial move
+// Metropolis MC 试探移动
  i = int(R*npart) + 1
-// select random particle with $1 \leq i \leq$ npart
+// 随机选取一个粒子，$1 \leq i \leq$ npart
  eno = ener(x(i), i)
-// eno: energy particle i at ``old'' position x(i)
+// eno：粒子 i 在“旧”位置 x(i) 处的能量
  xn = x(i) + (R - 0.5)*delx
-// trial position xn for particle i
+// 粒子 i 的试探位置 xn
  enn = ener(xn, i)
-// enn: energy of i at xn
+// enn：粒子 i 在 xn 处的能量
 if R < exp[-$\beta$*(enn - eno)]
-// Metropolis criterion
+// Metropolis 判据，式 (3.3.1)
  x(i) = xn
-// if accepted, x(i) becomes xn
+// 若接受，x(i) 变为 xn
 end if
 end function
 ```
@@ -353,7 +353,7 @@ $$
 
 截断势可以用于 Monte Carlo 模拟中，有时确实如此（例如在具有方阱或方肩势的简单模型系统的模拟中）。然而，在这种情况下，应该意识到由于势在 $r_c$ 处的不连续变化，压力存在一个“脉冲式”贡献。对于其他情况下的连续势，不建议使用纯粹的简单截断（虽然如有必要，可以计算压力的脉冲贡献）。
 
-补偿对势截断的常用（近似）方法是向我们计算的结构性质添加尾部校正。势能的尾部校正已在上面讨论过，见式 (3.3.5)。我们将在第 5 章讨论压力的计算。为了完整起见，这里我们给出三维情况下压力的尾部校正表达式：
+补偿对势截断的常用（近似）方法是向我们计算的结构性质添加尾部校正。势能的尾部校正已在上面讨论过，见式 (3.3.5)。我们将在第 5 章讨论压力的计算，见式 (5.1.21)。为了完整起见，这里我们给出三维情况下压力的尾部校正表达式：
 
 $$
 \Delta P_{\text{tail}} = \frac{4\pi\rho^2}{6} \int_{r_c}^{\infty} \mathrm{d}r \, r^2 \, \mathbf{r} \cdot \mathbf{f}(r) = \frac{16}{3} \pi\rho^2\epsilon\sigma^3 \left[\frac{2}{3}\left(\frac{\sigma}{r_c}\right)^{9} - \left(\frac{\sigma}{r_c}\right)^{3}\right],
