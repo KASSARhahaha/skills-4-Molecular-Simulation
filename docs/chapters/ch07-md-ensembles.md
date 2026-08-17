@@ -386,14 +386,29 @@ $$
 这给出，对于公式 (7.1.23)：
 
 $$
-\bar{A}' = \frac{\langle A(\mathbf{p}/s, \mathbf{r})/s\rangle}{\langle 1/s\rangle}.
+\begin{aligned}
+\lim_{\tau'\to\infty}&\frac{1}{\tau'}\int_0^{\tau'} \mathrm{d}t'\, A\left[\mathbf{p}(t')/s(t'), \mathbf{r}(t')\right]\\
+&= \lim_{\tau'\to\infty}\frac{\tau}{\tau'}\frac{1}{\tau}\int_0^{\tau} \mathrm{d}t\, A\left[\mathbf{p}(t)/s(t), \mathbf{r}(t)\right]/s(t)\\
+&= \frac{\lim_{\tau\to\infty}\frac{1}{\tau}\int_0^{\tau} \mathrm{d}t\, A\left[\mathbf{p}(t)/s(t), \mathbf{r}(t)\right]/s(t)}
+        {\lim_{\tau\to\infty}\frac{1}{\tau}\int_0^{\tau} \mathrm{d}t\, 1/s(t)}\\
+&= \langle A(\mathbf{p}/s, \mathbf{r})/s\rangle / \langle 1/s\rangle.
+\end{aligned}
 \tag{7.1.24}
 $$
 
 如果我们再次考虑配分函数公式 (7.1.16)，可以写出系综平均：
 
 $$
-\langle A(\mathbf{p}/s, \mathbf{r})\rangle_{NVT}.
+\begin{aligned}
+\frac{\langle A(\mathbf{p}/s, \mathbf{r})/s\rangle}{\langle 1/s\rangle}
+&\equiv \frac{\left\{\dfrac{\int \mathrm{d}\mathbf{p}'^N\, \mathrm{d}\mathbf{r}^N\, A(\mathbf{p}',\mathbf{r})\exp\left[-\beta\mathcal{H}(\mathbf{p}',\mathbf{r})dN/L\right]}
+                          {\int \mathrm{d}\mathbf{p}'^N\, \mathrm{d}\mathbf{r}^N\, \exp[-\beta\mathcal{H}(\mathbf{p}',\mathbf{r})(dN+1)/L]}\right\}}
+             {\left\{\dfrac{\int \mathrm{d}\mathbf{p}'^N\, \mathrm{d}\mathbf{r}^N\, \exp[-\beta[\mathcal{H}(\mathbf{p}',\mathbf{r})]dN/L]}
+                          {\int \mathrm{d}\mathbf{p}'^N\, \mathrm{d}\mathbf{r}^N\, \exp[-\beta[\mathcal{H}(\mathbf{p}',\mathbf{r})](dN+1)/L]}\right\}}\\
+&= \frac{\int \mathrm{d}\mathbf{p}'^N\, \mathrm{d}\mathbf{r}^N\, A(\mathbf{p}/s, \mathbf{r})\exp\left[-\beta\mathcal{H}(\mathbf{p}',\mathbf{r})dN/L\right]}
+        {\int \mathrm{d}\mathbf{p}'^N\, \mathrm{d}\mathbf{r}^N\, \exp[-\beta[\mathcal{H}(\mathbf{p}',\mathbf{r})]dN/L]}\\
+&= \langle A(\mathbf{p}/s, \mathbf{r})\rangle_{NVT}.
+\end{aligned}
 \tag{7.1.25}
 $$
 
