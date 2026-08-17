@@ -328,9 +328,9 @@ $$
 
 $$
 \begin{aligned}
-\mathcal{L}_H &= \sum_{i=1}^{N} \frac{1}{2} m_i \dot{\mathbf{r}}_i^2 - \mathcal{U}\\
-&= \sum_{i=1}^{N} \frac{1}{2} m_i \dot{q}_{\alpha}^S \frac{\partial \mathbf{r}_i}{\partial q_{\alpha}^S} \cdot \frac{\partial \mathbf{r}_i}{\partial q_{\beta}^S} \dot{q}_{\beta}^S - \mathcal{U}(q_S, \boldsymbol{\sigma})\\
-&\equiv \frac{1}{2} \dot{\mathbf{q}}_S \cdot \mathbf{G}_S \cdot \dot{\mathbf{q}}_S - \mathcal{U}(q_S, \boldsymbol{\sigma}).
+\mathcal{L}^H &= \frac{1}{2}\sum_{i=1}^{N} m_i \dot{\mathbf{r}}_i^2 - \mathcal{U}\\
+&= \frac{1}{2}\sum_{i=1}^{N} m_i \dot{q}_{\alpha}^S \frac{\partial \mathbf{r}_i}{\partial q_{\alpha}^S} \cdot \frac{\partial \mathbf{r}_i}{\partial q_{\beta}^S} \dot{q}_{\beta}^S - \mathcal{U}(\mathbf{q}^S, \boldsymbol{\sigma})\\
+&\equiv \frac{1}{2} \dot{\mathbf{q}}^S \cdot \mathbf{G}_S \cdot \dot{\mathbf{q}}^S - \mathcal{U}(\mathbf{q}^S, \boldsymbol{\sigma}).
 \end{aligned}
 \tag{14.1.23}
 $$
@@ -338,14 +338,14 @@ $$
 注意变量数从 $3N$ 减少到 $3N - \ell$，其中 $\ell$ 是约束的数目。约束系统的哈密顿量为
 
 $$
-H_H = \frac{1}{2} \mathbf{p}_S \cdot \mathbf{G}_S^{-1} \cdot \mathbf{p}_S + U(q_S, \boldsymbol{\sigma}),
-\tag{14.1.24}
+\mathcal{H}^H = \frac{1}{2} \mathbf{p}^S \cdot \mathbf{G}_S^{-1} \cdot \mathbf{p}^S + \mathcal{U}(\mathbf{q}^S, \boldsymbol{\sigma}),
 $$
 
 其中
 
 $$
 p_{\alpha}^S \equiv \frac{\partial \mathcal{L}}{\partial \dot{q}_{\alpha}^S}.
+\tag{14.1.24}
 $$
 
 和之前一样，我们可以写出相空间密度。在这种情况下，最方便的做法是直接将密度写为广义坐标和动量的函数：

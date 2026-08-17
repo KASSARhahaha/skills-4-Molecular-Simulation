@@ -207,14 +207,13 @@ $$
 
 $$
 U(\mathbf{r}^N) = \sum_{i=1}^{N-1} \sum_{j=i+1}^{N} u(r_{ij}).
-\tag{5.1.20}
 $$
 
 在这种情况下，我们可以写出：
 
 $$
 P_{\mathrm{exc}} = -\frac{1}{dV} \left\langle \sum_{i=1}^{N} \sum_{j \neq i} \frac{\partial u(r_{ij})}{\partial \mathbf{r}_i} \cdot \mathbf{r}_i \right\rangle_{N,T} = \frac{1}{dV} \left\langle \sum_{i=1}^{N} \sum_{j \neq i} \mathbf{f}(r_{ij}) \cdot \mathbf{r}_i \right\rangle_{N,T}.
-\tag{5.1.21}
+\tag{5.1.20}
 $$
 
 现在我们利用对于对势有$\mathbf{f}(r_{ij}) = -\mathbf{f}(r_{ji})$，以及$i$和$j$是哑标这一事实：
@@ -222,12 +221,10 @@ $$
 $$
 \begin{aligned}
 P &= \rho k_B T + \frac{1}{2dV} \left\langle \sum_{i=1}^{N} \sum_{j \neq i} \mathbf{f}(r_{ij}) \cdot \mathbf{r}_i + \sum_{j=1}^{N} \sum_{i \neq j} \mathbf{f}(r_{ji}) \cdot \mathbf{r}_j \right\rangle_{N,T}\\
-&= \rho k_B T + \frac{1}{2dV} \left\langle \sum_{i=1}^{N} \sum_{j \neq i} \mathbf{f}(r_{ij}) \cdot \mathbf{r}_{ij} \right\rangle_{N,T}
+&= \rho k_B T + \frac{1}{2dV} \left\langle \sum_{i=1}^{N} \sum_{j \neq i} \mathbf{f}(r_{ij}) \cdot \mathbf{r}_{ij} \right\rangle_{N,T}\\
+&= \rho k_B T + \frac{\rho^2}{2d} \int \mathrm{d}\mathbf{r} \, g(r) r f(r).
 \end{aligned}
-$$
-
-$$
-= \rho k_B T + \frac{\rho^2}{2d} \int \mathrm{d}r \, g(r) r f(r).
+\tag{5.1.21}
 $$
 
 将势能分解为群项可能会影响式 (5.1.16) 中压力的哪一部分被认为具有显式体积依赖性。为了说明这一点，考虑$T = 0$和有限压力$P$下的完美原子晶体。在$T = 0$时，系统处于势能极小值，因此所有粒子$i$上的合力$\mathbf{F}_i$为零。根据式 (5.1.16)，压力完全由$U$的显式体积依赖性决定。然而，如果按照文献[[131]](references.md#ref-131)的精神将合力分解为对力，我们发现$\sum_{i,j>i} \mathbf{f}_{ij} \cdot \mathbf{r}_{ij}$并不为零，式 (5.1.21) 给出了压力的正确描述。

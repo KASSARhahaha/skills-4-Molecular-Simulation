@@ -298,7 +298,11 @@ $$
 我们考虑一个包含$N$个原子的系统。由于$\mathcal{H}_{\mathrm{Nose}}$守恒，由该哈密顿量产生的动力学采样一个微正则系综，但处于具有$2dN + 2$个坐标和动量的扩展系统中。[^4] 该系综的配分函数为：
 
 $$
-Q_{\mathrm{Nose}} = \frac{1}{N!}\int \mathrm{d}\mathbf{p}_s\, \mathrm{d}s\, \mathrm{d}\mathbf{p}^N\, \mathrm{d}\mathbf{r}^N\, \delta(E - \mathcal{H}_{\mathrm{Nose}}),
+\begin{aligned}
+Q_{\mathrm{Nose}} &= \frac{1}{N!}\int \mathrm{d}p_s\, \mathrm{d}s\, \mathrm{d}\mathbf{p}^N\, \mathrm{d}\mathbf{r}^N\, \delta(E - \mathcal{H}_{\mathrm{Nose}})\\
+&= \frac{1}{N!}\int \mathrm{d}p_s\, \mathrm{d}s\, \mathrm{d}\mathbf{p}'^N\, \mathrm{d}\mathbf{r}^N\, s^{dN}\\
+&\quad \times \delta\left[\sum_{i=1}^{N}\frac{\mathbf{p}_i'^2}{2m_i} + \mathcal{U}(\mathbf{r}^N) + \frac{p_s^2}{2Q} + \frac{L}{\beta}\ln s - E\right],
+\end{aligned}
 \tag{7.1.14}
 $$
 
@@ -312,7 +316,13 @@ $$
 当$\delta$函数的参数是函数$h(s)$时，如果$h(s)$在$s_0$处有唯一根，我们可以写出$\delta[h(s)] = \delta(s - s_0)/|h'(s_0)|$，其中$h'(s)$表示$h$对$s$的导数。如果我们将这个表达式代入公式 (7.1.14) 并使用公式 (7.1.15)，对于配分函数我们得到：
 
 $$
-Q_{\mathrm{Nose}} = C\int \mathrm{d}\mathbf{p}'^N\, \mathrm{d}\mathbf{r}^N\, \exp\left[-\beta \mathcal{H}(\mathbf{p}',\mathbf{r})\right],
+\begin{aligned}
+Q_{\mathrm{Nose}} &= \frac{1}{N!}\int \mathrm{d}p_s\, \mathrm{d}\mathbf{p}'^N\, \mathrm{d}\mathbf{r}^N\, \mathrm{d}s\, \frac{\beta s^{dN+1}}{L}\\
+&\quad \times \delta\left\{s - \exp\left[-\beta\frac{\mathcal{H}(\mathbf{p}',\mathbf{r}) + p_s^2/(2Q) - E}{L}\right]\right\}\\
+&= \frac{1}{N!}\frac{\beta \exp[\beta E(dN+1)/L]}{L}\int \mathrm{d}p_s\, \exp\left[-\beta\frac{dN+1}{L}p_s^2/(2Q)\right]\\
+&\quad \times \int \mathrm{d}\mathbf{p}'^N\, \mathrm{d}\mathbf{r}^N\, \exp\left[-\beta\frac{dN+1}{L}\mathcal{H}(\mathbf{p}',\mathbf{r})\right]\\
+&= C\frac{1}{N!}\int \mathrm{d}\mathbf{p}'^N\, \mathrm{d}\mathbf{r}^N\, \exp\left[-\beta\frac{dN+1}{L}\mathcal{H}(\mathbf{p}',\mathbf{r})\right].
+\end{aligned}
 \tag{7.1.16}
 $$
 
@@ -367,19 +377,20 @@ $$
 
 $$
 \tau' = \int_0^{\tau} \mathrm{d}t\, 1/s(t).
-\tag{7.1.24}
 $$
 
 这给出，对于公式 (7.1.23)：
 
 $$
 \bar{A}' = \frac{\langle A(\mathbf{p}/s, \mathbf{r})/s\rangle}{\langle 1/s\rangle}.
+\tag{7.1.24}
 $$
 
 如果我们再次考虑配分函数公式 (7.1.16)，可以写出系综平均：
 
 $$
 \langle A(\mathbf{p}/s, \mathbf{r})\rangle_{NVT}.
+\tag{7.1.25}
 $$
 
 注意在这种情况下，如果我们选择$L = dN$，则恢复正则平均。因此，如果使用基于实际时间中等时间步长的采样方案，我们必须使用不同的$L$值。在示例 7 中，我们讨论了一个正确选择自由度数至关重要的系统。
@@ -406,11 +417,10 @@ $$
 
     $$
     \frac{\mathrm{d}\mathbf{r}_i}{\mathrm{d}t} = \frac{\partial \mathcal{H}_{\mathrm{Nose}}}{\partial \mathbf{p}_i} = \frac{\mathbf{p}_i}{m_i s^2},
-    \tag{7.1.25}
     $$
 
     $$
-    \frac{\mathrm{d}\mathbf{p}_i}{\mathrm{d}t} = -\frac{\partial \mathcal{H}_{\mathrm{Nose}}}{\partial \mathbf{r}_i} = -\frac{\partial U(\mathbf{r}^N)}{\partial \mathbf{r}_i},
+    \frac{\mathrm{d}\mathbf{p}_i}{\mathrm{d}t} = -\frac{\partial \mathcal{H}_{\mathrm{Nose}}}{\partial \mathbf{r}_i} = -\frac{\partial \mathcal{U}(\mathbf{r}^N)}{\partial \mathbf{r}_i},
     $$
 
     $$
@@ -419,13 +429,13 @@ $$
 
     $$
     \frac{\mathrm{d}p_s}{\mathrm{d}t} = -\frac{\partial \mathcal{H}_{\mathrm{Nose}}}{\partial s} = \sum_i \frac{\mathbf{p}_i^2}{m_i s^3} - \frac{L}{\beta s}.
-    \tag{7.1.26}
     $$
 
     用实变量表示，这些运动方程可以写为：
 
     $$
-    \frac{\mathrm{d}\mathbf{r}_i'}{\mathrm{d}t'} = \frac{\mathbf{p}_i'}{m_i},
+    \frac{\mathrm{d}\mathbf{r}_i'}{\mathrm{d}t'} = s\frac{\mathrm{d}\mathbf{r}_i}{\mathrm{d}t} = \frac{\mathbf{p}_i}{m_i s} = \mathbf{p}_i'/m_i,
+    \tag{7.1.26}
     $$
 
     $$

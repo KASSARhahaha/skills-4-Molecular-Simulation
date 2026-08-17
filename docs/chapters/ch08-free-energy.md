@@ -290,13 +290,13 @@ $$
 
 $$
 \frac{P(\rho,T) - \rho k_BT}{\rho^2} \to B_2(T),
+\tag{8.4.3}
 $$
 
 其中$B_2$表示第二维里系数，可以使用以下公式以任意精度计算：
 
 $$
 B_2(T) = \frac{1}{2}\int \mathrm{d}r \left[1 - e^{-\beta u(r)}\right].
-\tag{8.4.3}
 $$
 
 一旦我们知道$B_2$，我们不从公式 (8.4.1) 出发，而是从过量自由能$F^{\mathrm{ex}}(\rho,T) \equiv F(\rho,T) - F^{\mathrm{id}}(\rho,T)$的密度导数表达式出发：

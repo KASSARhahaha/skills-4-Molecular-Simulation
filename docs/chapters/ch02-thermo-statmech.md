@@ -1188,26 +1188,26 @@ Onsager [[55,56]](references.md#ref-55)首先提出，由外部微弱扰动在�
 
 ### 静态响应
 
-在讨论输运之前，我们考虑系统对外加弱场的静态响应。例如，该场可以是电场，响应可以是电流，或者对于非导电材料，是电极化。假设我们感兴趣的是可以用动力学变量$A$的系综平均来表示的响应。在外部扰动存在时，$A$的平均值从其平衡值$\langle A \rangle_0$变为$\langle A \rangle_0 + \delta\langle A \rangle$。接下来，我们必须指定扰动。我们假设扰动也可以写成系统中粒子坐标（可能还有动量）的显式函数。扰动的作用是将系统的哈密顿量$\mathcal{H}_0$变为$\mathcal{H}_0 - \lambda B(\mathbf{p}^N, \mathbf{r}^N)$。例如，在沿$x$方向的电场情况下，$\mathcal{H}$的变化将是$\delta\mathcal{H} = -E_x M_x(\mathbf{r}^N)$，其中$M_x$是系统总偶极矩的$x$分量。电场$E_x$对应于参数$\lambda$。我们可以立即写出$\delta\langle A \rangle$的一般表达式：
+在讨论输运之前，我们考虑系统对外加弱场的静态响应。例如，该场可以是电场，响应可以是电流，或者对于非导电材料，是电极化。假设我们感兴趣的是可以用动力学变量$A$的系综平均来表示的响应。在外部扰动存在时，$A$的平均值从其平衡值$\langle A \rangle_0$变为$\langle A \rangle_0 + \langle \Delta A \rangle$。接下来，我们必须指定扰动。我们假设扰动也可以写成系统中粒子坐标（可能还有动量）的显式函数。扰动的作用是将系统的哈密顿量$\mathcal{H}_0$变为$\mathcal{H}_0 - \lambda B(\mathbf{p}^N, \mathbf{r}^N)$。例如，在沿$x$方向的电场情况下，$\mathcal{H}$的变化将是$\Delta\mathcal{H} = -E_x M_x(\mathbf{r}^N)$，其中$M_x$是系统总偶极矩的$x$分量。电场$E_x$对应于参数$\lambda$。我们可以立即写出$\langle \Delta A \rangle$的一般表达式：
 
 $$
-\langle A \rangle_0 + \delta\langle A \rangle =
-\frac{\int \mathrm{d}\boldsymbol{\epsilon} \, A \exp[-\beta(\mathcal{H}_0 - \lambda B)]}
-{\int \mathrm{d}\boldsymbol{\epsilon} \, \exp[-\beta(\mathcal{H}_0 - \lambda B)]},
+\langle A \rangle_0 + \langle \Delta A \rangle =
+\frac{\int \mathrm{d}\Gamma \, A \exp[-\beta(\mathcal{H}_0 - \lambda B)]}
+{\int \mathrm{d}\Gamma \, \exp[-\beta(\mathcal{H}_0 - \lambda B)]},
 \tag{2.5.1}
 $$
 
-其中我们用$\boldsymbol{\epsilon}$表示$\mathbf{p}^N, \mathbf{r}^N$，即系统的相空间坐标。现在我们来计算$\delta\langle A \rangle$中与$\lambda$线性相关的部分。为此，我们计算
+其中我们用$\boldsymbol{\epsilon}$表示$\mathbf{p}^N, \mathbf{r}^N$，即系统的相空间坐标。现在我们来计算$\langle \Delta A \rangle$中与$\lambda$线性相关的部分。为此，我们计算
 
 $$
-\left.\frac{\partial \delta\langle A \rangle}{\partial \lambda}\right|_{\lambda=0}.
+\left.\frac{\partial \langle \Delta A \rangle}{\partial \lambda}\right|_{\lambda=0}.
 \tag{2.5.2}
 $$
 
 直接求导可得：
 
 $$
-\left.\frac{\partial \delta\langle A \rangle}{\partial \lambda}\right|_{\lambda=0}
+\left.\frac{\partial \langle \Delta A \rangle}{\partial \lambda}\right|_{\lambda=0}
 = \beta \left\{ \langle A B \rangle_0 - \langle A \rangle_0 \langle B \rangle_0 \right\}.
 \tag{2.5.3}
 $$
@@ -1215,7 +1215,7 @@ $$
 再以电极化为例，我们可以计算由于施加电场$E_x$引起的系统偶极矩的变化：
 
 $$
-\delta\langle M_x \rangle = E_x \left.\frac{\partial \langle M_x \rangle}{\partial E_x}\right|_{E_x=0}
+\langle \Delta M_x \rangle = E_x \left.\frac{\partial \langle M_x \rangle}{\partial E_x}\right|_{E_x=0}
 = \beta E_x \left\langle M_x^2 \right\rangle - \langle M_x \rangle^2.
 \tag{2.5.4}
 $$
@@ -1265,21 +1265,21 @@ $$
 
 ### 动态响应
 
-接下来，我们考虑一个简单的时间相关扰动。首先，我们在非常微弱的恒定扰动（$\lambda B$）存在的情况下准备系统。$A$对这个扰动的静态响应由公式 (2.5.3) 给出。在$t = 0$时，我们关闭外部扰动。响应$\delta A$现在将衰减到$0$。我们可以写出在时间$t$时$\delta A$的平均值的表达式：
+接下来，我们考虑一个简单的时间相关扰动。首先，我们在非常微弱的恒定扰动（$\lambda B$）存在的情况下准备系统。$A$对这个扰动的静态响应由公式 (2.5.3) 给出。在$t = 0$时，我们关闭外部扰动。响应$\Delta A$现在将衰减到$0$。我们可以写出在时间$t$时$\Delta A$的平均值的表达式：
 
 $$
-\delta\langle A(t) \rangle =
-\frac{\int \mathrm{d}\boldsymbol{\epsilon} \exp[-\beta(\mathcal{H}_0 - \lambda B)] \, A(t)}
-{\int \mathrm{d}\boldsymbol{\epsilon} \exp[-\beta(\mathcal{H}_0 - \lambda B)]},
+\langle \Delta A(t) \rangle =
+\frac{\int \mathrm{d}\Gamma \exp[-\beta(\mathcal{H}_0 - \lambda B)] \, A(t)}
+{\int \mathrm{d}\Gamma \exp[-\beta(\mathcal{H}_0 - \lambda B)]},
 \tag{2.5.7}
 $$
 
 其中$A(t)$是如果系统从相空间中的$\boldsymbol{\epsilon}$点出发，然后按照未扰动系统的自然时间演化到达时间$t$时$A$的值。为方便起见，我们假设$A$在未扰动系统中的平均值为零。在$\lambda \to 0$的极限下，我们可以写出：
 
 $$
-\delta\langle A(t) \rangle =
-\beta \lambda \frac{\int \mathrm{d}\boldsymbol{\epsilon} \exp[-\beta\mathcal{H}_0] \, B A(t)}
-{\int \mathrm{d}\boldsymbol{\epsilon} \exp[-\beta\mathcal{H}_0]}
+\langle \Delta A(t) \rangle =
+\beta \lambda \frac{\int \mathrm{d}\Gamma \exp[-\beta\mathcal{H}_0] \, B A(t)}
+{\int \mathrm{d}\Gamma \exp[-\beta\mathcal{H}_0]}
 = \beta \lambda \langle B(0)A(t) \rangle.
 \tag{2.5.8}
 $$
@@ -1297,7 +1297,7 @@ $$
 举一个具体的例子，考虑处于弱电场$E_x$中的偶极分子气体。扰动等于$-E_x M_x$。在$t = 0$时，我们关闭电场。当电场仍然存在时，系统具有净偶极矩。当电场关闭时，这个偶极矩衰减：
 
 $$
-\delta\langle M_x(t) \rangle = E_x \beta \langle M_x(0)M_x(t) \rangle.
+\langle \Delta M_x(t) \rangle = E_x \beta \langle M_x(0)M_x(t) \rangle.
 \tag{2.5.10}
 $$
 
@@ -1315,7 +1315,7 @@ $$
 对$f(t)$的线性阶，力学性质$A$对这个扰动响应的最一般形式为
 
 $$
-\delta\langle A(t) \rangle = \int_{-\infty}^{\infty} \mathrm{d}t' \, \chi_{AB}(t, t') f(t'),
+\langle \Delta A(t) \rangle = \int_{-\infty}^{\infty} \mathrm{d}t' \, \chi_{AB}(t, t') f(t'),
 \tag{2.5.12}
 $$
 
@@ -1329,14 +1329,14 @@ $$
 其次，时间$t$对时间$t'$扰动的响应仅依赖于时间差$t - t'$。因此，
 
 $$
-\delta\langle A(t) \rangle = \int_{-\infty}^{t} \mathrm{d}t' \, \chi_{AB}(t - t') f(t').
+\langle \Delta A(t) \rangle = \int_{-\infty}^{t} \mathrm{d}t' \, \chi_{AB}(t - t') f(t').
 \tag{2.5.14}
 $$
 
 一旦我们知道$\chi$，我们就可以计算系统对任意时间相关扰动场$f(t)$的线性响应。为了找到$\chi_{AB}$的表达式，让我们考虑公式 (2.5.8) 中描述的情况，即外部扰动在$t = 0$之前具有恒定值$\lambda$，之后为$0$。从公式 (2.5.14)，对这种扰动的响应为
 
 $$
-\delta\langle A(t) \rangle = \lambda \int_{-\infty}^{0} \mathrm{d}t' \, \chi_{AB}(t - t')
+\langle \Delta A(t) \rangle = \lambda \int_{-\infty}^{0} \mathrm{d}t' \, \chi_{AB}(t - t')
 = \lambda \int_{0}^{\infty} \mathrm{d}\tau \, \chi_{AB}(\tau).
 \tag{2.5.15}
 $$
@@ -1469,11 +1469,11 @@ $$
 **问题 3（理想气体（第一部分））。**由单原子粒子组成的理想气体的正则配分函数等于：
 
 $$
-Q(N, V, T) = \frac{1}{h^{3N} N!} \int \mathrm{d}\boldsymbol{\epsilon} \exp[-\beta\mathcal{H}]
+Q(N, V, T) = \frac{1}{h^{3N} N!} \int \mathrm{d}\Gamma \exp[-\beta\mathcal{H}]
 = \frac{V^N}{\Lambda^{3N} N!},
 $$
 
-其中$\Lambda = h/\sqrt{2\pi m/\beta}$，$\mathrm{d}\boldsymbol{\epsilon} = \mathrm{d}q_1 \cdots \mathrm{d}q_N \, \mathrm{d}p_1 \cdots \mathrm{d}p_N$。推导以下热力学性质的表达式：
+其中$\Lambda = h/\sqrt{2\pi m/\beta}$，$\mathrm{d}\Gamma = \mathrm{d}q_1 \cdots \mathrm{d}q_N \, \mathrm{d}p_1 \cdots \mathrm{d}p_N$。推导以下热力学性质的表达式：
 
 - $F(N, V, T)$（提示：$\ln(N!) \approx N \ln(N) - N$）
 - $p(N, V, T)$（由此导出理想气体定律）
@@ -1492,7 +1492,6 @@ $$
 
 $$
 a = \frac{27 R^2 T_c^2}{64 P_c}, \qquad b = \frac{R T_c}{8 P_c}.
-\tag{2.6.1}
 $$
 
 在本书中，我们将非常频繁地使用 Lennard-Jones 流体。Lennard-Jones 流体的临界点为$T_c = 1.32$，$\rho_c = 0.32$（每单位体积的分子数），$P_c = 0.131$ [[63]](references.md#ref-63)。这些常数以约化单位表示（见第 3.3.2.5 节）。绘制$T = 2.00$和$T = 1.00$时的状态方程（压力作为摩尔体积的函数）。
@@ -1569,6 +1568,7 @@ $$
    当$N \to \infty$时。函数$\cosh(x)$定义为
    $$
    \cosh(x) = \frac{\exp[-x] + \exp[x]}{2}.
+   \tag{2.6.1}
    $$
 1. 推导该系统的能量和热容的表达式。
 
@@ -1590,11 +1590,16 @@ $$
    \sum_{i=0}^{\infty} x^i = \frac{1}{1 - x}.
    \tag{2.6.3}
    $$
-   对于两个独立系统$A$和$B$的配分函数之积，我们可以写为$Q_A \times Q_B = Q_{AB}$，当$A \cap B = \emptyset$且$A \cup B = AB$时。
+   对于两个独立系统$A$和$B$的配分函数之积，我们可以写为
+   $$
+   Q_A \times Q_B = Q_{AB}
+   \tag{2.6.4}
+   $$
+   当$A \cap B = \emptyset$且$A \cup B = AB$时。
 1. 证明态$j$的平均占据数$\langle n_j \rangle$等于
    $$
    \langle n_j \rangle = \frac{\partial \ln Q}{\partial (-\beta \epsilon_j)} = \frac{1}{\exp(\beta \epsilon_j) - 1}.
-   \tag{2.6.4}
+   \tag{2.6.5}
    $$
 1. 描述当$T \to \infty$和$T \to 0$时$\langle n_j \rangle$的行为。
 
@@ -1603,14 +1608,14 @@ $$
 1. 证明高度$z$处体积$V$中系统的巨正则配分函数等于
    $$
    Q(\mu, V, T, z) = \sum_{N=0}^{\infty} \exp[\beta\mu N]
-   \frac{1}{h^{3N} N!} \int \mathrm{d}\boldsymbol{\epsilon} \exp[-\beta(\mathcal{H}_0 + Mgz)],
-   \tag{2.6.5}
+   \frac{1}{h^{3N} N!} \int \mathrm{d}\Gamma \exp[-\beta(\mathcal{H}_0 + Mgz)],
+   \tag{2.6.6}
    $$
    其中$\mathcal{H}_0$是$z = 0$时系统的哈密顿量。
 1. 解释$z$的变化等价于化学势$\mu$的变化。利用这一点证明气体在高度$z$处的压力等于
    $$
    p(z) = p(z = 0) \times \exp[-\beta m g z].
-   \tag{2.6.6}
+   \tag{2.6.7}
    $$
    （提示：你需要理想气体化学势的公式。）
 
@@ -1618,7 +1623,7 @@ $$
 
 $$
 N = \sum_{i=1}^{p} n_i.
-\tag{2.6.7}
+\tag{2.6.8}
 $$
 
 一个有趣的量是分子在$p$个间隔上的分布。由于能量是恒定的，系统的每一个可能的量子态被占据的概率相等。这意味着原则上可能存在某个间隔是空的情况。
@@ -1628,12 +1633,12 @@ $$
 1. 考虑$p = 2$且$N$为偶数的情况。间隔 1 中含有$N/2 + n_1$个分子而间隔 2 中含有$N/2 - n_1$个分子的概率为
    $$
    P(n_1) = \frac{N!}{(N/2 - n_1)!(N/2 + n_1)! \, 2^N}.
-   \tag{2.6.8}
+   \tag{2.6.9}
    $$
    将你的数值结果与不同$N$值的解析表达式进行比较。证明对于小的$n_1/N$，这个分布是高斯分布。提示：对于$x > 10$，使用斯特林近似可能有用：
    $$
    x! \approx (2\pi)^{1/2} x^{x + 1/2} \exp[-x].
-   \tag{2.6.9}
+   \tag{2.6.10}
    $$
 
 **练习 2（玻尔兹曼分布）。**考虑一个具有$N$个能级的系统，能量分别为$0, \epsilon, 2\epsilon, \cdots, (N-1)\epsilon$且$\epsilon > 0$。
@@ -1643,12 +1648,12 @@ $$
 1. 修改程序，使得对于具有转动惯量$I$的异核线性转子计算能级占据数和配分函数 $q$。将你的结果与以下近似结果进行比较
    $$
    q = \frac{2I}{\beta \hbar^2},
-   \tag{2.6.10}
+   \tag{2.6.11}
    $$
    对于不同温度。注意线性转子的能级为
    $$
    U = J(J + 1) \frac{\hbar^2}{2I},
-   \tag{2.6.11}
+   \tag{2.6.12}
    $$
    其中$J = 0, 1, 2, \cdots, \infty$。能级$J$的简并度等于$2J + 1$。
 
@@ -1662,8 +1667,7 @@ $$
 **练习 4（一维晶格上的随机行走）。**考虑单粒子在直线上的随机行走。粒子进行固定长度的跳跃。假设向前和向后跳跃的概率相等，粒子经过$N$次跳跃后的均方位移等于$N$。经过$N$次跳跃后粒子净距离等于$n$的概率为
 
 $$
-\ln[P(n, N)] \approx \ln\frac{1}{\sqrt{2\pi N}} - \frac{n^2}{2N}.
-\tag{2.6.12}
+\ln[P(n, N)] \approx \frac{1}{2}\ln\left(\frac{2}{\pi N}\right) - \frac{n^2}{2N}.
 $$
 
 1. 使用斯特林近似推导$\ln x!$的上述公式。

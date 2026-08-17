@@ -179,23 +179,23 @@ $$
 将粒子的``绝对''坐标（$\mathbf{r}$，即已对质心运动进行修正的坐标）与未修正坐标（$\mathbf{r}^{(U)}$）区分开是方便的。在计算谐弹簧的势能时，我们需要知道 $\sum_{i=1}^{N}(\mathbf{r}_i - \mathbf{r}_{0,i})^2$。为了计算粒子 $i$ 到其格点的距离 $\mathbf{r}_i - \mathbf{r}_{0,i}$，我们必须跟踪质心的位移：
 
 $$
-\boldsymbol{\delta}\mathbf{r}_i \equiv \mathbf{r}_i - \mathbf{r}_{0,i} = \mathbf{r}_i^{(U)} - \mathbf{r}_{0,i}^{(U)} - \boldsymbol{\delta}\mathbf{R}_{\mathrm{CM}} ,
+\Delta\mathbf{r}_i \equiv \mathbf{r}_i - \mathbf{r}_{0,i} = \mathbf{r}_i^{(U)} - \mathbf{r}_{0,i}^{(U)} - \Delta\mathbf{R}_{\mathrm{CM}} ,
 $$
 
-其中 $\boldsymbol{\delta}\mathbf{R}_{\mathrm{CM}}$ 表示系统质心的累积位移。每次粒子从 $\mathbf{r}^{(U)} \to \mathbf{r}^{(U)} + \boldsymbol{\delta}\mathbf{r}$ 移动时，$\boldsymbol{\delta}\mathbf{R}_{\mathrm{CM}}$ 变为 $\boldsymbol{\delta}\mathbf{R}_{\mathrm{CM}} + \boldsymbol{\delta}\mathbf{r}/N$。
+其中 $\Delta\mathbf{R}_{\mathrm{CM}}$ 表示系统质心的累积位移。每次粒子从 $\mathbf{r}^{(U)} \to \mathbf{r}^{(U)} + \Delta\mathbf{r}$ 移动时，$\Delta\mathbf{R}_{\mathrm{CM}}$ 变为 $\Delta\mathbf{R}_{\mathrm{CM}} + \Delta\mathbf{r}/N$。
 
-计算所有粒子与其格点之间的谐相互作用能量变化相当简单。假设我们尝试将粒子 $i$ 从其格点 $\mathbf{r}_{0,i}$ 的距离 $\boldsymbol{\delta}\mathbf{r}_i$ 处移动一段距离 $\boldsymbol{\epsilon}_i$。这会导致质心发生 $\boldsymbol{\epsilon}_i/N$ 的位移。谐势能的变化为
+计算所有粒子与其格点之间的谐相互作用能量变化相当简单。假设我们尝试将粒子 $i$ 从其格点 $\mathbf{r}_{0,i}$ 的距离 $\Delta\mathbf{r}_i$ 处移动一段距离 $\boldsymbol{\Delta}_i$。这会导致质心发生 $\boldsymbol{\Delta}_i/N$ 的位移。谐势能的变化为
 
 $$
 \begin{aligned}
-\delta \mathcal{U}_{\mathrm{Harm}}(\lambda) &= \lambda \sum_{j \neq i} \left[ \left(\boldsymbol{\delta}\mathbf{r}_j - \frac{\boldsymbol{\epsilon}_i}{N}\right)^2 - \boldsymbol{\delta}\mathbf{r}_j^2 \right]\\
-&\quad + \lambda \left[ \left(\boldsymbol{\delta}\mathbf{r}_i + \left(1-\frac{1}{N}\right)\boldsymbol{\epsilon}_i\right)^2 - \boldsymbol{\delta}\mathbf{r}_i^2 \right]\\
-&= \lambda \left( 2\boldsymbol{\delta}\mathbf{r}_i \cdot \boldsymbol{\epsilon}_i + \frac{N-1}{N}\boldsymbol{\epsilon}_i^2 \right) ,
+\Delta \mathcal{U}_{\mathrm{Harm}}(\lambda) &= \lambda \sum_{j \neq i}^{N} \left[ \left(\Delta\mathbf{r}_j - \frac{\boldsymbol{\Delta}_i}{N}\right)^2 - \Delta\mathbf{r}_j^2 \right]\\
+&\quad + \lambda \left[ \left(\Delta\mathbf{r}_i + \left(1-\frac{1}{N}\right)\boldsymbol{\Delta}_i\right)^2 - \Delta\mathbf{r}_i^2 \right]\\
+&= \lambda \left( 2\Delta\mathbf{r}_i \cdot \boldsymbol{\Delta}_i + \frac{N-1}{N}\boldsymbol{\Delta}_i^2 \right) ,
 \end{aligned}
 \tag{9.2.8}
 $$
 
-其中，在最后一行中我们使用了 $\sum_{i=1}^{N} \boldsymbol{\delta}\mathbf{r}_i = 0$ 这一事实。
+其中，在最后一行中我们使用了 $\sum_{i=1}^{N} \Delta\mathbf{r}_i = 0$ 这一事实。
 
 还有一个注意事项需要考虑：将移出原始模拟盒的粒子放回到另一侧是一种常见（尽管不建议）的做法。然而，在模拟具有固定质心的系统时，将粒子移回原始模拟盒会造成质心位置的不连续变化，从而导致爱因斯坦晶格能量的突然变化。因此，在固定质心的模拟中，移出原始模拟盒的粒子绝对不应被放回。算法 19 和 20 概述了如何在 Monte Carlo 模拟中实现爱因斯坦晶体方法。
 
@@ -208,7 +208,7 @@ $$
   $o = \text{int}(R \times n_{\text{part}}) + 1$ \COMMENT{随机选择粒子}
   $\text{dis} = (R - 0.5) \times \text{delx}$ \COMMENT{给予粒子随机位移}
   $x_n = x(o) + \text{dis}$
-  $\mathrm{d}x = x(o) - x_0(o) - \mathrm{d}x_{\mathrm{cm}}$ \COMMENT{计算 $\boldsymbol{\delta}\mathbf{r}_i$}
+  $\mathrm{d}x = x(o) - x_0(o) - \mathrm{d}x_{\mathrm{cm}}$ \COMMENT{计算 $\Delta\mathbf{r}_i$}
   $\text{del} = \lambda \times (2 \times \mathrm{d}x \times \text{dis} + \text{dis} \times \text{dis} \times (n_{\text{part}}-1)/n_{\text{part}})$ \COMMENT{与晶格的能量差，式 (9.2.8)}
   $\text{arg1} = -\beta \times \text{del}$
 if $R < \exp(\text{arg1)$}
@@ -229,7 +229,7 @@ skip
 
 1. 函数 setlat 用于设置固定的参考晶格 $x_0$（算法 20）。在模拟开始时 $x = x_0$。ener 计算分子间相互作用能量。
 1. 如果移动被接受，系统质心（CoM）的位移 $(\mathrm{d}x_{\mathrm{cm}})$ 被更新，同样的位移也被应用于参考晶格。
-1. 项 $\lambda$ 是式 (9.2.6) 中定义的耦合常数，$\mathrm{d}x_{\mathrm{cm}} = \boldsymbol{\delta}\mathbf{R}_{\mathrm{CM}}$ 是质心的累积位移。
+1. 项 $\lambda$ 是式 (9.2.6) 中定义的耦合常数，$\mathrm{d}x_{\mathrm{cm}} = \Delta\mathbf{R}_{\mathrm{CM}}$ 是质心的累积位移。
 1. 对于硬核系统，首先计算与谐弹簧势能变化相关的玻尔兹曼因子并应用 Metropolis 规则来判断是否应拒绝移动，这一点很重要。只有通过此测试后，才应尝试执行更昂贵的重叠检测。
 
 **算法 20　生成 fcc 晶体**

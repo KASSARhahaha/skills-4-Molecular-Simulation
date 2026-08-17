@@ -42,16 +42,16 @@ K \equiv \frac{\langle c_A \rangle}{\langle c_B \rangle} = \frac{k_{B \to A}}{k_
 \tag{15.1.4}
 $$
 
-其中$K$是反应的平衡常数。现在考虑如果我们取一个处于平衡态的体系，对物种 A 的浓度施加一个小扰动$\delta c_A$（从而也影响物种 B），会发生什么。我们可以写出决定此扰动衰减的速率方程为
+其中$K$是反应的平衡常数。现在考虑如果我们取一个处于平衡态的体系，对物种 A 的浓度施加一个小扰动$\Delta c_A$（从而也影响物种 B），会发生什么。我们可以写出决定此扰动衰减的速率方程为
 
 $$
-\frac{\mathrm{d}\delta c_A(t)}{\mathrm{d}t} = -k_{A \to B} \delta c_A(t) - k_{B \to A} \delta c_A(t),
+\frac{\mathrm{d}\Delta c_A(t)}{\mathrm{d}t} = -k_{A \to B} \Delta c_A(t) - k_{B \to A} \Delta c_A(t),
 $$
 
 其中我们使用了式 (15.1.3) 和 (15.1.4)。该方程的解为
 
 $$
-\delta c_A(t) = \delta c_A(0) \exp[-(k_{A \to B} + k_{B \to A})t] \equiv \delta c_A(0) \exp(-t/\tau_R),
+\Delta c_A(t) = \Delta c_A(0) \exp[-(k_{A \to B} + k_{B \to A})t] \equiv \Delta c_A(0) \exp(-t/\tau_R),
 \tag{15.1.5}
 $$
 
@@ -88,19 +88,19 @@ $$
 让我们首先考虑这种类型的静态扰动对在状态 A 中找到体系的概率的影响。我们注意到
 
 $$
-\delta c_A = \langle c_A \rangle_\epsilon - \langle c_A \rangle_0 = \langle g_A \rangle_\epsilon - \langle g_A \rangle_0.
+\Delta c_A = \langle c_A \rangle_\epsilon - \langle c_A \rangle_0 = \langle g_A \rangle_\epsilon - \langle g_A \rangle_0.
 $$
 
 这里我们利用了$g_A$在反应物势阱中等于 1 的事实。因此，$g_A$的平均值就等于在状态 A 中找到体系的概率。由第 2.5.1 节的式 (2.5.3)，我们立即得到
 
 $$
-\frac{\partial \delta c_A}{\partial \epsilon} = \beta \left[\langle g_A^2 \rangle_0 - \langle g_A \rangle_0^2\right].
+\frac{\partial \Delta c_A}{\partial \epsilon} = \beta \left[\langle g_A^2 \rangle_0 - \langle g_A \rangle_0^2\right].
 $$
 
 注意到在势垒区域之外，$g_A$要么为 1 要么为 0，因此$g_A^2(x) = g_A(x)$。在势垒区域，这个等式不一定成立——但这些构型对平衡平均的贡献可以忽略不计。因此，
 
 $$
-\frac{\partial \delta c_A}{\partial \epsilon} = \beta \langle c_A \rangle \left[1 - \langle c_A \rangle\right] = \beta \langle c_A \rangle \langle c_B \rangle.
+\frac{\partial \Delta c_A}{\partial \epsilon} = \beta \langle c_A \rangle \left[1 - \langle c_A \rangle\right] = \beta \langle c_A \rangle \langle c_B \rangle.
 \tag{15.1.8}
 $$
 
@@ -110,7 +110,7 @@ $$
 
 $$
 \begin{aligned}
-\delta c_A(t) &= \beta \epsilon \frac{\int \mathrm{d}\Gamma \exp(-\beta \mathcal{H}_0)(g_A(0) - \langle g_A \rangle) \exp(iL_0 t)(g_A(0) - \langle g_A \rangle)}{\int \mathrm{d}\Gamma \exp(-\beta \mathcal{H}_0)}\\
+\Delta c_A(t) &= \beta \epsilon \frac{\int \mathrm{d}\Gamma \exp(-\beta \mathcal{H}_0)(g_A(0) - \langle g_A \rangle) \exp(iL_0 t)(g_A(0) - \langle g_A \rangle)}{\int \mathrm{d}\Gamma \exp(-\beta \mathcal{H}_0)}\\
 &= \beta \epsilon \langle \Delta g_A(0) \Delta g_A(t) \rangle.
 \end{aligned}
 \tag{15.1.9}
@@ -119,7 +119,7 @@ $$
 最后，我们可以利用式 (15.1.8) 消去上式中的$\epsilon$，得到物种 A 浓度初始扰动的弛豫表达式：
 
 $$
-\delta c_A(t) = \delta c_A(0) \frac{\langle \Delta g_A(0) \Delta g_A(t) \rangle}{\langle c_A \rangle \langle c_B \rangle}.
+\Delta c_A(t) = \Delta c_A(0) \frac{\langle \Delta g_A(0) \Delta g_A(t) \rangle}{\langle c_A \rangle \langle c_B \rangle}.
 \tag{15.1.10}
 $$
 
@@ -502,7 +502,7 @@ $$
 由此扰动引起的平衡浓度分布变化为
 
 $$
-\delta \rho(q) = -e^{-\beta U} \rho_{\mathrm{eq}} \frac{q \beta \epsilon}{\omega}.
+\Delta \rho(q) = -e^{-\beta U} \rho_{\mathrm{eq}} \frac{q \beta \epsilon}{\omega}.
 \tag{15.3.18}
 $$
 
@@ -575,39 +575,39 @@ $$
 其中我们必须记住，在所考虑的所有$n$条轨迹中，体系最初都位于势垒顶部。遵循基本上与导出式 (15.3.14) 相同的推理，我们得到
 
 $$
-\langle (\delta \kappa_{\mathrm{est}})^2 \rangle = \frac{4}{\omega^2 \langle |\dot{q}| \rangle^2 n} \left[\int_0^t \mathrm{d}t' \int_0^t \mathrm{d}t'' \langle \dot{q}(0) \dot{q}(t') \dot{q}(0) \dot{q}(t'') \rangle - \left(\int_0^t \mathrm{d}t' \langle \dot{q}(0) \dot{q}(t') \rangle\right)^2\right].
+\langle (\Delta \kappa_{\mathrm{est}})^2 \rangle = \frac{4}{\omega^2 \langle |\dot{q}| \rangle^2 n} \left[\int_0^t \mathrm{d}t' \int_0^t \mathrm{d}t'' \langle \dot{q}(0) \dot{q}(t') \dot{q}(0) \dot{q}(t'') \rangle - \left(\int_0^t \mathrm{d}t' \langle \dot{q}(0) \dot{q}(t') \rangle\right)^2\right].
 $$
 
 如果我们像以前一样假设$\dot{q}$表现为高斯变量，则
 
 $$
-\langle (\delta \kappa_{\mathrm{est}})^2 \rangle = \frac{4}{\omega^2 \langle |\dot{q}| \rangle^2 n} \left[\langle \dot{q}^2 \rangle t \int_0^t \mathrm{d}t' \langle \dot{q}(0) \dot{q}(t') \rangle + D^2\right].
+\langle (\Delta \kappa_{\mathrm{est}})^2 \rangle = \frac{4}{\omega^2 \langle |\dot{q}| \rangle^2 n} \left[\langle \dot{q}^2 \rangle t \int_0^t \mathrm{d}t' \langle \dot{q}(0) \dot{q}(t') \rangle + D^2\right].
 \tag{15.3.21}
 $$
 
 我们考虑$t \to \infty$的极限。在该极限下$D \ll \langle \dot{q}^2 \rangle t$，因此
 
 $$
-\langle (\delta \kappa_{\mathrm{est}})^2 \rangle \sim \frac{4}{\omega^2 \langle |\dot{q}| \rangle^2 n} \langle \dot{q}^2 \rangle D t.
+\langle (\Delta \kappa_{\mathrm{est}})^2 \rangle \sim \frac{4}{\omega^2 \langle |\dot{q}| \rangle^2 n} \langle \dot{q}^2 \rangle D t.
 \tag{15.3.22}
 $$
 
 现在透射系数计算的相对误差为
 
 $$
-\frac{\langle (\delta \kappa_{\mathrm{est}})^2 \rangle^{1/2}}{\kappa} \sim \sqrt{\frac{\langle \dot{q}^2 \rangle t}{D n}}.
+\frac{\langle (\Delta \kappa_{\mathrm{est}})^2 \rangle^{1/2}}{\kappa} \sim \sqrt{\frac{\langle \dot{q}^2 \rangle t}{D n}}.
 $$
 
 由 Green-Kubo 关系式 (15.3.19) 我们看到扩散系数$D$等于$\langle \dot{q}^2 \rangle \tau_c$，其中$\tau_c$是速度涨落的衰减时间。因此，
 
 $$
-\frac{\langle (\delta \kappa_{\mathrm{est}})^2 \rangle^{1/2}}{\kappa} \sim \sqrt{\frac{t}{n \tau_c}}.
+\frac{\langle (\Delta \kappa_{\mathrm{est}})^2 \rangle^{1/2}}{\kappa} \sim \sqrt{\frac{t}{n \tau_c}}.
 $$
 
 通常，对于远大于$\tau_c$的时间计算关联函数$\langle \dot{q}(0) \dot{q}(t) \rangle$没有太大意义。因此，$\kappa$的相对误差简单地是$1/\sqrt{n}$。如果我们将此统计精度表达式与 Bennett-Chandler 方案中式 (15.3.17) 得到的表达式
 
 $$
-\left[\frac{\langle (\delta \kappa_{\mathrm{est}})^2 \rangle^{1/2}}{\kappa}\right]_{\text{Bennett-Chandler}} = \frac{1}{\kappa \sqrt{n}}
+\left[\frac{\langle (\Delta \kappa_{\mathrm{est}})^2 \rangle^{1/2}}{\kappa}\right]_{\text{Bennett-Chandler}} = \frac{1}{\kappa \sqrt{n}}
 \tag{15.3.23}
 $$
 

@@ -49,13 +49,13 @@ $$
 
 正则系综中的模拟应当采样公式 (6.2.1) 给出的分布。这可以通过以下方案实现：
 
-1. 随机选择一个粒子并计算构型的能量 $U(o)$。
+1. 随机选择一个粒子并计算构型的能量 $\mathcal{U}(o)$。
 1. 给该粒子一个随机位移（参见图 6.1），例如
    $$
    \mathbf{r}(o) \to \mathbf{r}(o) + \Delta(\mathbf{R} - 0.5),
    \tag{6.2.2}
    $$
-   其中 $\Delta/2$ 是最大位移。$\Delta$ 的值应选择为使采样方案最优（参见第 3.4 节）。试探构型记为 $n$，其能量为 $U(n)$。
+   其中 $\Delta/2$ 是最大位移。$\Delta$ 的值应选择为使采样方案最优（参见第 3.4 节）。试探构型记为 $n$，其能量为 $\mathcal{U}(n)$。
 1. 该移动以如下概率被接受（参见公式 (3.2.11)）
    $$
    \text{acc}(o \to n) = \min(1, \exp\{-\beta[\mathcal{U}(n) - \mathcal{U}(o)]\}).
@@ -550,7 +550,7 @@ $$
    $$
    粒子移除以如下概率被接受
    $$
-   \text{acc}(N \to N - 1) = \min\left(1, \frac{N}{f V} \exp\{-\beta[U(N - 1) - U(N)]\}\right).
+   \text{acc}(N \to N - 1) = \min\left(1, \frac{N}{f V} \exp\{-\beta[\mathcal{U}(N - 1) - \mathcal{U}(N)]\}\right).
    \tag{6.5.14}
    $$
 

@@ -472,7 +472,6 @@ $$
 
 $$
 \mathbf{r}(t+2\Delta t) + \mathbf{r}(t) = 2\mathbf{r}(t+\Delta t) + [\mathbf{v}(t+\Delta t) - \mathbf{v}(t)]\Delta t + \frac{\mathbf{f}(t+\Delta t) - \mathbf{f}(t)}{2m}\Delta t^2.
-\tag{4.3.6}
 $$
 
 代入方程 (4.3.5) 可得
@@ -486,26 +485,26 @@ $$
 可以使用所谓的速度校正 Verlet 算法获得更精确的速度估计，对于该算法，位置和速度中的误差都是$O(\Delta t^4)$量级的。速度校正 Verlet 算法的推导如下。首先写下$\mathbf{r}(t+2\Delta t)$、$\mathbf{r}(t+\Delta t)$、$\mathbf{r}(t-\Delta t)$和$\mathbf{r}(t-2\Delta t)$的泰勒展开：
 
 $$
-\begin{align}
-\mathbf{r}(t+2\Delta t) &= \mathbf{r}(t) + 2\mathbf{v}(t)\Delta t + \dot{\mathbf{v}}(t)(2\Delta t)^2/2! + \ddot{\mathbf{v}}(2\Delta t)^3/3! + \cdots \nonumber \\
-\mathbf{r}(t+\Delta t) &= \mathbf{r}(t) + \mathbf{v}(t)\Delta t + \dot{\mathbf{v}}(t)\Delta t^2/2! + \ddot{\mathbf{v}}\Delta t^3/3! + \cdots \nonumber \\
-\mathbf{r}(t-\Delta t) &= \mathbf{r}(t) - \mathbf{v}(t)\Delta t + \dot{\mathbf{v}}(t)\Delta t^2/2! - \ddot{\mathbf{v}}\Delta t^3/3! + \cdots \nonumber \\
+\begin{aligned}
+\mathbf{r}(t+2\Delta t) &= \mathbf{r}(t) + 2\mathbf{v}(t)\Delta t + \dot{\mathbf{v}}(t)(2\Delta t)^2/2! + \ddot{\mathbf{v}}(2\Delta t)^3/3! + \cdots \\
+\mathbf{r}(t+\Delta t) &= \mathbf{r}(t) + \mathbf{v}(t)\Delta t + \dot{\mathbf{v}}(t)\Delta t^2/2! + \ddot{\mathbf{v}}\Delta t^3/3! + \cdots \\
+\mathbf{r}(t-\Delta t) &= \mathbf{r}(t) - \mathbf{v}(t)\Delta t + \dot{\mathbf{v}}(t)\Delta t^2/2! - \ddot{\mathbf{v}}\Delta t^3/3! + \cdots \\
 \mathbf{r}(t-2\Delta t) &= \mathbf{r}(t) - 2\mathbf{v}(t)\Delta t + \dot{\mathbf{v}}(t)(2\Delta t)^2/2! - \ddot{\mathbf{v}}(2\Delta t)^3/3! + \cdots.
-\tag{4.3.7}
-\end{align}
+\end{aligned}
 $$
 
 然后可得
 
 $$
-8[\mathbf{r}(t+\Delta t) - \mathbf{r}(t-\Delta t)] - [\mathbf{r}(t+2\Delta t) - \mathbf{r}(t-2\Delta t)] + O(\Delta t^5) = 12\mathbf{v}(t)\Delta t,
+8[\mathbf{r}(t+\Delta t) - \mathbf{r}(t-\Delta t)] - [\mathbf{r}(t+2\Delta t) - \mathbf{r}(t-2\Delta t)] + O(\Delta t^5) = 12\mathbf{v}(t)\Delta t
+\tag{4.3.6}
 $$
 
 或等价地，
 
 $$
 \mathbf{v}(t) = \frac{\mathbf{r}(t+\Delta t) - \mathbf{r}(t-\Delta t)}{1.5\Delta t} - \frac{\mathbf{r}(t+2\Delta t) - \mathbf{r}(t-2\Delta t)}{12\Delta t} + O(\Delta t^4).
-\tag{4.3.8}
+\tag{4.3.7}
 $$
 
 注意，这个精确到$O(\Delta t^4)$的速度估计，只有在使用 Verlet 算法（方程 (4.2.3)）生成了时间$t \pm \Delta t$和$t \pm 2\Delta t$处的位置之后才能计算。
@@ -569,11 +568,10 @@ end for
     在模拟中，我们通过离散时间来仅近似求解这些运动方程。离散时间处的位置位于一条“影子”轨迹上，沿着这条轨迹“影子哈密顿量”守恒（见第 4.3.1 节）。一个结果是，在时间$t$处定义为沿这条连续影子路径的位置导数的速度，并不由速度 Verlet 算法中称为速度的那个量给出。为了揭示“速度”Verlet 算法中动量的作用，最好使用 Eastwood 等人[[115]](references.md#ref-115)的记法并写为：
 
     $$
-    \begin{align}
-    q(t+\delta t) &= q(t) + \delta t\frac{p(t)}{m} + \frac{1}{2}\frac{F(t)}{m}(\delta t)^2 \nonumber \\
+    \begin{aligned}
+    q(t+\delta t) &= q(t) + \delta t\frac{p(t)}{m} + \frac{1}{2}\frac{F(t)}{m}(\delta t)^2 \\
     p(t+\delta t) &= p(t) + \frac{1}{2}\delta t[F(t) + F(t+\delta t)].
-    \tag{4.3.9}
-    \end{align}
+    \end{aligned}
     $$
 
     Gans 和 Shalloway [[114]](references.md#ref-114)证明，对于谐振子，$p(t)/m$和通过对离散轨迹插值获得的$\dot{q}$之间可能存在显著差异。这种非平凡差异的后果是，我们会根据使用动量还是速度来计算温度而获得不同的温度。$\dot{q}$和$p/m$之间的差异意味着我们在计算温度时应该小心。正如第 5.1.1 节中所解释的，以下关系直接从正则系综的性质得出：
@@ -586,10 +584,9 @@ end for
 
     $$
     \begin{align}
-    k_BT_{pv} &= \langle p_i v_i \rangle_{\delta t}, \nonumber \\
-    k_BT_{p^2} &= \langle p_i p_i/m_i \rangle_{\delta t}, \nonumber \\
-    k_BT_{v^2} &= \langle m_i v_i v_i \rangle_{\delta t}.
-    \tag{4.3.10}
+    k_BT_{pv} &= \langle p_i v_i \rangle_{\delta t}, \tag{4.3.8} \\
+    k_BT_{p^2} &= \langle p_i p_i/m_i \rangle_{\delta t}, \tag{4.3.9} \\
+    k_BT_{v^2} &= \langle m_i v_i v_i \rangle_{\delta t}. \tag{4.3.10}
     \end{align}
     $$
 
