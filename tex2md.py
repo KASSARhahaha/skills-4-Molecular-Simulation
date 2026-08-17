@@ -251,6 +251,62 @@ def process_citations(text):
     return text
 
 
+SECOPT = re.compile(r"\\(chapter|section|subsection|subsubsection)(\*?)\[")
+
+
+def split_section_opt(text):
+    r"""`\section[短标题]{标题\protect\footnote{…}}` -> 短标题做标题，脚注下放正文。
+
+    原书第 6 章第 5 条脚注挂在节标题上（6.5 Grand-canonical ensemble^5）。
+    纸版用 `\section` 的可选参数把注号挡在目录、书签、书眉之外；网页版这边
+    可选参数正好就是「不带脚注的那一份」，直接拿来做标题。
+
+    标题里的 `\footnote` 摘出来接到本节正文头上——**网页的标题不能挂脚注号**：
+    标题文字同时是目录项和锚点，注号会一起进去。
+
+    须与 `\texorpdfstring` 同样先于标题正则展开：下面那几条用的是 `[^}]*`，
+    遇到标题里的嵌套花括号会当场截断。
+    """
+    out, i = [], 0
+    while True:
+        m = SECOPT.search(text, i)
+        if not m:
+            out.append(text[i:])
+            break
+        out.append(text[i:m.start()])
+        b = text.find("]", m.end())
+        if b == -1:
+            out.append(text[m.start():m.end()])
+            i = m.end()
+            continue
+        short = text[m.end():b]
+        full, k = brace_arg(text, b + 1)
+        if full is None:                       # 后面不是 {…}，原样放回
+            out.append(text[m.start():b + 1])
+            i = b + 1
+            continue
+        notes = []
+        while True:
+            j = full.find("\\footnote{")
+            if j == -1:
+                break
+            body, e = brace_arg(full, j + len("\\footnote"))
+            notes.append("\\footnote{%s}" % (body or ""))
+            head = full[:j]
+            if head.endswith("\\protect"):
+                head = head[:-len("\\protect")]
+            full = head + full[e:]
+        out.append("\\%s%s{%s}" % (m.group(1), m.group(2), short or full))
+        if notes:
+            # 接到本节正文的头上，而不是自成一段——单独一段只有一个 [^1]
+            # 是个空壳，读者点不出所以然。
+            ws = re.match(r"\s*", text[k:]).group(0)
+            out.append(ws + "".join(notes))
+            k += len(ws)
+        i = k
+    return "".join(out)
+
+
 def process_sections(text):
     """Convert LaTeX section commands to Markdown headers."""
     # \texorpdfstring{显示形式}{书签形式} -> 显示形式（须先于标题正则展开，
@@ -267,6 +323,7 @@ def process_sections(text):
         out.append(shown or "")
         i = k
     text = "".join(out)
+    text = split_section_opt(text)
     # \chapter*{...} and \chapter{...}
     text = re.sub(r"\\chapter\*\{([^}]*)\}", r"# \1", text)
     text = re.sub(r"\\chapter\{([^}]*)\}", r"# \1", text)

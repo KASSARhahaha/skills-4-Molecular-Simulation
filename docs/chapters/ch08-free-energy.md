@@ -1291,7 +1291,7 @@ $$
     U_{\text{tot}} = U_{\text{inter}}(\mathbf{r}^N, \varphi_1) + U_{\text{intra}}(\varphi_1) .
     $$
 
-    找到角度取特定值 $\varphi$ 的概率密度 $P(\varphi)$ 由下式给出{ 注：为方便起见，我们此处忽略了从笛卡儿坐标变换到广义坐标所伴随的雅可比行列式（见第 14 章）。}：
+    找到角度取特定值 $\varphi$ 的概率密度 $P(\varphi)$ 由下式给出[^12]：
 
     $$
     P(\varphi) = \frac{\int \exp(-\beta U_{\text{tot}})\, \delta(\varphi - \varphi_1)\, \mathrm{d}\mathbf{r}^N \mathrm{d}\varphi_1}{\int \exp(-\beta U_{\text{tot}})\, \mathrm{d}\mathbf{r}^N \mathrm{d}\varphi_1} .
@@ -1857,3 +1857,4 @@ $$
 [^9]: Stockmayer 流体由嵌入点偶极的 Lennard-Jones 粒子组成。
 [^10]: 1962 年，Hoover 和 Poirier [[326]](references.md#ref-326)在计算维里系数的背景下推导了一个密切相关的表达式。然而，他们并没有将其用作“粒子插入”方法。
 [^11]: 在将式 (8.6.11) 应用于硬核系统时应谨慎，因为 $F$ 对 $\Delta V$ 的导数在 $\Delta V = 0$ 处不连续。对于硬球，当所有 $\Delta V \geq 0$ 时 $\exp(-\beta[U(V + \Delta V) - U(V)]) = 1$，但 $\Delta V < 0$ 时不成立。然而，对于非球形硬粒子，在某些几何形状下，即使 $\Delta V > 0$，$\exp(-\beta[U(V + \Delta V) - U(V)])$ 也可能小于 1。在这种情况下，我们必须按照 8.6.3 节的精神，将正负 $\Delta V$ 的结果结合起来。
+[^12]: 为方便起见，我们此处忽略了从笛卡儿坐标变换到广义坐标所伴随的雅可比行列式（见第 14 章）。
