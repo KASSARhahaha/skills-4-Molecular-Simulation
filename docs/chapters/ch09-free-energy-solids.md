@@ -448,11 +448,11 @@ $$
 和
 
 $$
-\displaystyle
-P_{\mathrm{Ein}^{\mathrm{CM}} = \int \mathrm{d}\mathbf{p}^{dN} \prod_{i=1}^{N} \exp\left(-\frac{\beta}{2m_i}\mathbf{p}_i^2\right) \delta\left(\sum_{i=1}^{N}\mathbf{p}_i\right)
-= \left(\frac{\beta}{2\pi M}\right)^{d/2} \prod_{i=1}^{N}\left(\frac{2\pi m_i}{\beta}\right)^{d/2}
-= \left(\frac{\beta}{2\pi M}\right)^{d/2} P_{\mathrm{Ein}} ,
-}
+\begin{aligned}
+P_{\mathrm{Ein}}^{\mathrm{CM}} &= \int \mathrm{d}\mathbf{p}^{dN} \prod_{i=1}^{N} \exp\left(-\frac{\beta}{2m_i}\mathbf{p}_i^2\right) \delta\left(\sum_{i=1}^{N}\mathbf{p}_i\right)\\
+&= \left(\frac{\beta}{2\pi M}\right)^{d/2} \prod_{i=1}^{N}\left(\frac{2\pi m_i}{\beta}\right)^{d/2}\\
+&= \left(\frac{\beta}{2\pi M}\right)^{d/2} P_{\mathrm{Ein}} ,
+\end{aligned}
 \tag{9.2.20}
 $$
 

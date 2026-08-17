@@ -1226,10 +1226,10 @@ $$
 如果我们考虑无偏势能分布$P_0(U)$：
 
 $$
-\displaystyle
-\mathcal{P_0(U) \sim \int \mathrm{d}\mathcal{X}\, \delta(U(\mathcal{X}) - U)\exp[-\beta U(\mathcal{X})]
-= \exp[-\beta U] \int \mathrm{d}\mathcal{X}\, \delta(U(\mathcal{X}) - U) \equiv \exp[-\beta U]\, \mathcal{N}(U),
-}
+\begin{aligned}
+\mathcal{P}_0(U) &\sim \int \mathrm{d}\mathcal{X}\, \delta(U(\mathcal{X}) - U)\exp[-\beta U(\mathcal{X})]\\
+&= \exp[-\beta U] \int \mathrm{d}\mathcal{X}\, \delta(U(\mathcal{X}) - U) \equiv \exp[-\beta U]\, \mathcal{N}(U),
+\end{aligned}
 \tag{8.6.33}
 $$
 

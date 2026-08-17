@@ -152,10 +152,10 @@ $$
 约束 $r^2 = d^2$ 被满足的程度如何呢？为了给出一个印象，我们推导一步时间步长后 $r^2$ 的表达式。假设约束在 $t = 0$ 和 $t = -\Delta t$ 时被满足，我们发现在 $t = \Delta t$ 时，
 
 $$
-\displaystyle
-r^2(t + \Delta t) = d^2 \frac{5 + (\omega \Delta t)^4 - 4(\omega \Delta t)^2 + \cos(\omega \Delta t)[2(\omega \Delta t)^2 - 4]{(\omega \Delta t)^4}
-\approx d^2 \left[ 1 - \frac{(\omega \Delta t)^4}{6} + \mathcal{O}(\Delta t^6) \right].
-}
+\begin{aligned}
+r^2(t + \Delta t) &= d^2 \left\{ 5 + (\omega \Delta t)^4 - 4(\omega \Delta t)^2 + \cos(\omega \Delta t)[2(\omega \Delta t)^2 - 4] \right\}\\
+&\approx d^2 \left[ 1 - \frac{(\omega \Delta t)^4}{6} + \mathcal{O}(\Delta t^6) \right].
+\end{aligned}
 $$
 
 乍一看，这似乎是合理的，约束的破坏程度为 $(\Delta t)^4$ 的量级，这正是 Verlet 格式所预期的。然而，对于质心运动，我们不太担心这种量级的轨迹误差；但在约束的情况下，我们应该担忧。在平移运动中，我们曾论证过，初始接近但随后指数发散的两条轨迹可能仍然都能代表系统中粒子的真实轨迹。然而，如果我们发现由于运动方程积分中的小误差导致数值轨迹与约束曲面指数偏离，那我们就陷入了严重的麻烦。结论是，我们不应依赖算法本身来满足约束（尽管事实上，对于球面上的粒子，Verlet 算法表现得相当好）。我们应该构造我们的算法使得约束被严格满足。

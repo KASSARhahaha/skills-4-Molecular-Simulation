@@ -116,7 +116,7 @@ Q(N, V, T) = \frac{V^N}{\Lambda^{3N} N!} \int_0^1 \cdots \int_0^1 \mathrm{d}\mat
 \tag{6.3.3}
 $$
 
-在公式 (6.3.3) 中，我们写成 $U(\mathbf{s}^N; L)$ 以表示 $U$ 依赖于粒子之间的真实距离而非标度距离。系统的亥姆霍兹自由能表达式为
+在公式 (6.3.3) 中，我们写成 $\mathcal{U}(\mathbf{s}^N; L)$ 以表示 $\mathcal{U}$ 依赖于粒子之间的真实距离而非标度距离。系统的亥姆霍兹自由能表达式为
 
 $$
 \begin{aligned}
@@ -442,7 +442,7 @@ $$
 公式 (6.3.5) 表示体积 $V$ 中 $N$ 个相互作用粒子和储库体积 $V_0$ 中 $M - N$ 个分子的组合系统的配分函数：
 
 $$
-Q(N, M, V, V_0, T) = e^{-\beta F_R(M-N, V_0, T)} \frac{V^N e^{\beta\mu N}}{\Lambda^{3N} N!} \int_V \mathrm{d}\mathbf{s}^N e^{-\beta U(\mathbf{s}^N; L)}.
+Q(N, M, V, V_0, T) = e^{-\beta F_R(M-N, V_0, T)} \frac{V^N e^{\beta\mu N}}{\Lambda^{3N} N!} \int_V \mathrm{d}\mathbf{s}^N e^{-\beta \mathcal{U}(\mathbf{s}^N; L)}.
 \tag{6.5.2}
 $$
 
@@ -510,14 +510,14 @@ $$
 我们现在可以将巨正则配分函数重写为
 
 $$
-\Xi(f, V, T) \equiv \sum_{N=0}^{\infty} \frac{(f V)^N}{N!} \int \mathrm{d}\mathbf{s}^N \exp[-\beta \mathcal{U}(\mathbf{s}^N); L],
+\Xi(f, V, T) \equiv \sum_{N=0}^{\infty} \frac{(f V)^N}{N!} \int \mathrm{d}\mathbf{s}^N \exp[-\beta \mathcal{U}(\mathbf{s}^N; L)],
 \tag{6.5.9}
 $$
 
 对应的特定 $N$ 粒子构型的概率密度为
 
 $$
-\mathcal{N}_{f,V,T}(\mathbf{s}^N; L) \propto \frac{(f V)^N}{N!} \exp[-\beta \mathcal{U}(\mathbf{s}^N); L].
+\mathcal{N}_{f,V,T}(\mathbf{s}^N; L) \propto \frac{(f V)^N}{N!} \exp[-\beta \mathcal{U}(\mathbf{s}^N; L)].
 \tag{6.5.10}
 $$
 
@@ -640,8 +640,8 @@ $$
 
 $$
 \begin{aligned}
-\frac{\text{acc}(N \to N + 1)}{\text{acc}(N + 1 \to N)} &= \frac{(f V)^{N+1} \exp[-\beta U(\mathbf{s}^{N+1}); L]}{(N + 1)!} \times \frac{N! \exp[\beta U(\mathbf{s}^N)]}{(f V)^N}\\
-&= \frac{f V}{N + 1} \exp\{-\beta[U(\mathbf{s}^{N+1}; L) - U(\mathbf{s}^N); L]\}.
+\frac{\text{acc}(N \to N + 1)}{\text{acc}(N + 1 \to N)} &= \frac{(f V)^{N+1} \exp[-\beta \mathcal{U}(\mathbf{s}^{N+1}; L)]}{(N + 1)!} \times \frac{N! \exp[\beta \mathcal{U}(\mathbf{s}^N; L)]}{(f V)^N}\\
+&= \frac{f V}{N + 1} \exp\{-\beta[\mathcal{U}(\mathbf{s}^{N+1}; L) - \mathcal{U}(\mathbf{s}^N; L)]\}.
 \end{aligned}
 $$
 
@@ -699,7 +699,7 @@ $$
 因此概率分布 $\mathcal{N}_{f,V,T;\{N_i\}}(\mathbf{s}^N; L)$ 变为
 
 $$
-\mathcal{N}_{f,V,T;\{N_i\}}(\mathbf{s}^N; L) \propto \prod_i \frac{\left(f V e^{-\beta\epsilon_i}/q(T)\right)^{N_i}}{N_i!} \exp[-\beta U(\mathbf{s}^N; L)].
+\mathcal{N}_{f,V,T;\{N_i\}}(\mathbf{s}^N; L) \propto \prod_i \frac{\left(f V e^{-\beta\epsilon_i}/q(T)\right)^{N_i}}{N_i!} \exp[-\beta \mathcal{U}(\mathbf{s}^N; L)].
 \tag{6.5.21}
 $$
 
@@ -824,9 +824,11 @@ $$
 如果两相共存，它们必须处于相同的温度、压力和逸度。在 SGMC 模拟中，我们施加控制参数 $P$、$T$ 和 $n - 1$ 个独立的 $\{\xi_\alpha\}$。为了确保具有相同 $P$、$T$ 和 $\{\xi_\alpha\}$ 值的两相（I 和 II）处于平衡，我们必须找到满足 $f_{\text{tot}}^{\text{I}} = f_{\text{tot}}^{\text{II}}$ 的控制参数集。通常，我们使用热力学积分来找到这个点。在恒定 $\{\xi_\alpha\}$ 下研究 $f_{\text{tot}}$ 随 $P$ 的变化是最简单的，但这种方法最多只对一个相有效——可能对一个相也不行。新的热力学积分需要在 $\xi$ 空间中从所研究的混合物到纯化合物的路径，同时避免相变。我们假设使用第 8 章中讨论的技术，我们可以计算混合物中某一组分（比如 1）纯相的吉布斯自由能，从而计算其逸度。在纯相中，$f_{\text{tot}} = f_1(P, T)$。现在我们应该研究当我们把逸度比从 $\xi_1 = 1, \xi_{\alpha \neq 1} = 0$ 变为目标 $\{\xi_\alpha\}$ 时 $f_{\text{tot}}$ 的变化。为此，我们在 $\xi$ 空间中定义一条参数化路径，其中每个 $\xi_\alpha(\lambda)$ 是参数 $\lambda$ 的函数，使得 $\lambda = 0$ 时 $\xi_1 = 1$，目标 $\{\xi_\alpha\}$ 对应 $\lambda = 1$。路径的选择使得对所有 $\lambda$ 值，$\sum \xi_\alpha(\lambda) = 1$。然后我们可以写出：
 
 $$
-\displaystyle
-\frac{\mathrm{d \ln f_{\text{tot}}(\lambda)}{\mathrm{d}\lambda} = \sum_{\alpha=1}^n \left(\frac{\partial \ln f_{\text{tot}}(\lambda)}{\partial \xi_\alpha}\right)_{P,T,\{\xi_{\beta \neq \alpha}\}} \frac{\mathrm{d}\xi_\alpha}{\mathrm{d}\lambda} = -\sum_{\alpha=1}^n \frac{\langle N_\alpha \rangle / N}{\xi_\alpha} \frac{\mathrm{d}\xi_\alpha}{\mathrm{d}\lambda} = -\sum_{\alpha=1}^n \frac{\langle x_\alpha \rangle}{\xi_\alpha} \frac{\mathrm{d}\xi_\alpha}{\mathrm{d}\lambda},
-}
+\begin{aligned}
+\frac{\mathrm{d} \ln f_{\text{tot}}(\lambda)}{\mathrm{d}\lambda} &= \sum_{\alpha=1}^n \left(\frac{\partial \ln f_{\text{tot}}(\lambda)}{\partial \xi_\alpha}\right)_{P,T,\{\xi_{\beta \neq \alpha}\}} \frac{\mathrm{d}\xi_\alpha}{\mathrm{d}\lambda}\\
+&= -\sum_{\alpha=1}^n \left(\frac{\langle N_\alpha \rangle / N}{\xi_\alpha}\right) \frac{\mathrm{d}\xi_\alpha}{\mathrm{d}\lambda}\\
+&= -\sum_{\alpha=1}^n \frac{\langle x_\alpha \rangle}{\xi_\alpha} \frac{\mathrm{d}\xi_\alpha}{\mathrm{d}\lambda},
+\end{aligned}
 \tag{6.5.31}
 $$
 
@@ -1117,7 +1119,7 @@ $$
 Q_{N,V,T} &= \frac{1}{\Lambda^{3N}N!}\sum_{n_1=0}^{N}\binom{N}{n_1}
 \int_{-\infty}^{\infty} \mathrm{d}\ln\left(\frac{V_1}{V-V_1}\right)\\
 &\quad \times \frac{V_1(V-V_1)}{V}\,V_1^{n_1}(V-V_1)^{N-n_1}\\
-&\quad \times \int \mathrm{d}\mathbf{s}_1^{n_1}\exp[-\beta U(\mathbf{s}_1^{n_1})]\int \mathrm{d}\mathbf{s}_2^{N-n_1}\exp[-\beta U(\mathbf{s}_2^{N-n_1})].
+&\quad \times \int \mathrm{d}\mathbf{s}_1^{n_1}\exp[-\beta \mathcal{U}(\mathbf{s}_1^{n_1})]\int \mathrm{d}\mathbf{s}_2^{N-n_1}\exp[-\beta \mathcal{U}(\mathbf{s}_2^{N-n_1})].
 \end{aligned}
 $$
 
@@ -1131,9 +1133,10 @@ $$
 对这一移动施加细致平衡，导出接受规则
 
 $$
-\displaystyle
-\text{acc(o \to n) = \min\left(1, \left(\frac{V_1^n}{V_1^o}\right)^{n_1+1}\left(\frac{V - V_1^n}{V - V_1^o}\right)^{N-n_1+1}\exp\{-\beta[\mathcal{U}(\mathbf{s}_n^N) - \mathcal{U}(\mathbf{s}_o^N)]\}\right).
-}
+\begin{aligned}
+\text{acc}(o \to n) = \min\Biggl( & 1, \left(\frac{V_1^n}{V_1^o}\right)^{n_1+1}\left(\frac{V - V_1^n}{V - V_1^o}\right)^{N-n_1+1}\\
+& \times \exp\{-\beta[\mathcal{U}(\mathbf{s}_n^N) - \mathcal{U}(\mathbf{s}_o^N)]\}\Biggr).
+\end{aligned}
 \tag{6.6.10}
 $$
 
@@ -1144,15 +1147,16 @@ $$
 假设我们从构型 $o$（盒 1 中有 $n_1$ 个粒子）出发，通过从盒 1 移除一个粒子并把它插入盒 2，来生成构型 $n$。两个构型的统计权重之比为
 
 $$
-\displaystyle
-\frac{\mathcal{N(n)}{\mathcal{N}(o)} = \frac{n_1!(N-n_1)!\,V_1^{n_1-1}(V-V_1)^{N-(n_1-1)}}{(n_1-1)!\,[N-(n_1-1)]!\,V_1^{n_1}(V-V_1)^{N-n_1}}\exp\{-\beta[U(\mathbf{s}_n^N) - U(\mathbf{s}_o^N)]\}.
-}
+\begin{aligned}
+\frac{\mathcal{N}(n)}{\mathcal{N}(o)} = {}& \frac{n_1!(N-n_1)!\,V_1^{n_1-1}(V-V_1)^{N-(n_1-1)}}{(n_1-1)!\,[N-(n_1-1)]!\,V_1^{n_1}(V-V_1)^{N-n_1}}\\
+& \times \exp\{-\beta[\mathcal{U}(\mathbf{s}_n^N) - \mathcal{U}(\mathbf{s}_o^N)]\}.
+\end{aligned}
 $$
 
 对这一移动施加细致平衡，导出如下接受规则：
 
 $$
-\text{acc}(o \to n) = \min\left(1, \frac{n_1(V - V_1)}{(N - n_1 + 1)V_1}\exp\{-\beta[U(\mathbf{s}_n^N) - U(\mathbf{s}_o^N)]\}\right).
+\text{acc}(o \to n) = \min\left(1, \frac{n_1(V - V_1)}{(N - n_1 + 1)V_1}\exp\{-\beta[\mathcal{U}(\mathbf{s}_n^N) - \mathcal{U}(\mathbf{s}_o^N)]\}\right).
 \tag{6.6.11}
 $$
 

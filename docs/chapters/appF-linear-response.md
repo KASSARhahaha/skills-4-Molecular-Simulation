@@ -399,9 +399,11 @@ $$
 由此立即可得
 
 $$
-\displaystyle
-C^{(1)_{\alpha\beta} \equiv \left( \frac{\partial F}{\partial \eta_{\alpha\beta}} \right) = \frac{V'}{V} \left[ (\mathbf{1} + \boldsymbol{\epsilon})^{-1} \boldsymbol{\sigma} (\mathbf{1} + \boldsymbol{\epsilon}^T)^{-1} \right]_{\alpha\beta} = \sqrt{\det(\mathbf{1} + 2\boldsymbol{\eta})} \left[ (\mathbf{1} + \boldsymbol{\epsilon})^{-1} \boldsymbol{\sigma} (\mathbf{1} + \boldsymbol{\epsilon}^T)^{-1} \right]_{\alpha\beta},
-}
+\begin{aligned}
+C^{(1)}_{\alpha\beta} &\equiv \left( \frac{\partial F}{\partial \eta_{\alpha\beta}} \right)\\
+&= \frac{V'}{V} \left[ (\mathbf{1} + \boldsymbol{\epsilon})^{-1} \boldsymbol{\sigma} (\mathbf{1} + \boldsymbol{\epsilon}^T)^{-1} \right]_{\alpha\beta}\\
+&= \sqrt{\det(\mathbf{1} + 2\boldsymbol{\eta})} \left[ (\mathbf{1} + \boldsymbol{\epsilon})^{-1} \boldsymbol{\sigma} (\mathbf{1} + \boldsymbol{\epsilon}^T)^{-1} \right]_{\alpha\beta},
+\end{aligned}
 \tag{F.4.16}
 $$
 
@@ -424,9 +426,10 @@ $$
 为了确定二阶弹性常数$C^{(2)}_{\alpha\beta\gamma\delta}$，我们必须确定$C^{(1)}_{\alpha\beta}$对$\eta_{\gamma\delta}$的初始线性依赖。这种测量弹性常数的技术简单且相当精确（参见例如文献[[720]](references.md#ref-720)）。然而，需要多次计算来测量不同的弹性常数。晶体对称性越低，需要的计算次数越多。这可以通过直接考虑$C^{(2)}_{\alpha\beta\gamma\delta}$的微观表达式来避免。这样的表达式由 Squire 等人[[721]](references.md#ref-721)推导：
 
 $$
-\displaystyle
-C^{(2)_{\alpha\beta\gamma\delta} = -\frac{1}{V k_B T} \langle \sigma_{\alpha\beta} \sigma_{\gamma\delta} \rangle + 2\rho k_B T (\delta_{\alpha\gamma} \delta_{\beta\delta} + \delta_{\alpha\delta} \delta_{\beta\gamma}) + 4 \sum_{i<j, k<l} \left( \frac{\partial^2 U}{\partial r_{ij}^2 \partial r_{kl}^2} \right) r_{ij}^{\alpha} r_{ij}^{\beta} r_{kl}^{\gamma} r_{kl}^{\delta}.
-}
+\begin{aligned}
+C^{(2)}_{\alpha\beta\gamma\delta} = {}& -\frac{1}{V k_B T} \left\langle \Delta\sigma_{\alpha\beta} \, \Delta\sigma_{\gamma\delta} \right\rangle + 2\rho k_B T (\delta_{\alpha\gamma} \delta_{\beta\delta} + \delta_{\alpha\delta} \delta_{\beta\gamma})\\
+& + 4 \sum_{i<j,\,k<l} \left\langle \frac{\partial^2 U}{\partial r_{ij}^2 \partial r_{kl}^2} r_{ij\alpha} r_{ij\beta} r_{kl\gamma} r_{kl\delta} \right\rangle.
+\end{aligned}
 \tag{F.4.19}
 $$
 

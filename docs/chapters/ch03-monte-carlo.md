@@ -318,9 +318,11 @@ $$
 在下文中，我们将此势称为 Lennard-Jones 势。对于截断距离 $r_c$，三维情况下 LJ 对势的尾部校正 $u_{\text{tail}}$ 为
 
 $$
-\displaystyle
-u_{\text{tail} = \frac{1}{2} 4\pi\rho \int_{r_c}^{\infty} \mathrm{d}r \, r^2 u(r) = \frac{1}{2} 16\pi\rho\epsilon \int_{r_c}^{\infty} \mathrm{d}r \, r^2 \left[\left(\frac{\sigma}{r}\right)^{12} - \left(\frac{\sigma}{r}\right)^{6}\right] = \frac{8}{3}\pi\rho\epsilon\sigma^3 \left[\frac{1}{3}\left(\frac{\sigma}{r_c}\right)^{9} - \left(\frac{\sigma}{r_c}\right)^{3}\right].
-}
+\begin{aligned}
+u_{\text{tail}} &= \frac{1}{2} 4\pi\rho \int_{r_c}^{\infty} \mathrm{d}r \, r^2 u(r)\\
+&= \frac{1}{2} 16\pi\rho\epsilon \int_{r_c}^{\infty} \mathrm{d}r \, r^2 \left[\left(\frac{\sigma}{r}\right)^{12} - \left(\frac{\sigma}{r}\right)^{6}\right]\\
+&= \frac{8}{3}\pi\rho\epsilon\sigma^3 \left[\frac{1}{3}\left(\frac{\sigma}{r_c}\right)^{9} - \left(\frac{\sigma}{r_c}\right)^{3}\right].
+\end{aligned}
 \tag{3.3.5}
 $$
 
