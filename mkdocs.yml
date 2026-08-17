@@ -68,38 +68,38 @@ extra_javascript:
 nav:
   - 首页: index.md
   - 前言:
-    - 译者序: chapters/preface-berend.md
-    - 第一版前言: chapters/preface1.md
-    - 第二版前言: chapters/preface2.md
     - 第三版前言: chapters/preface3.md
+    - 第二版前言: chapters/preface2.md
+    - 第一版前言: chapters/preface1.md
+    - Berend Smit 中译本序: chapters/preface-berend.md
   - 正文:
-    - 第1章 绪论: chapters/ch01-introduction.md
-    - 第2章 统计力学基础: chapters/ch02-thermo-statmech.md
-    - 第3章 蒙特卡洛模拟: chapters/ch03-monte-carlo.md
+    - 第1章 引言: chapters/ch01-introduction.md
+    - 第2章 热力学与统计力学: chapters/ch02-thermo-statmech.md
+    - 第3章 Monte Carlo 模拟: chapters/ch03-monte-carlo.md
     - 第4章 分子动力学模拟: chapters/ch04-md.md
     - 第5章 计算机实验: chapters/ch05-computer-exp.md
-    - 第6章 蒙特卡洛系综: chapters/ch06-mc-ensembles.md
-    - 第7章 分子动力学系综: chapters/ch07-md-ensembles.md
+    - 第6章 各种系综中的 Monte Carlo 模拟: chapters/ch06-mc-ensembles.md
+    - 第7章 各种系综中的分子动力学: chapters/ch07-md-ensembles.md
     - 第8章 自由能计算: chapters/ch08-free-energy.md
-    - 第9章 固体自由能: chapters/ch09-free-energy-solids.md
-    - 第10章 链状分子自由能: chapters/ch10-free-energy-chains.md
+    - 第9章 固体的自由能: chapters/ch09-free-energy-solids.md
+    - 第10章 链分子的自由能: chapters/ch10-free-energy-chains.md
     - 第11章 长程相互作用: chapters/ch11-long-ranged.md
-    - 第12章 构型偏倚蒙特卡洛: chapters/ch12-cbmc.md
-    - 第13章 加速蒙特卡洛方法: chapters/ch13-accel-mc.md
-    - 第14章 时间尺度加速方法: chapters/ch14-timescale.md
+    - 第12章 构型偏倚 Monte Carlo: chapters/ch12-cbmc.md
+    - 第13章 加速 Monte Carlo 采样: chapters/ch13-accel-mc.md
+    - 第14章 分子动力学中的时间尺度分离问题: chapters/ch14-timescale.md
     - 第15章 稀有事件: chapters/ch15-rare-events.md
-    - 第16章 介观模拟方法: chapters/ch16-mesoscopic.md
+    - 第16章 介观流体模型: chapters/ch16-mesoscopic.md
   - 附录:
-    - 附录A 拉格朗日力学: chapters/appA-lagrangian.md
+    - 附录A 拉格朗日与哈密顿运动方程: chapters/appA-lagrangian.md
     - 附录B 非哈密顿动力学: chapters/appB-non-hamiltonian.md
-    - 附录C Kirkwood-Buff理论: chapters/appC-kirkwood-buff.md
+    - 附录C Kirkwood-Buff 理论: chapters/appC-kirkwood-buff.md
     - 附录D 非平衡热力学: chapters/appD-non-eq-thermo.md
-    - 附录E 非平衡功: chapters/appE-non-eq-work.md
-    - 附录F 线性响应理论: chapters/appF-linear-response.md
-    - 附录G Committor分析: chapters/appG-committor.md
-    - 附录H 确定性颗粒动力学: chapters/appH-sdpd.md
-    - 附录I 节省CPU时间: chapters/appI-saving-cpu.md
-    - 附录J 算法汇总: chapters/appJ-algorithms.md
+    - 附录E 非平衡功与细致平衡: chapters/appE-non-eq-work.md
+    - "附录F 线性响应：示例": chapters/appF-linear-response.md
+    - 附录G 传递概率（Committor）: chapters/appG-committor.md
+    - 附录H 光滑耗散粒子动力学: chapters/appH-sdpd.md
+    - 附录I 节省 CPU 时间: chapters/appI-saving-cpu.md
+    - 附录J 算法: chapters/appJ-algorithms.md
   - 参考文献: chapters/references.md
   - 缩略语表: acronyms.md
   - 符号表: symbols.md
