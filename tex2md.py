@@ -916,6 +916,9 @@ def process_inline(text):
     text = text.replace("~", " ")
     # \url{...} -> link
     text = re.sub(r"\\url\{([^}]*)\}", r"[\1](\1)", text)
+    # \boxfn{...} 是例/例证框里的框内脚注（纸版排成上标 a、注文在框末，
+    # 与原书一致）。网页没有「框」这个版面单位，按普通脚注收到页末即可。
+    text = text.replace("\\boxfn{", "\\footnote{")
     # \footnote{...} -> [^N] (collect footnotes, support nested braces)
     footnotes = []
 
