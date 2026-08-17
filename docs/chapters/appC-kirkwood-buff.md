@@ -18,7 +18,7 @@ S_{ab}(\mathbf{q}) &= \frac{1}{\sqrt{\langle N_a \rangle \langle N_b \rangle}}\l
 \end{align}
 $$
 
-其中$\delta\rho_i(\mathbf{q})$表示$\rho(\mathbf{q})$围绕其平均值的涨落。如果我们在式 (C.1.1b) 的后半部分取$q \to 0$的极限，可得：
+其中$\delta\rho_i(\mathbf{q})$表示$\rho(\mathbf{q})$围绕其平均值的涨落。如果我们在式 (C.1.1) 的后半部分取$q \to 0$的极限，可得：
 
 $$
 \lim_{q\to 0} S_{ab}(q) = \sqrt{\frac{\langle \delta N_a\,\delta N_b \rangle}{\langle N_a \rangle \langle N_b \rangle}},
