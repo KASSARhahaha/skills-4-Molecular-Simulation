@@ -76,13 +76,11 @@ $$
 其中 $\Delta E \equiv E(\Gamma_K; \lambda_K) - E(\Gamma_0; \lambda_0)$，$\Delta F \equiv F(\lambda_K) - F(\lambda_0)$。由此我们可以写出：
 
 $$
-\displaystyle
-\begin{aligned
-P_B(\Gamma_0, \lambda_0) \prod_{i=0}^{K-1} P(\Gamma_i \to \Gamma_{i+1}; \lambda_i) \, e^{-\beta W(\{\Gamma\})}
+\begin{aligned}
+P_B(\Gamma_0, \lambda_0) &\prod_{i=0}^{K-1} P(\Gamma_i \to \Gamma_{i+1}; \lambda_i) \, e^{-\beta W(\{\Gamma\})}\\
 &= P_B(\Gamma_K, \lambda_K) \prod_{i=K-1}^{0} P(\Gamma_{i+1} \to \Gamma_i; \lambda_i) \, e^{-\beta[Q(\{\Gamma\}) + W(\{\Gamma\}) - \Delta E]} \, e^{-\beta \Delta F} \\
 &= P_B(\Gamma_K, \lambda_K) \prod_{i=K-1}^{0} P(\Gamma_{i+1} \to \Gamma_i; \lambda_i) \, e^{-\beta \Delta F},
 \end{aligned}
-}
 \tag{E.1.8}
 $$
 

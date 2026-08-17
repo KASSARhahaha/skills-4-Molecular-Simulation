@@ -926,12 +926,12 @@ $$
 我们可以写出以下恒等式：
 
 $$
-\displaystyle
-\frac{Z_0{Z_1} = \frac{Z_0 \int \mathrm{d}\mathcal{X}\, w(\mathcal{X})\exp[-\beta(\mathcal{U}_0(\mathcal{X}) + \mathcal{U}_1(\mathcal{X}))]}{\int \mathrm{d}\mathcal{X}\, w(\mathcal{X})\exp[-\beta(\mathcal{U}_0(\mathcal{X}) + \mathcal{U}_1(\mathcal{X}))]}
-= \frac{\int \mathrm{d}\mathcal{X}\, w(\mathcal{X})\exp[-\beta(\mathcal{U}_0(\mathcal{X}) + \mathcal{U}_1(\mathcal{X}))]}{Z_1}
-\times \frac{Z_0}{\int \mathrm{d}\mathcal{X}\, w(\mathcal{X})\exp[-\beta(\mathcal{U}_0(\mathcal{X}) + \mathcal{U}_1(\mathcal{X}))]}
-= \frac{\langle w \exp(-\beta \mathcal{U}_0)\rangle_1}{\langle w \exp(-\beta \mathcal{U}_1)\rangle_0}.
-}
+\begin{aligned}
+\frac{Z_0}{Z_1} &= \frac{Z_0 \int \mathrm{d}\mathcal{X}\, w(\mathcal{X})\exp[-\beta(\mathcal{U}_0(\mathcal{X}) + \mathcal{U}_1(\mathcal{X}))]}{\int \mathrm{d}\mathcal{X}\, w(\mathcal{X})\exp[-\beta(\mathcal{U}_0(\mathcal{X}) + \mathcal{U}_1(\mathcal{X}))]}\\
+&= \frac{\int \mathrm{d}\mathcal{X}\, w(\mathcal{X})\exp[-\beta(\mathcal{U}_0(\mathcal{X}) + \mathcal{U}_1(\mathcal{X}))]}{Z_1}\\
+&\qquad\times \frac{Z_0}{\int \mathrm{d}\mathcal{X}\, w(\mathcal{X})\exp[-\beta(\mathcal{U}_0(\mathcal{X}) + \mathcal{U}_1(\mathcal{X}))]}\\
+&= \frac{\langle w \exp(-\beta \mathcal{U}_0)\rangle_1}{\langle w \exp(-\beta \mathcal{U}_1)\rangle_0}.
+\end{aligned}
 \tag{8.6.12}
 $$
 
@@ -1001,16 +1001,16 @@ $$
 $$
 
 $$
-\displaystyle
 =
-\frac{\displaystyle\int \mathrm{d\mathcal{X}
+\frac{\begin{gathered}
+\displaystyle\int \mathrm{d}\mathcal{X}
 \left[
 \frac{Z_0}{n_0}\exp(-\beta \mathcal{U}_1(\mathcal{X})) + \frac{Z_1}{n_1}\exp(-\beta \mathcal{U}_0(\mathcal{X}))
-\right]
-\times w^2 \exp[-\beta(\mathcal{U}_0(\mathcal{X}) + \mathcal{U}_1(\mathcal{X}))]}{
+\right]\\
+\displaystyle\times w^2 \exp[-\beta(\mathcal{U}_0(\mathcal{X}) + \mathcal{U}_1(\mathcal{X}))]
+\end{gathered}}{
 \left[\displaystyle\int \mathrm{d}\mathcal{X}\, w \exp[-\beta(\mathcal{U}_0(\mathcal{X}) + \mathcal{U}_1(\mathcal{X}))]\right]^2}
 - \frac{1}{n_0} - \frac{1}{n_1}.
-}
 \tag{8.6.14}
 $$
 
@@ -1212,10 +1212,10 @@ $$
 其中因子$a$的值决定了偏倚的强度。在这种偏倚下，发现系统具有特定势能值$U_0$的（未归一化）偏倚概率$P_B$由下式给出：
 
 $$
-\displaystyle
-\mathcal{P_B(U) \sim \int \mathrm{d}\mathcal{X}\, \delta(U(\mathcal{X}) - U)\exp[-\beta a\, U(\mathcal{X})]\exp[-\beta U(\mathcal{X})]
-= \int \mathrm{d}\mathcal{X}\, \delta(U(\mathcal{X}) - U)\exp[-\beta(1 + a)U(\mathcal{X})],
-}
+\begin{aligned}
+\mathcal{P}_B(U) &\sim \int \mathrm{d}\mathcal{X}\, \delta(U(\mathcal{X}) - U)\exp[-\beta a\, U(\mathcal{X})]\exp[-\beta U(\mathcal{X})]\\
+&= \int \mathrm{d}\mathcal{X}\, \delta(U(\mathcal{X}) - U)\exp[-\beta(1 + a)U(\mathcal{X})],
+\end{aligned}
 \tag{8.6.32}
 $$
 

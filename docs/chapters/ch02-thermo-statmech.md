@@ -1013,12 +1013,12 @@ $$
 由于系统 2 比系统 1 大得多，我们可以将$\ln\Omega$在$V$和$E$附近展开：
 
 $$
-\displaystyle
-\ln\Omega(E_2, V_2, N_2) = \ln\Omega(E, V, N_2) +
-\left(\frac{\partial \ln\Omega(E, V, N_2){\partial E}\right)_{N,V}(E - E_1)
-+
+\begin{aligned}
+\ln\Omega(E_2, V_2, N_2) = {}&\ln\Omega(E, V, N_2) +
+\left(\frac{\partial \ln\Omega(E, V, N_2)}{\partial E}\right)_{N,V}(E - E_1)\\
+&+
 \left(\frac{\partial \ln\Omega(E, V, N_2)}{\partial V}\right)_{N,E}(V - V_1) + \cdots
-}
+\end{aligned}
 \tag{2.3.12}
 $$
 
@@ -1068,12 +1068,12 @@ $$
 到目前为止，我们讨论的都是粒子总数保持恒定的系综。考虑开放系统通常也很方便，在这种系统中粒子数可以变化。我们再次考虑一个包含两个子系统的系统（图 2.3）。系统 1 的体积固定，但允许与储库 2 交换能量和粒子。与之前一样，整个系统是封闭的，系统的总熵由公式 (2.3.11) 给出。由于系统 2 比系统 1 大得多，我们可以在$E$和$N$附近展开$\ln\Omega$：
 
 $$
-\displaystyle
-\ln\Omega_2(E_2, V_2, N_2) = \ln\Omega(E, V_2, N) +
-\left(\frac{\partial \ln\Omega(E, V_2, N){\partial E}\right)_{N,V}(E - E_1)
-+
+\begin{aligned}
+\ln\Omega_2(E_2, V_2, N_2) = {}&\ln\Omega(E, V_2, N) +
+\left(\frac{\partial \ln\Omega(E, V_2, N)}{\partial E}\right)_{N,V}(E - E_1)\\
+&+
 \left(\frac{\partial \ln\Omega(E, V_2, N)}{\partial N}\right)_{E,V}(N - N_1) + \cdots
-}
+\end{aligned}
 \tag{2.3.17}
 $$
 
@@ -1376,12 +1376,12 @@ $$
 其中$\mathfrak{m}$是所考虑分子的迁移率。我们现在可以用时间关联函数来推导迁移率的微观表达式。由公式 (2.5.14) 至 (2.5.17)，我们有
 
 $$
-\displaystyle
-\langle v_x(t) \rangle = F_x \int_{-\infty^{t} \mathrm{d}t' \, \chi_{v_x x}(t - t')
-= F_x \int_{0}^{\infty} \mathrm{d}\tau \, \chi_{v_x x}(\tau)
-= -\beta F_x \int_{0}^{\infty} \mathrm{d}\tau \, \langle x(0)\dot{v}_x(\tau) \rangle
+\begin{aligned}
+\langle v_x(t) \rangle &= F_x \int_{-\infty}^{t} \mathrm{d}t' \, \chi_{v_x x}(t - t')
+= F_x \int_{0}^{\infty} \mathrm{d}\tau \, \chi_{v_x x}(\tau)\\
+&= -\beta F_x \int_{0}^{\infty} \mathrm{d}\tau \, \langle x(0)\dot{v}_x(\tau) \rangle
 = +\beta F_x \int_{0}^{\infty} \mathrm{d}\tau \, \langle v_x(0) v_x(\tau) \rangle.
-}
+\end{aligned}
 \tag{2.5.20}
 $$
 

@@ -145,11 +145,11 @@ $$
 代入式 (10.2.3) 和 (10.2.5)，得到
 
 $$
-\displaystyle
-\mathcal{W = \sum_{\Gamma} \prod_{i=2}^{\ell} \frac{\exp[-\beta u^{(i)}(\Gamma_i)]}{w_i} \frac{k \exp[-\beta u^{(1)}(\Gamma_1)]}{w_1} \prod_{i=1}^{\ell} w_i
-= \frac{1}{k} \sum_{\Gamma_1} \exp[-\beta u^{(1)}(\Gamma_1)] \prod_{i=2}^{\ell} \sum_{\Gamma_i} \frac{1}{k} \exp[-\beta u^{(i)}(\Gamma_i)]
-= \frac{1}{k^{\ell-1}} \sum_{\Gamma} \exp[-\beta \mathcal{U}_{\Gamma}] ,
-}
+\begin{aligned}
+\mathcal{W} &= \sum_{\Gamma} \prod_{i=2}^{\ell} \frac{\exp[-\beta u^{(i)}(\Gamma_i)]}{w_i} \frac{k \exp[-\beta u^{(1)}(\Gamma_1)]}{w_1} \prod_{i=1}^{\ell} w_i\\
+&= \frac{1}{k} \sum_{\Gamma_1} \exp[-\beta u^{(1)}(\Gamma_1)] \prod_{i=2}^{\ell} \sum_{\Gamma_i} \frac{1}{k} \exp[-\beta u^{(i)}(\Gamma_i)]\\
+&= \frac{1}{k^{\ell-1}} \sum_{\Gamma} \exp[-\beta \mathcal{U}_{\Gamma}] ,
+\end{aligned}
 \tag{10.2.12}
 $$
 
@@ -294,11 +294,11 @@ $$
     亨利系数与吸附分子的超额化学势直接相关。为了看到这一点，考虑多孔介质中平均密度的系综平均。在巨正则系综中，该系综平均由下式给出（见第 6.5 节，式 (6.5.10)）
 
     $$
-    \displaystyle
-    \left\langle \frac{N{V} \right\rangle = \frac{1}{V} \sum_{N=0}^{\infty} \frac{(fV)^N}{N!} \int \mathrm{d}\mathbf{s}^N \exp[-\beta U(\mathbf{s}^N)] N/V
-    = \frac{f \sum_{N'=0}^{\infty} \frac{(fV)^{N'}}{N'!} \int \mathrm{d}\mathbf{s}^{N'} \exp[-\beta U(\mathbf{s}^{N'})] \int \mathrm{d}\mathbf{s}_t \exp[-\beta U(\mathbf{s}^{N})]}{\sum_{N'=0}^{\infty} \frac{(fV)^{N'}}{N'!} \int \mathrm{d}\mathbf{s}^{N'} \exp[-\beta U(\mathbf{s}^{N'})]}
-    = f \langle \exp(-\beta \Delta U_+) \rangle ,
-    }
+    \begin{aligned}
+    \left\langle \frac{N}{V} \right\rangle &= \frac{1}{V} \sum_{N=0}^{\infty} \frac{(fV)^N}{N!} \int \mathrm{d}\mathbf{s}^N \exp[-\beta U(\mathbf{s}^N)] N/V\\
+    &= \frac{f \sum_{N'=0}^{\infty} \frac{(fV)^{N'}}{N'!} \int \mathrm{d}\mathbf{s}^{N'} \exp[-\beta U(\mathbf{s}^{N'})] \int \mathrm{d}\mathbf{s}_t \exp[-\beta U(\mathbf{s}^{N})]}{\sum_{N'=0}^{\infty} \frac{(fV)^{N'}}{N'!} \int \mathrm{d}\mathbf{s}^{N'} \exp[-\beta U(\mathbf{s}^{N'})]}\\
+    &= f \langle \exp(-\beta \Delta U_+) \rangle ,
+    \end{aligned}
     $$
 
     其中 $N' = N-1$，$\mathbf{s}_t$ 表示我们插入试探粒子的标度位置，$\Delta U_+$ 定义为由于插入试探粒子而引起的体系势能变化。在 $P \to 0$ 的极限下，可以将储库视为理想气体，此时其逸度变为

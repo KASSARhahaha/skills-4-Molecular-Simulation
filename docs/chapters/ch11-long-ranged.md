@@ -400,11 +400,11 @@ $$
 一旦我们有了周期性点电荷系统的静电势能表达式，包含偶极分子系统的势能相应表达式可以通过微分得到。唯一的修改是我们在各处必须将$q_i$替换为$-\boldsymbol{\mu}_i \cdot \nabla_i$，其中$\boldsymbol{\mu}$是偶极矩。例如，偶极系统的静电能变为
 
 $$
-\displaystyle
-\mathcal{U_{\text{dipolar}} = \frac{1}{2V}\sum_{\mathbf{k}\neq 0} \frac{4\pi}{k^2} \left|\tilde{M}(\mathbf{k})\right|^2 \exp\left(-k^2/4\alpha\right)
-- \frac{2\pi}{3}\left(\frac{\alpha}{\pi}\right)^{3/2} \sum_{i=1}^{N} \mu_i^2
-+ \frac{1}{2}\sum_{i\neq j} \left[(\boldsymbol{\mu}_i \cdot \boldsymbol{\mu}_j) B(r_{ij}) - (\boldsymbol{\mu}_i \cdot \mathbf{r}_{ij})(\boldsymbol{\mu}_j \cdot \mathbf{r}_{ij}) C(r_{ij})\right],
-}
+\begin{aligned}
+\mathcal{U}_{\text{dipolar}} = {}&\frac{1}{2V}\sum_{\mathbf{k}\neq 0} \frac{4\pi}{k^2} \left|\tilde{M}(\mathbf{k})\right|^2 \exp\left(-k^2/4\alpha\right)
+- \frac{2\pi}{3}\left(\frac{\alpha}{\pi}\right)^{3/2} \sum_{i=1}^{N} \mu_i^2\\
+&+ \frac{1}{2}\sum_{i\neq j} \left[(\boldsymbol{\mu}_i \cdot \boldsymbol{\mu}_j) B(r_{ij}) - (\boldsymbol{\mu}_i \cdot \mathbf{r}_{ij})(\boldsymbol{\mu}_j \cdot \mathbf{r}_{ij}) C(r_{ij})\right],
+\end{aligned}
 \tag{11.2.25}
 $$
 

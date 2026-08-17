@@ -220,10 +220,10 @@ $$
 现在我们利用对于对势有$\mathbf{f}(r_{ij}) = -\mathbf{f}(r_{ji})$，以及$i$和$j$是哑标这一事实：
 
 $$
-\displaystyle
-P = \rho k_B T + \frac{1{2\mathrm{d}V} \left\langle \sum_{i=1}^{N} \sum_{j \neq i} \mathbf{f}(r_{ij}) \cdot \mathbf{r}_i + \sum_{j=1}^{N} \sum_{i \neq j} \mathbf{f}(r_{ji}) \cdot \mathbf{r}_j \right\rangle_{N,T}
-= \rho k_B T + \frac{1}{2\mathrm{d}V} \left\langle \sum_{i=1}^{N} \sum_{j \neq i} \mathbf{f}(r_{ij}) \cdot \mathbf{r}_{ij} \right\rangle_{N,T}
-}
+\begin{aligned}
+P &= \rho k_B T + \frac{1}{2\mathrm{d}V} \left\langle \sum_{i=1}^{N} \sum_{j \neq i} \mathbf{f}(r_{ij}) \cdot \mathbf{r}_i + \sum_{j=1}^{N} \sum_{i \neq j} \mathbf{f}(r_{ji}) \cdot \mathbf{r}_j \right\rangle_{N,T}\\
+&= \rho k_B T + \frac{1}{2\mathrm{d}V} \left\langle \sum_{i=1}^{N} \sum_{j \neq i} \mathbf{f}(r_{ij}) \cdot \mathbf{r}_{ij} \right\rangle_{N,T}
+\end{aligned}
 $$
 
 $$
@@ -326,9 +326,11 @@ $$
 我们考虑一个包含两个平行板状相的周期性重复系统（见图 5.1）。我们假设表面垂直于$z$方向，并考虑将表面在$x$方向上拉伸$\lambda$倍的效果：新表面积$A'$与原始表面积的关系为$A' = \lambda A$。但请注意，系统包含两个界面，因此总表面积$A = 2S$，其中$S$是每个界面的面积。盒子在$z$方向的高度按因子$1/\lambda$缩放，使得盒子的体积保持不变。由于这种变换，系统中所有$x$坐标按因子$\lambda$缩放，所有$z$坐标按因子$\lambda^{-1}$缩放。然后我们可以利用亥姆霍兹自由能的统计力学表达式来得到表面张力的表达式。类似于式 (5.1.15)，我们写出[^3]
 
 $$
-\displaystyle
-\gamma = \left( \frac{\partial F{\partial A} \right)_{N,V,T} = -k_B T \left( \frac{\partial \left[ \ln \int_0^1 \mathrm{d}\mathbf{s}^N \exp\left(-\beta U(\mathbf{s}^N; \lambda W, H/\lambda)\right) \right]}{\partial A} \right)_{N,V,T} = \frac{1}{2S} \left\langle \frac{\partial U(\mathbf{s}^N; \lambda W, H/\lambda)}{\partial \lambda} \right\rangle_{N,V,T}.
-}
+\begin{aligned}
+\gamma &= \left( \frac{\partial F}{\partial A} \right)_{N,V,T}
+= -k_B T \left( \frac{\partial \left[ \ln \int_0^1 \mathrm{d}\mathbf{s}^N \exp\left(-\beta U(\mathbf{s}^N; \lambda W, H/\lambda)\right) \right]}{\partial A} \right)_{N,V,T}\\
+&= \frac{1}{2S} \left\langle \frac{\partial U(\mathbf{s}^N; \lambda W, H/\lambda)}{\partial \lambda} \right\rangle_{N,V,T}.
+\end{aligned}
 \tag{5.1.31}
 $$
 

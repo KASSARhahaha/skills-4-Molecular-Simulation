@@ -352,6 +352,7 @@ $$
 
 $$
 \rho(\mathbf{p}_S, \mathbf{q}_S) = \frac{\exp[-\beta H(\mathbf{p}_S, \mathbf{q}_S)]}{Q_{NVT}^S}.
+\tag{14.1.25}
 $$
 
 现在让我们写出坐标空间中的概率密度：
@@ -361,10 +362,6 @@ $$
 \rho(\mathbf{q}_S) &= a \int \mathrm{d}\mathbf{p}_S\, \exp\{-\beta[\mathbf{p}_S \cdot \mathbf{G}_S \cdot \mathbf{p}_S/2 + U(\mathbf{q}_S, \boldsymbol{\sigma})]\}\\
 &= a' \exp[-\beta U(\mathbf{q}_S, \boldsymbol{\sigma})] \sqrt{|\mathbf{G}_S|},
 \end{aligned}
-\tag{14.1.25}
-$$
-
-$$
 \tag{14.1.26}
 $$
 
@@ -621,17 +618,17 @@ $$
 时刻 $t$ 的位置和速度由在初始条件 $(r(0), v(0))$ 下应用刘维尔算子得到。如第 4.3.4 节所示，$iL_r \Delta t$ 对应于坐标的移动，$iL_p \Delta t$ 对应于动量的移动。如果我们分三步执行这些操作，得到
 
 $$
-\displaystyle
-e^{iL\Delta t f[\dot{r}(0), r(0)] = e^{iL_p \Delta t/2} e^{iL_r \Delta t} e^{iL_p \Delta t/2} f[\dot{r}(0), r(0)]
-= e^{iL_p \Delta t/2} e^{iL_r \Delta t} f[\dot{r}(0) + F(0)\Delta t/2m, r(0)]
-}
+\begin{aligned}
+e^{iL\Delta t} f[\dot{r}(0), r(0)] &= e^{iL_p \Delta t/2} e^{iL_r \Delta t} e^{iL_p \Delta t/2} f[\dot{r}(0), r(0)]\\
+&= e^{iL_p \Delta t/2} e^{iL_r \Delta t} f[\dot{r}(0) + F(0)\Delta t/2m, r(0)]
+\end{aligned}
 $$
 
 $$
-\displaystyle
-= e^{iL_p \Delta t/2 f[\dot{r}(0) + F(0)\Delta t/2m, r(0) + \dot{r}(\Delta t/2)\Delta t]
-= f[\dot{r}(0) + F(0)\Delta t/2m + F(\Delta t)\Delta t/2m,\, r(0) + \dot{r}(\Delta t/2)\Delta t].
-}
+\begin{aligned}
+&= e^{iL_p \Delta t/2} f[\dot{r}(0) + F(0)\Delta t/2m, r(0) + \dot{r}(\Delta t/2)\Delta t]\\
+&= f[\dot{r}(0) + F(0)\Delta t/2m + F(\Delta t)\Delta t/2m,\, r(0) + \dot{r}(\Delta t/2)\Delta t].
+\end{aligned}
 $$
 
 由此得到的运动方程为

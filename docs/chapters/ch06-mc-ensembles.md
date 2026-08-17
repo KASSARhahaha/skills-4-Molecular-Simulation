@@ -119,18 +119,21 @@ $$
 在公式 (6.3.3) 中，我们写成 $U(\mathbf{s}^N; L)$ 以表示 $U$ 依赖于粒子之间的真实距离而非标度距离。系统的亥姆霍兹自由能表达式为
 
 $$
-\displaystyle
-F(N, V, T) = -k_B T \ln Q = -k_B T \ln \left[\frac{V^N{\Lambda^{3N} N!}\right] - k_B T \ln \left[\int \mathrm{d}\mathbf{s}^N \exp[-\beta \mathcal{U}(\mathbf{s}^N; L)]\right] = F^{\text{id}}(N, V, T) + F^{\text{ex}}(N, V, T).
-}
+\begin{aligned}
+F(N, V, T) &= -k_B T \ln Q\\
+&= -k_B T \ln \left[\frac{V^N}{\Lambda^{3N} N!}\right] - k_B T \ln \left[\int \mathrm{d}\mathbf{s}^N \exp[-\beta \mathcal{U}(\mathbf{s}^N; L)]\right]\\
+&= F^{\text{id}}(N, V, T) + F^{\text{ex}}(N, V, T).
+\end{aligned}
 \tag{6.3.4}
 $$
 
 在上式的最后一行中，我们将亥姆霍兹自由能的两个贡献分别标识为理想气体表达式和超额部分。现在我们考虑系统由两个体积分别为 $V$ 和 $V_0 - V$ 的非相互作用子系统组成的情况，其中 $V_0 \gg V$，$V_0$ 固定。为了形象化，我们在图 6.2 中将这两个系统展示为被活塞隔开的两个有界系统，尽管实际上子系统应被视为完全独立的并受到周期性边界条件的约束。我们将体积 $V_0 - V$ 中的系统称为储库。我们用 $M$ 表示组合系统中的粒子总数。其中 $M - N$ 个在体积 $V_0 - V$ 中，$N$ 个在体积 $V$ 中。组合系统的配分函数简单地是两个（非相互作用）子系统配分函数的乘积：
 
 $$
-\displaystyle
-Q(N, M, V, V_0, T) = Q(M, V_0 - V, T) \frac{V^N{\Lambda^{3M} N!} \int \mathrm{d}\mathbf{s}^N e^{-\beta \mathcal{U}(\mathbf{s}^N; L)} = e^{-\beta F_R(M, V_0 - V, T)} \frac{V^N}{\Lambda^{3M} N!} \int \mathrm{d}\mathbf{s}^N e^{-\beta \mathcal{U}(\mathbf{s}^N; L)},
-}
+\begin{aligned}
+Q(N, M, V, V_0, T) &= Q(M, V_0 - V, T) \frac{V^N}{\Lambda^{3M} N!} \int \mathrm{d}\mathbf{s}^N e^{-\beta \mathcal{U}(\mathbf{s}^N; L)}\\
+&= e^{-\beta F_R(M, V_0 - V, T)} \frac{V^N}{\Lambda^{3M} N!} \int \mathrm{d}\mathbf{s}^N e^{-\beta \mathcal{U}(\mathbf{s}^N; L)},
+\end{aligned}
 \tag{6.3.5}
 $$
 
@@ -211,9 +214,10 @@ $$
 此分布可以用以下接受规则进行采样：
 
 $$
-\displaystyle
-\text{acc(o \to n) = \min\left(1, \exp\{-\beta[\mathcal{U}(\mathbf{s}^N, V') - \mathcal{U}(\mathbf{s}^N, V) + P(V' - V) - (N+1)\beta^{-1} \ln(V'/V)]\}\right).
-}
+\begin{aligned}
+\text{acc}(o \to n) = \min\Bigl(1, \exp\bigl\{-\beta\bigl[&\mathcal{U}(\mathbf{s}^N, V') - \mathcal{U}(\mathbf{s}^N, V) + P(V' - V)\\
+&- (N+1)\beta^{-1} \ln(V'/V)\bigr]\bigr\}\Bigr).
+\end{aligned}
 \tag{6.3.15}
 $$
 
@@ -323,9 +327,11 @@ $$
 维里压力的平均值为
 
 $$
-\displaystyle
-\langle P_v \rangle = -\frac{\beta P{Q(NPT)} \int \mathrm{d}V (\partial F(V)/\partial V) \exp[-\beta(F(V) + PV)] = \frac{\beta P}{Q(NPT)} \int \mathrm{d}V \beta^{-1} (\partial \exp[-\beta F(V)]/\partial V) \exp(-\beta PV) = \frac{P}{Q(NPT)} \int \mathrm{d}V \, P \exp[-\beta(F(V) + PV)] = P,
-}
+\begin{aligned}
+\langle P_v \rangle &= -\frac{\beta P}{Q(NPT)} \int \mathrm{d}V (\partial F(V)/\partial V) \exp[-\beta(F(V) + PV)]\\
+&= \frac{\beta P}{Q(NPT)} \int \mathrm{d}V \beta^{-1} (\partial \exp[-\beta F(V)]/\partial V) \exp(-\beta PV)\\
+&= \frac{P}{Q(NPT)} \int \mathrm{d}V \, P \exp[-\beta(F(V) + PV)] = P,
+\end{aligned}
 \tag{6.3.22}
 $$
 
@@ -633,9 +639,10 @@ $$
 其中下标“gen”表示 $\alpha$ 测量的是生成此试探移动的概率。将此式连同公式 (6.5.10) 代入细致平衡条件，得到
 
 $$
-\displaystyle
-\frac{\text{acc(N \to N + 1)}{\text{acc}(N + 1 \to N)} = \frac{(f V)^{N+1} \exp[-\beta U(\mathbf{s}^{N+1}); L]}{(N + 1)!} \times \frac{N! \exp[\beta U(\mathbf{s}^N)]}{(f V)^N} = \frac{f V}{N + 1} \exp\{-\beta[U(\mathbf{s}^{N+1}; L) - U(\mathbf{s}^N); L]\}.
-}
+\begin{aligned}
+\frac{\text{acc}(N \to N + 1)}{\text{acc}(N + 1 \to N)} &= \frac{(f V)^{N+1} \exp[-\beta U(\mathbf{s}^{N+1}); L]}{(N + 1)!} \times \frac{N! \exp[\beta U(\mathbf{s}^N)]}{(f V)^N}\\
+&= \frac{f V}{N + 1} \exp\{-\beta[U(\mathbf{s}^{N+1}; L) - U(\mathbf{s}^N); L]\}.
+\end{aligned}
 $$
 
 可以直接证明接受规则 (6.5.13) 和 (6.5.14) 满足此条件。
@@ -783,9 +790,10 @@ $$
 现在让我们将这个例子转回公式 (6.5.27) 中对粒子的求和。我们将对物种 $\alpha$ 粒子数的求和替换为对所有粒子所有可能身份的求和。但随后我们必须除以 $N!/\prod N_\alpha!$ 来修正过度计数。然后，公式 (6.5.27) 变为
 
 $$
-\displaystyle
-\Xi(f_{\text{tot}, \{\xi_\alpha\}, V, T) = \sum_{N=0}^{\infty} \frac{f_{\text{tot}}^N}{N!} \sum_{\text{identities}} \prod_{\alpha=1}^n (V \xi_\alpha)^{N_\alpha} \int \mathrm{d}\mathbf{s}^N \exp[-\beta \mathcal{U}(\mathbf{s}^N)] \equiv \sum_{N=0}^{\infty} f_{\text{tot}}^N \mathcal{Y}(N, \{\xi_\alpha\}, V, T),
-}
+\begin{aligned}
+\Xi(f_{\text{tot}}, \{\xi_\alpha\}, V, T) &= \sum_{N=0}^{\infty} \frac{f_{\text{tot}}^N}{N!} \sum_{\text{identities}} \prod_{\alpha=1}^n (V \xi_\alpha)^{N_\alpha} \int \mathrm{d}\mathbf{s}^N \exp[-\beta \mathcal{U}(\mathbf{s}^N)]\\
+&\equiv \sum_{N=0}^{\infty} f_{\text{tot}}^N \mathcal{Y}(N, \{\xi_\alpha\}, V, T),
+\end{aligned}
 \tag{6.5.28}
 $$
 
@@ -794,9 +802,11 @@ $$
 注意 $Y(N, \{\xi_\alpha\}, V, T)$ 是具有恒定 $N$、$V$、$T$ 和 $\{\xi_\alpha\}$ 的系统的配分函数。利用 $k_B T \ln \Xi = PV$（公式 (2.3.21)）以及第 2.3.3 节中提到的最大项方法，可以得出 $k_B T \ln Y = PV - N k_B T \ln f_{\text{tot}}$。$Y(N, \{\xi_\alpha\}, V, T)$ 可以看作是恒定 $N$、$\{\xi_\alpha\}$、$V$ 和 $T$ 下的半巨正则配分函数。在恒定压力下考虑半巨正则配分函数通常更方便，即更便于与实验比较：
 
 $$
-\displaystyle
-\mathcal{Y'(N, \{\xi_\alpha\}, P, T) \equiv \beta P \int_0^{\infty} \mathrm{d}V \exp(-\beta PV) \mathcal{Y}(N, \{\xi_\alpha\}, V, T) = \beta P \int_0^{\infty} \mathrm{d}V \exp(-\beta PV) \times \sum_{\text{identities}} \prod_{\alpha=1}^n (V \xi_\alpha)^{N_\alpha} \int \mathrm{d}\mathbf{s}^N \exp[-\beta \mathcal{U}(\mathbf{s}^N)].
-}
+\begin{aligned}
+\mathcal{Y}'(N, \{\xi_\alpha\}, P, T) &\equiv \beta P \int_0^{\infty} \mathrm{d}V \exp(-\beta PV) \mathcal{Y}(N, \{\xi_\alpha\}, V, T)\\
+&= \beta P \int_0^{\infty} \mathrm{d}V \exp(-\beta PV)\\
+&\quad \times \sum_{\text{identities}} \prod_{\alpha=1}^n (V \xi_\alpha)^{N_\alpha} \int \mathrm{d}\mathbf{s}^N \exp[-\beta \mathcal{U}(\mathbf{s}^N)].
+\end{aligned}
 \tag{6.5.29}
 $$
 
@@ -1103,11 +1113,12 @@ $$
 如果我们在 $\ln[V_1/(V-V_1)]$ 中做随机游走，就很自然地把公式 (6.6.1) 改写为
 
 $$
-\displaystyle
-Q_{N,V,T = \frac{1}{\Lambda^{3N}N!}\sum_{n_1=0}^{N}\binom{N}{n_1}
-\int_{-\infty}^{\infty} \mathrm{d}\ln\left(\frac{V_1}{V-V_1}\right)\frac{V_1(V-V_1)}{V}\,V_1^{n_1}(V-V_1)^{N-n_1}
-\int \mathrm{d}\mathbf{s}_1^{n_1}\exp[-\beta U(\mathbf{s}_1^{n_1})]\int \mathrm{d}\mathbf{s}_2^{N-n_1}\exp[-\beta U(\mathbf{s}_2^{N-n_1})].
-}
+\begin{aligned}
+Q_{N,V,T} &= \frac{1}{\Lambda^{3N}N!}\sum_{n_1=0}^{N}\binom{N}{n_1}
+\int_{-\infty}^{\infty} \mathrm{d}\ln\left(\frac{V_1}{V-V_1}\right)\\
+&\quad \times \frac{V_1(V-V_1)}{V}\,V_1^{n_1}(V-V_1)^{N-n_1}\\
+&\quad \times \int \mathrm{d}\mathbf{s}_1^{n_1}\exp[-\beta U(\mathbf{s}_1^{n_1})]\int \mathrm{d}\mathbf{s}_2^{N-n_1}\exp[-\beta U(\mathbf{s}_2^{N-n_1})].
+\end{aligned}
 $$
 
 此时体积为 $V_1$ 的构型 $n$ 的统计权重正比于

@@ -57,9 +57,11 @@ $$
 如果我们使用每个粒子的动能作为瞬时温度的度量，那么我们会发现在正则系综中，这个温度（记为$T_k$）是涨落的。它的相对方差为
 
 $$
-\displaystyle
-\frac{\sigma_{T_k^2}{\langle T_k \rangle_{NVT}^2} \equiv \frac{\langle T_k^2 \rangle_{NVT} - \langle T_k \rangle_{NVT}^2}{\langle T_k \rangle_{NVT}^2} = \frac{N\langle p^4 \rangle + N(N-1)\langle p^2 \rangle\langle p^2 \rangle - N^2 \langle p^2 \rangle^2}{N^2 \langle p^2 \rangle^2} = \frac{1}{N}\frac{\langle p^4 \rangle - \langle p^2 \rangle^2}{\langle p^2 \rangle^2} = \frac{2}{\mathrm{d}N}.
-}
+\begin{aligned}
+\frac{\sigma_{T_k}^2}{\langle T_k \rangle_{NVT}^2} &\equiv \frac{\langle T_k^2 \rangle_{NVT} - \langle T_k \rangle_{NVT}^2}{\langle T_k \rangle_{NVT}^2}\\
+&= \frac{N\langle p^4 \rangle + N(N-1)\langle p^2 \rangle\langle p^2 \rangle - N^2 \langle p^2 \rangle^2}{N^2 \langle p^2 \rangle^2}\\
+&= \frac{1}{N}\frac{\langle p^4 \rangle - \langle p^2 \rangle^2}{\langle p^2 \rangle^2} = \frac{2}{\mathrm{d}N}.
+\end{aligned}
 $$
 
 所以确实，在有限系统的正则系综中，瞬时动理温度$T_k$是涨落的。事实上，如果我们严格保持每个粒子的平均动能恒定（如所谓的等动能 MD 方案[[33]](references.md#ref-33)或更朴素的速度标度方案所做的那样），那么我们就不会模拟一个真正的恒定温度系综。显然，如果使用等动能模拟来测量对涨落敏感的平衡平均值，例如在计算热容的动能贡献时（见公式 (5.1.7)），可能会出现问题。
