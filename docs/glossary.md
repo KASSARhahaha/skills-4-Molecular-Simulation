@@ -583,7 +583,7 @@
 | self-diffusion coefficient | 自扩散系数 |
 | semigrand ensemble | 半巨正则系综 |
 | shadow orbit | 影子轨道 |
-| Shake | SHAKE |
+| SHAKE | SHAKE |
 | shear stress | 剪切应力 |
 | shear viscosity | 剪切黏度 |
 | shifting moves | 平移移动 |

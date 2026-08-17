@@ -303,7 +303,7 @@ $$
 “方便”的变量是那些可以在给定实验中控制的变量。
 有一个简单的步骤可以将第一定律用这些其他变量重新表述。
 
-#### 焓（Enthalpy）
+#### 焓（enthalpy）
 例如，如果我们使用$S$、$P$和$N$作为独立变量，我们可以进行所谓的勒让德变换（Legendre transform），这使我们能够用一个新的状态函数来代替能量，该函数是$S$、$P$和$N$的函数。
 这个函数称为焓（Enthalpy，$H$），定义为$H \equiv E + PV$。显然：
 
@@ -314,7 +314,7 @@ $$
 
 表明控制焓的独立变量是$S$、$P$和$N$。
 
-#### 亥姆霍兹自由能（Helmholtz Free Energy）
+#### 亥姆霍兹自由能（Helmholtz free energy）
 类似地，我们可以引入一个函数$F$，称为亥姆霍兹自由能（Helmholtz free energy），定义为$F \equiv E - TS$。
 与焓的情况一样，容易证明：
 
@@ -323,7 +323,7 @@ $$
 \tag{2.1.19}
 $$
 
-#### 吉布斯自由能（Gibbs Free Energy）
+#### 吉布斯自由能（Gibbs free energy）
 吉布斯自由能$G$定义为$F + PV$，满足：
 
 $$
@@ -335,15 +335,15 @@ $$
 
 *图 2.1　一个孤立系统，由两个固定体积的盒子 1 和 2 组成，两个子系统可以交换热量，但子系统 2 比系统 1 大得多，因此充当热浴。*
 
-#### 巨热力学势（Grand Potential）
-最后，我们可以引入巨热力学势（Grand Potential）$\Omega$，定义为$\Omega \equiv F - \mu N$，满足：
+#### 巨势（grand potential）
+最后，我们可以引入巨势（grand potential）$\Omega$，定义为$\Omega \equiv F - \mu N$，满足：
 
 $$
 \mathrm{d}\Omega = -S\mathrm{d}T - P\mathrm{d}V - N\mathrm{d}\mu.
 \tag{2.1.21}
 $$
 
-然而，对于均匀系统，我们很少使用$\Omega$这个符号来表示巨热力学势，因为如果系统的压力是明确定义的，$F - \mu N = -PV$，我们可以用$-PV$来代替$\Omega$。
+然而，对于均匀系统，我们很少使用$\Omega$这个符号来表示巨势，因为如果系统的压力是明确定义的，$F - \mu N = -PV$，我们可以用$-PV$来代替$\Omega$。
 [^3]
 
 #### 辅助函数与第二定律
