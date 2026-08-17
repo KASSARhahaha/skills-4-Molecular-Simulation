@@ -20,15 +20,19 @@
 
 1. 确定我们想要采样的分布。这个分布，记为 $\mathcal{N}$，将取决于系综的细节。
 1. 施加细致平衡条件，
-   $$
-   \mathcal{K}(o \to n) = \mathcal{K}(n \to o),
-   \tag{6.1.1}
-   $$
-   其中 $\mathcal{K}(o \to n)$ 是从构型 $o$ 到 $n$ 的流量。该流量由处于构型 $o$ 的概率、生成构型 $n$ 的概率和接受此移动的概率的乘积给出，
-   $$
-   \mathcal{K}(o \to n) = \mathcal{N}(o) \times \alpha(o \to n) \times \text{acc}(o \to n).
-   \tag{6.1.2}
-   $$
+
+    $$
+    \mathcal{K}(o \to n) = \mathcal{K}(n \to o),
+    \tag{6.1.1}
+    $$
+
+    其中 $\mathcal{K}(o \to n)$ 是从构型 $o$ 到 $n$ 的流量。该流量由处于构型 $o$ 的概率、生成构型 $n$ 的概率和接受此移动的概率的乘积给出，
+
+    $$
+    \mathcal{K}(o \to n) = \mathcal{N}(o) \times \alpha(o \to n) \times \text{acc}(o \to n).
+    \tag{6.1.2}
+    $$
+
 1. 确定生成特定构型的概率。
 1. 推导接受规则需要满足的条件。
 
@@ -51,17 +55,21 @@ $$
 
 1. 随机选择一个粒子并计算构型的能量 $\mathcal{U}(o)$。
 1. 给该粒子一个随机位移（参见图 6.1），例如
-   $$
-   \mathbf{r}(o) \to \mathbf{r}(o) + \Delta(\mathbf{R} - 0.5),
-   \tag{6.2.2}
-   $$
-   其中 $\Delta/2$ 是最大位移。$\Delta$ 的值应选择为使采样方案最优（参见第 3.4 节）。试探构型记为 $n$，其能量为 $\mathcal{U}(n)$。
+
+    $$
+    \mathbf{r}(o) \to \mathbf{r}(o) + \Delta(\mathbf{R} - 0.5),
+    \tag{6.2.2}
+    $$
+
+    其中 $\Delta/2$ 是最大位移。$\Delta$ 的值应选择为使采样方案最优（参见第 3.4 节）。试探构型记为 $n$，其能量为 $\mathcal{U}(n)$。
 1. 该移动以如下概率被接受（参见公式 (3.2.11)）
-   $$
-   \text{acc}(o \to n) = \min(1, \exp\{-\beta[\mathcal{U}(n) - \mathcal{U}(o)]\}).
-   \tag{6.2.3}
-   $$
-   如果被拒绝，则保留旧构型。
+
+    $$
+    \text{acc}(o \to n) = \min(1, \exp\{-\beta[\mathcal{U}(n) - \mathcal{U}(o)]\}).
+    \tag{6.2.3}
+    $$
+
+    如果被拒绝，则保留旧构型。
 
 此基本 Metropolis 方案的实现见第 3.3 节（算法 1 和 2）。
 
@@ -543,20 +551,25 @@ $$
 在巨正则模拟中，我们需要采样分布 (6.5.10)。可接受的试探移动包括：
 
 1. 粒子位移。随机选择一个粒子并赋予新的构象：例如，在原子的情况下，给予随机位移。此移动以如下概率被接受
-   $$
-   \text{acc}(\mathbf{s} \to \mathbf{s}') = \min\left(1, \exp\{-\beta[\mathcal{U}(\mathbf{s}'^N) - \mathcal{U}(\mathbf{s}^N)]\}\right).
-   \tag{6.5.12}
-   $$
+
+    $$
+    \text{acc}(\mathbf{s} \to \mathbf{s}') = \min\left(1, \exp\{-\beta[\mathcal{U}(\mathbf{s}'^N) - \mathcal{U}(\mathbf{s}^N)]\}\right).
+    \tag{6.5.12}
+    $$
+
 1. 粒子的插入和移除。在随机位置插入一个粒子或移除随机选择的粒子。由公式 (6.5.11) 可得，粒子插入的有效（Metropolis 风格）接受规则为
-   $$
-   \text{acc}(N \to N + 1) = \min\left[1, \frac{f V}{(N + 1)} \exp\{-\beta[\mathcal{U}(N + 1) - \mathcal{U}(N)]\}\right]
-   \tag{6.5.13}
-   $$
-   粒子移除以如下概率被接受
-   $$
-   \text{acc}(N \to N - 1) = \min\left[1, \frac{N}{f V} \exp\{-\beta[\mathcal{U}(N - 1) - \mathcal{U}(N)]\}\right].
-   \tag{6.5.14}
-   $$
+
+    $$
+    \text{acc}(N \to N + 1) = \min\left[1, \frac{f V}{(N + 1)} \exp\{-\beta[\mathcal{U}(N + 1) - \mathcal{U}(N)]\}\right]
+    \tag{6.5.13}
+    $$
+
+    粒子移除以如下概率被接受
+
+    $$
+    \text{acc}(N \to N - 1) = \min\left[1, \frac{N}{f V} \exp\{-\beta[\mathcal{U}(N - 1) - \mathcal{U}(N)]\}\right].
+    \tag{6.5.14}
+    $$
 
 算法 13 展示了巨正则系综中模拟的基本结构。
 
@@ -1315,12 +1328,10 @@ $$
 
 1. 采用如下方案添加或移除粒子：
 
-
-   请推导这些试探移动的接受规则。
+    请推导这些试探移动的接受规则。
 1. 另一种可选的方案是：
 
-
-   如果仍使用前面的接受规则，这一方案满足细致平衡吗？如果不满足，能否加以修正？提示：你或许可以参阅文献[[218]](references.md#ref-218)。
+    如果仍使用前面的接受规则，这一方案满足细致平衡吗？如果不满足，能否加以修正？提示：你或许可以参阅文献[[218]](references.md#ref-218)。
 
 **问题 20（吉布斯系综）。**当吉布斯系综中的一个盒子无限大，且该盒中的分子之间没有相互作用时，粒子交换的接受/拒绝规则就与巨正则系综中粒子交换的接受/拒绝规则完全相同。请推导这一结果。
 
@@ -1362,55 +1373,69 @@ $$
 
 1. 请补全本书网站上提供的该体系的模拟代码。
 1. 在正则系综中计算 $N = 32 \times 32$、$\beta = 0.5$ 时 $M$ 的分布。这个分布应当关于 $M = 0$ 对称：
-   $$
-   p(M) = p(-M) .
-   \tag{6.7.4}
-   $$
-   但模拟似乎并没有重现这样一个对称的分布。问题出在哪里？
+
+    $$
+    p(M) = p(-M) .
+    \tag{6.7.4}
+    $$
+
+    但模拟似乎并没有重现这样一个对称的分布。问题出在哪里？
 1. 除了在正则系综中做模拟之外，也可以使用如下分布函数做有偏模拟：
-   $$
-   \pi \propto \exp\left[-\beta U + W(M)\right] .
-   \tag{6.7.5}
-   $$
-   正则系综中可观测量 $O$ 的平均值与“$\pi$ 平均”之间的关系为
-   $$
-   \langle O \rangle = \frac{\left\langle O \exp[-W(M)] \right\rangle_\pi}{\left\langle \exp[-W(M)] \right\rangle_\pi},
-   \tag{6.7.6}
-   $$
-   其中 $\langle \cdots \rangle_\pi$ 表示在有偏体系中的系综平均。请推导这一关系。
+
+    $$
+    \pi \propto \exp\left[-\beta U + W(M)\right] .
+    \tag{6.7.5}
+    $$
+
+    正则系综中可观测量 $O$ 的平均值与“$\pi$ 平均”之间的关系为
+
+    $$
+    \langle O \rangle = \frac{\left\langle O \exp[-W(M)] \right\rangle_\pi}{\left\langle \exp[-W(M)] \right\rangle_\pi},
+    \tag{6.7.6}
+    $$
+
+    其中 $\langle \cdots \rangle_\pi$ 表示在有偏体系中的系综平均。请推导这一关系。
 1. 用若干给定的分布 $W(M)$（见本书网站上相应的文件）进行模拟。解释你的结果。应当如何选择函数 $W(M)$ 才能获得最优效率？
 1. 当 $W(M)$ 取高斯形式
-   $$
-   W(M) = A \exp\left[-\frac{M^2}{2\sigma^2}\right]
-   \tag{6.7.7}
-   $$
-   且 $A > 0$ 时会发生什么？
+
+    $$
+    W(M) = A \exp\left[-\frac{M^2}{2\sigma^2}\right]
+    \tag{6.7.7}
+    $$
+
+    且 $A > 0$ 时会发生什么？
 1. 若取 $W(M) = W(U) = \beta U$，生成的是什么样的有偏分布？
 
 **练习 14（气-液平衡）。**在本练习中，我们使用 Widom 试探粒子方法（见第 8.5.1 节）来确定气-液平衡，并把结果与吉布斯系综模拟作比较。
 
 1. 修改本书网站上的 $NVT$ Monte Carlo 程序，使其能够用 Widom 试探粒子方法计算化学势：
-   $$
-   \mu = \mu_0 - \frac{\ln\left(\rho^{-1}\left\langle \exp\left[-\beta \Delta U^{+}\right]\right\rangle\right)}{\beta},
-   \tag{6.7.8}
-   $$
-   其中 $\rho$ 表示粒子数密度，$\Delta U^{+}$ 是插入一个试探粒子所引起的势能变化，而
-   $$
-   \mu_0 = \frac{-\ln\left(\Lambda^3\right)}{\beta} .
-   \tag{6.7.9}
-   $$
-   在本练习中，我们改用逸度 $f$ 的 Widom 表达式，即式 (8.5.6)：
-   $$
-   f = \frac{\rho}{\left\langle \exp(-\beta \Delta U^{+}) \right\rangle}
-   $$
 
+    $$
+    \mu = \mu_0 - \frac{\ln\left(\rho^{-1}\left\langle \exp\left[-\beta \Delta U^{+}\right]\right\rangle\right)}{\beta},
+    \tag{6.7.8}
+    $$
+
+    其中 $\rho$ 表示粒子数密度，$\Delta U^{+}$ 是插入一个试探粒子所引起的势能变化，而
+
+    $$
+    \mu_0 = \frac{-\ln\left(\Lambda^3\right)}{\beta} .
+    \tag{6.7.9}
+    $$
+
+    在本练习中，我们改用逸度 $f$ 的 Widom 表达式，即式 (8.5.6)：
+
+    $$
+    f = \frac{\rho}{\left\langle \exp(-\beta \Delta U^{+}) \right\rangle}
+    $$
 
 1. 在 $T = 0.8$ 下对该体系做吉布斯系综模拟。在吉布斯系综中，盒 $i$ 中粒子的逸度为[[217]](references.md#ref-217)
-   $$
-   f_i = \left\langle \frac{V_i}{n_i + 1} \exp\left[-\beta \Delta U_i^{+}\right] \right\rangle^{-1},
-   \tag{6.7.10}
-   $$
-   其中 $n_i$ 是盒 $i$ 中的粒子数，$V_i$ 是盒 $i$ 的体积。气-液共存密度和逸度与你前面的结果是否一致？
+
+    $$
+    f_i = \left\langle \frac{V_i}{n_i + 1} \exp\left[-\beta \Delta U_i^{+}\right] \right\rangle^{-1},
+    \tag{6.7.10}
+    $$
+
+    其中 $n_i$ 是盒 $i$ 中的粒子数，$V_i$ 是盒 $i$ 的体积。气-液共存密度和逸度与你前面的结果是否一致？
 
 ---
 

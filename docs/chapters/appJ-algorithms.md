@@ -91,9 +91,11 @@
 **具体说明**（一般说明见第 1 章「算法」）：
 
 1. 键长具有以下分布：
-   $$
-   p(l) \propto \exp[-\beta \cdot 0.5 k_v (l - l_0)^2] \mathrm{d}l \propto l^2 \exp[-\beta \cdot 0.5 k_v (l - l_0)^2] \mathrm{d}l
-   $$
+
+    $$
+    p(l) \propto \exp[-\beta \cdot 0.5 k_v (l - l_0)^2] \mathrm{d}l \propto l^2 \exp[-\beta \cdot 0.5 k_v (l - l_0)^2] \mathrm{d}l
+    $$
+
 1. 我们利用了 $x - 1 \geq \ln x$ 这一事实。
 1. $\text{gauss}(\alpha, l_M)$ 是一维正态分布，见第 J.1 节。
 
@@ -168,7 +170,7 @@ $$
 **具体说明**（一般说明见第 1 章「算法」）：
 
 1. 本算法使用朴素的拒绝方案来生成取向 $\hat{\mathbf b}$ 的玻尔兹曼分布。函数 `ranor` 在单位球上生成随机向量（算法 38）。函数 `ubb`（未具体说明）给出给定角度的键弯曲能量。
-1. 译注：原书此框末尾连写两个 `endif`，第二个用来收 `while` 循环，与全书体例（`while $...$ do` 以 `enddo` 收，参见算法 41）不合，应为 `enddo`；本书已改正。
+1. 译注：原书此框末尾连写两个 `endif`，第二个用来收 `while` 循环，与全书体例（`while ... do` 以 `enddo` 收，参见算法 41）不合，应为 `enddo`；本书已改正。
 
 ## 生成键角和扭转角
 

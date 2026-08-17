@@ -210,7 +210,7 @@ $$
 <tr markdown="1"><td class="algcode" markdown="span"><code>xn=x(o)+dis</code></td><td class="algcom" markdown="span"></td></tr>
 <tr markdown="1"><td class="algcode" markdown="span"><code>dx=x(o)-x0(o)-dxcm</code></td><td class="algcom" markdown="span">计算 $\Delta\mathbf{r}_i$</td></tr>
 <tr markdown="1"><td class="algcode" markdown="span"><code>del=lambda*(2*dx*dis+</code></td><td class="algcom" markdown="span">与晶格的能量差</td></tr>
-<tr markdown="1"><td class="algcode" markdown="span"><code>\hspace*{2em}dis*dis*(npart-1)/npart)</code></td><td class="algcom" markdown="span">式 (9.2.8)</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;dis*dis*(npart-1)/npart)</code></td><td class="algcom" markdown="span">式 (9.2.8)</td></tr>
 <tr markdown="1"><td class="algcode" markdown="span"><code>arg1=-beta*del</code></td><td class="algcom" markdown="span"></td></tr>
 <tr markdown="1"><td class="algcode" markdown="span"><code>if&nbsp;R&nbsp;</code>$<$<code>&nbsp;exp(arg1)&nbsp;then</code></td><td class="algcom" markdown="span"></td></tr>
 <tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>eno&nbsp;=&nbsp;ener(x(o))</code></td><td class="algcom" markdown="span">旧构型的能量</td></tr>
@@ -250,11 +250,11 @@ skip
 <tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>if&nbsp;(ix+iy+iz)%2&nbsp;==&nbsp;0&nbsp;then</code></td><td class="algcom" markdown="span"></td></tr>
 <tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>i=i+1</code></td><td class="algcom" markdown="span"></td></tr>
 <tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>x0(i)=a0*ix+</code></td><td class="algcom" markdown="span">粒子 i 的 $x$ 坐标</td></tr>
-<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>\hspace*{2em}0.5*a0*(iy+iz)%2</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>&nbsp;&nbsp;&nbsp;&nbsp;0.5*a0*(iy+iz)%2</code></td><td class="algcom" markdown="span"></td></tr>
 <tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>y0(i)=a0*iy+</code></td><td class="algcom" markdown="span">粒子 i 的 $y$ 坐标</td></tr>
-<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>\hspace*{2em}0.5*a0*(ix+iz)%2</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>&nbsp;&nbsp;&nbsp;&nbsp;0.5*a0*(ix+iz)%2</code></td><td class="algcom" markdown="span"></td></tr>
 <tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>z0(i)=a0*iz+</code></td><td class="algcom" markdown="span">粒子 i 的 $z$ 坐标</td></tr>
-<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>\hspace*{2em}0.5*a0*(ix+iy)%2</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>&nbsp;&nbsp;&nbsp;&nbsp;0.5*a0*(ix+iy)%2</code></td><td class="algcom" markdown="span"></td></tr>
 <tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>xcm0=xcm0+x0(i)</code></td><td class="algcom" markdown="span">$y$、$z$ 同理</td></tr>
 <tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
 <tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>enddo</code></td><td class="algcom" markdown="span"></td></tr>

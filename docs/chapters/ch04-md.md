@@ -89,9 +89,9 @@ $$
 1. 为了模拟无序系统，许多模拟包会生成已经无序的初始结构。这种函数可以加速平衡，但需要额外的步骤。
 1. 函数 Initv（见算法 4）初始化速度 vx 使得初始温度为 temp。从这些速度，可以计算前一个时间步的位置 xm。
 1. 主循环由三个步骤组成：
-   (a) FandE（见算法 5）计算当前能量和力
-   (b) Sample 在时间$t$采样所需的观测量——不必每个时间步都采样。见算法 8 和 9 中的一些采样算法示例。
-   (c) 使用 Verlet 算法积分牛顿运动方程（Integrate-V——见算法 6）并更新时间$t$。
+    (a) FandE（见算法 5）计算当前能量和力
+    (b) Sample 在时间$t$采样所需的观测量——不必每个时间步都采样。见算法 8 和 9 中的一些采样算法示例。
+    (c) 使用 Verlet 算法积分牛顿运动方程（Integrate-V——见算法 6）并更新时间$t$。
 
 显然，我们可以通过将所有速度乘以因子$(T/T(t))^{1/2}$来调整瞬时温度$T(t)$以匹配所需温度$T$。温度的这种初始设置并不是特别关键，因为温度在平衡过程中无论如何都会变化。
 
@@ -159,7 +159,7 @@ $$
 <tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>rc2r2im1=rc2*r2i-1.0</code></td><td class="algcom" markdown="span"></td></tr>
 <tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>en=en+r2im1*rc2r2im1**2</code></td><td class="algcom" markdown="span">对能量</td></tr>
 <tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>ff=6.0*r2i**2*rc2r2im1</code></td><td class="algcom" markdown="span"></td></tr>
-<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>\hspace*{2em}*(rc2r2im1-2)</code></td><td class="algcom" markdown="span">对力</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>&nbsp;&nbsp;&nbsp;&nbsp;*(rc2r2im1-2)</code></td><td class="algcom" markdown="span">对力</td></tr>
 <tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>fx(i)=fx(i)+ff*xr</code></td><td class="algcom" markdown="span"></td></tr>
 <tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>fx(j)=fx(j)-ff*xr</code></td><td class="algcom" markdown="span"></td></tr>
 <tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code>endif</code></td><td class="algcom" markdown="span"></td></tr>
@@ -175,9 +175,11 @@ $$
 1. 模拟盒子的直径记为 box。
 1. 函数 round 将浮点数四舍五入到最接近的整数。
 1. 在本算法中，我们使用 WF 势[[81]](references.md#ref-81)，这是一个简单的类 LJ 势。在约化单位下，对能为：
-   $$
-   \text{en} = \left(\frac{1}{r^2} - 1\right)\left(\frac{r_c^2}{r^2} - 1\right)^2, \quad \text{对于} \; r < r_c.
-   $$
+
+    $$
+    \text{en} = \left(\frac{1}{r^2} - 1\right)\left(\frac{r_c^2}{r^2} - 1\right)^2, \quad \text{对于} \; r < r_c.
+    $$
+
 1. WF 势的对力 ff 在$r_c$处光滑地趋于零。因此，该势不需要在$r_c$处截断和平移（与 LJ 不同）。
 1. 对于典型的原子系统，$r_c$的默认值为 2.0（以$\sigma$为单位），即势能首次过零的最小$r$值。对于（纳米）胶体，我们可以使用更小的$r_c$值，但需要不同的前置因子（见[[81]](references.md#ref-81)）。
 

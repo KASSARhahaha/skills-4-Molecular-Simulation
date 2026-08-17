@@ -101,7 +101,14 @@ def process_labels(text):
     text = re.sub(r"\\markright\{[^{}]*\}", "", text)
     # \figkey{...} 是题注末尾的「图内英文标注」中译，纸质版排成
     # 「（图内标注：…）」，在线版同样要出，不能留下裸宏。
-    text = re.sub(r"\\figkey\{([^{}]*)\}", r"（图内标注：\1）", text)
+    # 不能用 [^{}]*：题注里有 $/k_{\mathrm{B}}T$ 这类嵌套花括号，一截断
+    # 整条就匹配不上，裸宏原样印到网页上（ch13 的图 13.9 栽过）。
+    while True:
+        i = text.find("\\figkey{")
+        if i < 0:
+            break
+        inner, end = brace_arg(text, i + len("\\figkey"))
+        text = text[:i] + "（图内标注：%s）" % inner + text[end:]
     return re.sub(r"\\label\{[^}]*\}", "", text)
 
 
@@ -652,6 +659,10 @@ def _alg_cell(code, lvl):
     """
     # 缩进单独成一段：挂在「第一个代码段」上的话，以数学开头的行
     # （算法 39 的 $\ell$ = gauss(...)）就顶到左边界去了。
+    # 续行的 \hspace*{2em} 换成 4 个空格——_esc_code 会转成 &nbsp;，
+    # 正好与一级缩进（4 个 &nbsp;）同一套。全书 6 处，都在 \STATE 续行上。
+    code = re.sub(r"\\hspace\*?\{([0-9.]+)em\}",
+                  lambda m: " " * int(round(float(m.group(1)) * 2)), code)
     out = ["<code>%s</code>" % ("&nbsp;" * (4 * lvl))] if lvl else []
     for i, part in enumerate(re.split(r"(\$[^$]*\$)", code)):
         if not part:
@@ -743,30 +754,120 @@ def process_algorithms(text):
                   algo_replace, text, flags=re.DOTALL)
 
 
+LIST_PAD = "    "       # 列表续行缩进四格——三格 arithmatex 接不走，见下
+DEPTH = "\x00"          # 层数哨兵，见 _undepth
+
+
+def _undepth(text):
+    """把行首的层数哨兵换成缩进。
+
+    嵌套列表是由内向外跑好几遍替换的，每一遍开头都 `line.strip()`——**上一遍
+    加的缩进当场就被抹平了**，于是不管嵌套多深，续行都停在四格。第 5 章
+    5.2.32 那条公式本属于内层小问，缩进只有四格，Markdown 就把它当成外层
+    条目的续行，渲染时掉出内层 `<li>`。
+
+    所以每遍替换只记「又深了一层」，不直接写缩进；全部跑完再一次性换算。
+    """
+    out = []
+    for line in text.split("\n"):
+        k = len(line) - len(line.lstrip(DEPTH))
+        out.append(LIST_PAD * k + line[k:])
+    return "\n".join(out)
+
+
+MARKER = re.compile(r"^(?:[-*+]|\d+\.)\s")
+
+
+def _math_indent(out):
+    """这一块行间公式该缩进几格：看它前面最近的那条非空行。
+
+      * 那是列表记号行（`1.` / `-`）——公式属于那个条目，缩进 = 记号缩进 + 4；
+      * 那是普通行——公式跟它同级，缩进 = 它的缩进。
+
+    **不能只问「在不在列表里」。** 第 5 章 5.4.1 前面是「(a) 对速度自关联函数
+    积分：」——`\item[(a)]` 生成的、不带记号的行，本身已缩进四格（它是外层
+    习题条目的续行）。公式若照「又深一层」排到八格，相对它就多出四格，
+    Python-Markdown 当场判成代码块，页面上印出一框 `$$…$$` 源码。
+    反过来，5.2.32 前面是真记号行「1. 先考虑……」，公式就得比它再深四格，
+    否则会掉出内层 `<li>`。两种情形只差一个「前一行有没有记号」。
+    """
+    for ln in reversed(out):
+        if ln.strip():
+            k = len(ln) - len(ln.lstrip())
+            return k + 4 if MARKER.match(ln[k:]) else k
+    return 0
+
+
+def _blank_around_math(text):
+    """给列表里的行间公式重排缩进、前后补空行。
+
+    **必须放在所有列表替换跑完之后。** 每一遍替换开头都是 `if not line:
+    continue`，中途插进去的空行活不到下一遍；而嵌套列表要跑好几遍。
+
+    为什么非做不可：`$$…$$` 在列表项里，只有「缩进对齐 + 前后各一个空行」
+    这一种写法，arithmatex 才接得走。缩进错一格它就不认，`$$…$$` 原样落进
+    Markdown 的行内处理器，`_{\mathrm{sum}}` 的下划线被当成强调，页面上印出
+    `\mathbf{v}<em _mathrm_sum="…">{\mathrm{sum}}(1, j)` 这种东西——既是裸
+    LaTeX、又被撕坏。全书 108 块、裹着 76 条编号公式。
+
+    顶格的 `$$` 也要补空行，但不重排缩进。第 3 章练习 7 里「(iii) 以下述概率
+    接受该试探移动：」后面紧跟 `$$`，中间没有空行，Markdown 就把它当成上一段
+    的续行，arithmatex 的块处理器压根不触发。
+    """
+    out, pad = [], None
+    for line in text.split("\n"):
+        m = re.match(r"^(\s*)\$\$\s*$", line)
+        if m:
+            if pad is None:
+                # 缩进过的（在列表里）重排缩进；顶格的只补空行、不动缩进——
+                # 重排会把紧跟在列表后面的公式吸进最后一个条目里去。
+                pad = " " * _math_indent(out) if m.group(1) else ""
+                if out and out[-1].strip():
+                    out.append("")
+                out.append(pad + "$$")
+            else:
+                out.append(pad + "$$")
+                out.append("")
+                pad = None
+            continue
+        if pad is not None:
+            out.append(pad + line.lstrip())
+            continue
+        if out and not out[-1].strip() and not line.strip():
+            continue                          # 不连着放两个空行
+        out.append(line)
+    return "\n".join(out)
+
+
 def process_lists(text):
     """Convert itemize and enumerate to Markdown lists."""
     # \begin{enumerate}...\end{enumerate}
     def enum_replace(m):
         inner = m.group(1)
         lines = inner.split("\n")
-        md_lines = []
+        md_lines, bare = [], False
         for line in lines:
             line = line.strip()
             if not line:
                 continue
-            # \item[(a)] -> 1.
+            # \item[(a)] -> 「(a) 正文」，没有 Markdown 记号
             item_match = re.match(r"\\item\[([^\]]+)\]\s*(.*)", line)
             if item_match:
+                # 这种行不成列表，**它的续行就不能再深一层**——多出的四格
+                # 相对它是代码块缩进，第 5 章 5.4.1 后面那段「其中 $N$ 是
+                # 粒子数……」就是这样被整段印成了代码框。
+                bare = True
                 md_lines.append(f"{item_match.group(1)} {item_match.group(2)}")
                 continue
             # \item -> numbered
             item_match2 = re.match(r"\\item\s+(.*)", line)
             if item_match2:
+                bare = False
                 md_lines.append(f"1. {item_match2.group(1)}")
                 continue
             # continuation line
             if md_lines:
-                md_lines.append(f"   {line}")
+                md_lines.append(("" if bare else DEPTH) + line)
         return "\n" + "\n".join(md_lines) + "\n"
 
     # 由内向外逐层替换：非贪婪匹配会把嵌套 enumerate 的内层 \begin 吞掉，
@@ -797,7 +898,7 @@ def process_lists(text):
                 md_lines.append(f"- {item_match.group(1)}")
                 continue
             if md_lines:
-                md_lines.append(f"  {line}")
+                md_lines.append(DEPTH + line)
         return "\n" + "\n".join(md_lines) + "\n"
 
     innermost_item = re.compile(
@@ -812,7 +913,7 @@ def process_lists(text):
             break
         text = new
 
-    return text
+    return _blank_around_math(_undepth(text))
 
 
 def process_quotes(text):
@@ -945,6 +1046,30 @@ def process_code_blocks(text):
     return text
 
 
+TT_MATH = [("\\ldots", "..."), ("\\cdots", "..."), ("\\leq", "\u2264"),
+           ("\\geq", "\u2265"), ("\\neq", "\u2260"), ("\\le", "\u2264"),
+           ("\\ge", "\u2265"), ("\\ne", "\u2260"), ("\\to", "\u2192"),
+           ("\\times", "\u00d7"), ("\\pm", "\u00b1")]
+
+
+def _verbatim(s):
+    """`\\texttt{}` 的内容进反引号。反引号里是逐字文本，什么都不会再被解释。
+
+    两件事。一、LaTeX 的 `\\_ \\& \\% \\# \\$` 转义要脱掉，否则 `new\\_vlist`
+    连反斜杠一起显示。二、**里头的数学得落成明码**——MathJax 默认跳过
+    `code`/`pre`，`\\texttt{for $1 \\le x \\le y$ do}` 在网页上原样印成
+    `for $1 \\leq x \\leq y$ do`，而纸质版上是 `for 1 \u2264 x \u2264 y do`。
+    顺带 `\\ `（LaTeX 的词间空格）和 `~` 还原成空格，不然反斜杠露在外面
+    （`\\ldots\\ enddo` 出来是 `...\\ enddo`）。
+
+    长名要排在短名前面：`\\leq` 得在 `\\le` 之前，否则 `\\leq` 会被啃成 `\u2264q`。
+    """
+    s = re.sub(r"\\([_&%#$])", r"\1", s)
+    for k, v in TT_MATH:
+        s = s.replace(k, v)
+    return s.replace("$", "").replace("\\ ", " ").replace("~", " ")
+
+
 def process_inline(text):
     """Process inline LaTeX formatting commands."""
     # \textbf{...} -> **...**
@@ -956,11 +1081,8 @@ def process_inline(text):
     # \texttt{...} -> `...`
     # 反引号内是逐字文本，LaTeX 的 \_ \& \% \# \$ 转义要脱掉，
     # 否则 new\_vlist 会照着反斜杠一起显示出来。
-    text = re.sub(
-        r"\\texttt\{([^}]*)\}",
-        lambda m: "`%s`" % re.sub(r"\\([_&%#$])", r"\1", m.group(1)),
-        text,
-    )
+    text = re.sub(r"\\texttt\{([^}]*)\}",
+                  lambda m: "`%s`" % _verbatim(m.group(1)), text)
     # \textsuperscript{...} -> ^(...)
     text = re.sub(r"\\textsuperscript\{([^}]*)\}", r"^\1", text)
     # \ldots -> ...
@@ -1062,8 +1184,13 @@ def cleanup(text):
     """Final cleanup of remaining LaTeX artifacts."""
     # Remove remaining \hline, \toprule, \midrule, \bottomrule
     text = re.sub(r"\\[th]?line|\\toprule|\\midrule|\\bottomrule", "", text)
-    # Remove \vspace{...}, \hspace{...}
-    text = re.sub(r"\\[vh]space\{[^}]*\}", "", text)
+    # Remove \vspace*{...}, \hspace*{...}——星号版本原先漏掉了，
+    # 算法框里的 \hspace*{2em} 于是原样印出，* 还被当成 Markdown 强调。
+    text = re.sub(r"\\[vh]space\*?\{[^}]*\}", "", text)
+    # \setcounter 是纸质版的计数器命令，网页版一律丢掉。图号/算法号那两个
+    # 已由各自的处理器在前面读走，这里收尾的是正文里的（preface1 那条
+    # \setcounter{footnote}{0} 原先在网页上独占一段印了出来）。
+    text = re.sub(r"\\(?:set|add)counter\{[^}]*\}\{[^}]*\}", "", text)
     # Remove \small, \footnotesize, \normalsize, \large etc
     text = re.sub(r"\\(?:tiny|scriptsize|footnotesize|small|normalsize|large|Large|LARGE|huge|Huge)", "", text)
     # Remove \rmfamily, \sffamily, \ttfamily, \cjkfont

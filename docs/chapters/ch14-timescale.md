@@ -72,10 +72,10 @@ $$
 \begin{aligned}
 \frac{\partial \dot{\sigma}_{\alpha}}{\partial t}
 &= \sum_{i} \frac{1}{m_i} \left[ F_i + \sum_{\beta} G_i(\beta) \right] \nabla_i \sigma_{\alpha}
-   + \sum_{i,j} \dot{q}_i \dot{q}_j \nabla_i \nabla_j \sigma_{\alpha} \\
++ \sum_{i,j} \dot{q}_i \dot{q}_j \nabla_i \nabla_j \sigma_{\alpha} \\
 &= \sum_{i} \frac{1}{m_i} F_i \nabla_i \sigma_{\alpha}
-   - \sum_{i} \frac{1}{m_i} \sum_{\beta} \lambda_{\beta} \nabla_i \sigma_{\beta} \nabla_i \sigma_{\alpha}
-   + \sum_{i,j} \dot{q}_i \dot{q}_j \nabla_i \nabla_j \sigma_{\alpha} \\
+- \sum_{i} \frac{1}{m_i} \sum_{\beta} \lambda_{\beta} \nabla_i \sigma_{\beta} \nabla_i \sigma_{\alpha}
++ \sum_{i,j} \dot{q}_i \dot{q}_j \nabla_i \nabla_j \sigma_{\alpha} \\
 &\equiv F_{\alpha} - \sum_{\beta} M_{\alpha\beta} + \mathcal{T}_{\alpha} = 0.
 \end{aligned}
 \tag{14.1.5}

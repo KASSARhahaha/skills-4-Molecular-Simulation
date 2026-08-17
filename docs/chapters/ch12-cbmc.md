@@ -54,27 +54,35 @@ $$
 1. 将分子的质心移动一个（小的）随机距离，并确定所有不依赖于取向的相互作用。这些相互作用记为$u_\mathrm{pos}(n)$。在实践中，可能有多种方式将势能分离为取向依赖和取向无关的部分。
 1. 生成$k$个试探取向$\{\mathbf{b}_1, \mathbf{b}_2, \cdots, \mathbf{b}_k\}$，并对每个试探取向计算能量$u_\mathrm{or}(\mathbf{b}_i)$。
 1. 我们定义 Rosenbluth[^2] 因子$W$：
-   $$
-   W(n) = \sum_{j=1}^{k} \exp[-\beta u_\mathrm{or}(\mathbf{b}_j)].
-   \tag{12.1.2}
-   $$
-   从这$k$个取向中，我们以概率
-   $$
-   p(\mathbf{b}_n) = \frac{\exp[-\beta u_\mathrm{or}(\mathbf{b}_n)]}{\sum_{j=1}^{k} \exp[-\beta u_\mathrm{or}(\mathbf{b}_j)]}.
-   \tag{12.1.3}
-   $$
-   选择一个，记为$n$。
+
+    $$
+    W(n) = \sum_{j=1}^{k} \exp[-\beta u_\mathrm{or}(\mathbf{b}_j)].
+    \tag{12.1.2}
+    $$
+
+    从这$k$个取向中，我们以概率
+
+    $$
+    p(\mathbf{b}_n) = \frac{\exp[-\beta u_\mathrm{or}(\mathbf{b}_n)]}{\sum_{j=1}^{k} \exp[-\beta u_\mathrm{or}(\mathbf{b}_j)]}.
+    \tag{12.1.3}
+    $$
+
+    选择一个，记为$n$。
 1. 对于旧构型$o$，不依赖于分子取向的能量部分记为$u_\mathrm{pos}(o)$。分子在旧位置的取向记为$\mathbf{b}_o$，我们生成$k-1$个试探取向$\mathbf{b}_2, \cdots, \mathbf{b}_k$。使用这$k$个取向，我们确定
-   $$
-   W(o) = \exp[-\beta u_\mathrm{or}(\mathbf{b}_o)] + \sum_{j=2}^{k} \exp[-\beta u_\mathrm{or}(\mathbf{b}_j)].
-   \tag{12.1.4}
-   $$
+
+    $$
+    W(o) = \exp[-\beta u_\mathrm{or}(\mathbf{b}_o)] + \sum_{j=2}^{k} \exp[-\beta u_\mathrm{or}(\mathbf{b}_j)].
+    \tag{12.1.4}
+    $$
+
 1. 移动以概率
-   $$
-   \mathrm{acc}(o \to n) = \min\left(1, \frac{W(n)}{W(o)} \exp\{-\beta[u_\mathrm{pos}(n) - u_\mathrm{pos}(o)]\}\right)
-   \tag{12.1.5}
-   $$
-   被接受。
+
+    $$
+    \mathrm{acc}(o \to n) = \min\left(1, \frac{W(n)}{W(o)} \exp\{-\beta[u_\mathrm{pos}(n) - u_\mathrm{pos}(o)]\}\right)
+    \tag{12.1.5}
+    $$
+
+    被接受。
 
 显然，式 (12.1.3) 确保能量上有利的构型更可能被生成。该方案的一个实现示例如算法 21 所示。接下来，我们应该证明采样方案是正确的。
 
@@ -282,11 +290,13 @@ $$
 1. 使用 Rosenbluth 方案（见图 12.3，左图）生长整个分子或其部分来生成试探构象，并计算其 Rosenbluth 权重$W(n)$。
 1. “回溯”旧构象（见图 12.3，右图）并确定其 Rosenbluth 因子。
 1. 以概率
-   $$
-   \mathrm{acc}(o \to n) = \min[1, W(n)/W(o)].
-   \tag{12.2.1}
-   $$
-   接受试探移动。
+
+    $$
+    \mathrm{acc}(o \to n) = \min[1, W(n)/W(o)].
+    \tag{12.2.1}
+    $$
+
+    接受试探移动。
 
 ![图 12.3](../images/fig_12_3.png)
 
@@ -295,40 +305,50 @@ $$
 由$\ell$个单体组成的聚合物的试探构象$n$使用基于 Rosenbluth 和 Rosenbluth 方法的算法生成（见图 12.3）：
 
 1. 第一个原子随机插入，其能量记为$u_1(n)$，且[^6]
-   $$
-   w_1(n) = k \exp[-\beta u_1(n)],
-   $$
-   其中$k$是格点的配位数，例如简单立方格点的$k=6$。
+
+    $$
+    w_1(n) = k \exp[-\beta u_1(n)],
+    $$
+
+    其中$k$是格点的配位数，例如简单立方格点的$k=6$。
 1. 对于索引为$i$的下一个片段，有$k$个可能的试探方向。试探方向$j$的能量记为$u_i(j)$。从$k$个可能的方向中，我们以概率
-   $$
-   p_i(n) = \frac{\exp[-\beta u_i(n)]}{w_i(n)},
-   \tag{12.2.2}
-   $$
-   选择一个，记为$n$，其中$w_i(n)$定义为
-   $$
-   w_i(n) = \sum_{j=1}^{k} \exp[-\beta u_i(j)].
-   \tag{12.2.3}
-   $$
-   相互作用能$u_i(j)$包括片段$i$与系统中其他分子以及同一分子第 1 到$i-1$个片段的所有相互作用。它不包括与第$i+1$到$\ell$个片段的相互作用。因此，链的总能量为$U(n) = \sum_{i=1}^{\ell} u_i(n)$。
+
+    $$
+    p_i(n) = \frac{\exp[-\beta u_i(n)]}{w_i(n)},
+    \tag{12.2.2}
+    $$
+
+    选择一个，记为$n$，其中$w_i(n)$定义为
+
+    $$
+    w_i(n) = \sum_{j=1}^{k} \exp[-\beta u_i(j)].
+    \tag{12.2.3}
+    $$
+
+    相互作用能$u_i(j)$包括片段$i$与系统中其他分子以及同一分子第 1 到$i-1$个片段的所有相互作用。它不包括与第$i+1$到$\ell$个片段的相互作用。因此，链的总能量为$U(n) = \sum_{i=1}^{\ell} u_i(n)$。
 1. 重复步骤 2 直到整条链生长完毕，然后我们可以确定构型$n$的 Rosenbluth 因子$W$：
-   $$
-   W(n) = \prod_{i=1}^{\ell} w_i(n).
-   \tag{12.2.4}
-   $$
+
+    $$
+    W(n) = \prod_{i=1}^{\ell} w_i(n).
+    \tag{12.2.4}
+    $$
 
 类似地，为了确定旧构型$o$的 Rosenbluth 因子，我们使用以下步骤（见图 12.3）：
 
 1. 随机选择一条链。该链记为$o$。
 1. 我们测量第一个单体的能量$u_1(o)$并计算$w_1(o) = k \exp[-\beta u_1(o)]$。
 1. 为了计算链其余部分的 Rosenbluth 权重，我们确定单体$i$在其实际位置的能量，以及如果它被放置在单体$i-1$的实际位置附近的其他$k-1$个位点中的任何一个时会具有的能量（见图 12.3）。这些能量用于计算：
-   $$
-   w_i(o) = \exp[-\beta u_i(o)] + \sum_{j=2}^{k} \exp[-\beta u_i(j)].
-   $$
+
+    $$
+    w_i(o) = \exp[-\beta u_i(o)] + \sum_{j=2}^{k} \exp[-\beta u_i(j)].
+    $$
+
 1. 一旦整条链被回溯完毕，我们确定其 Rosenbluth 因子：
-   $$
-   W(o) = \prod_{i=1}^{\ell} w_i(o).
-   \tag{12.2.5}
-   $$
+
+    $$
+    W(o) = \prod_{i=1}^{\ell} w_i(o).
+    \tag{12.2.5}
+    $$
 
 最后，从$o$到$n$的试探移动以概率
 
@@ -449,55 +469,72 @@ $$
 为了执行构型偏倚 Monte Carlo 移动，我们应用以下“配方”来构造由$\ell$个片段组成的链的构象。链构象的构造逐段进行。让我们考虑添加一个这样的片段。具体来说，假设我们已经生长了$i-1$个片段，正在尝试添加片段$i$。这分两步完成。首先，我们生成试探构象$n$，然后考虑旧构象$o$。试探构象的生成如下：
 
 1. 生成固定数量的，比如$k$个试探片段。试探片段的取向按照与单体$i$的键合相互作用（$u_{i}^{\mathrm{bond}}$）相关的玻尔兹曼权重分布。我们将这$k$个不同的试探片段记为
-   $$
-   \{\mathbf{b}\}_k = \{\mathbf{b}_1, \cdots, \mathbf{b}_k\},
-   $$
-   其中生成试探片段$\mathbf{b}$的概率为
-   $$
-   p_{i}^{\mathrm{bond}}(\mathbf{b})\, \mathrm{d}\mathbf{b} = \frac{\exp[-\beta u_{i}^{\mathrm{bond}}(\mathbf{b})]\, \mathrm{d}\mathbf{b}}{\int \mathrm{d}\mathbf{b}\, \exp[-\beta u_{i}^{\mathrm{bond}}(\mathbf{b})]} = C \exp[-\beta u_{i}^{\mathrm{bond}}(\mathbf{b})]\, \mathrm{d}\mathbf{b}.
-   \tag{12.2.10}
-   $$
+
+    $$
+    \{\mathbf{b}\}_k = \{\mathbf{b}_1, \cdots, \mathbf{b}_k\},
+    $$
+
+    其中生成试探片段$\mathbf{b}$的概率为
+
+    $$
+    p_{i}^{\mathrm{bond}}(\mathbf{b})\, \mathrm{d}\mathbf{b} = \frac{\exp[-\beta u_{i}^{\mathrm{bond}}(\mathbf{b})]\, \mathrm{d}\mathbf{b}}{\int \mathrm{d}\mathbf{b}\, \exp[-\beta u_{i}^{\mathrm{bond}}(\mathbf{b})]} = C \exp[-\beta u_{i}^{\mathrm{bond}}(\mathbf{b})]\, \mathrm{d}\mathbf{b}.
+    \tag{12.2.10}
+    $$
+
 1. 对于所有$k$个试探片段，我们计算外部玻尔兹曼因子$\exp[-\beta u_{i}^{\mathrm{ext}}(\mathbf{b}_i)]$，并从中以概率
-   $$
-   p_{i}^{\mathrm{ext}}(\mathbf{b}_n) = \frac{\exp[-\beta u_{i}^{\mathrm{ext}}(\mathbf{b}_n)]}{w_{i}^{\mathrm{ext}}(n)},
-   \tag{12.2.11}
-   $$
-   选择一个，记为$n$，其中我们定义了
-   $$
-   w_{i}^{\mathrm{ext}}(n) = \sum_{j=1}^{k} \exp[-\beta u_{i}^{\mathrm{ext}}(\mathbf{b}_j)].
-   \tag{12.2.12}
-   $$
+
+    $$
+    p_{i}^{\mathrm{ext}}(\mathbf{b}_n) = \frac{\exp[-\beta u_{i}^{\mathrm{ext}}(\mathbf{b}_n)]}{w_{i}^{\mathrm{ext}}(n)},
+    \tag{12.2.11}
+    $$
+
+    选择一个，记为$n$，其中我们定义了
+
+    $$
+    w_{i}^{\mathrm{ext}}(n) = \sum_{j=1}^{k} \exp[-\beta u_{i}^{\mathrm{ext}}(\mathbf{b}_j)].
+    \tag{12.2.12}
+    $$
+
 1. 被选中的片段$n$成为链的试探构象的第$i$个片段。
 1. 当整条链生长完毕后，我们计算链的 Rosenbluth 因子：
-   $$
-   W^{\mathrm{ext}}(n) = \prod_{i=1}^{\ell} w_{i}^{\mathrm{ext}}(n),
-   \tag{12.2.13}
-   $$
-   其中第一个单体的 Rosenbluth 因子定义为
-   $$
-   w_{1}^{\mathrm{ext}}(n) = k \exp[-\beta u_{1}^{\mathrm{ext}}(\mathbf{r}_1)],
-   \tag{12.2.14}
-   $$
-   其中$\mathbf{r}_1$是第一个单体的位置。
+
+    $$
+    W^{\mathrm{ext}}(n) = \prod_{i=1}^{\ell} w_{i}^{\mathrm{ext}}(n),
+    \tag{12.2.13}
+    $$
+
+    其中第一个单体的 Rosenbluth 因子定义为
+
+    $$
+    w_{1}^{\mathrm{ext}}(n) = k \exp[-\beta u_{1}^{\mathrm{ext}}(\mathbf{r}_1)],
+    \tag{12.2.14}
+    $$
+
+    其中$\mathbf{r}_1$是第一个单体的位置。
 
 对于旧构型，使用类似的过程来计算其 Rosenbluth 因子：
 
 1. 随机选择一条链。该链记为$o$。
 1. 计算第一个单体的外部能量。该能量仅涉及外部相互作用。第一个单体的 Rosenbluth 权重为
-   $$
-   w_{1}^{\mathrm{ext}}(o) = k \exp[-\beta u_{1}^{\mathrm{ext}}(o)].
-   \tag{12.2.15}
-   $$
+
+    $$
+    w_{1}^{\mathrm{ext}}(o) = k \exp[-\beta u_{1}^{\mathrm{ext}}(o)].
+    \tag{12.2.15}
+    $$
+
 1. 其余$\ell-1$个片段的 Rosenbluth 因子按如下方式计算。我们考虑片段$i$的 Rosenbluth 因子的计算。我们生成一组$k-1$个按照键合相互作用 (12.2.10) 规定的分布取向。这些取向与片段$i-1$和$i$之间的实际键一起，形成$k$个取向的集合$(\mathbf{b}_o, \mathbf{b}'^*)$。这些取向用于计算外部 Rosenbluth 因子：
-   $$
-   w_{i}^{\mathrm{ext}}(o) = \sum_{j=1}^{k} \exp[-\beta u_{i}^{\mathrm{ext}}(\mathbf{b}_j)].
-   \tag{12.2.16}
-   $$
+
+    $$
+    w_{i}^{\mathrm{ext}}(o) = \sum_{j=1}^{k} \exp[-\beta u_{i}^{\mathrm{ext}}(\mathbf{b}_j)].
+    \tag{12.2.16}
+    $$
+
 1. 对于整条链，旧构象的 Rosenbluth 因子定义为
-   $$
-   W^{\mathrm{ext}}(o) = \prod_{i=1}^{\ell} w_{i}^{\mathrm{ext}}(o).
-   \tag{12.2.17}
-   $$
+
+    $$
+    W^{\mathrm{ext}}(o) = \prod_{i=1}^{\ell} w_{i}^{\mathrm{ext}}(o).
+    \tag{12.2.17}
+    $$
 
 在生成了新构型并计算出旧构型的 Rosenbluth 因子之后，移动以概率
 
@@ -809,19 +846,22 @@ $$
     其中$l$是键长，平衡键长设为 1，$k_\mathrm{vib} = 400$。键合相互作用仅是键拉伸。外部（非键合）相互作用是 Lennard-Jones 相互作用。我们考虑以下两种生成试探位置集合的方案：
 
     1. 生成一个随机取向，键长均匀分布在选定的球壳内，使得它们包含所有可接受的键长。例如，我们可以考虑对应于 50\%键拉伸或压缩的极限。在这种情况下，生成键长$l$的概率为
-       $$
-       p_1(l) \begin{cases}
-       \propto C\, \mathrm{d}l \propto l^2\, \mathrm{d}l & 0.5 \le l \le 1.5 \\
-       0 & \text{其他}
-       \end{cases}.
-       $$
+
+        $$
+        p_1(l) \begin{cases}
+        \propto C\, \mathrm{d}l \propto l^2\, \mathrm{d}l & 0.5 \le l \le 1.5 \\
+        0 & \text{其他}
+        \end{cases}.
+        $$
+
     1. 生成随机取向和由键拉伸势规定的键长（如算法 25 所述）。使用此方案生成键长$l$的概率为
-       $$
-       p_2(l) \begin{cases}
-       \propto C \exp[-\beta u_\mathrm{vib}(l)]\, \mathrm{d}l = C \exp[-\beta u_\mathrm{vib}(l)]\, l^2\, \mathrm{d}l & 0.5 \le l \le 1.5 \\
-       0 & \text{其他}
-       \end{cases}.
-       $$
+
+        $$
+        p_2(l) \begin{cases}
+        \propto C \exp[-\beta u_\mathrm{vib}(l)]\, \mathrm{d}l = C \exp[-\beta u_\mathrm{vib}(l)]\, l^2\, \mathrm{d}l & 0.5 \le l \le 1.5 \\
+        0 & \text{其他}
+        \end{cases}.
+        $$
 
     让我们考虑系统由理想链组成的情况。理想链定义为（见 12.2.3 节）仅有键合相互作用的链。
 
@@ -1110,35 +1150,47 @@ $$
 
 1. 对于第一个单体，选择一个随机位置，并计算该单体的能量。该能量记为$u_\mathrm{ext,1}^{\mathrm{(n)}}$，我们定义$w_\mathrm{ext,1}^{\mathrm{(n)}} = k \exp[-\beta u_\mathrm{ext,1}^{\mathrm{(n)}}]$（与之前一样，因子$k$的引入仅为简化后续符号）。
 1. 对于后续单体，生成一组$k$个试探位置。我们将这些位置记为$\{b\}_k = (b_1, b_2, \cdots, b_k)$。这组试探取向使用成键部分的电势生成，对第$i$个单体产生以下分布：
-   $$
-   p_i^\mathrm{bond}(b) \mathrm{d}b = C \exp[-\beta u_i^\mathrm{bond}(b)] \mathrm{d}b,
-   \tag{12.6.1}
-   $$
-   其中
-   $$
-   C^{-1} \equiv \int \mathrm{d}b \exp[-\beta u_i^\mathrm{bond}(b)].
-   \tag{12.6.2}
-   $$
-   注意，试探取向的生成方式取决于被添加的单体类型（参见第 12.3 节）。对于每个试探位置，计算外部能量$u_\mathrm{ext,i}(b_j)$，并以如下概率选择其中之一：
-   $$
-   p_i^\mathrm{ext}(b_n) = \frac{\exp[-\beta u_\mathrm{ext,i}(b_n)]}{w_\mathrm{ext,i}^{\mathrm{(n)}}},
-   \tag{12.6.3}
-   $$
-   其中
-   $$
-   w_\mathrm{ext,i}^{\mathrm{(n)}} = \sum_{j=1}^{k} \exp[-\beta u_\mathrm{ext,i}(b_j)].
-   $$
+
+    $$
+    p_i^\mathrm{bond}(b) \mathrm{d}b = C \exp[-\beta u_i^\mathrm{bond}(b)] \mathrm{d}b,
+    \tag{12.6.1}
+    $$
+
+    其中
+
+    $$
+    C^{-1} \equiv \int \mathrm{d}b \exp[-\beta u_i^\mathrm{bond}(b)].
+    \tag{12.6.2}
+    $$
+
+    注意，试探取向的生成方式取决于被添加的单体类型（参见第 12.3 节）。对于每个试探位置，计算外部能量$u_\mathrm{ext,i}(b_j)$，并以如下概率选择其中之一：
+
+    $$
+    p_i^\mathrm{ext}(b_n) = \frac{\exp[-\beta u_\mathrm{ext,i}(b_n)]}{w_\mathrm{ext,i}^{\mathrm{(n)}}},
+    \tag{12.6.3}
+    $$
+
+    其中
+
+    $$
+    w_\mathrm{ext,i}^{\mathrm{(n)}} = \sum_{j=1}^{k} \exp[-\beta u_\mathrm{ext,i}(b_j)].
+    $$
+
 1. 重复步骤 2 直到整条长度为$\ell$的烷烃生长完成，可以计算归一化的 Rosenbluth 因子：
-   $$
-   W_\mathrm{ext}^{\mathrm{(n)}} \equiv \frac{\mathcal{W}_\mathrm{ext}^{\mathrm{(n)}}}{k^\ell} = \prod_{i=1}^{\ell} \frac{w_\mathrm{ext,i}^{\mathrm{(n)}}}{k}.
-   \tag{12.6.4}
-   $$
+
+    $$
+    W_\mathrm{ext}^{\mathrm{(n)}} \equiv \frac{\mathcal{W}_\mathrm{ext}^{\mathrm{(n)}}}{k^\ell} = \prod_{i=1}^{\ell} \frac{w_\mathrm{ext,i}^{\mathrm{(n)}}}{k}.
+    \tag{12.6.4}
+    $$
+
 1. 新分子以如下概率被接受：
-   $$
-   \mathrm{acc}(N \to N+1) = \min\left(1, \frac{q(T)\exp(\beta\mu_B)V}{(N+1)\mathcal{W}_\mathrm{ext}^{\mathrm{(n)}}}\right),
-   \tag{12.6.5}
-   $$
-   其中$\mu_B$是由理想链分子组成的储库的化学势，$q(T)$是分子配分函数的动力学贡献（对于原子，$q(T) = 1/\Lambda^3$）。
+
+    $$
+    \mathrm{acc}(N \to N+1) = \min\left(1, \frac{q(T)\exp(\beta\mu_B)V}{(N+1)\mathcal{W}_\mathrm{ext}^{\mathrm{(n)}}}\right),
+    \tag{12.6.5}
+    $$
+
+    其中$\mu_B$是由理想链分子组成的储库的化学势，$q(T)$是分子配分函数的动力学贡献（对于原子，$q(T) = 1/\Lambda^3$）。
 
 #### 粒子移除
 
@@ -1146,19 +1198,24 @@ $$
 
 1. 随机选择一个粒子，假设为$o$，计算第一个单体的能量并记为$u_\mathrm{ext,1}^{\mathrm{(o)}}$，确定$w_\mathrm{ext,1}^{\mathrm{(o)}} = k \exp[-\beta u_\mathrm{ext,1}^{\mathrm{(o)}}]$。
 1. 对于链的后续片段，计算外部能量$u_\mathrm{ext,i}^{\mathrm{(o)}}$，并生成$k-1$个试探取向，其概率由式 (12.6.1) 给出。使用这组取向和实际位置，计算单体$i$：
-   $$
-   w_\mathrm{ext,i}^{\mathrm{(o)}} = \exp[-\beta u_\mathrm{ext,i}^{\mathrm{(o)}}] + \sum_{j=2}^{k} \exp[-\beta u_\mathrm{ext,i}(b_j)].
-   $$
+
+    $$
+    w_\mathrm{ext,i}^{\mathrm{(o)}} = \exp[-\beta u_\mathrm{ext,i}^{\mathrm{(o)}}] + \sum_{j=2}^{k} \exp[-\beta u_\mathrm{ext,i}(b_j)].
+    $$
+
 1. 对所有$\ell$个单体重复步骤 2 后，我们计算整个分子：
-   $$
-   W_\mathrm{ext}^{\mathrm{(o)}} \equiv \frac{\mathcal{W}_\mathrm{ext}^{\mathrm{(o)}}}{k^\ell} = \prod_{i=1}^{\ell} \frac{w_\mathrm{ext,i}^{\mathrm{(o)}}}{k}.
-   \tag{12.6.6}
-   $$
+
+    $$
+    W_\mathrm{ext}^{\mathrm{(o)}} \equiv \frac{\mathcal{W}_\mathrm{ext}^{\mathrm{(o)}}}{k^\ell} = \prod_{i=1}^{\ell} \frac{w_\mathrm{ext,i}^{\mathrm{(o)}}}{k}.
+    \tag{12.6.6}
+    $$
+
 1. 选定的分子以如下概率被移除：
-   $$
-   \mathrm{acc}(N \to N-1) = \min\left(1, \frac{N q(T)V \exp(\beta\mu_B)}{\mathcal{W}_\mathrm{ext}^{\mathrm{(o)}}}\right).
-   \tag{12.6.7}
-   $$
+
+    $$
+    \mathrm{acc}(N \to N-1) = \min\left(1, \frac{N q(T)V \exp(\beta\mu_B)}{\mathcal{W}_\mathrm{ext}^{\mathrm{(o)}}}\right).
+    \tag{12.6.7}
+    $$
 
 我们将$\mu_B$定义为由理想链组成的储库的化学势。通常很方便使用非理想链（即同时具有成键和非键分子内相互作用的链）的理想气体作为参考态。这导致化学势的一个简单的、依赖于温度的偏移：
 
@@ -1228,7 +1285,7 @@ $$
 
 1. 将链的第一个单体放在随机位置。计算该单体的能量（$u_1$）。该位置为“开放”的概率由式 (12.7.1) 给出。如果位置关闭，我们不能继续生长链并拒绝试探构象。如果第一个位置开放，我们继续下一步。
 1. 从单体$i$出发为单体$i+1$生成试探位置$b_{i+1}$。我们计算该试探单体的能量$u_{i+1}(b)$，并使用式 (12.7.1) 确定该位置是开放还是关闭的。如果该方向关闭，我们尝试另一个试探位置，最多$k$个试探取向[^10]。一旦找到开放位置，我们继续步骤 3。
-   如果找不到一个开放的试探位置，我们执行回退步骤。链回退一步到单体$i-1$（如果该单体存在），并探索步骤 2 中$i-1$的未使用方向（如果有的话）。如果$i-1$级的所有方向都已耗尽，我们尝试回退到$i-2$。链允许总共回退$l_\mathrm{max}$步，即向下回退到长度$i - l_\mathrm{max} + 1$。如果在最大回退长度处，所有试探方向都关闭，试探构象被丢弃。
+    如果找不到一个开放的试探位置，我们执行回退步骤。链回退一步到单体$i-1$（如果该单体存在），并探索步骤 2 中$i-1$的未使用方向（如果有的话）。如果$i-1$级的所有方向都已耗尽，我们尝试回退到$i-2$。链允许总共回退$l_\mathrm{max}$步，即向下回退到长度$i - l_\mathrm{max} + 1$。如果在最大回退长度处，所有试探方向都关闭，试探构象被丢弃。
 1. 我们现在为单体$i+1$找到了一个“开放”的试探位置。此时，单体$i-l_\mathrm{max}$被永久地添加到新构型中；即回退步骤将不再到达该单体。
 1. 重复步骤 2 和 3，直到整条链已经生长完毕。
 
@@ -1239,16 +1296,19 @@ $$
 在 RG 方案中，以下算法用于计算新构象的权重：
 
 1. 假设我们处于单体位置$i$（当然，最初$i=1$）。在算法的前一阶段，我们已经发现至少有一个试探方向可用（即包含在我们新构型中的那个方向）。此外，我们可能发现一定数量的方向（假设为$k_c$个）是关闭的——这些是我们尝试过但在$l_\mathrm{max}$步内失败的方向。我们仍然需要测试剩余的$k_\mathrm{rest} \equiv k - 1 - k_c$个方向。我们为单体$i+1$随机生成$k_\mathrm{rest}$个试探位置，并使用回退生长算法测试是否至少有一个长度为$l_\mathrm{max}$的“探测器”可以在该方向上生长（除非$i+l_\mathrm{max} > l$；在这种情况下，我们只继续直到到达链的末端）。注意，我们再次不探索所有可能的分支。我们只检查在每个$k_\mathrm{rest}$方向中是否存在至少一个长度为$l_\mathrm{max}$的开放分支。如果是这种情况，我们称该方向为“可用的”。我们用$m_i$表示可用方向的总数（包括在算法第一阶段中找到的方向）。在下一节中，我们将推导单体$i$对链的权重贡献一个因子$w_i(n)$，其中$w_i(n)$由下式给出：
-   $$
-   w_i(n) = \frac{m_i(n)}{p_i^\mathrm{open}(n)},
-   $$
-   其中$p_i^\mathrm{open}(n)$由式 (12.7.1) 给出。
+
+    $$
+    w_i(n) = \frac{m_i(n)}{p_i^\mathrm{open}(n)},
+    $$
+
+    其中$p_i^\mathrm{open}(n)$由式 (12.7.1) 给出。
 1. 对所有$i$从 1 到$\ell-1$重复上一步。最终单体的偏权重表达式似乎有歧义，因为$m_l(n)$没有定义。一个简单（且正确）的解决方案是选择$m_l(n) = 1$。
 1. 然后计算整条链的权重：
-   $$
-   W(n) = \prod_{i=1}^{\ell} w_i(n) = \prod_{i=1}^{\ell} \frac{m_i(n)}{p_i^\mathrm{open}(n)}.
-   \tag{12.7.2}
-   $$
+
+    $$
+    W(n) = \prod_{i=1}^{\ell} w_i(n) = \prod_{i=1}^{\ell} \frac{m_i(n)}{p_i^\mathrm{open}(n)}.
+    \tag{12.7.2}
+    $$
 
 对于旧构型权重的计算，我们使用几乎相同的程序。区别在于，对于旧构型，我们必须为每个单体$i$生成$k-1$个额外方向。权重再次与从单体$i$出发且“可用的”方向总数相关，即包含至少一个长度为$l_\mathrm{max}$的开放探测器：
 
@@ -1299,15 +1359,19 @@ $$
 
 - 两个连续珠子具有固定键长$l$。我们将使用$l = 1$。
 - 三个连续珠子具有键弯曲相互作用
-  $$
-  U = \frac{1}{2} k_t (\theta - \theta_0)^2,
-  $$
-  其中$\theta$是键角，$\theta_0$是平衡键角，$k_t$是一个常数。我们将使用$\theta_0 = 2.0$ rad（$\approx 114.6^\circ$）和$k_t = 2.0$。
+
+    $$
+    U = \frac{1}{2} k_t (\theta - \theta_0)^2,
+    $$
+
+    其中$\theta$是键角，$\theta_0$是平衡键角，$k_t$是一个常数。我们将使用$\theta_0 = 2.0$ rad（$\approx 114.6^\circ$）和$k_t = 2.0$。
 - 每对被两个以上键隔开的珠子具有软排斥相互作用
-  $$
-  U(r) = \begin{cases} A (r - r_\mathrm{cut})^2 / r_\mathrm{cut}^2 & r \leq r_\mathrm{cut} \\ 0 & r > r_\mathrm{cut} \end{cases},
-  $$
-  其中$r_\mathrm{cut}$是截断半径（我们将使用$r_\mathrm{cut} = 1.0$且$A > 0$）。
+
+    $$
+    U(r) = \begin{cases} A (r - r_\mathrm{cut})^2 / r_\mathrm{cut}^2 & r \leq r_\mathrm{cut} \\ 0 & r > r_\mathrm{cut} \end{cases},
+    $$
+
+    其中$r_\mathrm{cut}$是截断半径（我们将使用$r_\mathrm{cut} = 1.0$且$A > 0$）。
 
 链分子的一个有趣性质是末端到末端距离的分布，即链的第一个和最后一个片段之间的距离。有几种可能的方法来研究这个性质：
 
@@ -1321,19 +1385,25 @@ $$
 在$N \to \infty$的极限下，这个表达式变得精确。每个新构象使用接受准则被接受或拒绝：
 
 - 当生成无偏链时：
-  $$
-  \mathrm{acc}(o \to n) = \min(1, \exp\{-\beta [U(n) - U(o)]\}),
-  $$
-  其中$U$是链的总能量（软排斥和键弯曲）。
+
+    $$
+    \mathrm{acc}(o \to n) = \min(1, \exp\{-\beta [U(n) - U(o)]\}),
+    $$
+
+    其中$U$是链的总能量（软排斥和键弯曲）。
 - 当使用构型偏倚 Monte Carlo 时：
-  $$
-  \mathrm{acc}(o \to n) = \min\left(1, \frac{W(n)}{W(o)}\right),
-  $$
-  其中
-  $$
-  W = \frac{\prod_{i=2}^{n}\sum_{j=1}^{k} \exp[-\beta U(i,j)]}{k^{n-1}}.
-  $$
-  在此方程中，$k$是试探位置数，$U(i,j)$是第$i$个链段的第$j$个试探位置的能量。$U(i,j)$不包含键弯曲势，因为该势已经用于生成试探位置。
+
+    $$
+    \mathrm{acc}(o \to n) = \min\left(1, \frac{W(n)}{W(o)}\right),
+    $$
+
+    其中
+
+    $$
+    W = \frac{\prod_{i=2}^{n}\sum_{j=1}^{k} \exp[-\beta U(i,j)]}{k^{n-1}}.
+    $$
+
+    在此方程中，$k$是试探位置数，$U(i,j)$是第$i$个链段的第$j$个试探位置的能量。$U(i,j)$不包含键弯曲势，因为该势已经用于生成试探位置。
 
 #### 静态方案
 在静态方案中，所有构象是独立生成的。要获得正则平均，每个构象以因子$R$加权：
@@ -1346,28 +1416,33 @@ $$
 
 - 当生成随机链时：$R_i = \exp[-\beta U_i]$。这里$U_i$是链的总能量。
 - 当使用 CBMC 时：
-  $$
-  R_i = W.
-  \tag{12.8.1}
-  $$
+
+    $$
+    R_i = W.
+    \tag{12.8.1}
+    $$
 
 1. 在本书网站上你可以找到一个使用这四种方法计算链性质的程序。然而，需要在文件`grow.f`中进行一些额外的编程，该文件包含使用 CBMC 或随机插入生长新链的例程。
 1. 比较四种方法的末端到末端距离分布。哪种方法性能最好？研究 CBMC 的效率如何依赖于试探方向数（$k$）。
 1. 研究链长度对末端到末端距离分布的影响。对于哪些链长度，四种方法开始失效？
 1. 对于高温（以及低$k_t$和$A$），末端到末端距离分布看起来像非自回避随机游走的分布。这意味着链段是随机取向的，允许段重叠。对于均方末端到末端距离，我们可以写出
-   $$
-   \frac{\langle r^2 \rangle}{l^2} = \sum_{i=1}^{n} x_i^2 + \sum_{i=1}^{n} y_i^2 + \sum_{i=1}^{n} z_i^2,
-   $$
-   其中$(x_i, y_i, z_i)$是每个段在$(x,y,z)$轴上的投影
-   $$
-   x_i = \sin(\theta_i)\cos(\phi_i), \quad y_i = \sin(\theta_i)\sin(\phi_i), \quad z_i = \cos(\theta_i).
-   $$
-   这组方程可以简化为
-   $$
-   \frac{\langle r^2 \rangle}{l^2} = n.
-   \tag{12.8.2}
-   $$
 
+    $$
+    \frac{\langle r^2 \rangle}{l^2} = \sum_{i=1}^{n} x_i^2 + \sum_{i=1}^{n} y_i^2 + \sum_{i=1}^{n} z_i^2,
+    $$
+
+    其中$(x_i, y_i, z_i)$是每个段在$(x,y,z)$轴上的投影
+
+    $$
+    x_i = \sin(\theta_i)\cos(\phi_i), \quad y_i = \sin(\theta_i)\sin(\phi_i), \quad z_i = \cos(\theta_i).
+    $$
+
+    这组方程可以简化为
+
+    $$
+    \frac{\langle r^2 \rangle}{l^2} = n.
+    \tag{12.8.2}
+    $$
 
 ---
 

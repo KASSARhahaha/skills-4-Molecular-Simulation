@@ -118,14 +118,18 @@ $$
 
 1. 所需温度 `temp` 在初始化时设定。
 1. 因为 Andersen 恒温器作用于速度，它使用速度-Verlet 算法（见第 4.3 节），即式 (4.3.4) 与 (4.3.5)。本算法分两步进行：第 1 步 **integrate-A**(`1,temp`) 中，我们已知时刻 `t` 的力与速度，于是更新 `x(t)` 并确定
-   $$
-   v' = v(t) + \frac{f(t)}{2m}\,\mathrm{d}t .
-   $$
-   随后在 **FandE** 中确定 `t=t+dt` 时的力；最后在第 2 步 **integrate-A**(`2,temp`) 中确定时刻 `t=t+dt` 的速度，
-   $$
-   v(t + \mathrm{d}t) = v' + \frac{f(t + \mathrm{d}t)}{2m}\,\mathrm{d}t .
-   $$
-   在 Andersen 算法中，我们额外加入一步：在位置与速度完成速度-Verlet 更新之后，我们给随机选出的一部分粒子赋予新的速度，这些速度取自温度为 `temp` 的麦克斯韦-玻尔兹曼分布。其结果是，速度在整数个时间步处被更新。函数 **integrate-A** 见算法 17。
+
+    $$
+    v' = v(t) + \frac{f(t)}{2m}\,\mathrm{d}t .
+    $$
+
+    随后在 **FandE** 中确定 `t=t+dt` 时的力；最后在第 2 步 **integrate-A**(`2,temp`) 中确定时刻 `t=t+dt` 的速度，
+
+    $$
+    v(t + \mathrm{d}t) = v' + \frac{f(t + \mathrm{d}t)}{2m}\,\mathrm{d}t .
+    $$
+
+    在 Andersen 算法中，我们额外加入一步：在位置与速度完成速度-Verlet 更新之后，我们给随机选出的一部分粒子赋予新的速度，这些速度取自温度为 `temp` 的麦克斯韦-玻尔兹曼分布。其结果是，速度在整数个时间步处被更新。函数 **integrate-A** 见算法 17。
 
 **算法 17　运动方程：Andersen 恒温器**
 
@@ -390,7 +394,7 @@ $$
 \lim_{\tau'\to\infty}&\frac{1}{\tau'}\int_0^{\tau'} \mathrm{d}t'\, A\left[\mathbf{p}(t')/s(t'), \mathbf{r}(t')\right]\\
 &= \lim_{\tau'\to\infty}\frac{\tau}{\tau'}\frac{1}{\tau}\int_0^{\tau} \mathrm{d}t\, A\left[\mathbf{p}(t)/s(t), \mathbf{r}(t)\right]/s(t)\\
 &= \frac{\lim_{\tau\to\infty}\frac{1}{\tau}\int_0^{\tau} \mathrm{d}t\, A\left[\mathbf{p}(t)/s(t), \mathbf{r}(t)\right]/s(t)}
-        {\lim_{\tau\to\infty}\frac{1}{\tau}\int_0^{\tau} \mathrm{d}t\, 1/s(t)}\\
+{\lim_{\tau\to\infty}\frac{1}{\tau}\int_0^{\tau} \mathrm{d}t\, 1/s(t)}\\
 &= \langle A(\mathbf{p}/s, \mathbf{r})/s\rangle / \langle 1/s\rangle.
 \end{aligned}
 \tag{7.1.24}
@@ -402,11 +406,11 @@ $$
 \begin{aligned}
 \frac{\langle A(\mathbf{p}/s, \mathbf{r})/s\rangle}{\langle 1/s\rangle}
 &\equiv \frac{\left\{\dfrac{\int \mathrm{d}\mathbf{p}'^N\, \mathrm{d}\mathbf{r}^N\, A(\mathbf{p}',\mathbf{r})\exp\left[-\beta\mathcal{H}(\mathbf{p}',\mathbf{r})dN/L\right]}
-                          {\int \mathrm{d}\mathbf{p}'^N\, \mathrm{d}\mathbf{r}^N\, \exp[-\beta\mathcal{H}(\mathbf{p}',\mathbf{r})(dN+1)/L]}\right\}}
-             {\left\{\dfrac{\int \mathrm{d}\mathbf{p}'^N\, \mathrm{d}\mathbf{r}^N\, \exp[-\beta[\mathcal{H}(\mathbf{p}',\mathbf{r})]dN/L]}
-                          {\int \mathrm{d}\mathbf{p}'^N\, \mathrm{d}\mathbf{r}^N\, \exp[-\beta[\mathcal{H}(\mathbf{p}',\mathbf{r})](dN+1)/L]}\right\}}\\
+{\int \mathrm{d}\mathbf{p}'^N\, \mathrm{d}\mathbf{r}^N\, \exp[-\beta\mathcal{H}(\mathbf{p}',\mathbf{r})(dN+1)/L]}\right\}}
+{\left\{\dfrac{\int \mathrm{d}\mathbf{p}'^N\, \mathrm{d}\mathbf{r}^N\, \exp[-\beta[\mathcal{H}(\mathbf{p}',\mathbf{r})]dN/L]}
+{\int \mathrm{d}\mathbf{p}'^N\, \mathrm{d}\mathbf{r}^N\, \exp[-\beta[\mathcal{H}(\mathbf{p}',\mathbf{r})](dN+1)/L]}\right\}}\\
 &= \frac{\int \mathrm{d}\mathbf{p}'^N\, \mathrm{d}\mathbf{r}^N\, A(\mathbf{p}/s, \mathbf{r})\exp\left[-\beta\mathcal{H}(\mathbf{p}',\mathbf{r})dN/L\right]}
-        {\int \mathrm{d}\mathbf{p}'^N\, \mathrm{d}\mathbf{r}^N\, \exp[-\beta[\mathcal{H}(\mathbf{p}',\mathbf{r})]dN/L]}\\
+{\int \mathrm{d}\mathbf{p}'^N\, \mathrm{d}\mathbf{r}^N\, \exp[-\beta[\mathcal{H}(\mathbf{p}',\mathbf{r})]dN/L]}\\
 &= \langle A(\mathbf{p}/s, \mathbf{r})\rangle_{NVT}.
 \end{aligned}
 \tag{7.1.25}
@@ -654,19 +658,21 @@ $$
 
 1. 推导$B$的表达式。绘制势能面图。
 1. 你可以在本书网站找到程序，用于计算粒子从$x(t=0)=0$出发使用几种方法的轨迹：
-   a. 无恒温器（$NVE$系综）。你预期相空间轨迹是什么样的？
-   b. Andersen 恒温器。在这种方法中，粒子的速度与随机热浴耦合，导致正则分布。
-   c. 简单的 Monte Carlo 方案。
-   Andersen 恒温器和$NVE$积分算法尚未在 SI 中的程序中实现。尝试在低温$T = 0.05$下使用所有方法，此时系统表现得像谐振子。请特别注意以下几点：
-   a. 为什么在低温下用 MC 方案生成的分布看起来与某些 MD 方案生成的分布如此不同？
-   b. 为什么$NVE$方案的相空间分布看起来像一个圆（或椭圆）？
+    a. 无恒温器（$NVE$系综）。你预期相空间轨迹是什么样的？
+    b. Andersen 恒温器。在这种方法中，粒子的速度与随机热浴耦合，导致正则分布。
+    c. 简单的 Monte Carlo 方案。
+    Andersen 恒温器和$NVE$积分算法尚未在 SI 中的程序中实现。尝试在低温$T = 0.05$下使用所有方法，此时系统表现得像谐振子。请特别注意以下几点：
+    a. 为什么在低温下用 MC 方案生成的分布看起来与某些 MD 方案生成的分布如此不同？
+    b. 为什么$NVE$方案的相空间分布看起来像一个圆（或椭圆）？
 1. 确定粒子跨越能量势垒的概率变得不可忽略的大致温度。
 1. 将程序中的势能函数修改为
-   $$
-   U = \epsilon[1 - \cos(2\pi x)].
-   \tag{7.3.1}
-   $$
-   计算扩散系数作为温度的函数。在标准恒定$NVE$ MD 中，系统表现为非扩散性。讨论粒子的均方位移的时间依赖性作为能量$E$的函数。
+
+    $$
+    U = \epsilon[1 - \cos(2\pi x)].
+    \tag{7.3.1}
+    $$
+
+    计算扩散系数作为温度的函数。在标准恒定$NVE$ MD 中，系统表现为非扩散性。讨论粒子的均方位移的时间依赖性作为能量$E$的函数。
 
 ---
 

@@ -554,7 +554,7 @@ $s_{N+1}$是第$N+1$个粒子的标度坐标。
 <tr markdown="1"><td class="algcode" markdown="span"><code>xtest=box*R</code></td><td class="algcom" markdown="span">生成随机位置</td></tr>
 <tr markdown="1"><td class="algcode" markdown="span"><code>entest&nbsp;=&nbsp;ener(xtest,npart+1)</code></td><td class="algcom" markdown="span">确定能量</td></tr>
 <tr markdown="1"><td class="algcode" markdown="span"><code>wtest=wtest</code></td><td class="algcom" markdown="span">更新式 (8.5.5) 中的玻尔兹曼因子</td></tr>
-<tr markdown="1"><td class="algcode" markdown="span"><code>\hspace*{2em}+exp(-beta*entest)</code></td><td class="algcom" markdown="span"></td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;+exp(-beta*entest)</code></td><td class="algcom" markdown="span"></td></tr>
 <tr markdown="1"><td class="algcode" markdown="span"><code>end&nbsp;function</code></td><td class="algcom" markdown="span"></td></tr>
 </tbody>
 </table>
@@ -562,16 +562,16 @@ $s_{N+1}$是第$N+1$个粒子的标度坐标。
 **具体说明**（一般说明见第 1 章「算法」）：
 
 1. 该算法展示了恒定$N$、$V$和$T$系统的 Widom 试探粒子方法的基本结构。
-   此函数通常在 Monte Carlo 模拟的采样步骤中调用，例如算法 1 中的函数`sample`。
-   通常，需要许多这样的试探粒子插入才能获得可靠的统计。
+    此函数通常在 Monte Carlo 模拟的采样步骤中调用，例如算法 1 中的函数`sample`。
+    通常，需要许多这样的试探粒子插入才能获得可靠的统计。
 1. 因为试探粒子不属于系统中的$\mathrm{npart}$个粒子，
-   我们给它一个（虚拟的）标签$\mathrm{npart}+1$。
+    我们给它一个（虚拟的）标签$\mathrm{npart}+1$。
 1. 过量化学势由$\beta\mu^{\mathrm{ex}} = -\ln(w_{\mathrm{test}}/M)$给出，
-   其中$M$是试探粒子插入的总次数。
-   $\beta\mu^{\mathrm{ex}}$的精度可以用$\sigma_{\beta\mu^{\mathrm{ex}}} = \sigma_{w_{\mathrm{test}}}/w_{\mathrm{test}}$来估计。
+    其中$M$是试探粒子插入的总次数。
+    $\beta\mu^{\mathrm{ex}}$的精度可以用$\sigma_{\beta\mu^{\mathrm{ex}}} = \sigma_{w_{\mathrm{test}}}/w_{\mathrm{test}}$来估计。
 1. 函数`ener`计算试探粒子的能量。注意试探粒子插入是虚拟的，从不被接受。
 1. 对于可加性成对相互作用，我们可以通过评估尾部修正来近似修正分子间相互作用的截断对化学势值的影响。
-   因为我们不需要修正双重计数，这个修正比正常 MC 或 MD 模拟中每粒子的势能所用的修正大一个因子 2（见案例研究 15）。
+    因为我们不需要修正双重计数，这个修正比正常 MC 或 MD 模拟中每粒子的势能所用的修正大一个因子 2（见案例研究 15）。
 
 $N$个粒子的位置不相关。Widom 方法为我们提供了一种强大的方案来计算（不太稠密的）原子和简单分子液体的化学势。
 在算法 18 中，我们展示了如何在模拟中实现粒子插入方法。
@@ -1826,11 +1826,13 @@ $$
 1. 为什么式 (8.6.1) 对硬球会失效？
 1. 对硬球体系，推导用 Widom 试探粒子方法所得化学势估计值的误差表达式。设生成一个至少发生一次重叠的试探位置的概率等于 $p$。
 1. 计算态 $A$ 与态 $B$ 之间自由能差的另一种方法，是使用一个含两个哈密顿量之差的表达式：
-   $$
-   F_A - F_B = \frac{-\ln \left\langle \exp[-\beta(\mathcal{H}_A - \mathcal{H}_B)] \right\rangle_{N,V,T,B}}{\beta} .
-   \tag{8.8.1}
-   $$
-   推导这个方程。是什么限制了上式的实际适用性？证明 Widom 试探粒子方法是该式的一个特例。
+
+    $$
+    F_A - F_B = \frac{-\ln \left\langle \exp[-\beta(\mathcal{H}_A - \mathcal{H}_B)] \right\rangle_{N,V,T,B}}{\beta} .
+    \tag{8.8.1}
+    $$
+
+    推导这个方程。是什么限制了上式的实际适用性？证明 Widom 试探粒子方法是该式的一个特例。
 
 **问题 24（虚拟体积变化）。**正如第 5.1.5.3 节所讨论的，维里方程对计算硬球流体的压力并不特别方便。
 

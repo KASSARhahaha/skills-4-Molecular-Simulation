@@ -1038,62 +1038,82 @@ $$
 为计算扩散系数，我们应当跟踪均方位移的时间依赖关系。第一步是对所有的 $i$ 和所有的 $j$ 确定 $\Delta\bar{\mathbf{r}}^{(i)}(j)$。此外，为改善统计，我们希望把每一个采样点都用作新的时间原点。为此，我们再次建立长度为 $n$ 的数组。不过，这些数组存放的不再是前面那样的块求和，而是部分块求和（见算法 10）。具体地说：
 
 1. 每隔一个时间间隔 $\Delta t$，按以下步骤执行最低级的分块操作：
-   1. 先考虑所有最低级累加器都已至少填满过一次的情形（当 $t > n\Delta t$ 时即如此）。当前速度 $v(t)$ 的值被加到
-   $$
-   \mathbf{v}_{\mathrm{sum}}(1, j) = \mathbf{v}_{\mathrm{sum}}(1, j+1) + \mathbf{v}(t)
-   \tag{5.2.32}
-   $$
-   其中 $\mathtt{j = 1,n\text{-}1}$；而
-   $$
-   \mathbf{v}_{\mathrm{sum}}(1, j) = \mathbf{v}(t)
-   \tag{5.2.33}
-   $$
-   对应 $\mathtt{j = n}$。
-   1. 这些操作给出
-   $$
-   \mathbf{v}_{\mathrm{sum}}(1, l) = \sum_{j=t-n+l}^{j=t} \mathbf{v}(j).
-   \tag{5.2.34}
-   $$
-   此式使我们能够对 $l = 1, 2, ..., n$ 更新均方位移 (5.2.31) 的累加器：
-   $$
-   (\Delta\bar{\mathbf{r}}^2)^{(0)}(l) = (\Delta\bar{\mathbf{r}}^2)^{(0)}(l) + \mathbf{v}_{\mathrm{sum}}^2(1, l)\,\Delta t^2 .
-   \tag{5.2.35}
-   $$
+    1. 先考虑所有最低级累加器都已至少填满过一次的情形（当 $t > n\Delta t$ 时即如此）。当前速度 $v(t)$ 的值被加到
+
+        $$
+        \mathbf{v}_{\mathrm{sum}}(1, j) = \mathbf{v}_{\mathrm{sum}}(1, j+1) + \mathbf{v}(t)
+        \tag{5.2.32}
+        $$
+
+        其中 $\mathtt{j = 1,n\text{-}1}$；而
+
+        $$
+        \mathbf{v}_{\mathrm{sum}}(1, j) = \mathbf{v}(t)
+        \tag{5.2.33}
+        $$
+
+        对应 $\mathtt{j = n}$。
+    1. 这些操作给出
+
+        $$
+        \mathbf{v}_{\mathrm{sum}}(1, l) = \sum_{j=t-n+l}^{j=t} \mathbf{v}(j).
+        \tag{5.2.34}
+        $$
+
+        此式使我们能够对 $l = 1, 2, ..., n$ 更新均方位移 (5.2.31) 的累加器：
+
+        $$
+        (\Delta\bar{\mathbf{r}}^2)^{(0)}(l) = (\Delta\bar{\mathbf{r}}^2)^{(0)}(l) + \mathbf{v}_{\mathrm{sum}}^2(1, l)\,\Delta t^2 .
+        \tag{5.2.35}
+        $$
+
 1. 如果当前时间步是 $n$ 的倍数，我们就执行第一次分块操作；如果它是 $n^2$ 的倍数，就执行第二次分块，依此类推。执行第 $i$ 次分块操作包括以下步骤：
-   1. 与前面一样，先考虑所有第 $i$ 级累加器都已至少填满过一次的情形（即 $t > n^i \Delta t$）。利用第 $i-1$ 级块求和 $\mathbf{v}_{\mathrm{sum}}(i-1, 1)$，我们更新
-   $$
-   \mathbf{v}_{\mathrm{sum}}(i, j) = \mathbf{v}_{\mathrm{sum}}(i, j+1) + \mathbf{v}_{\mathrm{sum}}(i-1, 1)
-   \tag{5.2.36}
-   $$
-   其中 $\mathtt{j = 1,n\text{-}1}$；而
-   $$
-   \mathbf{v}_{\mathrm{sum}}(i, j) = \mathbf{v}_{\mathrm{sum}}(i-1, 1)
-   \tag{5.2.37}
-   $$
-   对应 $\mathtt{j = n}$。
-   1. 这些操作给出
-   $$
-   \mathbf{v}_{\mathrm{sum}}(i, l) = \sum_{j=n-l+1}^{j=n} \mathbf{v}_{\mathrm{sum}}(i-1, j).
-   \tag{5.2.38}
-   $$
-   这些式子使我们能够对 $l = 1, 2, ..., n$ 更新均方位移式 (5.2.31) 的累加器：
-   $$
-   (\Delta\mathbf{r}^2)^{(i)}(l) = (\Delta\mathbf{r}^2)^{(i)}(l) + \mathbf{v}_{\mathrm{sum}}^2(i, l)\,\Delta t^2 .
-   \tag{5.2.39}
-   $$
+    1. 与前面一样，先考虑所有第 $i$ 级累加器都已至少填满过一次的情形（即 $t > n^i \Delta t$）。利用第 $i-1$ 级块求和 $\mathbf{v}_{\mathrm{sum}}(i-1, 1)$，我们更新
+
+        $$
+        \mathbf{v}_{\mathrm{sum}}(i, j) = \mathbf{v}_{\mathrm{sum}}(i, j+1) + \mathbf{v}_{\mathrm{sum}}(i-1, 1)
+        \tag{5.2.36}
+        $$
+
+        其中 $\mathtt{j = 1,n\text{-}1}$；而
+
+        $$
+        \mathbf{v}_{\mathrm{sum}}(i, j) = \mathbf{v}_{\mathrm{sum}}(i-1, 1)
+        \tag{5.2.37}
+        $$
+
+        对应 $\mathtt{j = n}$。
+    1. 这些操作给出
+
+        $$
+        \mathbf{v}_{\mathrm{sum}}(i, l) = \sum_{j=n-l+1}^{j=n} \mathbf{v}_{\mathrm{sum}}(i-1, j).
+        \tag{5.2.38}
+        $$
+
+        这些式子使我们能够对 $l = 1, 2, ..., n$ 更新均方位移式 (5.2.31) 的累加器：
+
+        $$
+        (\Delta\mathbf{r}^2)^{(i)}(l) = (\Delta\mathbf{r}^2)^{(i)}(l) + \mathbf{v}_{\mathrm{sum}}^2(i, l)\,\Delta t^2 .
+        \tag{5.2.39}
+        $$
+
 1. 最后，我们必须考虑如何处理尚未完全填满的数组。设存放第 $i$ 级求和的数组中只有 $\mathtt{nmax}$ 个（共 $n$ 个）位置已被初始化。此时应按如下方式处理：
-   1. 更新当前块长：$\mathtt{nmax = nmax+1}$（$\mathtt{nmax} < n$）。
-   1. 对 $\mathtt{j = 1,nmax\text{-}1}$，
-   $$
-   \mathbf{v}_{\mathrm{sum}}(i, j) = \mathbf{v}_{\mathrm{sum}}(i, j) + \mathbf{v}_{\mathrm{sum}}(i-1, 1).
-   \tag{5.2.40}
-   $$
-   1. 对 $\mathtt{j = nmax}$，
-   $$
-   \mathbf{v}_{\mathrm{sum}}(i, j) = \mathbf{v}_{\mathrm{sum}}(i-1, 1).
-   \tag{5.2.41}
-   $$
-   式 (5.2.31) 的更新保持不变。
+    1. 更新当前块长：$\mathtt{nmax = nmax+1}$（$\mathtt{nmax} < n$）。
+    1. 对 $\mathtt{j = 1,nmax\text{-}1}$，
+
+        $$
+        \mathbf{v}_{\mathrm{sum}}(i, j) = \mathbf{v}_{\mathrm{sum}}(i, j) + \mathbf{v}_{\mathrm{sum}}(i-1, 1).
+        \tag{5.2.40}
+        $$
+
+    1. 对 $\mathtt{j = nmax}$，
+
+        $$
+        \mathbf{v}_{\mathrm{sum}}(i, j) = \mathbf{v}_{\mathrm{sum}}(i-1, 1).
+        \tag{5.2.41}
+        $$
+
+        式 (5.2.31) 的更新保持不变。
 
 在例 6 中，我们把当前算法与计算 Lennard-Jones 流体扩散系数的常规算法作了比较。
 
@@ -1546,49 +1566,59 @@ $$
 1. VACF $< 0$ 的物理含义是什么？
 1. 在 MD 模拟中我们可以计算自扩散系数和黏度。然而在相同的模拟时长下，这两个量的相对误差并不相同，请解释。
 1. 除测量关联函数外，我们也可以测量功率谱。设我们研究一个涨落的可观测量 $A(t)$，则 $A$ 的数值功率谱定义为
-   $$
-   G_A(\omega) = \lim_{M \to \infty} \frac{\Delta t}{M} |A_M(\omega)|^2 ,
-   $$
-   其中
-   $$
-   A_M((m-1)\Delta\omega) \equiv \sum_{n=1}^{M} A(n\Delta t)\, e^{i(m-1)\Delta\omega (n-1)\Delta t} ,
-   $$
-   $\Delta t$ 是时间分辨率，$\Delta\omega = 2\pi/T$，$T$ 是模拟时长（$T = M\Delta t$）。若 $A$ 是高斯变量，则 $A(\omega)$ 也是。但由于平衡体系在时间原点平移下不变，$A$ 的不同傅里叶分量彼此不关联。请用推导式 (5.3.14) 时所用的论证，估计功率谱的相对误差对模拟长度的依赖关系。
 
+    $$
+    G_A(\omega) = \lim_{M \to \infty} \frac{\Delta t}{M} |A_M(\omega)|^2 ,
+    $$
+
+    其中
+
+    $$
+    A_M((m-1)\Delta\omega) \equiv \sum_{n=1}^{M} A(n\Delta t)\, e^{i(m-1)\Delta\omega (n-1)\Delta t} ,
+    $$
+
+    $\Delta t$ 是时间分辨率，$\Delta\omega = 2\pi/T$，$T$ 是模拟时长（$T = M\Delta t$）。若 $A$ 是高斯变量，则 $A(\omega)$ 也是。但由于平衡体系在时间原点平移下不变，$A$ 的不同傅里叶分量彼此不关联。请用推导式 (5.3.14) 时所用的论证，估计功率谱的相对误差对模拟长度的依赖关系。
 
 **练习 10（Lennard-Jones 体系的分子动力学）。**在本书网站上可以找到一个 $NVE$ 系综下 Lennard-Jones 流体的分子动力学（MD）程序。我们在代码中植入了三处错误，因此运行过程中总能量不会守恒。
 
 1. 找出代码中的三处错误。提示：运动方程的积分中有两处，力的计算中有一处。关于代码中若干变量的说明见文件 `system.inc`。
 1. 该程序如何控制温度？“控制温度”意味着什么——毕竟在恒定 $NVE$ 的模拟中，应当保持不变的是体系的总能量，而温度是涨落的。
 1. 为检验给定时间步长 $\Delta t$ 下数值积分算法经 $N$ 步后的能量漂移 $\Delta E$，通常计算[[126]](references.md#ref-126)
-   $$
-   \Delta E(\Delta t) = \frac{1}{N} \sum_{i=1}^{N} \left| \frac{E(0) - E(i\Delta t)}{E(0)} \right| ,
-   $$
-   其中 $E(x)$ 是体系在时刻 $x$ 的总能量（动能 + 势能）。修改程序（只改中央循环）使之计算 $\Delta E$，并作出 $\Delta E$ 随时间步长变化的图。对给定的能量漂移，时间步长如何随温度和密度变化？
+
+    $$
+    \Delta E(\Delta t) = \frac{1}{N} \sum_{i=1}^{N} \left| \frac{E(0) - E(i\Delta t)}{E(0)} \right| ,
+    $$
+
+    其中 $E(x)$ 是体系在时刻 $x$ 的总能量（动能 + 势能）。修改程序（只改中央循环）使之计算 $\Delta E$，并作出 $\Delta E$ 随时间步长变化的图。对给定的能量漂移，时间步长如何随温度和密度变化？
 1. 液体或气体的一个重要物理量是所谓自扩散系数 $D$。这里考虑三维体系中 $D$ 的计算，有两种方法：
-   (a) 对速度自关联函数（VACF）积分：
-   $$
-   D = \frac{1}{3}\int_0^\infty \langle \mathbf{v}(t)\cdot\mathbf{v}(t+t') \rangle \,\mathrm{d}t'
-   = \frac{\int_0^\infty \sum_{i=1}^{N} \langle \mathbf{v}(i,t)\cdot\mathbf{v}(i,t+t') \rangle \,\mathrm{d}t'}{3N} ,
-   \tag{5.4.1}
-   $$
-   其中 $N$ 是粒子数，$\mathbf{v}(i,t)$ 是粒子 $i$ 在时刻 $t$ 的速度。为得到 VACF 的独立样本，应当这样选取 $\Delta t$，使所取的时间原点彼此独立，即 $t = i\,a\Delta t$（$i = 1,2,\cdots,\infty$）且 $\langle \mathbf{v}(t)\cdot\mathbf{v}(t+a\Delta t)\rangle \approx 0$。
-   (b) 计算均方位移：
-   $$
-   D = \lim_{t' \to \infty} \frac{\langle |\mathbf{x}(t+t') - \mathbf{x}(t)|^2 \rangle}{6t'} .
-   \tag{5.4.2}
-   $$
-   使用周期性边界条件时，计算均方位移必须小心。为什么？
-   修改程序使之能用这两种方法计算自扩散系数（需对 SI 中提供的代码作一些改动）。把每个时间步都取作计算均方位移和 VACF 的新时间原点并不是好主意（虽然并不错误），请解释。$D$ 在 SI 单位下的量纲是什么？如何把 $D$ 化为无量纲单位？
+    (a) 对速度自关联函数（VACF）积分：
+
+    $$
+    D = \frac{1}{3}\int_0^\infty \langle \mathbf{v}(t)\cdot\mathbf{v}(t+t') \rangle \,\mathrm{d}t'
+    = \frac{\int_0^\infty \sum_{i=1}^{N} \langle \mathbf{v}(i,t)\cdot\mathbf{v}(i,t+t') \rangle \,\mathrm{d}t'}{3N} ,
+    \tag{5.4.1}
+    $$
+
+    其中 $N$ 是粒子数，$\mathbf{v}(i,t)$ 是粒子 $i$ 在时刻 $t$ 的速度。为得到 VACF 的独立样本，应当这样选取 $\Delta t$，使所取的时间原点彼此独立，即 $t = i\,a\Delta t$（$i = 1,2,\cdots,\infty$）且 $\langle \mathbf{v}(t)\cdot\mathbf{v}(t+a\Delta t)\rangle \approx 0$。
+    (b) 计算均方位移：
+
+    $$
+    D = \lim_{t' \to \infty} \frac{\langle |\mathbf{x}(t+t') - \mathbf{x}(t)|^2 \rangle}{6t'} .
+    \tag{5.4.2}
+    $$
+
+    使用周期性边界条件时，计算均方位移必须小心。为什么？
+    修改程序使之能用这两种方法计算自扩散系数（需对 SI 中提供的代码作一些改动）。把每个时间步都取作计算均方位移和 VACF 的新时间原点并不是好主意（虽然并不错误），请解释。$D$ 在 SI 单位下的量纲是什么？如何把 $D$ 化为无量纲单位？
 1. 对 Lennard-Jones 液体，Naghizadeh 和 Rice [[127]](references.md#ref-127) 给出了如下自扩散系数公式（无量纲单位，$T^* < 1.0$ 且 $p^* < 3.0$）：
-   $$
-   {}^{10}\!\log D^* = 0.05 + 0.07 p^* - \frac{1.04 + 0.1 p^*}{T^*} .
-   \tag{5.4.3}
-   $$
-   把这一唯象公式与你自己的模拟结果比较。如何把 $D^*$ 换算成 SI 单位下的扩散系数？
+
+    $$
+    {}^{10}\!\log D^* = 0.05 + 0.07 p^* - \frac{1.04 + 0.1 p^*}{T^*} .
+    \tag{5.4.3}
+    $$
+
+    把这一唯象公式与你自己的模拟结果比较。如何把 $D^*$ 换算成 SI 单位下的扩散系数？
 1. 对通过对势 $u(r)$ 相互作用的粒子体系，若已知径向分布函数 $g(r)$，平均势能 $\langle U \rangle$ 就可以算出。请推导 $\langle U \rangle$ 用 $u(r)$ 与 $g(r)$ 表示的表达式，并把这一计算与直接计算平均能量作比较。类似的方法也可用于计算平均压力。
 1. 在现有版本的代码中，运动方程是用 Verlet 算法积分的。请对下列积分算法分别作出能量漂移 $\Delta E$ 的图：
-
 
 **练习 11（Green-Kubo 积分的最优截断）。**正如正文所述，Green-Kubo 积分一旦其统计噪声被随机噪声主导就应当截断。
 

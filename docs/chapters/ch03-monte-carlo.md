@@ -187,10 +187,11 @@ MC 移动不需要满足的唯一标准是生成物理上合理的轨迹。在�
 1. 随机选择一个粒子[^7]，并计算其对系统能量的贡献 $U(\mathbf{r}^N)$[^8]。
 1. 给粒子一个随机位移 $\mathbf{r}' = \mathbf{r} + \Delta$，并计算其新的势能 $U(\mathbf{r}'^N)$。
 1. 以如下概率接受从 $\mathbf{r}^N$ 到 $\mathbf{r}'^N$ 的移动：
-   $$
-   \text{acc}(o \to n) = \min\left(1, \exp\{-\beta[\mathcal{U}(\mathbf{r}'^N) - \mathcal{U}(\mathbf{r}^N)]\}\right).
-   \tag{3.3.1}
-   $$
+
+    $$
+    \text{acc}(o \to n) = \min\left(1, \exp\{-\beta[\mathcal{U}(\mathbf{r}'^N) - \mathcal{U}(\mathbf{r}^N)]\}\right).
+    \tag{3.3.1}
+    $$
 
 这种基本 Metropolis 方案的实现如算法 1 和算法 2 所示。
 
@@ -825,9 +826,10 @@ $$
 (i) 从任意的 $n_j$ 出发。
 (ii) 随机决定执行一次使 $n_j$ 增加 1 或减少 1 的试探移动。
 (iii) 以下述概率接受该试探移动：
-   $$
-   \text{acc}(o \to n) = \min\left(1, \exp[-\beta(U(n) - U(o))]\right) .
-   $$
+
+$$
+\text{acc}(o \to n) = \min\left(1, \exp[-\beta(U(n) - U(o))]\right) .
+$$
 
 当然，$n_j$ 不能为负！
 
@@ -841,17 +843,21 @@ $$
 
 1. 在本书网站提供的代码中并未计算体系的压力。请修改代码使之能够计算平均压力。你只需在计算能量的函数中作一些改动。
 1. 在 $T = 2.0$ 及若干不同密度下进行模拟。理想气体定律
-   $$
-   \beta p = \rho
-   \tag{3.5.1}
-   $$
-   在密度多大以下是一个好的近似？
+
+    $$
+    \beta p = \rho
+    \tag{3.5.1}
+    $$
+
+    在密度多大以下是一个好的近似？
 1. 程序会输出体系状态的一系列快照。试用例如 Visual Molecular Dynamics（VMD）[[104]](references.md#ref-104) 之类的程序把这些快照可视化。
 1. 对定容热容，可以推出
-   $$
-   C_v = \frac{\langle U^2 \rangle - \langle U \rangle^2}{k_{\mathrm{B}} T^2} ,
-   $$
-   其中 $U$ 是体系的总能量。请推导无量纲热容的公式，并修改本书网站上的程序使之计算 $C_v$。
+
+    $$
+    C_v = \frac{\langle U^2 \rangle - \langle U \rangle^2}{k_{\mathrm{B}} T^2} ,
+    $$
+
+    其中 $U$ 是体系的总能量。请推导无量纲热容的公式，并修改本书网站上的程序使之计算 $C_v$。
 1. 除了每次只位移一个粒子的试探移动之外，也可以做一次位移全部粒子的试探移动。在两种做法都有 50\% 的位移被接受时，比较它们的最大位移。
 1. 除了均匀分布的位移之外，也可以使用高斯分布的位移。这会提高模拟效率吗？
 

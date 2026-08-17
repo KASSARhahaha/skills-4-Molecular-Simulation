@@ -68,21 +68,26 @@ Widom 方法处理式 (10.2.2) 的问题在于，几乎所有随机插入的理�
 
 1. 第一个单体在随机位置插入，其能量记为 $u^{(1)}(n)$。我们定义该单体的 Rosenbluth 权重为 $w_1 = k \exp[-\beta u^{(1)}(n)]$。[^2]
 1. 对于所有后续片段 $i = 2, 3, \cdots, \ell$，我们考虑与片段 $i-1$ 相邻的所有 $k$ 个试探位置（见图 10.1）。第 $j$ 个试探位置的能量记为 $u^{(i)}(j)$。从 $k$ 种可能中，我们以概率
-   $$
-   p^{(i)}(n) = \frac{\exp[-\beta u^{(i)}(n)]}{w_i} ,
-   \tag{10.2.3}
-   $$
-   选择其中一个，比如 $n$，其中 $w_i$ 定义为
-   $$
-   w_i = \sum_{j=1}^{k} \exp[-\beta u^{(i)}(j)] .
-   \tag{10.2.4}
-   $$
-   能量 $u^{(i)}(j)$ 不包括与后续片段 $i+1$ 到 $\ell$ 的相互作用。因此，链的总能量由 $U(n) = \sum_{i=1}^{\ell} u^{(i)}(n)$ 给出。
+
+    $$
+    p^{(i)}(n) = \frac{\exp[-\beta u^{(i)}(n)]}{w_i} ,
+    \tag{10.2.3}
+    $$
+
+    选择其中一个，比如 $n$，其中 $w_i$ 定义为
+
+    $$
+    w_i = \sum_{j=1}^{k} \exp[-\beta u^{(i)}(j)] .
+    \tag{10.2.4}
+    $$
+
+    能量 $u^{(i)}(j)$ 不包括与后续片段 $i+1$ 到 $\ell$ 的相互作用。因此，链的总能量由 $U(n) = \sum_{i=1}^{\ell} u^{(i)}(n)$ 给出。
 1. 重复步骤 2，直到整条链生长完成，然后我们可以计算构象 $n$ 的归一化 Rosenbluth 因子：
-   $$
-   \mathcal{W}(n) = \prod_{i=1}^{\ell} \frac{w_i}{k} .
-   \tag{10.2.5}
-   $$
+
+    $$
+    \mathcal{W}(n) = \prod_{i=1}^{\ell} \frac{w_i}{k} .
+    \tag{10.2.5}
+    $$
 
 ![图 10.1](../images/fig_10_1.png)
 
@@ -216,19 +221,25 @@ $$
 1. 生成固定数量（比如 $k$）个试探片段，其方向按照与内部势能 $u(\theta)$ 相关的玻尔兹曼权重分布。我们用指标 $1, 2, \cdots, k$ 标记不同的试探片段。重要的是，我们最终得到的超额化学势结果对任何 $k \geq 1$ 的选择都有效，但结果的精度很大程度上取决于我们对 $k$ 的选择。
 1. 对于所有 $k$ 个试探片段，我们计算外部玻尔兹曼因子 $\exp[-\beta u_{\mathrm{ext}}^{(i)}(j)]$。
 1. 以概率
-   $$
-   p^{(i)}(n) = \frac{\exp[-\beta u_{\mathrm{ext}}^{(i)}(n)]}{w_{i}^{\mathrm{ext}}} ,
-   \tag{10.2.17}
-   $$
-   选择其中一个试探片段，比如 $n$，其中我们定义了
-   $$
-   w_{i}^{\mathrm{ext}} \equiv \sum_{j=1}^{k} \exp[-\beta u_{\mathrm{ext}}^{(i)}(j)] .
-   $$
+
+    $$
+    p^{(i)}(n) = \frac{\exp[-\beta u_{\mathrm{ext}}^{(i)}(n)]}{w_{i}^{\mathrm{ext}}} ,
+    \tag{10.2.17}
+    $$
+
+    选择其中一个试探片段，比如 $n$，其中我们定义了
+
+    $$
+    w_{i}^{\mathrm{ext}} \equiv \sum_{j=1}^{k} \exp[-\beta u_{\mathrm{ext}}^{(i)}(j)] .
+    $$
+
 1. 将该片段作为第 $i+1$ 段添加到链上，重复此过程直到整条链完成。整条链的归一化 Rosenbluth 因子 $\mathcal{W}$ 由下式给出
-   $$
-   \mathcal{W}^{\mathrm{ext}}(n) = \prod_{i=1}^{\ell} \frac{w_{i}^{\mathrm{ext}}}{k} ,
-   $$
-   其中，对于第一个片段，$w_1^{\mathrm{ext}} = k \exp[-\beta u_{\mathrm{ext}}^{(1)}(1)]$。
+
+    $$
+    \mathcal{W}^{\mathrm{ext}}(n) = \prod_{i=1}^{\ell} \frac{w_{i}^{\mathrm{ext}}}{k} ,
+    $$
+
+    其中，对于第一个片段，$w_1^{\mathrm{ext}} = k \exp[-\beta u_{\mathrm{ext}}^{(1)}(1)]$。
 
 所期望的比值 $Q/Q_{\mathrm{id}}$ 等于部分 Rosenbluth 权重的乘积的平均值（对许多试探链）：
 
