@@ -595,13 +595,13 @@ $$
 
 ## 多重时间步长方法
 
-处理多原子分子高频振动模式的另一种方案基于经典运动方程的 Trotter 展开刘维尔表示（式 (4.3.18)）。这里的思想不仅是分离坐标和动量的传播，而且将高频模式的传播分解为许多更短的时间步，同时为低频模式保持较长的时间步。为了实现这种分离，我们将粒子上的力分为两部分：
+处理多原子分子高频振动模式的另一种方案基于经典运动方程的 Trotter 展开刘维尔表示（式 (4.3.18)）。这里的思想不仅是分离坐标和动量的传播，而且将高频模式的传播分解为许多更短的时间步长，同时为低频模式保持较长的时间步长。为了实现这种分离，我们将粒子上的力分为两部分：
 
 $$
 \mathbf{F} = \mathbf{F}_{\mathrm{short}} + \mathbf{F}_{\mathrm{long}}.
 $$
 
-这种划分是任意的，但对于我们的双原子分子，我们可以将势能分为负责键振动的短程相互作用和原子间的长程吸引力。核心思想是，在原子振动的时间尺度上，势能的长程部分几乎不发生变化，因此这种“昂贵的势能”不需要像势能的“廉价”短程部分那样频繁更新。这表明应该使用多个时间步：对振动使用短时间步，对其余相互作用使用长得多的时间步。
+这种划分是任意的，但对于我们的双原子分子，我们可以将势能分为负责键振动的短程相互作用和原子间的长程吸引力。核心思想是，在原子振动的时间尺度上，势能的长程部分几乎不发生变化，因此这种“昂贵的势能”不需要像势能的“廉价”短程部分那样频繁更新。这表明应该使用多个时间步：对振动使用短时间步长，对其余相互作用使用长得多的时间步长。
 
 Martyna 等人[[126]](references.md#ref-126) 使用刘维尔形式来求解使用多个时间步的运动方程。在我们的讨论中，我们考虑 $NVE$ 系综。关于如何在其他系综中使用多个时间步的详细信息，请参阅文献[[126]](references.md#ref-126)。让我们从简单的情况开始，推导受力为 $F$ 的单个粒子的运动方程。该系统的刘维尔算子（$iL$）为式 (4.3.12)：
 
@@ -609,7 +609,7 @@ $$
 iL = iL_r + iL_p = v \frac{\partial}{\partial r} + \frac{F}{m} \frac{\partial}{\partial v}.
 $$
 
-运动方程由应用时间步为 $\Delta t$ 的 Trotter 公式 (4.3.18) 得出：
+运动方程由应用时间步长为 $\Delta t$ 的 Trotter 公式 (4.3.18) 得出：
 
 $$
 e^{iL\Delta t} \approx e^{iL_p \Delta t/2} e^{iL_r \Delta t} e^{iL_p \Delta t/2}.
@@ -711,7 +711,7 @@ iL_{\mathrm{short}} = \frac{F_{\mathrm{short}}}{m} \frac{\partial}{\partial v}, 
 iL_{\mathrm{long}} = \frac{F - F_{\mathrm{short}}}{m} \frac{\partial}{\partial v} = \frac{F_{\mathrm{long}}}{m} \frac{\partial}{\partial v}.
 $$
 
-我们使用具有两个时间步的 Trotter 展开：一个长时间步 $\Delta t$ 和一个短时间步 $\delta t = \Delta t/n$。总刘维尔算子为
+我们使用具有两个时间步长的 Trotter 展开：一个长时间步长 $\Delta t$ 和一个短时间步长 $\delta t = \Delta t/n$。总刘维尔算子为
 
 $$
 e^{iL\Delta t} = e^{i(L_{\mathrm{short}} + L_{\mathrm{long}} + L_r)\Delta t}
@@ -732,7 +732,7 @@ $$
 e^{iL_{\mathrm{long}}\Delta t/2} f[\dot{r}(0), r(0)] = f[\dot{r}(0) + F_{\mathrm{long}}(0)\Delta t/2m,\, r(0)],
 $$
 
-然后使用“廉价的” $F_{\mathrm{short}}$ 以较小的时间步 $\delta t$ 进行 $n$ 个小步：
+然后使用“廉价的” $F_{\mathrm{short}}$ 以较小的时间步长 $\delta t$ 进行 $n$ 个小步：
 
 $$
 \left[ e^{iL_{\mathrm{short}}\delta t/2n} e^{iL_r \delta t/n} e^{iL_{\mathrm{short}}\delta t/2n} \right]^n
@@ -752,7 +752,7 @@ $$
 <tr markdown="1"><td class="algcode" markdown="span"></td><td class="algcom" markdown="span">fs：力的短程部分</td></tr>
 <tr markdown="1"><td class="algcode" markdown="span"><code>vx=vx+0.5*delt*fl</code></td><td class="algcom" markdown="span">以时间步 $\Delta t/2$ 作速度 Verlet</td></tr>
 <tr markdown="1"><td class="algcode" markdown="span"><code>for&nbsp;1&nbsp;</code>$\leq$<code>&nbsp;it&nbsp;</code>$\leq$<code>&nbsp;n&nbsp;do</code></td><td class="algcom" markdown="span">短时间步循环</td></tr>
-<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>vx=vx+0.5*(delt/n)*fs</code></td><td class="algcom" markdown="span">以短时间步 $\Delta t/n$ 作速度 Verlet</td></tr>
+<tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>vx=vx+0.5*(delt/n)*fs</code></td><td class="algcom" markdown="span">以短时间步长 $\Delta t/n$ 作速度 Verlet</td></tr>
 <tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>x=x+(delt/n)2*vx</code></td><td class="algcom" markdown="span"></td></tr>
 <tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>fs&nbsp;=&nbsp;force_short</code></td><td class="algcom" markdown="span">短程力</td></tr>
 <tr markdown="1"><td class="algcode" markdown="span"><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>vx=vx+0.5*(delt/n)*fs</code></td><td class="algcom" markdown="span"></td></tr>

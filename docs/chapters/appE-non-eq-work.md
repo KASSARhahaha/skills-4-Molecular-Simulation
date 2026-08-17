@@ -4,7 +4,7 @@
 
 为了理解这意味着什么，考虑一个通过改变控制参数 $\Lambda$ 来做功的过程。例如，$\Lambda$ 可以是系统的体积，也可以是系统哈密顿量中的一个参数。我们将 $\Lambda$ 的初始值/最终值记为 $\Lambda_0 / \Lambda_K$（我们使用下标 $K$ 以保持后续记号的一致性）。
 
-将 $\Lambda$ 从 $\Lambda_0$ 改变到 $\Lambda_K$ 的方案可以分解为两类基本步骤：在第一类步骤中，系统的所有相空间坐标（$\Gamma$）保持固定，$\Lambda$ 改变了 $\Delta \Lambda_i$，其中 $i$ 标记步骤编号；如果共有 $K$ 个这样的步骤，则 $i = \{1, 2, \cdots, K\}$。注意，仅改变 $\Lambda$ 的步骤是确定性的。然而，方案中还有第二类步骤，即 $\Lambda$ 保持不变，但系统通过其自然动力学进行演化，与恒温器交换能量。恒定 $\Lambda$ 下演化的例子包括一系列一个或多个 Monte Carlo 移动，或恒定温度 MD 模拟中的一个或多个时间步长。[^1] 在 Crooks [[389]](references.md#ref-389) 的术语中，我们将与“热库”（即恒温器）交换的能量记为 $Q$：它可以被解释为热库传递给系统的热量。由于细致平衡，系统在恒定 $\Lambda$（比如 $\Lambda_i$）下从相空间坐标 $\Gamma$ 演化到 $\Gamma'$ 的概率与逆向移动概率之比由下式给出：
+将 $\Lambda$ 从 $\Lambda_0$ 改变到 $\Lambda_K$ 的方案可以分解为两类基本步骤：在第一类步骤中，系统的所有相空间坐标（$\Gamma$）保持固定，$\Lambda$ 改变了 $\Delta \Lambda_i$，其中 $i$ 标记步骤编号；如果共有 $K$ 个这样的步骤，则 $i = \{1, 2, \cdots, K\}$。注意，仅改变 $\Lambda$ 的步骤是确定性的。然而，方案中还有第二类步骤，即 $\Lambda$ 保持不变，但系统通过其自然动力学进行演化，与恒温器交换能量。恒定 $\Lambda$ 下演化的例子包括一系列一个或多个 Monte Carlo 移动，或恒定温度 MD 模拟中的一个或多个时间步长。[^1] 在 Crooks [[389]](references.md#ref-389) 的术语中，我们将与“热浴”（即恒温器）交换的能量记为 $Q$：它可以被解释为热浴传递给系统的热量。由于细致平衡，系统在恒定 $\Lambda$（比如 $\Lambda_i$）下从相空间坐标 $\Gamma$ 演化到 $\Gamma'$ 的概率与逆向移动概率之比由下式给出：
 
 $$
 \frac{P(\Gamma \to \Gamma'; \Lambda_i)}{P(\Gamma' \to \Gamma; \Lambda_i)} = e^{-\beta \Delta E(\Lambda_i)},
@@ -38,7 +38,7 @@ $$
 \tag{E.1.2}
 $$
 
-注意 $\prod_{i=K-1}^{0} e^{-\beta \Delta E(\Lambda_i)}$ 等于 $e^{-\beta Q(\{\Gamma\})}$，其中 $Q$ 是状态序列 $\{\Gamma\} \equiv \Gamma_0, \Gamma_1, \cdots, \Gamma_K$ 的总能量——即从热库传递给系统的能量。注意 $Q$ 不等于 $E(\Gamma_K; \Lambda_K) - E(\Gamma_0; \Lambda_0)$，因为系统的能量也因做功而改变：
+注意 $\prod_{i=K-1}^{0} e^{-\beta \Delta E(\Lambda_i)}$ 等于 $e^{-\beta Q(\{\Gamma\})}$，其中 $Q$ 是状态序列 $\{\Gamma\} \equiv \Gamma_0, \Gamma_1, \cdots, \Gamma_K$ 的总能量——即从热浴传递给系统的能量。注意 $Q$ 不等于 $E(\Gamma_K; \Lambda_K) - E(\Gamma_0; \Lambda_0)$，因为系统的能量也因做功而改变：
 
 $$
 E(\Gamma_K; \Lambda_K) - E(\Gamma_0; \Lambda_0) = W(\{\Gamma\}) + Q(\{\Gamma\}),
@@ -95,4 +95,4 @@ $$
 
 ---
 
-[^1]: 该论证可以推广到系统也与热库交换体积或粒子的情况，但此处我们考虑最简单的情况。
+[^1]: 该论证可以推广到系统也与热浴交换体积或粒子的情况，但此处我们考虑最简单的情况。
